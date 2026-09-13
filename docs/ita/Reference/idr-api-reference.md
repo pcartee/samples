@@ -1,252 +1,297 @@
 ---
 title: Studio Identity Router API reference
-description: API reference for the Studio Identity Router — supported data types (KeychainObject, UserKeychain, Application) and API call operations.
+description: >-
+  API reference for the Studio Identity Router, including supported data types
+  and API call operations.
 author: pcartee
 topic-type: API_reference
 date: 09/13/2026
 uid: api.identity.reference
 slug: /reference/identity-router-api
-keywords: [identity router, keychain, KeychainObject, UserKeychain, WSDL, Apache CXF, data types]
+keywords:
+  - identity router
+  - keychain
+  - KeychainObject
+  - UserKeychain
+  - WSDL
+  - Apache CXF
+  - data types
 ---
 
-*· September/13/2026 ·*
+This guide documents the data types and API operations supported by the
+Studio Identity Router API.
 
-This is the Studio Identity Router API Reference Guide. This guide contains information about the data types and API calls supported by the Studio Identity Router.
+## Audience
 
-## Who Should Read this Document
+This guide is for developers who need the data types and operations supported
+by the Studio Identity Router API.
 
-This guide is intended for programmers that need detailed information about the data types and operations supported by the Studio Identity Router API.
+## API specification
 
-## API Call Specification
+The management interface exposes the currently supported API. View the API
+WSDL at `https://<management-interface-ip>/API`.
 
-The currently supported API can always be found via the management interface of the Studio Identity Router. The WSDL for the API can be viewed at `https://<management-interface-ip>/API`.
+The WSDL is the authoritative source for the complete service contract,
+including the exact operation signatures and wire format. Replace
+`<management-interface-ip>` with the IP address of the management interface.
+
+This guide describes the API data types and operation behavior. It does not
+define authentication, TLS, transport, or error-code details that are not
+specified in the WSDL.
 
 ## Data Types
 
-This section lists the data types in the Studio Identity Router API.
+This section defines the data types returned by the Studio Identity Router API.
 
 :::note
-All elements returned from the API are sent using Apache CXF.
+API elements are serialized and returned through Apache CXF.
 :::
 
 ### KeychainObject
 
-KeychainObject is a generic element that can be returned from the API. Because some calls to the API return elements that cannot be determined until runtime, any API call that returns an element will actually return a KeychainObject, from which the proper element type can be extracted. As of the 7.1 release of the API, a KeychainObject can be either a UserKeychain or an Application element.
+`KeychainObject` is a generic element returned by operations whose concrete
+element type is determined at runtime. As of API release 7.1, a
+`KeychainObject` can be a `UserKeychain` or an `Application`.
 
-#### Contents
+#### Contents of KeychainObject
 
-Either a UserKeychain or Application
+One `UserKeychain` or `Application` element.
 
-##### UserKeychain
+#### UserKeychain
 
-UserKeychain represents a User's keychain configuration. This configuration contains information about the user and a list of applications configured in the user's keychain.
+`UserKeychain` represents one user's keychain configuration. It contains the
+user name and the applications configured in the user's keychain.
 
-###### UserKeychain Contents
+##### UserKeychain fields
 
-| NAME         | DESCRIPTION DESCRIPTION                  | REQUIRED |
-|--------------|------------------------------------------|----------|
-| username     | The name of the user for whom the        |          |
-| applications | A set of application elements configured |          |
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `username` | string | Not specified | User who owns the keychain. |
+| `applications` | array of `Application` | Not specified | Applications. |
 
-##### Application
+#### Application
 
-Application represents a keychain entry for a single application. This element contains information about the application itself, as well as a list of the user's unique credentials for the application.
+`Application` represents one application entry in a user's keychain. It
+contains application metadata and the user's credentials for that application.
 
-###### Application Contents
+##### Application fields
 
-| NAME | DESCRIPTION DESCRIPTION                 | REQUIRED |
-|------|-----------------------------------------|----------|
-| name | The name of the application.            | Yes      |
-| uuid | The generated uuid for the application, |          |
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `name` | string | Yes | Name of the application. |
+| `uuid` | string | Not specified | UUID generated for the application. |
+| `credentials` | array of `Credential` | No | Application credentials. |
 
-|  | NAME        | DESCRIPTION                                                                           | REQUIRED |
-|--|-------------|---------------------------------------------------------------------------------------|----------|
-|  | credentials | A set of Credential elements representing the user's credentials for the application. | No       |
+#### Credential
 
-##### Credential
+`Credential` represents one name-value pair. The value stores the user's
+credential for the parent `Application`.
 
-Credential represents a name-value pair for a single credential. The Credential element stores a user's unique credential value that will be supplied when logging into the parent Application.
+##### Credential fields
 
-###### Credential Contents
-
-| NAME  | DESCRIPTION DESCRIPTION                    | REQUIRED REQUIRED |
-|-------|--------------------------------------------|-------------------|
-| name  | The name of the credential (for example,   |                   |
-| value | The user's individual value, which will be |                   |
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `name` | string | Not specified | Name of the credential. |
+| `value` | string | Not specified | Credential for the parent application. |
 
 ## List of API Operations
 
-This section lists the operations that can be performed within the Identity Router API.
+The following table summarizes the available operations. Use `update` or
+`updateAll` when existing child data must be preserved. Use `replace` or
+`replaceAll` when omitted child data must be deleted.
 
-## get
+| Operation | Purpose | Response | Destructive |
+| --- | --- | --- | --- |
+| `get` | Retrieve one element. | `KeychainObject` | No |
+| `getAll` | Retrieve all elements of a type. | Multiple objects | No |
+| `update` | Add or update one element. | Updated `KeychainObject` | No |
+| `updateAll` | Add or update multiple elements. | None | No |
+| `replace` | Replace one element. | None | Yes |
+| `replaceAll` | Replace multiple elements. | None | Yes |
+| `getCount` | Count elements of a type. | Signed 64-bit integer | No |
+| `remove` | Remove one element. | None | Yes |
+| `removeAll` | Remove all elements of a type. | None | Yes |
+| `rename` | Rename one element. | Updated `KeychainObject` | No |
 
-**get** - Retrieves an element from the keychain API. The object is returned via Apache CXF.
+### get
 
-### Request Parameters
+Retrieves one element from the keychain.
 
-| NAME | DESCRIPTION DESCRIPTION                  | REQUIRED |
-|------|------------------------------------------|----------|
-| name | The name of the element to be retrieved  | Yes      |
-| type | The type of the element to be retrieved. |          |
+#### get request parameters
 
-#### **Response Elements**
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `name` | string | Yes | Name of the element to retrieve. |
+| `type` | string | Not specified | Type of the element to retrieve. |
 
-| NAME           | DESCRIPTION           |
-|----------------|-----------------------|
-| KeychainObject | The requested element |
+#### get response
 
-#### **getAll**
+Returns the requested `KeychainObject`.
 
-**getAll** - retrieves all elements of the specified type from the keychain API.
+### getAll
 
-## **Request Parameters**
+Retrieves all elements of the specified type from the keychain.
 
-| NAME | DESCRIPTION                                                                                       | REQUIRED |
-|------|---------------------------------------------------------------------------------------------------|----------|
-| type | The type of the elements to be retrieved. Supported types are: user-keychain and application-type | Yes      |
+#### getAll request parameters
 
-## **Response Elements**
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `type` | string | Yes | Values: `user-keychain`, `application-type`. |
 
-| NAME                      | DESCRIPTION            |
-|---------------------------|------------------------|
-| KeychainObject (multiple) | The requested elements |
+#### getAll response
 
-#### **update**
+Returns multiple `KeychainObject` elements.
 
-**update** - updates an element in the keychain. If the element exists, all non-obfuscated values will be updated. If the element does not exist, it will be added to the keychain. Updates do not alter child elements unless they are present in the element passed to the API.
+### update
 
-If the provided element contains an invalid configuration, the update will not be performed. This includes (but is not limited to) configurations for non-existent applications or keychain credentials that are not associated with existing applications.
+Adds or updates one element in the keychain. If the element exists, all
+non-obfuscated values are updated. If it does not exist, it is added. Child
+elements are not changed unless they are included in the supplied element.
 
-## **Request Parameters**
+An invalid configuration prevents the update. Examples include a non-existent
+application or a credential that is not associated with an existing
+application.
 
-| NAME | DESCRIPTION DESCRIPTION                | REQUIRED REQUIRED |
-|------|----------------------------------------|-------------------|
-| obj  | The element to be updated.             | Yes               |
-| type | The type of the element to be updated. |                   |
+#### update request parameters
 
-# **Response Elements**
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `obj` | `KeychainObject` | Yes | Element to add or update. |
+| `type` | string | Not specified | Type of the element to update. |
 
-| NAME           | DESCRIPTION                                            |
-|----------------|--------------------------------------------------------|
-| KeychainObject | The updated element, as it now exists in the keychain. |
+#### update response
 
-#### **updateAll**
+Returns the updated `KeychainObject` as it exists in the keychain.
 
-**updateAll** - updates multiple elements in the keychain. If the element exists, all non-obfuscated values will be updated. If the element does not exist, it will be added to the keychain. Updates do not alter child elements unless they are present in the element passed to the API.
+### updateAll
 
-If any of the provided elements contains an invalid configuration, none of the elements will be updated. This includes (but is not limited to) configurations for non-existent applications or keychain credentials that are not associated with existing applications.
+Adds or updates multiple elements in the keychain. Existing elements are
+updated with non-obfuscated values. Missing elements are added. Child elements
+are not changed unless they are included in the supplied elements.
 
-## **Request Parameters**
+If any element has an invalid configuration, none of the elements are updated.
+Examples include a non-existent application or a credential that is not
+associated with an existing application.
 
-| NAME           | DESCRIPTION DESCRIPTION                | REQUIRED |
-|----------------|----------------------------------------|----------|
-| obj (multiple) | The elements to be updated.            | Yes      |
-| type           | The type of the element to be updated. |          |
+#### updateAll request parameters
 
-#### **Response Elements**
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `obj` | multiple objects | Yes | Elements to add or update. |
+| `type` | string | Not specified | Type of the elements to update. |
 
-none
+#### updateAll response
 
-#### **replace**
+Returns no response elements.
 
-**replace** - replaces an element in the keychain. If the element exists, all values will be replaced. If obfuscated values are sent to the API, they will be replaced with the existing, non-obfuscated values. If the element does not exist, the API will return an error message. Unlike an update, replace will delete any existing child elements that were not passed in with the element supplied by the API call.
+### replace
 
-If the provided element contains an invalid configuration, none of the elements will be replaced. This includes (but is not limited to) configurations for non-existent applications or keychain credentials that are not associated with existing applications.
+Replaces one element in the keychain. If the element exists, all values are
+replaced. Obfuscated values sent to the API retain the existing non-obfuscated
+values. If the element does not exist, the API returns an error.
 
-**Warning**: The replace and replaceAll calls are intended for situations where a customer wishes to alter or delete a user's entire keychain. For situations where a customer wishes to preserve existing keychain data or alter only a few application keychains, the update or updateAll API calls should be used.
+Unlike `update`, `replace` deletes existing child elements that are not
+included in the supplied element. An invalid configuration prevents the
+replacement.
 
-#### **Request Parameters**
+:::warning
+Use `replace` and `replaceAll` only when the entire element or keychain
+should be replaced. Use `update` or `updateAll` to preserve existing data.
+:::
 
-| NAME           | DESCRIPTION DESCRIPTION       | REQUIRED REQUIRED |
-|----------------|-------------------------------|-------------------|
-| KeychainObject | The elements to be replaced.  | Yes               |
-| type           | The type of the element to be |                   |
+#### replace request parameters
 
-## **Response Elements**
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `obj` | `KeychainObject` | Yes | Element to replace. |
+| `type` | string | Not specified | Type of the element to replace. |
 
-none
+#### replace response
 
-#### **replaceAll**
+Returns no response elements.
 
-**replaceAll** - replaces multiple element in the keychain. If the elements exist, all values will be replaced. If obfuscated values are sent to the API, they will be replaced with the existing, non-obfuscated values. If any of the elements do not exist, the API will return an error message. Unlike an update, replace will delete any existing child elements that were not passed in with the elements supplied by the API call.
+### replaceAll
 
-If any of the provided elements contains an invalid configuration, the replace will not be performed. This includes (but is not limited to) configurations for non-existent applications or keychain credentials that are not associated with existing applications.
+Replaces multiple elements in the keychain. Existing elements are fully
+replaced. Obfuscated values retain the existing non-obfuscated values. If any
+element does not exist, the API returns an error.
 
-**Warning**: The replace and replaceAll calls are intended for situations where a customer wishes to alter or delete a user's entire keychain. For situations where a customer wishes to preserve existing keychain data or alter only a few application keychains, the update or updateAll API calls should be used.
+Unlike `updateAll`, `replaceAll` deletes existing child elements that are not
+included in the supplied elements. If any element has an invalid
+configuration, no elements are replaced.
 
-#### **Request Parameters**
+:::warning
+Use `replace` and `replaceAll` only when the entire element or keychain
+should be replaced. Use `update` or `updateAll` to preserve existing data.
+:::
 
-| NAME | DESCRIPTION DESCRIPTION       | REQUIRED |
-|------|-------------------------------|----------|
-|      | The elements to be replaced.  | Yes      |
-| type | The type of the element to be |          |
+#### replaceAll request parameters
 
-#### **Response Elements**
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `obj` | multiple objects | Yes | Elements to replace. |
+| `type` | string | Not specified | Type of the elements to replace. |
 
-none
+#### replaceAll response
 
-#### **getCount**
+Returns no response elements.
 
-**getCount** - returns a numeric count of the number of existing elements of the specified type.
+### getCount
 
-# **Request Parameters**
+Returns the number of existing elements of the specified type.
 
-|  | NAME | DESCRIPTION                                                               | REQUIRED |
-|--|------|---------------------------------------------------------------------------|----------|
-|  | type | The type of the element to be counted. Supported types are: user-keychain | Yes      |
+#### getCount request parameters
 
-#### **Response Elements**
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `type` | string | Yes | Element type. Supported value: `user-keychain`. |
 
-| NAME  | DESCRIPTION           |
-|-------|-----------------------|
-| count | Signed 64-bit integer |
+#### getCount response
 
-#### **remove**
+Returns `count`, a signed 64-bit integer.
 
-**remove** - removes the specified entry from the keychain
+### remove
 
-# **Request Parameters**
+Removes one entry from the keychain.
 
-| NAME | DESCRIPTION DESCRIPTION       | REQUIRED REQUIRED |
-|------|-------------------------------|-------------------|
-| name | The name of the element to be |                   |
-| type | The type of the element to be |                   |
+#### remove request parameters
 
-#### **Response Elements**
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `name` | string | Not specified | Name of the element to remove. |
+| `type` | string | Not specified | Type of the element to remove. |
 
-none
+#### remove response
 
-#### **removeAll**
+Returns no response elements.
 
-**removeAll** - removes all elements of the specified type from the keychain
+### removeAll
 
-#### **Request Parameters**
+Removes all elements of the specified type from the keychain.
 
-| NAME | DESCRIPTION                                                                | REQUIRED |
-|------|----------------------------------------------------------------------------|----------|
-| type | The type of the elements to be removed. Supported types are: user-keychain | Yes      |
+#### removeAll request parameters
 
-#### **Response Elements**
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `type` | string | Yes | Element type. Supported value: `user-keychain`. |
 
-none
+#### removeAll response
 
-#### **rename**
+Returns no response elements.
 
-**rename** - KeychainObject rename(String oldName, String newName, String type)
+### rename
 
-# **Request Parameters**
+Renames one element. The API signature is
+`KeychainObject rename(String oldName, String newName, String type)`.
 
-|  | NAME    | DESCRIPTION                      | REQUIRED |
-|--|---------|----------------------------------|----------|
-|  | oldName | The current name of the element. | Yes      |
+#### rename request parameters
 
-| NAME | DESCRIPTION DESCRIPTION         | REQUIRED REQUIRED |
-|------|---------------------------------|-------------------|
-| name | The desired name of the element | Yes               |
-| type | The type of the element to be   |                   |
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `oldName` | string | Yes | Current name of the element. |
+| `newName` | string | Yes | Desired name of the element. |
+| `type` | string | Not specified | Type of the element to rename. |
 
-#### **Response Elements**
+#### rename response
 
-| NAME           | DESCRIPTION         |
-|----------------|---------------------|
-| KeychainObject | The updated element |
+Returns the updated `KeychainObject`.
