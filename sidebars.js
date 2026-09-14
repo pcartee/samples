@@ -104,6 +104,7 @@ const sidebars = {
             { type: 'doc', id: 'ita/Key-broker/kbs.key.creation.retrieval', label: 'Key creation and retrieval' },
           ],
         },
+        { type: 'doc', id: 'ita/Reference/idr-api-reference', label: 'Identity Router API reference' },
       ],
     },
   ],
