@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Website
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
@@ -41,3 +42,6 @@ GIT_USER=<Your GitHub username> npm run deploy
 ```
 
 If you are using GitHub Pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+=======
+# samples
+>>>>>>> ff37e3ec42a110b05f43b0d275ced000b6ce61e4
