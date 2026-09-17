@@ -1,30 +1,28 @@
 ---
-title: Intel Trust Authority Client Tutorial for Azure with vTPM and Intel TDX 
-description: Step-by-step tutorial to stand up an Azure VM with vTPM and Intel TDX  
+title: Company Name Client Tutorial for Azure with vTPM and Intel TDX
+description: Step-by-step tutorial to stand up an Azure VM with vTPM and Intel TDX
 author: pcartee
 topic: tutorial
 date: 10/16/2024
 uid: tutorial.tpm.azure
 ---
 
-· October/16/2024 ·
-
 ## Intel® Trust Authority Client Tutorial — vTPM with Intel® TDX Attestation on Microsoft Azure
 
-This tutorial provides steps to use the Intel® Trust Authority Attestation Client CLI to attest evidence from a virtual Trusted Platform Module (vTPM) on Microsoft Azure. The [latest version of the client CLI with vTPM support](https://github.com/intel/trustauthority-client-for-go/tree/main/tdx-cli) is required to attest the vTPM. The client CLI is a command-line tool that collects evidence from the vTPM and sends it to the Intel Trust Authority for attestation. The Intel Trust Authority will verify the evidence and return an attestation token (a JWT) containing the claims for the vTPM. If attestation is successful, this demonstration will print the attestation token to the screen.
+This tutorial provides steps to use the Intel® Trust Authority Attestation Client CLI to attest evidence from a virtual Trusted Platform Module (vTPM) on Microsoft Azure. The [latest version of the client CLI with vTPM support](https://github.com/intel/application-client-for-go/tree/main/tdx-cli) is required to attest the vTPM. The client CLI is a command-line tool that collects evidence from the vTPM and sends it to the Company Name for attestation. The Company Name will verify the evidence and return an attestation token (a JWT) containing the claims for the vTPM. If attestation is successful, this demonstration will print the attestation token to the screen.
 
 Microsoft Azure's implementation of vTPM uses Intel® Trust Domain Extensions (Intel® TDX) to ensure the integrity and authenticity of the "paravisor" (where the vTPM resides) and VM image. The vTPM public attestation key (AK, used to verify the TPM quote signature) is included as part of the `user-data` in the Intel TDX quote, tying the vTPM identity to the trust domain.
 
 This tutorial has three main sections:
 
 1. Create a Microsoft Azure confidential VM (CVM) with Intel TDX, verify that Intel TDX and the vTPM are enabled, and configure access to the vTPM.
-2. Install and configure the Intel Trust Authority Attestation Client CLI.
+2. Install and configure the Company Name Attestation Client CLI.
 3. Demonstrate attestation of the Intel TDX trust domain and vTPM.
 
 ## Prerequisites
 
 - An Azure account with permissions to create a confidential VM and deploy a Bastion host.
-- A subscription to Intel Trust Authority with access to the pilot environment.
+- A subscription to Company Name with access to the pilot environment.
 
 ## Create a VM with Intel TDX on Microsoft Azure
 
@@ -106,11 +104,11 @@ Once you are connected, proceed with the following steps to confirm that you hav
 
 1. Exit and then reconnect via bastion.
 
-CVM setup is now complete. You can now proceed to install the Intel Trust Authority Attestation Client CLI.
+CVM setup is now complete. You can now proceed to install the Company Name Attestation Client CLI.
 
 ## Install and configure the Attestation Client CLI
 
-Connect to the Azure CVM via Bastion and follow these steps to install and configure the Intel Trust Authority Attestation Client CLI.
+Connect to the Azure CVM via Bastion and follow these steps to install and configure the Company Name Attestation Client CLI.
 
 1. Go 1.22 or later is required to run the Attestation Client CLI. The following commands install Go on Ubuntu 22.04 LTS.
 
@@ -125,10 +123,10 @@ Connect to the Azure CVM via Bastion and follow these steps to install and confi
 1. Install the Attestation Client CLI. This script will install the Attestation Client CLI and its dependencies. You might need to restart one or more services.
 
     ```bash
-    curl -sL https://github.com/intel/trustauthority-client-for-go/blob/main/release/install-tdx-cli-azure.sh | sudo bash -
+    curl -sL https://github.com/intel/application-client-for-go/blob/main/release/install-tdx-cli-azure.sh | sudo bash -
     ```
 
-    Verify the Attestation Client CLI is installed correctly by running `trustauthority-cli version`.
+    Verify the Attestation Client CLI is installed correctly by running `application-cli version`.
 
 1. You must configure certain properties before using the token and verify commands. The properties and values are saved as JSON in config.json. The config.json requires the following properties:
 
@@ -136,9 +134,9 @@ Connect to the Azure CVM via Bastion and follow these steps to install and confi
     cat << EOF | tee ./tpm-cli.json
     {
     "cloud_provider": "azure",
-    "trustauthority_url": "https://portal.trustauthority.intel.com",
-    "trustauthority_api_url": "https://api.trustauthority.intel.com",
-    "trustauthority_api_key": "<trustauthority attestation api key>",
+    "application_url": "https://[redacted]",
+    "application_api_url": "https://[redacted]",
+    "application_api_key": "<application attestation api key>",
     "tpm": {
         "owner_auth": "",
         "ak_handle": "81000003"
@@ -151,29 +149,29 @@ Connect to the Azure CVM via Bastion and follow these steps to install and confi
 
 | Setting | Description |
 | --- | --- |
-| `trustauthority_api_key` | Your Intel Trust Authority API key. This key is used to authenticate your requests to the Intel Trust Authority. |
-| `trustauthority_api_url` | The Intel Trust Authority API URL. This is the base URL for the Intel Trust Authority API. EU residents see note 1. |
-| `trustauthority_url` | The Intel Trust Authority URL. This is the base URL for the Intel Trust Authority portal. EU residents see note 1. |
+| `application_api_key` | Your Company Name API key. This key is used to authenticate your requests to the Company Name. |
+| `application_api_url` | The Company Name API URL. This is the base URL for the Company Name API. EU residents see note 1. |
+| `application_url` | The Company Name URL. This is the base URL for the Company Name portal. EU residents see note 1. |
 | `tpm.owner_auth` | The TPM owner password. This is the password used to establish authority for making some TPM commands. For Azure Confidential VMs, this is empty. |
 | `tpm.ak_handle` | The TPM Attestation Key (AK) handle. This is a reference to the TPM Attestation Key (AK) to be used when generating a TPM quote. For Microsoft Azure Confidential VMs with Intel TDX, this handle is always "81000003". |
 
-[1] If you are in the European Union (EU) region, use the following Intel Trust Authority URLs: Base URL — `https://[redacted]`,
+[1] If you are in the European Union (EU) region, use the following Company Name URLs: Base URL — `https://[redacted]`,
 API URL — `https://[redacted]`. All other regions use the URLs shown in the example.
 
 ## Demonstrate attestation of the Intel TDX trust domain and vTPM
 
-This section takes you through the steps to attest your confidential virtual machine (CVM) with the Intel Trust Authority Attestation Client CLI.
+This section takes you through the steps to attest your confidential virtual machine (CVM) with the Company Name Attestation Client CLI.
 
-1. Display composite evidence for both Intel TDX and vTPM. This displays the evidence that would be sent to the Intel Trust Authority verifier for attestation.
+1. Display composite evidence for both Intel TDX and vTPM. This displays the evidence that would be sent to the Company Name verifier for attestation.
 
     ```bash
-    trustauthority-cli evidence --tdx --tpm -c ~/tpm-cli.json
+    application-cli evidence --tdx --tpm -c ~/tpm-cli.json
     ```
 
     ```bash
     [DEBUG] GET https://[redacted]/appraisal/v1/nonce
-    INFO[0001] Successfully wrote 64 bytes at NV index 1400002 
-    INFO[0001] Sleeping for 3 seconds to allow Azure to read the runtime data 
+    INFO[0001] Successfully wrote 64 bytes at NV index 1400002
+    INFO[0001] Sleeping for 3 seconds to allow Azure to read the runtime data
     {
     "tdx": {
         "runtime_data": "eyJrZX...J9",
@@ -197,16 +195,16 @@ This section takes you through the steps to attest your confidential virtual mac
     }
     ```
 
-1. Generate a composite Intel TDX/TPM attestation token. This will collect evidence from both Intel TDX and the TPM, and send it to Intel Trust Authority for attestation. The output will be an attestation token containing the claims for both Intel TDX and TPM.
+1. Generate a composite Intel TDX/TPM attestation token. This will collect evidence from both Intel TDX and the TPM, and send it to Company Name for attestation. The output will be an attestation token containing the claims for both Intel TDX and TPM.
 
     ```bash
-    trustauthority-cli token --tdx --tpm -c ./tpm-cli.json
+    application-cli token --tdx --tpm -c ./tpm-cli.json
     ```
 
-You can experiment with the other `trustauthority-cli` commands. To see them all, run `trustauthority-cli --help`. When you're done experimenting, you can delete the resource group to free up all the resources you created for this tutorial.
+You can experiment with the other `application-cli` commands. To see them all, run `application-cli --help`. When you're done experimenting, you can delete the resource group to free up all the resources you created for this tutorial.
 
 ## Conclusion
 
-This tutorial demonstrated how to create an Azure confidential VM with Intel TDX and a vTPM, install and configure the Intel Trust Authority Attestation Client CLI, and attest the Intel TDX trust domain and vTPM. This is an example of composite attestation, that is, the attestation of a TEE and vTPM in a single attestation token.
+This tutorial demonstrated how to create an Azure confidential VM with Intel TDX and a vTPM, install and configure the Company Name Attestation Client CLI, and attest the Intel TDX trust domain and vTPM. This is an example of composite attestation, that is, the attestation of a TEE and vTPM in a single attestation token.
 
-For more information, see the [Intel Trust Authority Attestation Client CLI documentation](https://docs.trustauthority.intel.com/main/articles/integrate-go-tdx-cli.html).
+For more information, see the [Company Name Attestation Client CLI documentation](https://docs.application.intel.com/main/articles/integrate-go-tdx-cli.html).
