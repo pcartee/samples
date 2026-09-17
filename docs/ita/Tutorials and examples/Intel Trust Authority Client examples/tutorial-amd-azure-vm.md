@@ -7,7 +7,7 @@ date: 09/19/2024
 uid: tutorial.amd
 ---
 
-*· September/19/2024 ·*
+· September/19/2024 ·
 
 ## Intel Trust Authority Client Tutorial - AMD SEV-SNP Attestation on Microsoft Azure
 
@@ -25,7 +25,7 @@ To create a Confidential virtual machine that supports AMD SEV-SNP, create a VM 
 
 - Security type: **Confidential virtual machines**
 - Image: **Ubuntu 20.04 LTS (Confidential VM - SEV-SNP only) - x64 Gen2**  
-- Size: **DC2ad** or any other size support AMD SEV-SNP
+- Size: **DC2ad** or any other size that supports AMD SEV-SNP
 
 Follow the steps below to create an Azure VM with these attributes.
 
@@ -35,13 +35,13 @@ Follow the steps below to create an Azure VM with these attributes.
 
 1. At the top-left of the Virtual machines page, select **Create** and then choose **Azure virtual machines** from the dropdown menu.
 
-1. Complete the following Project detail fields:)
+1. Complete the following Project detail fields:
 
     - Subscription - Select the appropriate subscription for your organization.
     - Resource group - Select the resource to which this VM belongs. If there is no resource group to which this VM belongs, follow the steps below to create one.
         a. Select **Create new**.
         b. Enter a name for the resource group in the text box.
-        c. Select **OK**. 
+        c. Select **OK**.
 
 1. Complete the following Instance details fields:
 
@@ -55,14 +55,14 @@ Follow the steps below to create an Azure VM with these attributes.
     The availability of specific Confidential Virtual Machine images and sizes in particular regions and availability zones is dynamic and may change. Check the Azure [Products by Region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/?products=virtual-machines) page to find the areas and availability zones with available Confidential VM support.
     :::
 
-   - Image - Select **Ubuntu Server 20.04 LTS (Confidential VM - SEV-SNP Only)**. (If it is not immediately listed, follow the instructions below to search for x64 Gen2) 
-        <br />a. At the Image field, select **See all images**. 
+   - Image - Select **Ubuntu Server 20.04 LTS (Confidential VM - SEV-SNP Only)**. (If it is not immediately listed, follow the instructions below to search for x64 Gen2).
+        <br />a. At the Image field, select **See all images**.
         <br />b. Enter **SEV-SNP** in the search field at the top of the page and press **Enter**.
         <br />c. At the Ubuntu Server 20.04 LTS (Confidential VM - SEV-SNP Only) tile, select the down arrow and then choose **Ubuntu Server 20.04 LTS (Confidential VM - SEV-SNP Only)**.
 
-   - Size - Select a size appropriate for your image. (If the size is not immediately listed, follow the instructions below to search for it.) 
-        <br />a. At the Size field, select **See all sizes**. 
-        <br />b. Enter an approriate size for your image in the search field at the top of the page and press **Enter**. 
+   - Size - Select a size appropriate for your image. (If the size is not immediately listed, follow the instructions below to search for it.)
+        <br />a. At the Size field, select **See all sizes**.
+        <br />b. Enter an appropriate size for your image in the search field at the top of the page and press **Enter**.
         <br />c. Choose a size and then select the **Select** button.
 
 1. Complete the following Administrator account fields:
@@ -111,7 +111,7 @@ Follow the steps below to create an Azure VM with these attributes.
 
 When deployment is complete, the following page displays.
 
-![[Depoloyment complete page.](/img/tutorial-amd-azure/deployment-complete-amd.png)
+![Deployment complete page.](/img/tutorial-amd-azure/deployment-complete-amd.png)
 
 1. Select **Go to resource**.
 
@@ -119,11 +119,9 @@ When deployment is complete, the following page displays.
 
 ![A page used to connect to the virtual machine.](/img/tutorial-amd-azure/resource-page-amd.png)
 
-
 1. Select **Connect** and then choose **Bastion**.
 
 ![Resource page displaying Bastion connection fields.](/img/tutorial-amd-azure/resource-page-bastion-amd.png)
-
 
 1. Complete the following fields:
 
@@ -195,7 +193,7 @@ Note that the preview branch is being checked out for the AMD SEV-SNP feature, b
 
 ```bash
 {
-  "eat_profile": "https://portal.pilot.trustauthority.intel.com/eat_profile.html",
+  "eat_profile": "https://[redacted].pilot.trustauthority.intel.com/eat_profile.html",
   "intuse": "generic",
   "policy_defined_claims": null,
   "policy_ids_matched": null,
@@ -242,7 +240,7 @@ Note that the preview branch is being checked out for the AMD SEV-SNP feature, b
         "console-enabled": true,
         "secure-boot": true,
         "tpm-enabled": true,
-        "vmUniqueId": "B30B77C2-4FD9-4FA8-9EF6-B94DA33F63B6"
+        "vmUniqueId": "B30B77C2-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
       }
     },
     "sevsnp_smt_allowed": true,
@@ -252,12 +250,12 @@ Note that the preview branch is being checked out for the AMD SEV-SNP feature, b
   },
   "ver": "2.0.0",
   "verifier_instance_ids": [
-    "975b041b-011e-4243-8d42-eea6de252209",
-    "9f62640b-57ba-4a38-8bed-3079b3f33737",
-    "495a2547-6e1d-4679-815b-5617fd5c3ca2",
-    "2b38a8b8-ecf5-4bae-94f5-93894310d0d5",
-    "8bb6c52a-ba6e-4adb-92b2-71f9258eb883",
-    "2d8c4155-28c5-4083-93ac-1ab45fbc8629"
+    "975b041b-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    "9f62640b-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    "495a2547-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    "2b38a8b8-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    "8bb6c52a-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+    "2d8c4155-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
   ],
   "exp": 1725561182,
   "jti": "c7c21d7b-9cdc-4441-88a9-e2e15c2a25ed",

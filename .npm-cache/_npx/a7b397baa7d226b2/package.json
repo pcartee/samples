@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "markdownlint-cli": "^0.35.0"
+  },
+  "_npx": {
+    "packages": [
+      "markdownlint-cli@0.35.0"
+    ]
+  }
+}
