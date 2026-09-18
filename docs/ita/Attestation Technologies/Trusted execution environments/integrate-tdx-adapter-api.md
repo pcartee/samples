@@ -7,8 +7,6 @@ date: 12/22/2023
 uid: integrate.tdx.api
 ---
 
-*· December/22/2023 ·*
-
 ## `go-tdx` adapter API reference
 
 The Trust Authority Intel® TDX Attestation client includes a Go client and a [CLI](../../Integration/integrate-go-tdx-cli.md) for use on the command line or by languages other than Go, enabling you to use TDX remote attestation in your application.
