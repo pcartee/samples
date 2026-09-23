@@ -1,86 +1,51 @@
 ---
-title: Overview
-description: Discover Trust Authority, the independent attestation service for securing your confidential computing workloads.
+title: Paul Cartee — Senior Technical Writer
+description: Senior Technical Writer specializing in docs-as-code, CI/CD pipelines, API and CLI reference documentation, and confidential computing content.
 author: pcartee
-date: 05/01/2025
+date: 09/23/2026
 id: introduction
 sidebar_position: 1
 slug: /
 ---
 
-*· May/01/2025 ·*
+# Hi, I'm Paul Cartee
 
-## What is Trust Authority?
+### Senior Technical Writer — Docs-as-Code · CI/CD Pipelines · API/CLI Reference · AI-Assisted Workflows
 
-Trust Authority is an independent, cloud-agnostic attestation service designed to enhance trust in confidential computing environments. By providing cryptographic evidence of the integrity and authenticity of your workloads, Trust Authority ensures that sensitive data and applications are protected from unauthorized access or tampering.
+I've spent 15 years turning dense engineering work into documentation that developers actually use — for teams at **Apple**, **Intel**, **Workday**, **SentinelOne**, and **LogRhythm**. My specialty is docs-as-code: writing in Markdown or reStructuredText, versioning everything in Git, and wiring documentation into CI/CD pipelines so it ships alongside the product instead of trailing behind it.
 
-Whether you're running workloads in the cloud, on-premises, or in hybrid environments, Trust Authority acts as a neutral third-party verifier, enabling you to establish trust in your infrastructure and applications.
+Most recently, at Intel, I documented **Intel Trust Authority** — a remote attestation service for confidential computing — from the ground up. That meant REST API references, CLI guides, SDK integration docs, and tutorials for genuinely hard technical territory: TEEs, Kubernetes/Helm/Istio deployments, and zero-trust security models. Every sample linked below is real production documentation from that work.
 
-## Why Choose Trust Authority?
+## What I bring to your team
 
-### Trust Through Independence
-Trust Authority operates independently of cloud service providers (CSPs). This separation of attestation from the platform provider strengthens your security posture and provides greater transparency.
+- **Docs-as-code & CI/CD** — Git-based version control, GitHub Actions pipelines, automated metadata and link checking, and branching workflows that keep documentation in lockstep with releases.
+- **API & CLI reference documentation** — REST API references, SDK/connector guides (Go, Python, Java, C), and CLI command references written directly from source and hands-on testing.
+- **AI-assisted authoring** — I use tools like GitHub Copilot inside my docs-as-code workflow to accelerate drafting, enforce consistency, and catch issues (like the proprietary-data redaction pass across this very site) — with an editor's judgment on every change.
+- **Complex technical domains** — Confidential computing and remote attestation (Intel TDX, AMD SEV-SNP, Intel SGX), cloud infrastructure (Azure, GCP, AWS), and Kubernetes-based deployments.
+- **Editorial leadership** — Style guide governance, cross-functional stakeholder alignment, and mentoring other writers on Agile documentation practices.
 
-### Cloud-Agnostic
-Trust Authority supports multiple computing platforms, including on-premises hardware and Cloud Service Providers (CSPs) like Microsoft Azure\* and Google Cloud Platform\*.  Each platform supports TEEs composed of one or more attesters, such as CVMs, GPU, and physical or virtual TPM.
- 
-Trust Authority solves the problem of managing separate attestation policies and code for every supported platform. It provides a platform-agnostic attestation service, allowing you to enforce a uniform trust policy across multiple compute providers without reconciling disparate attestation results.
+## See the work
 
-Key Benefits:
+A cross-section of real documentation I've written, organized by type:
 
--   **Decoupled Attestation**: Your workload is independent of platform-specific attestation details.
--   **Seamless Migration**: Freely migrate workloads from on-premises to cross-cloud deployments with minimal changes to attestation logic or appraisal policy.
--   **Consistent Verification**: Trust Authority can establish TD integrity and apply appraisal policies to verify the CVM TCB and help to validate the chain of trust, regardless of where your CVM runs.
+| Type | Sample | Why it's here |
+| --- | --- | --- |
+| Concept doc | [Attestation overview](./ita/Concepts/concept-attestation-overview.md) | Explains a genuinely hard security concept in plain language |
+| CI/CD tutorial | [Update policies with GitHub Actions](./ita/Tutorials%20and%20examples/tutorial-cicd.md) | A GitHub Actions workflow I wrote to keep attestation policies in sync with every build |
+| REST API reference | [Trust Authority REST API](./ita/Restapi/restapi-intro.md) | Full API reference landing page, one of several I authored |
+| SDK/integration guide | [Go connector reference](./ita/Integration/integrate-go-client.md) | Developer-facing SDK documentation for a Go client library |
+| CLI reference | [CLI examples](./ita/Command-line/cli-examples.md) | Task-based examples for a multi-command attestation CLI |
+| How-to guide | [Author a custom policy](./ita/How-to%20workflows/howto-author-custom-policy.md) | Step-by-step procedural writing for a technical, security-sensitive task |
 
-### Broad Compatibility with Leading Security Technologies
-Trust Authority supports a wide range of remotely attestable security technologies, including:
-- **Software Guard Extensions (SGX)**: Attest the integrity of application enclaves with hardware-level isolation.
-- **Trust Domain Extensions (TDX)**: Secure entire virtual machines within hardware-isolated Trust Domains (TDs).
-- **TPM and vTPM**: Attest physical and virtual Trusted Platform Modules, including Integrity Measurement Architecture (IMA) event logs for runtime integrity.
-- **NVIDIA\* GPUs**: Perform attestation of GPU-accelerated workloads.
-- **AMD\* SEV-SNP**(Preview only) : Attest AMD Secure Encrypted Virtualization workloads.
+Browse the sidebar for the complete library — concepts, tutorials, key-broker guides, and full REST/CLI/SDK references.
 
-Trust Authority provides a central, unified remote attestation authority for all of these technologies, eliminating the complexity of separate solutions for each. Composite evidence from multiple security technologies can be attested by Trust Authority in a single request, providing a single comprehensive attestation of the security posture of your workload.
+## Let's talk
 
-## How It Works
+I'm open to senior technical writing roles, especially ones with docs-as-code pipelines, GitHub-based workflows, and complex technical subject matter.
 
-Trust Authority leverages Trusted Execution Environments (TEEs) to process attestation requests with heightened security. When a workload or platform requests attestation, Trust Authority:
-1. Collects evidence from the TEE or other attestable technology in the form of a quote.
-1. Verifies the cryptographic signatures from the quote.
-1. Evaluates the evidence against optional, user-defined policies to verify integrity and authenticity.
-1. Issues an attestation token (JWT) containing claims about the workload's trustworthiness.
+- 📄 [Full résumé](https://github.com/pcartee/writing-samples/blob/main/paul-cartee-technical-writer.md)
+- ✉️ [paulcartee@yahoo.com](mailto:paulcartee@yahoo.com)
+- 📞 303.819.1583
+- 💼 [LinkedIn](https://www.linkedin.com/in/paul-cartee/)
+- 💻 [GitHub](https://github.com/pcartee)
 
-The attestation token can be used by relying parties, such as key management systems or security platforms, to make informed decisions about granting access or releasing sensitive data.
-
-## Who Benefits from Tiber™ Trust Authority?
-
-- **Enterprises**: Protect sensitive workloads in hybrid and multi-cloud environments.
-- **Cloud Service Providers**: Offer enhanced security assurances to customers.
-- **Managed Service Providers (MSPs)**: Resell and manage Trust Authority subscriptions for clients.
-- **Developers**: Build secure applications with confidence using Trust Authority's REST APIs and client libraries.
-
-## Why Trust Trust Authority?
-
-### Faithful Verification for Complete Transparency
-
-Trust Authority goes beyond traditional attestation by offering **Faithful Verification**, a feature designed to provide customers with unmatched transparency and confidence in the attestation process. With Faithful Verification, you can audit any attestation token issued by Trust Authority to ensure it meets the highest standards of integrity and security.
-
-When you use Faithful Verification, you receive an audit report containing independently verifiable cryptographic evidence that:
-
-- The microservices responsible for generating the attestation token were protected within **SGX enclaves**, providing hardware-level isolation and security.
-- The integrity measurement and signature of each enclave matched the expected policy at the exact time the token was generated, verifying the code integrity of each service used to generate the token.
-
-Faithful Verification provides a level of transparency that ensures that every attestation token you receive is backed by verifiable evidence of its authenticity and integrity. Faithful Verification empowers you to trust Trust Authority as a neutral, independent verifier, giving you confidence that your workloads are protected against unauthorized access or tampering.
-
-By choosing Trust Authority, you gain not only a robust attestation service but also the tools to independently verify its trustworthiness—setting a new standard for transparency in confidential computing.
-
-## Get Started Today
-
-Trust Authority is your partner in building a secure, trusted computing environment. Whether you're securing AI models, confidential VMs, or sensitive workloads, Trust Authority provides the tools and assurance you need.
-
-[Subscribe to Trust Authority](/ita/Quickstart/howto-manage-subscriptions)  
-[Learn How to Get Started](/ita/Quickstart/tutorial-api-key)
-
----
-
-**\*** Other names and brands may be claimed as the property of others.
