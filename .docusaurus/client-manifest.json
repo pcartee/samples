@@ -1,0 +1,1193 @@
+{
+  "entrypoints": [
+    "main"
+  ],
+  "origins": {
+    "2237": [
+      2237
+    ],
+    "3436": [
+      3436
+    ],
+    "5159": [
+      1869,
+      6061,
+      7643,
+      8401,
+      5159
+    ],
+    "17896441": [
+      1869,
+      5159,
+      8401
+    ],
+    "55641281": [
+      2887
+    ],
+    "64383737": [
+      8976
+    ],
+    "main": [
+      1869,
+      5354,
+      8792
+    ],
+    "runtime~main": [
+      1869,
+      8792,
+      5354
+    ],
+    "02260609": [
+      9382
+    ],
+    "0456d358": [
+      3534
+    ],
+    "0a10627c": [
+      1869,
+      379
+    ],
+    "0b98362a": [
+      7354
+    ],
+    "0e384e19": [
+      3976
+    ],
+    "1f391b9e": [
+      1869,
+      5159,
+      6061
+    ],
+    "2020412a": [
+      1869,
+      4949
+    ],
+    "23084c87": [
+      1869,
+      2782
+    ],
+    "234ccc3d": [
+      5690
+    ],
+    "2365c6c3": [
+      7352
+    ],
+    "26efad30": [
+      1869,
+      8032
+    ],
+    "2779e4fa": [
+      106
+    ],
+    "2d34ba88": [
+      3451
+    ],
+    "2d924f47": [
+      3197
+    ],
+    "329afe65": [
+      614
+    ],
+    "351afa03": [
+      1561
+    ],
+    "36994c47": [
+      9858
+    ],
+    "3828e9db": [
+      7324
+    ],
+    "3a0b52e6": [
+      7625
+    ],
+    "3b508d57": [
+      5619
+    ],
+    "3cb9e906": [
+      7278
+    ],
+    "3da45aed": [
+      7716
+    ],
+    "3f33e6e0": [
+      1869,
+      3180
+    ],
+    "46799d32": [
+      4605
+    ],
+    "4c678320": [
+      9664
+    ],
+    "574c3421": [
+      2734
+    ],
+    "5774b0d7": [
+      3007
+    ],
+    "5793e574": [
+      3660
+    ],
+    "5d6e3e03": [
+      5880
+    ],
+    "5e95c892": [
+      9647
+    ],
+    "5ead11c3": [
+      634
+    ],
+    "5efac6b3": [
+      1168
+    ],
+    "5fb3c815": [
+      2860
+    ],
+    "63b032cd": [
+      7102
+    ],
+    "65dcbaf1": [
+      3675
+    ],
+    "65f0ec6a": [
+      6101
+    ],
+    "66f25fa0": [
+      5053
+    ],
+    "69532af2": [
+      2951
+    ],
+    "6bbb7fb6": [
+      1869,
+      7052
+    ],
+    "6d44887c": [
+      7075
+    ],
+    "738f4c6b": [
+      1869,
+      1196
+    ],
+    "755d15e4": [
+      8745
+    ],
+    "7ddce54e": [
+      3309
+    ],
+    "814f3328": [
+      7472
+    ],
+    "82d0228a": [
+      4976
+    ],
+    "8588b4c6": [
+      6959
+    ],
+    "85e1a8ce": [
+      5203
+    ],
+    "863bf2ea": [
+      8376
+    ],
+    "8f665a39": [
+      5847
+    ],
+    "91c571c2": [
+      6606
+    ],
+    "95c7689b": [
+      8556
+    ],
+    "986479fe": [
+      1381
+    ],
+    "98a10897": [
+      6982
+    ],
+    "9e215bf9": [
+      6700
+    ],
+    "a02cb2f9": [
+      3910
+    ],
+    "a06c4b09": [
+      2802
+    ],
+    "a333421e": [
+      4089
+    ],
+    "a6a731ed": [
+      6470
+    ],
+    "a6aa9e1f": [
+      1869,
+      5159,
+      7643
+    ],
+    "a7456010": [
+      1235
+    ],
+    "a7bd4aaa": [
+      7098
+    ],
+    "a94703ab": [
+      1869,
+      9048
+    ],
+    "aace74fa": [
+      2971
+    ],
+    "aba21aa0": [
+      5742
+    ],
+    "ae20b9af": [
+      2589
+    ],
+    "aeebd931": [
+      8405
+    ],
+    "b449d493": [
+      1869,
+      4284
+    ],
+    "b4f22701": [
+      2257
+    ],
+    "b587e4bc": [
+      7001
+    ],
+    "bb3f60e5": [
+      584
+    ],
+    "c6998a88": [
+      4591
+    ],
+    "cbbcaf8a": [
+      1869,
+      4765
+    ],
+    "d015f120": [
+      8908
+    ],
+    "d34839dc": [
+      1869,
+      595
+    ],
+    "d43abfc8": [
+      1946
+    ],
+    "d9ef2744": [
+      9970
+    ],
+    "e2a28b4a": [
+      3568
+    ],
+    "e5faad2c": [
+      136
+    ],
+    "e758b9de": [
+      5606
+    ],
+    "eaf39878": [
+      8086
+    ],
+    "efcdeb73": [
+      1869,
+      8640
+    ],
+    "f5964265": [
+      3020
+    ],
+    "f5dfe756": [
+      4951
+    ],
+    "fbaa8181": [
+      9073
+    ],
+    "fc61e0ee": [
+      8228
+    ],
+    "fd894db3": [
+      6409
+    ],
+    "styles": [
+      379,
+      595,
+      1196,
+      2782,
+      3180,
+      4284,
+      4765,
+      4949,
+      5159,
+      5354,
+      6061,
+      7052,
+      7643,
+      8032,
+      8401,
+      8640,
+      8792,
+      9048,
+      1869
+    ]
+  },
+  "assets": {
+    "106": {
+      "js": [
+        {
+          "file": "assets/js/2779e4fa.909f4f01.js",
+          "hash": "7aa3b910da20af97",
+          "publicPath": "/writing-samples/assets/js/2779e4fa.909f4f01.js"
+        }
+      ]
+    },
+    "136": {
+      "js": [
+        {
+          "file": "assets/js/e5faad2c.e96d5c79.js",
+          "hash": "b37a8b7fdc284e71",
+          "publicPath": "/writing-samples/assets/js/e5faad2c.e96d5c79.js"
+        }
+      ]
+    },
+    "379": {
+      "js": [
+        {
+          "file": "assets/js/0a10627c.95fb81d3.js",
+          "hash": "9b71a832dd56d97c",
+          "publicPath": "/writing-samples/assets/js/0a10627c.95fb81d3.js"
+        }
+      ]
+    },
+    "584": {
+      "js": [
+        {
+          "file": "assets/js/bb3f60e5.59440c4f.js",
+          "hash": "366ae28a45debf65",
+          "publicPath": "/writing-samples/assets/js/bb3f60e5.59440c4f.js"
+        }
+      ]
+    },
+    "595": {
+      "js": [
+        {
+          "file": "assets/js/d34839dc.c299ab9d.js",
+          "hash": "9f9cbb3c63087c18",
+          "publicPath": "/writing-samples/assets/js/d34839dc.c299ab9d.js"
+        }
+      ]
+    },
+    "614": {
+      "js": [
+        {
+          "file": "assets/js/329afe65.2d74fa57.js",
+          "hash": "179c99d994feeb63",
+          "publicPath": "/writing-samples/assets/js/329afe65.2d74fa57.js"
+        }
+      ]
+    },
+    "634": {
+      "js": [
+        {
+          "file": "assets/js/5ead11c3.cd2e9699.js",
+          "hash": "b264efba24810c74",
+          "publicPath": "/writing-samples/assets/js/5ead11c3.cd2e9699.js"
+        }
+      ]
+    },
+    "1168": {
+      "js": [
+        {
+          "file": "assets/js/5efac6b3.2cd6e239.js",
+          "hash": "35f8498bd166ca7d",
+          "publicPath": "/writing-samples/assets/js/5efac6b3.2cd6e239.js"
+        }
+      ]
+    },
+    "1196": {
+      "js": [
+        {
+          "file": "assets/js/738f4c6b.3626cb4b.js",
+          "hash": "c1d9ae4bdbc45aba",
+          "publicPath": "/writing-samples/assets/js/738f4c6b.3626cb4b.js"
+        }
+      ]
+    },
+    "1235": {
+      "js": [
+        {
+          "file": "assets/js/a7456010.d9097792.js",
+          "hash": "eb98d1b3fc4e7a7b",
+          "publicPath": "/writing-samples/assets/js/a7456010.d9097792.js"
+        }
+      ]
+    },
+    "1381": {
+      "js": [
+        {
+          "file": "assets/js/986479fe.67df5d93.js",
+          "hash": "68abf0f09a31eeee",
+          "publicPath": "/writing-samples/assets/js/986479fe.67df5d93.js"
+        }
+      ]
+    },
+    "1561": {
+      "js": [
+        {
+          "file": "assets/js/351afa03.c3631671.js",
+          "hash": "a6101c09cfff5fcc",
+          "publicPath": "/writing-samples/assets/js/351afa03.c3631671.js"
+        }
+      ]
+    },
+    "1869": {
+      "css": [
+        {
+          "file": "assets/css/styles.15c065ee.css",
+          "hash": "60fb72d572ba9d63",
+          "publicPath": "/writing-samples/assets/css/styles.15c065ee.css"
+        }
+      ]
+    },
+    "1946": {
+      "js": [
+        {
+          "file": "assets/js/d43abfc8.addcab61.js",
+          "hash": "373c0184e76bf8ea",
+          "publicPath": "/writing-samples/assets/js/d43abfc8.addcab61.js"
+        }
+      ]
+    },
+    "2237": {
+      "js": [
+        {
+          "file": "assets/js/2237.a55a25a0.js",
+          "hash": "c91487decc82fabc",
+          "publicPath": "/writing-samples/assets/js/2237.a55a25a0.js"
+        }
+      ]
+    },
+    "2257": {
+      "js": [
+        {
+          "file": "assets/js/b4f22701.6542a07a.js",
+          "hash": "670d0753404111f8",
+          "publicPath": "/writing-samples/assets/js/b4f22701.6542a07a.js"
+        }
+      ]
+    },
+    "2589": {
+      "js": [
+        {
+          "file": "assets/js/ae20b9af.8aa125ef.js",
+          "hash": "7dc049b14493bf82",
+          "publicPath": "/writing-samples/assets/js/ae20b9af.8aa125ef.js"
+        }
+      ]
+    },
+    "2734": {
+      "js": [
+        {
+          "file": "assets/js/574c3421.c6d90956.js",
+          "hash": "a68cd0d7b1b31635",
+          "publicPath": "/writing-samples/assets/js/574c3421.c6d90956.js"
+        }
+      ]
+    },
+    "2782": {
+      "js": [
+        {
+          "file": "assets/js/23084c87.9140b967.js",
+          "hash": "79db8f98f919a1cd",
+          "publicPath": "/writing-samples/assets/js/23084c87.9140b967.js"
+        }
+      ]
+    },
+    "2802": {
+      "js": [
+        {
+          "file": "assets/js/a06c4b09.bcb5b648.js",
+          "hash": "7d9721ddde28c0ba",
+          "publicPath": "/writing-samples/assets/js/a06c4b09.bcb5b648.js"
+        }
+      ]
+    },
+    "2860": {
+      "js": [
+        {
+          "file": "assets/js/5fb3c815.b5f5104f.js",
+          "hash": "e2d8c64dab71c892",
+          "publicPath": "/writing-samples/assets/js/5fb3c815.b5f5104f.js"
+        }
+      ]
+    },
+    "2887": {
+      "js": [
+        {
+          "file": "assets/js/55641281.999bd03a.js",
+          "hash": "b91178705062d884",
+          "publicPath": "/writing-samples/assets/js/55641281.999bd03a.js"
+        }
+      ]
+    },
+    "2951": {
+      "js": [
+        {
+          "file": "assets/js/69532af2.0938a80f.js",
+          "hash": "50655c014afac2d6",
+          "publicPath": "/writing-samples/assets/js/69532af2.0938a80f.js"
+        }
+      ]
+    },
+    "2971": {
+      "js": [
+        {
+          "file": "assets/js/aace74fa.302287aa.js",
+          "hash": "22150759fd1d8ca5",
+          "publicPath": "/writing-samples/assets/js/aace74fa.302287aa.js"
+        }
+      ]
+    },
+    "3007": {
+      "js": [
+        {
+          "file": "assets/js/5774b0d7.91758cf4.js",
+          "hash": "689f1735b21cb9a4",
+          "publicPath": "/writing-samples/assets/js/5774b0d7.91758cf4.js"
+        }
+      ]
+    },
+    "3020": {
+      "js": [
+        {
+          "file": "assets/js/f5964265.abbc9edd.js",
+          "hash": "5d83de6e241af55e",
+          "publicPath": "/writing-samples/assets/js/f5964265.abbc9edd.js"
+        }
+      ]
+    },
+    "3180": {
+      "js": [
+        {
+          "file": "assets/js/3f33e6e0.a1ab5a0b.js",
+          "hash": "1be03b9ab97a61e4",
+          "publicPath": "/writing-samples/assets/js/3f33e6e0.a1ab5a0b.js"
+        }
+      ]
+    },
+    "3197": {
+      "js": [
+        {
+          "file": "assets/js/2d924f47.8bd47c83.js",
+          "hash": "24a0b62375d68047",
+          "publicPath": "/writing-samples/assets/js/2d924f47.8bd47c83.js"
+        }
+      ]
+    },
+    "3309": {
+      "js": [
+        {
+          "file": "assets/js/7ddce54e.be169281.js",
+          "hash": "f24cadcf381c64ec",
+          "publicPath": "/writing-samples/assets/js/7ddce54e.be169281.js"
+        }
+      ]
+    },
+    "3436": {
+      "js": [
+        {
+          "file": "assets/js/3436.9e95876f.js",
+          "hash": "1907dadc342aec75",
+          "publicPath": "/writing-samples/assets/js/3436.9e95876f.js"
+        }
+      ]
+    },
+    "3451": {
+      "js": [
+        {
+          "file": "assets/js/2d34ba88.21487554.js",
+          "hash": "09bd6c3177dd3702",
+          "publicPath": "/writing-samples/assets/js/2d34ba88.21487554.js"
+        }
+      ]
+    },
+    "3534": {
+      "js": [
+        {
+          "file": "assets/js/0456d358.00325fe8.js",
+          "hash": "aeb387cb8d46c26b",
+          "publicPath": "/writing-samples/assets/js/0456d358.00325fe8.js"
+        }
+      ]
+    },
+    "3568": {
+      "js": [
+        {
+          "file": "assets/js/e2a28b4a.e970d13f.js",
+          "hash": "cdc390abdfcd8a0d",
+          "publicPath": "/writing-samples/assets/js/e2a28b4a.e970d13f.js"
+        }
+      ]
+    },
+    "3660": {
+      "js": [
+        {
+          "file": "assets/js/5793e574.d463c169.js",
+          "hash": "76fcd23b5dd15caf",
+          "publicPath": "/writing-samples/assets/js/5793e574.d463c169.js"
+        }
+      ]
+    },
+    "3675": {
+      "js": [
+        {
+          "file": "assets/js/65dcbaf1.4f5c9d00.js",
+          "hash": "3cceff770fe5441c",
+          "publicPath": "/writing-samples/assets/js/65dcbaf1.4f5c9d00.js"
+        }
+      ]
+    },
+    "3910": {
+      "js": [
+        {
+          "file": "assets/js/a02cb2f9.8c853fd0.js",
+          "hash": "6b6f74f883a89537",
+          "publicPath": "/writing-samples/assets/js/a02cb2f9.8c853fd0.js"
+        }
+      ]
+    },
+    "3976": {
+      "js": [
+        {
+          "file": "assets/js/0e384e19.4d96ebfb.js",
+          "hash": "5fc03bff9469599c",
+          "publicPath": "/writing-samples/assets/js/0e384e19.4d96ebfb.js"
+        }
+      ]
+    },
+    "4089": {
+      "js": [
+        {
+          "file": "assets/js/a333421e.ee8e2272.js",
+          "hash": "59c7215ce3aadfec",
+          "publicPath": "/writing-samples/assets/js/a333421e.ee8e2272.js"
+        }
+      ]
+    },
+    "4284": {
+      "js": [
+        {
+          "file": "assets/js/b449d493.cd01e997.js",
+          "hash": "3b7b3bfb9f99e5c6",
+          "publicPath": "/writing-samples/assets/js/b449d493.cd01e997.js"
+        }
+      ]
+    },
+    "4591": {
+      "js": [
+        {
+          "file": "assets/js/c6998a88.3f34fcbc.js",
+          "hash": "92d289a2b0d8dd74",
+          "publicPath": "/writing-samples/assets/js/c6998a88.3f34fcbc.js"
+        }
+      ]
+    },
+    "4605": {
+      "js": [
+        {
+          "file": "assets/js/46799d32.14911263.js",
+          "hash": "000c9c0a3b074d23",
+          "publicPath": "/writing-samples/assets/js/46799d32.14911263.js"
+        }
+      ]
+    },
+    "4765": {
+      "js": [
+        {
+          "file": "assets/js/cbbcaf8a.a9d62919.js",
+          "hash": "02c7b4f57fab1ec7",
+          "publicPath": "/writing-samples/assets/js/cbbcaf8a.a9d62919.js"
+        }
+      ]
+    },
+    "4949": {
+      "js": [
+        {
+          "file": "assets/js/2020412a.2158b38f.js",
+          "hash": "fd80b8ca3671ffd7",
+          "publicPath": "/writing-samples/assets/js/2020412a.2158b38f.js"
+        }
+      ]
+    },
+    "4951": {
+      "js": [
+        {
+          "file": "assets/js/f5dfe756.b2bdb07c.js",
+          "hash": "760cae9cc5e51fc4",
+          "publicPath": "/writing-samples/assets/js/f5dfe756.b2bdb07c.js"
+        }
+      ]
+    },
+    "4976": {
+      "js": [
+        {
+          "file": "assets/js/82d0228a.c33b63aa.js",
+          "hash": "778f2d26fe1058fb",
+          "publicPath": "/writing-samples/assets/js/82d0228a.c33b63aa.js"
+        }
+      ]
+    },
+    "5053": {
+      "js": [
+        {
+          "file": "assets/js/66f25fa0.df4416f4.js",
+          "hash": "9d7e5e56bab5b718",
+          "publicPath": "/writing-samples/assets/js/66f25fa0.df4416f4.js"
+        }
+      ]
+    },
+    "5159": {
+      "js": [
+        {
+          "file": "assets/js/5159.16566a33.js",
+          "hash": "4c6d4317199fd1da",
+          "publicPath": "/writing-samples/assets/js/5159.16566a33.js"
+        }
+      ]
+    },
+    "5203": {
+      "js": [
+        {
+          "file": "assets/js/85e1a8ce.6fe6fb2a.js",
+          "hash": "5e3172b955220b7a",
+          "publicPath": "/writing-samples/assets/js/85e1a8ce.6fe6fb2a.js"
+        }
+      ]
+    },
+    "5354": {
+      "js": [
+        {
+          "file": "assets/js/runtime~main.7816d096.js",
+          "hash": "299e8b5a0badf258",
+          "publicPath": "/writing-samples/assets/js/runtime~main.7816d096.js"
+        }
+      ]
+    },
+    "5606": {
+      "js": [
+        {
+          "file": "assets/js/e758b9de.af84805b.js",
+          "hash": "7e0835cf66e91d1b",
+          "publicPath": "/writing-samples/assets/js/e758b9de.af84805b.js"
+        }
+      ]
+    },
+    "5619": {
+      "js": [
+        {
+          "file": "assets/js/3b508d57.7b8c56fd.js",
+          "hash": "7cf69d0541d43ec4",
+          "publicPath": "/writing-samples/assets/js/3b508d57.7b8c56fd.js"
+        }
+      ]
+    },
+    "5690": {
+      "js": [
+        {
+          "file": "assets/js/234ccc3d.3cf3bc1d.js",
+          "hash": "e2a7e60bd64ad9d7",
+          "publicPath": "/writing-samples/assets/js/234ccc3d.3cf3bc1d.js"
+        }
+      ]
+    },
+    "5742": {
+      "js": [
+        {
+          "file": "assets/js/aba21aa0.4429093f.js",
+          "hash": "bd2fa5cfd28a19ef",
+          "publicPath": "/writing-samples/assets/js/aba21aa0.4429093f.js"
+        }
+      ]
+    },
+    "5847": {
+      "js": [
+        {
+          "file": "assets/js/8f665a39.f79af378.js",
+          "hash": "9125db3c61064631",
+          "publicPath": "/writing-samples/assets/js/8f665a39.f79af378.js"
+        }
+      ]
+    },
+    "5880": {
+      "js": [
+        {
+          "file": "assets/js/5d6e3e03.6a35e87f.js",
+          "hash": "63ad61bf5afd7167",
+          "publicPath": "/writing-samples/assets/js/5d6e3e03.6a35e87f.js"
+        }
+      ]
+    },
+    "6061": {
+      "js": [
+        {
+          "file": "assets/js/1f391b9e.0ddea25b.js",
+          "hash": "99c8e578d8403e2d",
+          "publicPath": "/writing-samples/assets/js/1f391b9e.0ddea25b.js"
+        }
+      ]
+    },
+    "6101": {
+      "js": [
+        {
+          "file": "assets/js/65f0ec6a.26f3c56a.js",
+          "hash": "64715cf68babd092",
+          "publicPath": "/writing-samples/assets/js/65f0ec6a.26f3c56a.js"
+        }
+      ]
+    },
+    "6409": {
+      "js": [
+        {
+          "file": "assets/js/fd894db3.d45bbc14.js",
+          "hash": "a5a6d4432a075ce0",
+          "publicPath": "/writing-samples/assets/js/fd894db3.d45bbc14.js"
+        }
+      ]
+    },
+    "6470": {
+      "js": [
+        {
+          "file": "assets/js/a6a731ed.d485a028.js",
+          "hash": "907803279df17f41",
+          "publicPath": "/writing-samples/assets/js/a6a731ed.d485a028.js"
+        }
+      ]
+    },
+    "6606": {
+      "js": [
+        {
+          "file": "assets/js/91c571c2.8e2bea3f.js",
+          "hash": "fdd5c9a70bc63870",
+          "publicPath": "/writing-samples/assets/js/91c571c2.8e2bea3f.js"
+        }
+      ]
+    },
+    "6700": {
+      "js": [
+        {
+          "file": "assets/js/9e215bf9.a6bb95fb.js",
+          "hash": "dbcab7d7be6adc22",
+          "publicPath": "/writing-samples/assets/js/9e215bf9.a6bb95fb.js"
+        }
+      ]
+    },
+    "6959": {
+      "js": [
+        {
+          "file": "assets/js/8588b4c6.ebe11a79.js",
+          "hash": "102f8b53db0c10bd",
+          "publicPath": "/writing-samples/assets/js/8588b4c6.ebe11a79.js"
+        }
+      ]
+    },
+    "6982": {
+      "js": [
+        {
+          "file": "assets/js/98a10897.ff71f30f.js",
+          "hash": "0c63221462bd2705",
+          "publicPath": "/writing-samples/assets/js/98a10897.ff71f30f.js"
+        }
+      ]
+    },
+    "7001": {
+      "js": [
+        {
+          "file": "assets/js/b587e4bc.d3e33ce6.js",
+          "hash": "5039ed66b620e66d",
+          "publicPath": "/writing-samples/assets/js/b587e4bc.d3e33ce6.js"
+        }
+      ]
+    },
+    "7052": {
+      "js": [
+        {
+          "file": "assets/js/6bbb7fb6.4a7459b4.js",
+          "hash": "2bd321ad1d20bf74",
+          "publicPath": "/writing-samples/assets/js/6bbb7fb6.4a7459b4.js"
+        }
+      ]
+    },
+    "7075": {
+      "js": [
+        {
+          "file": "assets/js/6d44887c.cbc5ed69.js",
+          "hash": "0517ba6ed7b6049f",
+          "publicPath": "/writing-samples/assets/js/6d44887c.cbc5ed69.js"
+        }
+      ]
+    },
+    "7098": {
+      "js": [
+        {
+          "file": "assets/js/a7bd4aaa.ed47c1b8.js",
+          "hash": "3748b10d359a4a1f",
+          "publicPath": "/writing-samples/assets/js/a7bd4aaa.ed47c1b8.js"
+        }
+      ]
+    },
+    "7102": {
+      "js": [
+        {
+          "file": "assets/js/63b032cd.83bf6f55.js",
+          "hash": "2d4da55ff803287a",
+          "publicPath": "/writing-samples/assets/js/63b032cd.83bf6f55.js"
+        }
+      ]
+    },
+    "7278": {
+      "js": [
+        {
+          "file": "assets/js/3cb9e906.2a08688c.js",
+          "hash": "fb6dea03bf543018",
+          "publicPath": "/writing-samples/assets/js/3cb9e906.2a08688c.js"
+        }
+      ]
+    },
+    "7324": {
+      "js": [
+        {
+          "file": "assets/js/3828e9db.d0a86b06.js",
+          "hash": "6841ce89108cb260",
+          "publicPath": "/writing-samples/assets/js/3828e9db.d0a86b06.js"
+        }
+      ]
+    },
+    "7352": {
+      "js": [
+        {
+          "file": "assets/js/2365c6c3.6ce0fda1.js",
+          "hash": "904a1ae2fcf83a4b",
+          "publicPath": "/writing-samples/assets/js/2365c6c3.6ce0fda1.js"
+        }
+      ]
+    },
+    "7354": {
+      "js": [
+        {
+          "file": "assets/js/0b98362a.f86d6aba.js",
+          "hash": "795d95ae487926db",
+          "publicPath": "/writing-samples/assets/js/0b98362a.f86d6aba.js"
+        }
+      ]
+    },
+    "7472": {
+      "js": [
+        {
+          "file": "assets/js/814f3328.c1d3876e.js",
+          "hash": "f4eee083b2d28a3a",
+          "publicPath": "/writing-samples/assets/js/814f3328.c1d3876e.js"
+        }
+      ]
+    },
+    "7625": {
+      "js": [
+        {
+          "file": "assets/js/3a0b52e6.218dc580.js",
+          "hash": "0e1822f4648c0a24",
+          "publicPath": "/writing-samples/assets/js/3a0b52e6.218dc580.js"
+        }
+      ]
+    },
+    "7643": {
+      "js": [
+        {
+          "file": "assets/js/a6aa9e1f.a63f03d0.js",
+          "hash": "148c5c6e77e5deca",
+          "publicPath": "/writing-samples/assets/js/a6aa9e1f.a63f03d0.js"
+        }
+      ]
+    },
+    "7716": {
+      "js": [
+        {
+          "file": "assets/js/3da45aed.5574582b.js",
+          "hash": "1c6f61f2cb72e0fc",
+          "publicPath": "/writing-samples/assets/js/3da45aed.5574582b.js"
+        }
+      ]
+    },
+    "8032": {
+      "js": [
+        {
+          "file": "assets/js/26efad30.e698343c.js",
+          "hash": "ff5c229ed06b864a",
+          "publicPath": "/writing-samples/assets/js/26efad30.e698343c.js"
+        }
+      ]
+    },
+    "8086": {
+      "js": [
+        {
+          "file": "assets/js/eaf39878.7e472562.js",
+          "hash": "a95778268e16f49d",
+          "publicPath": "/writing-samples/assets/js/eaf39878.7e472562.js"
+        }
+      ]
+    },
+    "8228": {
+      "js": [
+        {
+          "file": "assets/js/fc61e0ee.7ec7f6f8.js",
+          "hash": "eeca21a84920cac0",
+          "publicPath": "/writing-samples/assets/js/fc61e0ee.7ec7f6f8.js"
+        }
+      ]
+    },
+    "8376": {
+      "js": [
+        {
+          "file": "assets/js/863bf2ea.f4cdf2b3.js",
+          "hash": "82a63f41283ad4dd",
+          "publicPath": "/writing-samples/assets/js/863bf2ea.f4cdf2b3.js"
+        }
+      ]
+    },
+    "8401": {
+      "js": [
+        {
+          "file": "assets/js/17896441.47976acf.js",
+          "hash": "c48667b17a128d7e",
+          "publicPath": "/writing-samples/assets/js/17896441.47976acf.js"
+        }
+      ]
+    },
+    "8405": {
+      "js": [
+        {
+          "file": "assets/js/aeebd931.0c6b0553.js",
+          "hash": "b5ff47c7bdfe4848",
+          "publicPath": "/writing-samples/assets/js/aeebd931.0c6b0553.js"
+        }
+      ]
+    },
+    "8556": {
+      "js": [
+        {
+          "file": "assets/js/95c7689b.a6dcb40e.js",
+          "hash": "e3efb3dac690d856",
+          "publicPath": "/writing-samples/assets/js/95c7689b.a6dcb40e.js"
+        }
+      ]
+    },
+    "8640": {
+      "js": [
+        {
+          "file": "assets/js/efcdeb73.cbfaef17.js",
+          "hash": "acd4d4fa2047c7db",
+          "publicPath": "/writing-samples/assets/js/efcdeb73.cbfaef17.js"
+        }
+      ]
+    },
+    "8745": {
+      "js": [
+        {
+          "file": "assets/js/755d15e4.4f2c7f23.js",
+          "hash": "54cb1676d067a4a5",
+          "publicPath": "/writing-samples/assets/js/755d15e4.4f2c7f23.js"
+        }
+      ]
+    },
+    "8792": {
+      "js": [
+        {
+          "file": "assets/js/main.9d48ac56.js",
+          "hash": "18456fe4e19c7d9e",
+          "publicPath": "/writing-samples/assets/js/main.9d48ac56.js"
+        }
+      ]
+    },
+    "8908": {
+      "js": [
+        {
+          "file": "assets/js/d015f120.d8b8f1f6.js",
+          "hash": "352c8760a67a8fe1",
+          "publicPath": "/writing-samples/assets/js/d015f120.d8b8f1f6.js"
+        }
+      ]
+    },
+    "8976": {
+      "js": [
+        {
+          "file": "assets/js/64383737.bf54e769.js",
+          "hash": "c3bc9cb1a6be22e0",
+          "publicPath": "/writing-samples/assets/js/64383737.bf54e769.js"
+        }
+      ]
+    },
+    "9048": {
+      "js": [
+        {
+          "file": "assets/js/a94703ab.af20b5e6.js",
+          "hash": "78c865e2d6413669",
+          "publicPath": "/writing-samples/assets/js/a94703ab.af20b5e6.js"
+        }
+      ]
+    },
+    "9073": {
+      "js": [
+        {
+          "file": "assets/js/fbaa8181.7faab6a4.js",
+          "hash": "81f9348f756c5df2",
+          "publicPath": "/writing-samples/assets/js/fbaa8181.7faab6a4.js"
+        }
+      ]
+    },
+    "9382": {
+      "js": [
+        {
+          "file": "assets/js/02260609.665fb7f3.js",
+          "hash": "79b67c3238097d50",
+          "publicPath": "/writing-samples/assets/js/02260609.665fb7f3.js"
+        }
+      ]
+    },
+    "9647": {
+      "js": [
+        {
+          "file": "assets/js/5e95c892.21cb1619.js",
+          "hash": "7cdf0d67cd7ca7d5",
+          "publicPath": "/writing-samples/assets/js/5e95c892.21cb1619.js"
+        }
+      ]
+    },
+    "9664": {
+      "js": [
+        {
+          "file": "assets/js/4c678320.7bbe47ed.js",
+          "hash": "f80c8576fe8935c2",
+          "publicPath": "/writing-samples/assets/js/4c678320.7bbe47ed.js"
+        }
+      ]
+    },
+    "9858": {
+      "js": [
+        {
+          "file": "assets/js/36994c47.7af0f05d.js",
+          "hash": "41f1e6cd7fcd49ce",
+          "publicPath": "/writing-samples/assets/js/36994c47.7af0f05d.js"
+        }
+      ]
+    },
+    "9970": {
+      "js": [
+        {
+          "file": "assets/js/d9ef2744.e6ed7135.js",
+          "hash": "c88e1499c940d72c",
+          "publicPath": "/writing-samples/assets/js/d9ef2744.e6ed7135.js"
+        }
+      ]
+    }
+  }
+}

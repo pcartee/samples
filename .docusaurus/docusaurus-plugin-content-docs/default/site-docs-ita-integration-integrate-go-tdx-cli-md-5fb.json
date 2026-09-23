@@ -1,0 +1,21 @@
+{
+  "id": "ita/Integration/integrate-go-tdx-cli",
+  "title": "Intel Trust Authority Attestation Client CLI",
+  "description": "Provides an overview of Intel® Trust Authority Attestation CLI.",
+  "source": "@site/docs/ita/Integration/integrate-go-tdx-cli.md",
+  "sourceDirName": "ita/Integration",
+  "slug": "/ita/Integration/integrate-go-tdx-cli",
+  "permalink": "/writing-samples/ita/Integration/integrate-go-tdx-cli",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Intel Trust Authority Attestation Client CLI",
+    "description": "Provides an overview of Intel® Trust Authority Attestation CLI.",
+    "author": "pcartee",
+    "topic": "integration",
+    "date": "05/20/2025",
+    "uid": "integrate.tdx.cli"
+  }
+}

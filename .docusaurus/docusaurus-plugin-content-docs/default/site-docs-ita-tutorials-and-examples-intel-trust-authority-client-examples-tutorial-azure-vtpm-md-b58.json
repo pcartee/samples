@@ -1,0 +1,21 @@
+{
+  "id": "ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-azure-vtpm",
+  "title": "Company Name Client Tutorial for Azure with vTPM and Intel TDX",
+  "description": "Step-by-step tutorial to stand up an Azure VM with vTPM and Intel TDX",
+  "source": "@site/docs/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-azure-vtpm.md",
+  "sourceDirName": "ita/Tutorials and examples/Intel Trust Authority Client examples",
+  "slug": "/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-azure-vtpm",
+  "permalink": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-azure-vtpm",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Company Name Client Tutorial for Azure with vTPM and Intel TDX",
+    "description": "Step-by-step tutorial to stand up an Azure VM with vTPM and Intel TDX",
+    "author": "pcartee",
+    "topic": "tutorial",
+    "date": "10/16/2024",
+    "uid": "tutorial.tpm.azure"
+  }
+}

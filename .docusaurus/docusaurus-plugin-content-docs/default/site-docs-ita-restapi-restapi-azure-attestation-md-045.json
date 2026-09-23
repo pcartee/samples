@@ -1,0 +1,21 @@
+{
+  "id": "ita/Restapi/restapi-azure-attestation",
+  "title": "Intel Trust Authority Azure Attestation REST API Reference",
+  "description": "Project Amber Azure Attestation REST API external documentation",
+  "source": "@site/docs/ita/Restapi/restapi-azure-attestation.md",
+  "sourceDirName": "ita/Restapi",
+  "slug": "/ita/Restapi/restapi-azure-attestation",
+  "permalink": "/writing-samples/ita/Restapi/restapi-azure-attestation",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Intel Trust Authority Azure Attestation REST API Reference",
+    "description": "Project Amber Azure Attestation REST API external documentation",
+    "author": "pcartee",
+    "topic-type": "NA",
+    "date": "02/07/2024",
+    "uid": "restapi.azure.attestation"
+  }
+}

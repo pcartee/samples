@@ -1,0 +1,30 @@
+{
+  "id": "ita/Concepts/concept-patterns",
+  "title": "Trust Authority Attestation Patterns",
+  "description": "An overview of the Passport and Background Check attestation patterns.",
+  "source": "@site/docs/ita/Concepts/concept-patterns.md",
+  "sourceDirName": "ita/Concepts",
+  "slug": "/ita/Concepts/concept-patterns",
+  "permalink": "/writing-samples/ita/Concepts/concept-patterns",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Trust Authority Attestation Patterns",
+    "description": "An overview of the Passport and Background Check attestation patterns.",
+    "author": "pcartee",
+    "topic": "Conceptual",
+    "date": "09/01/2023",
+    "uid": "attestation.patterns"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Attestation overview",
+    "permalink": "/writing-samples/ita/Concepts/concept-attestation-overview"
+  },
+  "next": {
+    "title": "Attestation policy V2",
+    "permalink": "/writing-samples/ita/Concepts/concept-policy-v2"
+  }
+}

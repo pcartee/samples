@@ -1,0 +1,30 @@
+{
+  "id": "ita/How-to workflows/howto-SIEM-integration",
+  "title": "SIEM integration",
+  "description": "An overview of SIEM integration with Trust Authority.",
+  "source": "@site/docs/ita/How-to workflows/howto-SIEM-integration.md",
+  "sourceDirName": "ita/How-to workflows",
+  "slug": "/ita/How-to workflows/howto-SIEM-integration",
+  "permalink": "/writing-samples/ita/How-to workflows/howto-SIEM-integration",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "SIEM integration",
+    "description": "An overview of SIEM integration with Trust Authority.",
+    "author": "pcartee",
+    "topic": "how to",
+    "date": "05/14/2024",
+    "uid": "siem-integration"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Policies",
+    "permalink": "/writing-samples/ita/How-to workflows/howto-manage-attestation-policies"
+  },
+  "next": {
+    "title": "TEEs Overview",
+    "permalink": "/writing-samples/ita/Attestation Technologies/concept-tees-overview"
+  }
+}

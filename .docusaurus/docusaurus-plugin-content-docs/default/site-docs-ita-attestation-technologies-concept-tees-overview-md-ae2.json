@@ -1,0 +1,30 @@
+{
+  "id": "ita/Attestation Technologies/concept-tees-overview",
+  "title": "TEEs Overview",
+  "description": "A brief introduction to Trusted Execution Environments (TEEs).",
+  "source": "@site/docs/ita/Attestation Technologies/concept-tees-overview.md",
+  "sourceDirName": "ita/Attestation Technologies",
+  "slug": "/ita/Attestation Technologies/concept-tees-overview",
+  "permalink": "/writing-samples/ita/Attestation Technologies/concept-tees-overview",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "TEEs Overview",
+    "description": "A brief introduction to Trusted Execution Environments (TEEs).",
+    "author": "pcartee",
+    "topic": "conceptual",
+    "date": "02/07/2025",
+    "uid": "tees.overview"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "SIEM integration",
+    "permalink": "/writing-samples/ita/How-to workflows/howto-SIEM-integration"
+  },
+  "next": {
+    "title": "SGX",
+    "permalink": "/writing-samples/ita/Attestation Technologies/Trusted execution environments/tee-sgx"
+  }
+}

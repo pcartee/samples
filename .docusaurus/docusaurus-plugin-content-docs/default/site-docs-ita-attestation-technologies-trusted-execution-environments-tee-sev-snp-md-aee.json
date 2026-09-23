@@ -1,0 +1,30 @@
+{
+  "id": "ita/Attestation Technologies/Trusted execution environments/tee-sev-snp",
+  "title": "AMD SEV-SNP",
+  "description": "A brief introduction to SEV-SNP.",
+  "source": "@site/docs/ita/Attestation Technologies/Trusted execution environments/tee-sev-snp.md",
+  "sourceDirName": "ita/Attestation Technologies/Trusted execution environments",
+  "slug": "/ita/Attestation Technologies/Trusted execution environments/tee-sev-snp",
+  "permalink": "/writing-samples/ita/Attestation Technologies/Trusted execution environments/tee-sev-snp",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "AMD SEV-SNP",
+    "description": "A brief introduction to SEV-SNP.",
+    "author": "pcartee",
+    "topic": "conceptual",
+    "date": "05/20/2025",
+    "uid": "tee.sev.snp"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": " TDX",
+    "permalink": "/writing-samples/ita/Attestation Technologies/Trusted execution environments/integrate-tdx-adapter-api"
+  },
+  "next": {
+    "title": "GPU confidential computing",
+    "permalink": "/writing-samples/ita/Attestation Technologies/GPU confidential computing/concept-gpu-attestation"
+  }
+}

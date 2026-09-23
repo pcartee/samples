@@ -1,0 +1,30 @@
+{
+  "id": "ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-amd-azure-vm",
+  "title": "Trust Authority Client Tutorial for Azure with AMD SEV-SNP",
+  "description": "Tutorial for creating an Azure AMD SEV-SNP confidential VM, configuring Bastion and TPM prerequisites, and building the Trust Authority client for Go.",
+  "source": "@site/docs/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-amd-azure-vm.md",
+  "sourceDirName": "ita/Tutorials and examples/Intel Trust Authority Client examples",
+  "slug": "/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-amd-azure-vm",
+  "permalink": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-amd-azure-vm",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Trust Authority Client Tutorial for Azure with AMD SEV-SNP",
+    "description": "Tutorial for creating an Azure AMD SEV-SNP confidential VM, configuring Bastion and TPM prerequisites, and building the Trust Authority client for Go.",
+    "author": "pcartee",
+    "topic-type": "tutorial",
+    "date": "09/19/2024",
+    "uid": "tutorial.amd"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Getting Started",
+    "permalink": "/writing-samples/ita/Quickstart/tutorial-api-key"
+  },
+  "next": {
+    "title": "TDX AI model key release demo",
+    "permalink": "/writing-samples/ita/Tutorials and examples/tutorial-tdx-workload"
+  }
+}

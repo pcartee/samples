@@ -1,0 +1,21 @@
+{
+  "id": "ita/Command-line/cli-signed-policy-commands",
+  "title": "Signed Policy Management",
+  "description": "Signed policy management commands.",
+  "source": "@site/docs/ita/Command-line/cli-signed-policy-commands.md",
+  "sourceDirName": "ita/Command-line",
+  "slug": "/ita/Command-line/cli-signed-policy-commands",
+  "permalink": "/writing-samples/ita/Command-line/cli-signed-policy-commands",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Signed Policy Management",
+    "description": "Signed policy management commands.",
+    "author": "pcartee",
+    "topic-type": "Reference",
+    "date": "08/17/2023",
+    "uid": "cli-signed-policy-commands"
+  }
+}

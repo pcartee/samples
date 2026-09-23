@@ -1,0 +1,21 @@
+{
+  "id": "ita/Concepts/concept-attestation-tokens",
+  "title": "Attestation Tokens and Claims",
+  "description": "attestation token JWT JWK JWKS JOSE EAT profile sample claim",
+  "source": "@site/docs/ita/Concepts/concept-attestation-tokens.md",
+  "sourceDirName": "ita/Concepts",
+  "slug": "/ita/Concepts/concept-attestation-tokens",
+  "permalink": "/writing-samples/ita/Concepts/concept-attestation-tokens",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Attestation Tokens and Claims",
+    "description": "attestation token JWT JWK JWKS JOSE EAT profile sample claim",
+    "author": "pcartee",
+    "topic": "conceptual",
+    "date": "04/15/2025",
+    "uid": "attestation.token"
+  }
+}

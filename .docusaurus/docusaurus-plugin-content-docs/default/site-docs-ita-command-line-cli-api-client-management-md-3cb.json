@@ -1,0 +1,30 @@
+{
+  "id": "ita/Command-line/cli-api-client-management",
+  "title": "API Client management",
+  "description": "Trust Authority CLI API client management commands.",
+  "source": "@site/docs/ita/Command-line/cli-api-client-management.md",
+  "sourceDirName": "ita/Command-line",
+  "slug": "/ita/Command-line/cli-api-client-management",
+  "permalink": "/writing-samples/ita/Command-line/cli-api-client-management",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "API Client management",
+    "description": "Trust Authority CLI API client management commands.",
+    "author": "pcartee",
+    "topic-type": "Reference",
+    "date": "01/03/2024",
+    "uid": "api-client-management"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Policy management",
+    "permalink": "/writing-samples/ita/Command-line/cli-policy-commands"
+  },
+  "next": {
+    "title": "Key Broker Service",
+    "permalink": "/writing-samples/ita/Key-broker/key-broker-service"
+  }
+}

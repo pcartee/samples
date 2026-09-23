@@ -1,0 +1,21 @@
+{
+  "id": "ita/Integration/integrate-python-client",
+  "title": "Intel Trust Authority Python Connector",
+  "description": "Intel Trust Authority Python Connector API reference documentation.",
+  "source": "@site/docs/ita/Integration/integrate-python-client.md",
+  "sourceDirName": "ita/Integration",
+  "slug": "/ita/Integration/integrate-python-client",
+  "permalink": "/writing-samples/ita/Integration/integrate-python-client",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Intel Trust Authority Python Connector",
+    "description": "Intel Trust Authority Python Connector API reference documentation.",
+    "author": "pcartee",
+    "topic": "integration",
+    "date": "05/16/2024",
+    "uid": "integrate.python.client"
+  }
+}

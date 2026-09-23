@@ -1,0 +1,36 @@
+{
+  "id": "ita/Reference/idr-api-reference",
+  "title": "Studio Identity Router API reference",
+  "description": "API reference for the Studio Identity Router, including supported data types and API call operations.",
+  "source": "@site/docs/ita/Reference/idr-api-reference.md",
+  "sourceDirName": "ita/Reference",
+  "slug": "/reference/identity-router-api",
+  "permalink": "/writing-samples/reference/identity-router-api",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Studio Identity Router API reference",
+    "description": "API reference for the Studio Identity Router, including supported data types and API call operations.",
+    "author": "pcartee",
+    "topic-type": "API_reference",
+    "date": "09/13/2026",
+    "uid": "api.identity.reference",
+    "slug": "/reference/identity-router-api",
+    "keywords": [
+      "identity router",
+      "keychain",
+      "KeychainObject",
+      "UserKeychain",
+      "WSDL",
+      "Apache CXF",
+      "data types"
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Key creation and retrieval",
+    "permalink": "/writing-samples/ita/Key-broker/kbs.key.creation.retrieval"
+  }
+}

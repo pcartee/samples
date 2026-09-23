@@ -1,0 +1,21 @@
+{
+  "id": "ita/Integration/integrate-relying-party",
+  "title": "Relying Party Integration Guide",
+  "description": "This guide covers the requirements for creating or integrating a relying party to use Intel® Trust Authority attestation.",
+  "source": "@site/docs/ita/Integration/integrate-relying-party.md",
+  "sourceDirName": "ita/Integration",
+  "slug": "/ita/Integration/integrate-relying-party",
+  "permalink": "/writing-samples/ita/Integration/integrate-relying-party",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Relying Party Integration Guide",
+    "description": "This guide covers the requirements for creating or integrating a relying party to use Intel® Trust Authority attestation.",
+    "author": "pcartee",
+    "topic": "integration",
+    "date": "09/12/2023",
+    "uid": "integrate.rp"
+  }
+}

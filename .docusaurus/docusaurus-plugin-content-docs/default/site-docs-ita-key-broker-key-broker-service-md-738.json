@@ -1,0 +1,30 @@
+{
+  "id": "ita/Key-broker/key-broker-service",
+  "title": "Key Broker Service",
+  "description": "Key Broker Service documentation.",
+  "source": "@site/docs/ita/Key-broker/key-broker-service.md",
+  "sourceDirName": "ita/Key-broker",
+  "slug": "/ita/Key-broker/key-broker-service",
+  "permalink": "/writing-samples/ita/Key-broker/key-broker-service",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Key Broker Service",
+    "description": "Key Broker Service documentation.",
+    "author": "pcartee",
+    "topic": "KBS",
+    "date": "04/18/2024",
+    "uid": "kbs.about"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "API client management",
+    "permalink": "/writing-samples/ita/Command-line/cli-api-client-management"
+  },
+  "next": {
+    "title": "Key Management Service installation",
+    "permalink": "/writing-samples/ita/Key-broker/key-broker-service-kms-install"
+  }
+}

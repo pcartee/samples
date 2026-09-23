@@ -1,0 +1,21 @@
+{
+  "id": "ita/Utilites/whats-new",
+  "title": "What's New",
+  "description": "A short description on the new features of Intel Trust Authority.",
+  "source": "@site/docs/ita/Utilites/whats-new.md",
+  "sourceDirName": "ita/Utilites",
+  "slug": "/ita/Utilites/whats-new",
+  "permalink": "/writing-samples/ita/Utilites/whats-new",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "What's New",
+    "description": "A short description on the new features of Intel Trust Authority.",
+    "author": "pcartee",
+    "topic": "conceptual",
+    "uid": "whats.new",
+    "date": "5/20/2025"
+  }
+}

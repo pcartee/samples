@@ -1,0 +1,21 @@
+{
+  "id": "ita/Integration/integrate-go-tpm",
+  "title": "Intel Trust Authority TPM API Reference",
+  "description": "This article provides an API reference for the Intel Trust Authority Go TPM adapter.",
+  "source": "@site/docs/ita/Integration/integrate-go-tpm.md",
+  "sourceDirName": "ita/Integration",
+  "slug": "/ita/Integration/integrate-go-tpm",
+  "permalink": "/writing-samples/ita/Integration/integrate-go-tpm",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Intel Trust Authority TPM API Reference",
+    "description": "This article provides an API reference for the Intel Trust Authority Go TPM adapter.",
+    "author": "pcartee",
+    "topic": "integration",
+    "date": "07/22/2024",
+    "uid": "tpm.api.reference"
+  }
+}

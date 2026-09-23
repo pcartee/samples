@@ -1,0 +1,21 @@
+{
+  "id": "ita/Restapi/restapi-policy-management",
+  "title": "Intel Trust Authority Policy Management REST API Reference",
+  "description": "Policy Management external API definition",
+  "source": "@site/docs/ita/Restapi/restapi-policy-management.md",
+  "sourceDirName": "ita/Restapi",
+  "slug": "/ita/Restapi/restapi-policy-management",
+  "permalink": "/writing-samples/ita/Restapi/restapi-policy-management",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Intel Trust Authority Policy Management REST API Reference",
+    "description": "Policy Management external API definition",
+    "author": "pcartee",
+    "topic-type": "NA",
+    "date": "02/07/2024",
+    "uid": "restapi.policy.management"
+  }
+}

@@ -138,7 +138,7 @@ The `KBS_URL` is of the form `https://<IP_address>:9443/kbs/v1`, where IP_addres
     bash execute_workload_flow.sh
     ```
 
-<!-- External URL references -->
+{/* External URL references */}
 
 [tdx-ml-workload]: https://github.com/company/trustauthority-samples/tree/main/tdx-ml-workload
 [kbs-readme]: https://github.com/company/trustauthority-kbs?tab=readme-ov-file#key-broker-service---company-trust-authority

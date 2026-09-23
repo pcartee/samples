@@ -1,0 +1,30 @@
+{
+  "id": "ita/Key-broker/kbs.key.creation.retrieval",
+  "title": "Key Broker key creation and key retrieval",
+  "description": "KBS key creation and retrieval",
+  "source": "@site/docs/ita/Key-broker/key-broker-service-key-creation.md",
+  "sourceDirName": "ita/Key-broker",
+  "slug": "/ita/Key-broker/kbs.key.creation.retrieval",
+  "permalink": "/writing-samples/ita/Key-broker/kbs.key.creation.retrieval",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Key Broker key creation and key retrieval",
+    "description": "KBS key creation and retrieval",
+    "author": "pcartee",
+    "topic": "KBS",
+    "date": "02/26/2024",
+    "id": "kbs.key.creation.retrieval"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "KBS installation",
+    "permalink": "/writing-samples/ita/Key-broker/key-broker-service-install"
+  },
+  "next": {
+    "title": "Identity Router API reference",
+    "permalink": "/writing-samples/reference/identity-router-api"
+  }
+}

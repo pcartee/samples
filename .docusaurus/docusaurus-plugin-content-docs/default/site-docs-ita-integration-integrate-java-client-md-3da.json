@@ -1,0 +1,21 @@
+{
+  "id": "ita/Integration/integrate-java-client",
+  "title": "Intel® Trust Authority Java Client Integration",
+  "description": "Java Client Adaptor documentation.",
+  "source": "@site/docs/ita/Integration/integrate-java-client.md",
+  "sourceDirName": "ita/Integration",
+  "slug": "/ita/Integration/integrate-java-client",
+  "permalink": "/writing-samples/ita/Integration/integrate-java-client",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Intel® Trust Authority Java Client Integration",
+    "description": "Java Client Adaptor documentation.",
+    "author": "pcartee",
+    "topic": "integration",
+    "date": "11/08/2024",
+    "uid": "integrate.java.client"
+  }
+}

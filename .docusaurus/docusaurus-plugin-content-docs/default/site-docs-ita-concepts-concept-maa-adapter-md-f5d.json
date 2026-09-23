@@ -1,0 +1,20 @@
+{
+  "id": "ita/Concepts/concept-maa-adapter",
+  "title": "Intel Trust Authority MAA Adapter Service",
+  "description": "Describes the MAA adapter service functionality and how to use it.",
+  "source": "@site/docs/ita/Concepts/concept-maa-adapter.md",
+  "sourceDirName": "ita/Concepts",
+  "slug": "/ita/Concepts/concept-maa-adapter",
+  "permalink": "/writing-samples/ita/Concepts/concept-maa-adapter",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Intel Trust Authority MAA Adapter Service",
+    "description": "Describes the MAA adapter service functionality and how to use it.",
+    "author": "pcartee",
+    "date": "06/12/2024",
+    "uid": "maa.adapter.service"
+  }
+}

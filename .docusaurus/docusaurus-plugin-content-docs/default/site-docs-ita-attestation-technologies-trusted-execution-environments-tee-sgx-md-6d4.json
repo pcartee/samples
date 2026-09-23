@@ -1,0 +1,30 @@
+{
+  "id": "ita/Attestation Technologies/Trusted execution environments/tee-sgx",
+  "title": "Intel SGX",
+  "description": "A brief introduction to SGX.",
+  "source": "@site/docs/ita/Attestation Technologies/Trusted execution environments/tee-sgx.md",
+  "sourceDirName": "ita/Attestation Technologies/Trusted execution environments",
+  "slug": "/ita/Attestation Technologies/Trusted execution environments/tee-sgx",
+  "permalink": "/writing-samples/ita/Attestation Technologies/Trusted execution environments/tee-sgx",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Intel SGX",
+    "description": "A brief introduction to SGX.",
+    "author": "pcartee",
+    "topic": "conceptual",
+    "date": "11/18/2024",
+    "uid": "tee.sgx"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "TEEs Overview",
+    "permalink": "/writing-samples/ita/Attestation Technologies/concept-tees-overview"
+  },
+  "next": {
+    "title": " TDX",
+    "permalink": "/writing-samples/ita/Attestation Technologies/Trusted execution environments/integrate-tdx-adapter-api"
+  }
+}

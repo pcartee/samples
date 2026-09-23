@@ -1,0 +1,21 @@
+{
+  "id": "ita/Attestation Technologies/Trusted Platform Module/tpm-ak-provision",
+  "title": "Attestation keys and certificates",
+  "description": "Describes what attestation keys and certificates are used for and how to provision an attestation key for a physical TPM by using Intel Trust Authority.",
+  "source": "@site/docs/ita/Attestation Technologies/Trusted Platform Module/tpm-ak-provision.md",
+  "sourceDirName": "ita/Attestation Technologies/Trusted Platform Module",
+  "slug": "/ita/Attestation Technologies/Trusted Platform Module/tpm-ak-provision",
+  "permalink": "/writing-samples/ita/Attestation Technologies/Trusted Platform Module/tpm-ak-provision",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Attestation keys and certificates",
+    "description": "Describes what attestation keys and certificates are used for and how to provision an attestation key for a physical TPM by using Intel Trust Authority.",
+    "author": "pcartee",
+    "topic": "integration",
+    "date": "10/28/2024",
+    "uid": "tpm.ak.provision"
+  }
+}

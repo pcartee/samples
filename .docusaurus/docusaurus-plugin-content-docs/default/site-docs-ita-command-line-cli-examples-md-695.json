@@ -1,0 +1,30 @@
+{
+  "id": "ita/Command-line/cli-examples",
+  "title": "Intel Trust Authority CLI Examples",
+  "description": "Example workflows for the Intel Trust Authority CLI.",
+  "source": "@site/docs/ita/Command-line/cli-examples.md",
+  "sourceDirName": "ita/Command-line",
+  "slug": "/ita/Command-line/cli-examples",
+  "permalink": "/writing-samples/ita/Command-line/cli-examples",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Intel Trust Authority CLI Examples",
+    "description": "Example workflows for the Intel Trust Authority CLI.",
+    "author": "pcartee",
+    "topic-type": "Reference",
+    "date": "08/15/2023",
+    "uid": "cli-examples"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Attestation policy V2",
+    "permalink": "/writing-samples/ita/Concepts/concept-policy-v2"
+  },
+  "next": {
+    "title": "Installation",
+    "permalink": "/writing-samples/ita/Command-line/cli-install"
+  }
+}

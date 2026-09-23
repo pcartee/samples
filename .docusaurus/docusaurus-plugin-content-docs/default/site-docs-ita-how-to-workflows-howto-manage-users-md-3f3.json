@@ -1,0 +1,30 @@
+{
+  "id": "ita/How-to workflows/howto-manage-users",
+  "title": "User Management",
+  "description": "An overview of user management in Trust Authority.",
+  "source": "@site/docs/ita/How-to workflows/howto-manage-users.md",
+  "sourceDirName": "ita/How-to workflows",
+  "slug": "/ita/How-to workflows/howto-manage-users",
+  "permalink": "/writing-samples/ita/How-to workflows/howto-manage-users",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "User Management",
+    "description": "An overview of user management in Trust Authority.",
+    "author": "pcartee",
+    "topic": "how to",
+    "date": "12/09/2024",
+    "uid": "manage.users"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "TDX on Microsoft Azure",
+    "permalink": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx"
+  },
+  "next": {
+    "title": "Policies",
+    "permalink": "/writing-samples/ita/How-to workflows/howto-manage-attestation-policies"
+  }
+}

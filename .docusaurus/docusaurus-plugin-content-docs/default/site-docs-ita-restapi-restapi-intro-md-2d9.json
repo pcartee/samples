@@ -1,0 +1,21 @@
+{
+  "id": "ita/Restapi/restapi-intro",
+  "title": "Intel Trust Authority REST API Reference",
+  "description": "Introduction & landing page for the REST API reference documentation.",
+  "source": "@site/docs/ita/Restapi/restapi-intro.md",
+  "sourceDirName": "ita/Restapi",
+  "slug": "/ita/Restapi/restapi-intro",
+  "permalink": "/writing-samples/ita/Restapi/restapi-intro",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Intel Trust Authority REST API Reference",
+    "description": "Introduction & landing page for the REST API reference documentation.",
+    "author": "pcartee",
+    "topic-type": "API_reference",
+    "date": "04/10/2025",
+    "uid": "restapi.intro"
+  }
+}

@@ -33,10 +33,10 @@ const sidebars = {
       type: 'category',
       label: 'Tutorials and examples',
       items: [
-        { type: 'doc', id: 'ita/Tutorials and examples/tutorial-amd-asure-vm', label: 'AMD SEV-SNP Attestation on Microsoft Azure' },
+        { type: 'doc', id: 'ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-amd-azure-vm', label: 'AMD SEV-SNP Attestation on Microsoft Azure' },
         { type: 'doc', id: 'ita/Tutorials and examples/tutorial-tdx-workload', label: 'TDX AI model key release demo' },
-        { type: 'doc', id: 'ita/Tutorials and examples/tutorial-tdx-gcp', label: 'TDX on GCP' },
-        { type: 'doc', id: 'ita/Tutorials and examples/tutorial-tdx-azure', label: 'TDX on Microsoft Azure' },
+        { type: 'doc', id: 'ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx-gcp', label: 'TDX on GCP' },
+        { type: 'doc', id: 'ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx', label: 'TDX on Microsoft Azure' },
       ],
     },
     {

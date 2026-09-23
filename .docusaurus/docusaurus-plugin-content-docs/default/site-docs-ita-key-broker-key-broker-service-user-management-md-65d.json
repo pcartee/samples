@@ -1,0 +1,21 @@
+{
+  "id": "ita/Key-broker/key-broker-service-user-management",
+  "title": "Key Broker Service user management",
+  "description": "Key Broker Service user management",
+  "source": "@site/docs/ita/Key-broker/key-broker-service-user-management.md",
+  "sourceDirName": "ita/Key-broker",
+  "slug": "/ita/Key-broker/key-broker-service-user-management",
+  "permalink": "/writing-samples/ita/Key-broker/key-broker-service-user-management",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Key Broker Service user management",
+    "description": "Key Broker Service user management",
+    "author": "pcartee",
+    "topic": "KBS",
+    "date": "02/27/2024",
+    "uid": "kbs.user.management"
+  }
+}

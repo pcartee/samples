@@ -1,0 +1,21 @@
+{
+  "id": "ita/Concepts/concept-policies",
+  "title": "Attestation policies",
+  "description": "An overview of attestation policies in Intel® Trust Authority.",
+  "source": "@site/docs/ita/Concepts/concept-policies.md",
+  "sourceDirName": "ita/Concepts",
+  "slug": "/ita/Concepts/concept-policies",
+  "permalink": "/writing-samples/ita/Concepts/concept-policies",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Attestation policies",
+    "description": "An overview of attestation policies in Intel® Trust Authority.",
+    "author": "pcartee",
+    "topic": "conceptual",
+    "date": "06/21/2024",
+    "uid": "attestation.policies"
+  }
+}

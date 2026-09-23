@@ -1,0 +1,21 @@
+{
+  "id": "ita/glossary",
+  "title": "Glossary",
+  "description": "Contains definitions for terms used in the documentation.",
+  "source": "@site/docs/ita/glossary.md",
+  "sourceDirName": "ita",
+  "slug": "/ita/glossary",
+  "permalink": "/writing-samples/ita/glossary",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Glossary",
+    "description": "Contains definitions for terms used in the documentation.",
+    "author": "pcartee",
+    "topic": "conceptual",
+    "date": "10/15/2024",
+    "uid": "concept.glossary"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "ita/How-to workflows/howto-author-custom-policy",
+  "title": "Author a custom policy",
+  "description": "Instructions for creating custom policies.",
+  "source": "@site/docs/ita/How-to workflows/howto-author-custom-policy.md",
+  "sourceDirName": "ita/How-to workflows",
+  "slug": "/ita/How-to workflows/howto-author-custom-policy",
+  "permalink": "/writing-samples/ita/How-to workflows/howto-author-custom-policy",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Author a custom policy",
+    "description": "Instructions for creating custom policies.",
+    "author": "pcartee",
+    "topic": "how to",
+    "date": "07/17/2024",
+    "uid": "author.custom.policy"
+  }
+}

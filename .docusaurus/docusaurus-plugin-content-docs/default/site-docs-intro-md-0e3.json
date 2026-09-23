@@ -1,0 +1,28 @@
+{
+  "id": "introduction",
+  "title": "Paul Cartee — Senior Technical Writer",
+  "description": "Senior Technical Writer specializing in docs-as-code, CI/CD pipelines, API and CLI reference documentation, and confidential computing content.",
+  "source": "@site/docs/intro.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/writing-samples/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Paul Cartee — Senior Technical Writer",
+    "description": "Senior Technical Writer specializing in docs-as-code, CI/CD pipelines, API and CLI reference documentation, and confidential computing content.",
+    "author": "pcartee",
+    "date": "09/23/2026",
+    "id": "introduction",
+    "sidebar_position": 1,
+    "slug": "/"
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Subscriptions",
+    "permalink": "/writing-samples/ita/Quickstart/howto-manage-subscriptions"
+  }
+}

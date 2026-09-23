@@ -1,0 +1,21 @@
+{
+  "id": "ita/Integration/integrate-gcp-cs",
+  "title": "Integrating GCP Confidential Space with Intel Trust Authority",
+  "description": "GCP CS workload development with Intel Trust Authority attestation",
+  "source": "@site/docs/ita/Integration/integrate-gcp-cs.md",
+  "sourceDirName": "ita/Integration",
+  "slug": "/ita/Integration/integrate-gcp-cs",
+  "permalink": "/writing-samples/ita/Integration/integrate-gcp-cs",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Integrating GCP Confidential Space with Intel Trust Authority",
+    "description": "GCP CS workload development with Intel Trust Authority attestation",
+    "author": "pcartee",
+    "topic": "integration",
+    "date": "05/10/2025",
+    "uid": "integrate.gcp.cs"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx",
+  "title": "Trust Authority Client Tutorial for Azure with TDX",
+  "description": "Tutorial for deploying an Azure confidential VM with TDX and running the Trust Authority Client for C.",
+  "source": "@site/docs/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx.md",
+  "sourceDirName": "ita/Tutorials and examples/Intel Trust Authority Client examples",
+  "slug": "/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx",
+  "permalink": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Trust Authority Client Tutorial for Azure with TDX",
+    "description": "Tutorial for deploying an Azure confidential VM with TDX and running the Trust Authority Client for C.",
+    "author": "pcartee",
+    "topic-type": "tutorial",
+    "date": "06/07/2024",
+    "uid": "tutorial.tdx"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "TDX on GCP",
+    "permalink": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx-gcp"
+  },
+  "next": {
+    "title": "User management",
+    "permalink": "/writing-samples/ita/How-to workflows/howto-manage-users"
+  }
+}

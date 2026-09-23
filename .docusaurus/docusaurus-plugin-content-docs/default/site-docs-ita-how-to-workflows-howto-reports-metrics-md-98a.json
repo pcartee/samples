@@ -1,0 +1,21 @@
+{
+  "id": "ita/How-to workflows/howto-reports-metrics",
+  "title": "Reports and metrics",
+  "description": "An overview of the reports and metrics available in Intel Trust Authority.",
+  "source": "@site/docs/ita/How-to workflows/howto-reports-metrics.md",
+  "sourceDirName": "ita/How-to workflows",
+  "slug": "/ita/How-to workflows/howto-reports-metrics",
+  "permalink": "/writing-samples/ita/How-to workflows/howto-reports-metrics",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Reports and metrics",
+    "description": "An overview of the reports and metrics available in Intel Trust Authority.",
+    "author": "pcartee",
+    "topic": "conceptual",
+    "date": "06/26/2024",
+    "uid": "reports.metrics"
+  }
+}

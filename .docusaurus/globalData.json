@@ -1,0 +1,359 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/writing-samples/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/writing-samples/",
+          "mainDocId": "introduction",
+          "docs": [
+            {
+              "id": "introduction",
+              "path": "/writing-samples/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Attestation Technologies/concept-tees-overview",
+              "path": "/writing-samples/ita/Attestation Technologies/concept-tees-overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Attestation Technologies/GPU confidential computing/concept-gpu-attestation",
+              "path": "/writing-samples/ita/Attestation Technologies/GPU confidential computing/concept-gpu-attestation",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Attestation Technologies/Trusted execution environments/integrate-tdx-adapter-api",
+              "path": "/writing-samples/ita/Attestation Technologies/Trusted execution environments/integrate-tdx-adapter-api",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Attestation Technologies/Trusted execution environments/tee-sev-snp",
+              "path": "/writing-samples/ita/Attestation Technologies/Trusted execution environments/tee-sev-snp",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Attestation Technologies/Trusted execution environments/tee-sgx",
+              "path": "/writing-samples/ita/Attestation Technologies/Trusted execution environments/tee-sgx",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Attestation Technologies/Trusted execution environments/tee-tdx",
+              "path": "/writing-samples/ita/Attestation Technologies/Trusted execution environments/tee-tdx"
+            },
+            {
+              "id": "ita/Attestation Technologies/Trusted Platform Module/tpm-ak-provision",
+              "path": "/writing-samples/ita/Attestation Technologies/Trusted Platform Module/tpm-ak-provision"
+            },
+            {
+              "id": "ita/Attestation Technologies/Trusted Platform Module/tpm-ima-logs",
+              "path": "/writing-samples/ita/Attestation Technologies/Trusted Platform Module/tpm-ima-logs"
+            },
+            {
+              "id": "ita/Attestation Technologies/Trusted Platform Module/tpm-log",
+              "path": "/writing-samples/ita/Attestation Technologies/Trusted Platform Module/tpm-log"
+            },
+            {
+              "id": "ita/Attestation Technologies/Trusted Platform Module/tpm-uefi-log",
+              "path": "/writing-samples/ita/Attestation Technologies/Trusted Platform Module/tpm-uefi-log"
+            },
+            {
+              "id": "ita/Command-line/cli-api-client-management",
+              "path": "/writing-samples/ita/Command-line/cli-api-client-management",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Command-line/cli-examples",
+              "path": "/writing-samples/ita/Command-line/cli-examples",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Command-line/cli-install",
+              "path": "/writing-samples/ita/Command-line/cli-install",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Command-line/cli-policy-commands",
+              "path": "/writing-samples/ita/Command-line/cli-policy-commands",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Command-line/cli-service-commands",
+              "path": "/writing-samples/ita/Command-line/cli-service-commands"
+            },
+            {
+              "id": "ita/Command-line/cli-signed-policy-commands",
+              "path": "/writing-samples/ita/Command-line/cli-signed-policy-commands"
+            },
+            {
+              "id": "ita/Command-line/cli-user-commands",
+              "path": "/writing-samples/ita/Command-line/cli-user-commands"
+            },
+            {
+              "id": "ita/Concepts/concept-attestation-overview",
+              "path": "/writing-samples/ita/Concepts/concept-attestation-overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Concepts/concept-attestation-tokens",
+              "path": "/writing-samples/ita/Concepts/concept-attestation-tokens"
+            },
+            {
+              "id": "ita/Concepts/concept-maa-adapter",
+              "path": "/writing-samples/ita/Concepts/concept-maa-adapter"
+            },
+            {
+              "id": "ita/Concepts/concept-patterns",
+              "path": "/writing-samples/ita/Concepts/concept-patterns",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Concepts/concept-platform-tcb",
+              "path": "/writing-samples/ita/Concepts/concept-platform-tcb"
+            },
+            {
+              "id": "ita/Concepts/concept-policies",
+              "path": "/writing-samples/ita/Concepts/concept-policies"
+            },
+            {
+              "id": "ita/Concepts/concept-policy-v2",
+              "path": "/writing-samples/ita/Concepts/concept-policy-v2",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Concepts/concept-td-integrity",
+              "path": "/writing-samples/ita/Concepts/concept-td-integrity"
+            },
+            {
+              "id": "ita/Concepts/concept-trusted-boot",
+              "path": "/writing-samples/ita/Concepts/concept-trusted-boot"
+            },
+            {
+              "id": "ita/Concepts/concept-user-roles-and-api-keys",
+              "path": "/writing-samples/ita/Concepts/concept-user-roles-and-api-keys"
+            },
+            {
+              "id": "ita/glossary",
+              "path": "/writing-samples/ita/glossary"
+            },
+            {
+              "id": "ita/How-to workflows/howto-author-custom-policy",
+              "path": "/writing-samples/ita/How-to workflows/howto-author-custom-policy"
+            },
+            {
+              "id": "ita/How-to workflows/howto-manage-attestation-policies",
+              "path": "/writing-samples/ita/How-to workflows/howto-manage-attestation-policies",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/How-to workflows/howto-manage-tags",
+              "path": "/writing-samples/ita/How-to workflows/howto-manage-tags"
+            },
+            {
+              "id": "ita/How-to workflows/howto-manage-users",
+              "path": "/writing-samples/ita/How-to workflows/howto-manage-users",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/How-to workflows/howto-reports-metrics",
+              "path": "/writing-samples/ita/How-to workflows/howto-reports-metrics"
+            },
+            {
+              "id": "ita/How-to workflows/howto-SIEM-integration",
+              "path": "/writing-samples/ita/How-to workflows/howto-SIEM-integration",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Integration/integrate-c-client",
+              "path": "/writing-samples/ita/Integration/integrate-c-client"
+            },
+            {
+              "id": "ita/Integration/integrate-gcp-cs",
+              "path": "/writing-samples/ita/Integration/integrate-gcp-cs"
+            },
+            {
+              "id": "ita/Integration/integrate-go-client",
+              "path": "/writing-samples/ita/Integration/integrate-go-client"
+            },
+            {
+              "id": "ita/Integration/integrate-go-tdx-cli",
+              "path": "/writing-samples/ita/Integration/integrate-go-tdx-cli"
+            },
+            {
+              "id": "ita/Integration/integrate-go-tpm",
+              "path": "/writing-samples/ita/Integration/integrate-go-tpm"
+            },
+            {
+              "id": "ita/Integration/integrate-gramine",
+              "path": "/writing-samples/ita/Integration/integrate-gramine"
+            },
+            {
+              "id": "ita/Integration/integrate-java-client",
+              "path": "/writing-samples/ita/Integration/integrate-java-client"
+            },
+            {
+              "id": "ita/Integration/integrate-overview",
+              "path": "/writing-samples/ita/Integration/integrate-overview"
+            },
+            {
+              "id": "ita/Integration/integrate-python-client",
+              "path": "/writing-samples/ita/Integration/integrate-python-client"
+            },
+            {
+              "id": "ita/Integration/integrate-relying-party",
+              "path": "/writing-samples/ita/Integration/integrate-relying-party"
+            },
+            {
+              "id": "ita/Key-broker/kbs.key.creation.retrieval",
+              "path": "/writing-samples/ita/Key-broker/kbs.key.creation.retrieval",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Key-broker/key-broker-service",
+              "path": "/writing-samples/ita/Key-broker/key-broker-service",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Key-broker/key-broker-service-install",
+              "path": "/writing-samples/ita/Key-broker/key-broker-service-install",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Key-broker/key-broker-service-kms-install",
+              "path": "/writing-samples/ita/Key-broker/key-broker-service-kms-install",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Key-broker/key-broker-service-user-management",
+              "path": "/writing-samples/ita/Key-broker/key-broker-service-user-management"
+            },
+            {
+              "id": "ita/Quickstart/howto-manage-subscriptions",
+              "path": "/writing-samples/ita/Quickstart/howto-manage-subscriptions",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Quickstart/tutorial-api-key",
+              "path": "/writing-samples/ita/Quickstart/tutorial-api-key",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Reference/idr-api-reference",
+              "path": "/writing-samples/reference/identity-router-api",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Restapi/restapi-attestation",
+              "path": "/writing-samples/ita/Restapi/restapi-attestation"
+            },
+            {
+              "id": "ita/Restapi/restapi-attestation-v2",
+              "path": "/writing-samples/ita/Restapi/restapi-attestation-v2"
+            },
+            {
+              "id": "ita/Restapi/restapi-azure-attestation",
+              "path": "/writing-samples/ita/Restapi/restapi-azure-attestation"
+            },
+            {
+              "id": "ita/Restapi/restapi-client-management",
+              "path": "/writing-samples/ita/Restapi/restapi-client-management"
+            },
+            {
+              "id": "ita/Restapi/restapi-faithful",
+              "path": "/writing-samples/ita/Restapi/restapi-faithful"
+            },
+            {
+              "id": "ita/Restapi/restapi-intro",
+              "path": "/writing-samples/ita/Restapi/restapi-intro"
+            },
+            {
+              "id": "ita/Restapi/restapi-policy-management",
+              "path": "/writing-samples/ita/Restapi/restapi-policy-management"
+            },
+            {
+              "id": "ita/Restapi/restapi-product-management",
+              "path": "/writing-samples/ita/Restapi/restapi-product-management"
+            },
+            {
+              "id": "ita/Restapi/restapi-service-management",
+              "path": "/writing-samples/ita/Restapi/restapi-service-management"
+            },
+            {
+              "id": "ita/Restapi/restapi-service-offer-management",
+              "path": "/writing-samples/ita/Restapi/restapi-service-offer-management"
+            },
+            {
+              "id": "ita/Restapi/restapi-tenant-management",
+              "path": "/writing-samples/ita/Restapi/restapi-tenant-management"
+            },
+            {
+              "id": "ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-amd-azure-vm",
+              "path": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-amd-azure-vm",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-azure-vtpm",
+              "path": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-azure-vtpm"
+            },
+            {
+              "id": "ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sevsnp-gcp",
+              "path": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sevsnp-gcp"
+            },
+            {
+              "id": "ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sgx",
+              "path": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sgx"
+            },
+            {
+              "id": "ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx",
+              "path": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx-gcp",
+              "path": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx-gcp",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Tutorials and examples/tutorial-cicd",
+              "path": "/writing-samples/ita/Tutorials and examples/tutorial-cicd"
+            },
+            {
+              "id": "ita/Tutorials and examples/tutorial-tdx-workload",
+              "path": "/writing-samples/ita/Tutorials and examples/tutorial-tdx-workload",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Utilites/utility-faithful-verifier",
+              "path": "/writing-samples/ita/Utilites/utility-faithful-verifier"
+            },
+            {
+              "id": "ita/Utilites/utility-policy-builder",
+              "path": "/writing-samples/ita/Utilites/utility-policy-builder"
+            },
+            {
+              "id": "ita/Utilites/utility-policy-signing",
+              "path": "/writing-samples/ita/Utilites/utility-policy-signing"
+            },
+            {
+              "id": "ita/Utilites/whats-new",
+              "path": "/writing-samples/ita/Utilites/whats-new"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/writing-samples/",
+                "label": "Overview"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

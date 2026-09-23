@@ -1,0 +1,21 @@
+{
+  "id": "ita/Concepts/concept-trusted-boot",
+  "title": "Measured Boot",
+  "description": "Measured boot",
+  "source": "@site/docs/ita/Concepts/concept-trusted-boot.md",
+  "sourceDirName": "ita/Concepts",
+  "slug": "/ita/Concepts/concept-trusted-boot",
+  "permalink": "/writing-samples/ita/Concepts/concept-trusted-boot",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Measured Boot",
+    "description": "Measured boot",
+    "author": "pcartee",
+    "topic-type": "conceptual",
+    "date": "07/22/24",
+    "uid": "trusted.boot"
+  }
+}

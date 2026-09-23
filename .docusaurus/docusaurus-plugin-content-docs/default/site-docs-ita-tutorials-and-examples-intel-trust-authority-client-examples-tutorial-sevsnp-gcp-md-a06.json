@@ -1,0 +1,21 @@
+{
+  "id": "ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sevsnp-gcp",
+  "title": "Trust Authority Client Tutorial for Google Cloud Platform with AMD SEV-SNP",
+  "description": "Tutorial for creating a Google Cloud confidential VM with AMD SEV-SNP, authenticating with GitHub CLI, and building the Trust Authority client for Go.",
+  "source": "@site/docs/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sevsnp-gcp.md",
+  "sourceDirName": "ita/Tutorials and examples/Intel Trust Authority Client examples",
+  "slug": "/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sevsnp-gcp",
+  "permalink": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sevsnp-gcp",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Trust Authority Client Tutorial for Google Cloud Platform with AMD SEV-SNP",
+    "description": "Tutorial for creating a Google Cloud confidential VM with AMD SEV-SNP, authenticating with GitHub CLI, and building the Trust Authority client for Go.",
+    "author": "pcartee",
+    "topic-type": "tutorial",
+    "date": "12/19/24",
+    "uid": "tutorial.sevsnp.gcp"
+  }
+}

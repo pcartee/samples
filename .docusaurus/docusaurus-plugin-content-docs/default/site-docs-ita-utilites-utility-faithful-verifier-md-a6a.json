@@ -1,0 +1,21 @@
+{
+  "id": "ita/Utilites/utility-faithful-verifier",
+  "title": "Faithful Verifier Tool",
+  "description": "An overview of Intel Trust Authority's Faithful Verifier (FV) tool and how to use it.",
+  "source": "@site/docs/ita/Utilites/utility-faithful-verifier.md",
+  "sourceDirName": "ita/Utilites",
+  "slug": "/ita/Utilites/utility-faithful-verifier",
+  "permalink": "/writing-samples/ita/Utilites/utility-faithful-verifier",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Faithful Verifier Tool",
+    "description": "An overview of Intel Trust Authority's Faithful Verifier (FV) tool and how to use it.",
+    "author": "pcartee",
+    "topic": "conceptual",
+    "date": "06/12/2024",
+    "uid": "faithful.verifier"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "ita/Tutorials and examples/tutorial-tdx-workload",
+  "title": "Trust Authority TDX Secure Key Release Workload Tutorial",
+  "description": "Tutorial for deploying a TDX confidential workload that uses Trust Authority for passport attestation and secure key release.",
+  "source": "@site/docs/ita/Tutorials and examples/tutorial-tdx-workload.md",
+  "sourceDirName": "ita/Tutorials and examples",
+  "slug": "/ita/Tutorials and examples/tutorial-tdx-workload",
+  "permalink": "/writing-samples/ita/Tutorials and examples/tutorial-tdx-workload",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Trust Authority TDX Secure Key Release Workload Tutorial",
+    "description": "Tutorial for deploying a TDX confidential workload that uses Trust Authority for passport attestation and secure key release.",
+    "author": "pcartee",
+    "topic-type": "tutorial",
+    "date": "12/19/2024",
+    "uid": "tutorial.tdx.workload"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "AMD SEV-SNP Attestation on Microsoft Azure",
+    "permalink": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-amd-azure-vm"
+  },
+  "next": {
+    "title": "TDX on GCP",
+    "permalink": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx-gcp"
+  }
+}

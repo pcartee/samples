@@ -1,0 +1,30 @@
+{
+  "id": "ita/Concepts/concept-policy-v2",
+  "title": "Attestation policies V2",
+  "description": "A comprehensive guide to Trust Authority's attestation policies, including the new V2 policy syntax, composite attestation, policy evaluation, and Rego language usage.",
+  "source": "@site/docs/ita/Concepts/concept-policy-v2.md",
+  "sourceDirName": "ita/Concepts",
+  "slug": "/ita/Concepts/concept-policy-v2",
+  "permalink": "/writing-samples/ita/Concepts/concept-policy-v2",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Attestation policies V2",
+    "description": "A comprehensive guide to Trust Authority's attestation policies, including the new V2 policy syntax, composite attestation, policy evaluation, and Rego language usage.",
+    "author": "pcartee",
+    "topic": "conceptual",
+    "date": "06/21/2024",
+    "uid": "attestation.policy.v2"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Attestation patterns",
+    "permalink": "/writing-samples/ita/Concepts/concept-patterns"
+  },
+  "next": {
+    "title": "Intel Trust Authority CLI Examples",
+    "permalink": "/writing-samples/ita/Command-line/cli-examples"
+  }
+}

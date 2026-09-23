@@ -1,0 +1,21 @@
+{
+  "id": "ita/How-to workflows/howto-manage-tags",
+  "title": "Tag management",
+  "description": "An overview of tags in Intel Trust Authority.",
+  "source": "@site/docs/ita/How-to workflows/howto-manage-tags.md",
+  "sourceDirName": "ita/How-to workflows",
+  "slug": "/ita/How-to workflows/howto-manage-tags",
+  "permalink": "/writing-samples/ita/How-to workflows/howto-manage-tags",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Tag management",
+    "description": "An overview of tags in Intel Trust Authority.",
+    "author": "pcartee",
+    "topic": "how to",
+    "date": "09/06/2024",
+    "uid": "manage.tags"
+  }
+}

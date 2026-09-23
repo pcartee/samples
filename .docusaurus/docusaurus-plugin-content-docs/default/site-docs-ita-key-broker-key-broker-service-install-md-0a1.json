@@ -1,0 +1,30 @@
+{
+  "id": "ita/Key-broker/key-broker-service-install",
+  "title": "Key Broker Service Installation",
+  "description": "Key Broker Service Installation",
+  "source": "@site/docs/ita/Key-broker/key-broker-service-install.md",
+  "sourceDirName": "ita/Key-broker",
+  "slug": "/ita/Key-broker/key-broker-service-install",
+  "permalink": "/writing-samples/ita/Key-broker/key-broker-service-install",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Key Broker Service Installation",
+    "description": "Key Broker Service Installation",
+    "author": "pcartee",
+    "topic": "KBS",
+    "date": "04/14/2025",
+    "uid": "kbs.installation"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Key Management Service installation",
+    "permalink": "/writing-samples/ita/Key-broker/key-broker-service-kms-install"
+  },
+  "next": {
+    "title": "Key creation and retrieval",
+    "permalink": "/writing-samples/ita/Key-broker/kbs.key.creation.retrieval"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "ita/Restapi/restapi-product-management",
+  "title": "Intel Trust Authority Product Management REST API Reference",
+  "description": "External documentation for the Project Amber Management REST API.",
+  "source": "@site/docs/ita/Restapi/restapi-product-management.md",
+  "sourceDirName": "ita/Restapi",
+  "slug": "/ita/Restapi/restapi-product-management",
+  "permalink": "/writing-samples/ita/Restapi/restapi-product-management",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Intel Trust Authority Product Management REST API Reference",
+    "description": "External documentation for the Project Amber Management REST API.",
+    "author": "pcartee",
+    "topic-type": "NA",
+    "date": "02/07/2024",
+    "uid": "restapi.product.management"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sgx",
+  "title": "Trust Authority Client Tutorial for Azure with SGX",
+  "description": "Tutorial for deploying an Azure SGX VM, installing the Trust Authority Client for C, and requesting a passport attestation token.",
+  "source": "@site/docs/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sgx.md",
+  "sourceDirName": "ita/Tutorials and examples/Intel Trust Authority Client examples",
+  "slug": "/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sgx",
+  "permalink": "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sgx",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Trust Authority Client Tutorial for Azure with SGX",
+    "description": "Tutorial for deploying an Azure SGX VM, installing the Trust Authority Client for C, and requesting a passport attestation token.",
+    "author": "pcartee",
+    "topic-type": "tutorial",
+    "date": "06/12/2024",
+    "uid": "tutorial.sgx"
+  }
+}

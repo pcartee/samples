@@ -1,0 +1,30 @@
+{
+  "id": "ita/Key-broker/key-broker-service-kms-install",
+  "title": "Hashicorp Vault Installation",
+  "description": "Hashicorp Vault Installation",
+  "source": "@site/docs/ita/Key-broker/key-broker-service-kms-install.md",
+  "sourceDirName": "ita/Key-broker",
+  "slug": "/ita/Key-broker/key-broker-service-kms-install",
+  "permalink": "/writing-samples/ita/Key-broker/key-broker-service-kms-install",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Hashicorp Vault Installation",
+    "description": "Hashicorp Vault Installation",
+    "author": "pcartee",
+    "topic": "kbs",
+    "date": "04/14/2025",
+    "uid": "kms.install"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Key Broker Service",
+    "permalink": "/writing-samples/ita/Key-broker/key-broker-service"
+  },
+  "next": {
+    "title": "KBS installation",
+    "permalink": "/writing-samples/ita/Key-broker/key-broker-service-install"
+  }
+}

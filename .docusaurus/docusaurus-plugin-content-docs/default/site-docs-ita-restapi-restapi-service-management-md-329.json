@@ -1,0 +1,21 @@
+{
+  "id": "ita/Restapi/restapi-service-management",
+  "title": "Intel Trust Authority Service Management REST API Reference",
+  "description": "Servcie Management external API definition",
+  "source": "@site/docs/ita/Restapi/restapi-service-management.md",
+  "sourceDirName": "ita/Restapi",
+  "slug": "/ita/Restapi/restapi-service-management",
+  "permalink": "/writing-samples/ita/Restapi/restapi-service-management",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Intel Trust Authority Service Management REST API Reference",
+    "description": "Servcie Management external API definition",
+    "author": "pcartee",
+    "topic-type": "NA",
+    "date": "02/07/2024",
+    "uid": "restapi.service.management"
+  }
+}

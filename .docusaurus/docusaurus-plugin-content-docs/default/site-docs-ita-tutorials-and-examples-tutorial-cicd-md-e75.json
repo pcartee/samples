@@ -1,0 +1,21 @@
+{
+  "id": "ita/Tutorials and examples/tutorial-cicd",
+  "title": "CI/CD Integration",
+  "description": "Tutorial for automating SGX appraisal policy updates in a GitHub Actions workflow.",
+  "source": "@site/docs/ita/Tutorials and examples/tutorial-cicd.md",
+  "sourceDirName": "ita/Tutorials and examples",
+  "slug": "/ita/Tutorials and examples/tutorial-cicd",
+  "permalink": "/writing-samples/ita/Tutorials and examples/tutorial-cicd",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "CI/CD Integration",
+    "description": "Tutorial for automating SGX appraisal policy updates in a GitHub Actions workflow.",
+    "author": "pcartee",
+    "topic-type": "tutorial",
+    "date": "08/01/2023",
+    "uid": "tutorial.update.policies"
+  }
+}

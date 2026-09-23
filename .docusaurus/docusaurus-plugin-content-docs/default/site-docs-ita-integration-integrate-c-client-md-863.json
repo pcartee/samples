@@ -1,0 +1,21 @@
+{
+  "id": "ita/Integration/integrate-c-client",
+  "title": "Intel® Tiber™ Trust Authority C Connector",
+  "description": "Documentation for the Intel Trust Authority C client libraries.",
+  "source": "@site/docs/ita/Integration/integrate-c-client.md",
+  "sourceDirName": "ita/Integration",
+  "slug": "/ita/Integration/integrate-c-client",
+  "permalink": "/writing-samples/ita/Integration/integrate-c-client",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Intel® Tiber™ Trust Authority C Connector",
+    "description": "Documentation for the Intel Trust Authority C client libraries.",
+    "author": "pcartee",
+    "topic": "integration",
+    "date": "05/19/2025",
+    "uid": "integrate.c.client"
+  }
+}

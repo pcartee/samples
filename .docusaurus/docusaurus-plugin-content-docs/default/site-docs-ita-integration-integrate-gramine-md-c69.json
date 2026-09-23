@@ -1,0 +1,21 @@
+{
+  "id": "ita/Integration/integrate-gramine",
+  "title": "Gramine Integration",
+  "description": "Understanding Gramine integration with Intel® Trust Authority.",
+  "source": "@site/docs/ita/Integration/integrate-gramine.md",
+  "sourceDirName": "ita/Integration",
+  "slug": "/ita/Integration/integrate-gramine",
+  "permalink": "/writing-samples/ita/Integration/integrate-gramine",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Gramine Integration",
+    "description": "Understanding Gramine integration with Intel® Trust Authority.",
+    "author": "pcartee",
+    "topic": "integrate",
+    "date": "06/04/2024",
+    "uid": "integrate.gramine"
+  }
+}

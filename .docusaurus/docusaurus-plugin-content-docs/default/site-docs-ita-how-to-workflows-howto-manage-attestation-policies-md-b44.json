@@ -1,0 +1,30 @@
+{
+  "id": "ita/How-to workflows/howto-manage-attestation-policies",
+  "title": "Policy management",
+  "description": "An overview of attestation policies.",
+  "source": "@site/docs/ita/How-to workflows/howto-manage-attestation-policies.md",
+  "sourceDirName": "ita/How-to workflows",
+  "slug": "/ita/How-to workflows/howto-manage-attestation-policies",
+  "permalink": "/writing-samples/ita/How-to workflows/howto-manage-attestation-policies",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Policy management",
+    "description": "An overview of attestation policies.",
+    "author": "pcartee",
+    "topic": "how to",
+    "date": "12/09/2024",
+    "uid": "manage.attestation.policies"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "User management",
+    "permalink": "/writing-samples/ita/How-to workflows/howto-manage-users"
+  },
+  "next": {
+    "title": "SIEM integration",
+    "permalink": "/writing-samples/ita/How-to workflows/howto-SIEM-integration"
+  }
+}

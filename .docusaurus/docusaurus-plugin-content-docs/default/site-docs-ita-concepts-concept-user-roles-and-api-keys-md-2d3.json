@@ -1,0 +1,21 @@
+{
+  "id": "ita/Concepts/concept-user-roles-and-api-keys",
+  "title": "User roles and API keys",
+  "description": "Intel Trust Authority CLI policy management commands.",
+  "source": "@site/docs/ita/Concepts/concept-user-roles-and-api-keys.md",
+  "sourceDirName": "ita/Concepts",
+  "slug": "/ita/Concepts/concept-user-roles-and-api-keys",
+  "permalink": "/writing-samples/ita/Concepts/concept-user-roles-and-api-keys",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "User roles and API keys",
+    "description": "Intel Trust Authority CLI policy management commands.",
+    "author": "pcartee",
+    "topic-type": "conceptual",
+    "date": "05/29/2024",
+    "uid": "user-roles-and-api-keys"
+  }
+}

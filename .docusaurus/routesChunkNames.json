@@ -1,0 +1,335 @@
+{
+  "/writing-samples/blog/-9b9": {
+    "__comp": "a6aa9e1f",
+    "__context": {
+      "plugin": "36994c47"
+    },
+    "sidebar": "814f3328",
+    "items": [],
+    "__props": "95c7689b"
+  },
+  "/writing-samples/markdown-page/-b1d": {
+    "__comp": "1f391b9e",
+    "__context": {
+      "plugin": "a7456010"
+    },
+    "content": "4c678320"
+  },
+  "/writing-samples/-dd6": {
+    "__comp": "5e95c892",
+    "__context": {
+      "plugin": "aba21aa0"
+    }
+  },
+  "/writing-samples/-485": {
+    "__comp": "a7bd4aaa",
+    "__props": "f5964265"
+  },
+  "/writing-samples/-4a2": {
+    "__comp": "a94703ab"
+  },
+  "/writing-samples/ita/Attestation Technologies/concept-tees-overview/-1d5": {
+    "__comp": "17896441",
+    "content": "ae20b9af"
+  },
+  "/writing-samples/ita/Attestation Technologies/GPU confidential computing/concept-gpu-attestation/-ad4": {
+    "__comp": "17896441",
+    "content": "64383737"
+  },
+  "/writing-samples/ita/Attestation Technologies/Trusted execution environments/integrate-tdx-adapter-api/-cb1": {
+    "__comp": "17896441",
+    "content": "46799d32"
+  },
+  "/writing-samples/ita/Attestation Technologies/Trusted execution environments/tee-sev-snp/-e0e": {
+    "__comp": "17896441",
+    "content": "aeebd931"
+  },
+  "/writing-samples/ita/Attestation Technologies/Trusted execution environments/tee-sgx/-9b3": {
+    "__comp": "17896441",
+    "content": "6d44887c"
+  },
+  "/writing-samples/ita/Attestation Technologies/Trusted execution environments/tee-tdx/-886": {
+    "__comp": "17896441",
+    "content": "5d6e3e03"
+  },
+  "/writing-samples/ita/Attestation Technologies/Trusted Platform Module/tpm-ak-provision/-8b9": {
+    "__comp": "17896441",
+    "content": "5793e574"
+  },
+  "/writing-samples/ita/Attestation Technologies/Trusted Platform Module/tpm-ima-logs/-a5f": {
+    "__comp": "17896441",
+    "content": "66f25fa0"
+  },
+  "/writing-samples/ita/Attestation Technologies/Trusted Platform Module/tpm-log/-9c0": {
+    "__comp": "17896441",
+    "content": "7ddce54e"
+  },
+  "/writing-samples/ita/Attestation Technologies/Trusted Platform Module/tpm-uefi-log/-33b": {
+    "__comp": "17896441",
+    "content": "234ccc3d"
+  },
+  "/writing-samples/ita/Command-line/cli-api-client-management/-9c8": {
+    "__comp": "17896441",
+    "content": "3cb9e906"
+  },
+  "/writing-samples/ita/Command-line/cli-examples/-b53": {
+    "__comp": "17896441",
+    "content": "69532af2"
+  },
+  "/writing-samples/ita/Command-line/cli-install/-75a": {
+    "__comp": "17896441",
+    "content": "bb3f60e5"
+  },
+  "/writing-samples/ita/Command-line/cli-policy-commands/-b8a": {
+    "__comp": "17896441",
+    "content": "351afa03"
+  },
+  "/writing-samples/ita/Command-line/cli-service-commands/-c21": {
+    "__comp": "17896441",
+    "content": "5efac6b3"
+  },
+  "/writing-samples/ita/Command-line/cli-signed-policy-commands/-f36": {
+    "__comp": "17896441",
+    "content": "e2a28b4a"
+  },
+  "/writing-samples/ita/Command-line/cli-user-commands/-fd7": {
+    "__comp": "17896441",
+    "content": "5ead11c3"
+  },
+  "/writing-samples/ita/Concepts/concept-attestation-overview/-6e2": {
+    "__comp": "17896441",
+    "content": "85e1a8ce"
+  },
+  "/writing-samples/ita/Concepts/concept-attestation-tokens/-1ed": {
+    "__comp": "17896441",
+    "content": "cbbcaf8a"
+  },
+  "/writing-samples/ita/Concepts/concept-maa-adapter/-ee0": {
+    "__comp": "17896441",
+    "content": "f5dfe756"
+  },
+  "/writing-samples/ita/Concepts/concept-patterns/-dbc": {
+    "__comp": "17896441",
+    "content": "6bbb7fb6"
+  },
+  "/writing-samples/ita/Concepts/concept-platform-tcb/-932": {
+    "__comp": "17896441",
+    "content": "5774b0d7"
+  },
+  "/writing-samples/ita/Concepts/concept-policies/-031": {
+    "__comp": "17896441",
+    "content": "3b508d57"
+  },
+  "/writing-samples/ita/Concepts/concept-policy-v2/-b99": {
+    "__comp": "17896441",
+    "content": "8f665a39"
+  },
+  "/writing-samples/ita/Concepts/concept-td-integrity/-906": {
+    "__comp": "17896441",
+    "content": "eaf39878"
+  },
+  "/writing-samples/ita/Concepts/concept-trusted-boot/-68f": {
+    "__comp": "17896441",
+    "content": "986479fe"
+  },
+  "/writing-samples/ita/Concepts/concept-user-roles-and-api-keys/-243": {
+    "__comp": "17896441",
+    "content": "2d34ba88"
+  },
+  "/writing-samples/ita/glossary/-c1d": {
+    "__comp": "17896441",
+    "content": "02260609"
+  },
+  "/writing-samples/ita/How-to workflows/howto-author-custom-policy/-101": {
+    "__comp": "17896441",
+    "content": "fd894db3"
+  },
+  "/writing-samples/ita/How-to workflows/howto-manage-attestation-policies/-7cf": {
+    "__comp": "17896441",
+    "content": "b449d493"
+  },
+  "/writing-samples/ita/How-to workflows/howto-manage-tags/-c68": {
+    "__comp": "17896441",
+    "content": "23084c87"
+  },
+  "/writing-samples/ita/How-to workflows/howto-manage-users/-5f7": {
+    "__comp": "17896441",
+    "content": "3f33e6e0"
+  },
+  "/writing-samples/ita/How-to workflows/howto-reports-metrics/-6cc": {
+    "__comp": "17896441",
+    "content": "98a10897"
+  },
+  "/writing-samples/ita/How-to workflows/howto-SIEM-integration/-6c4": {
+    "__comp": "17896441",
+    "content": "82d0228a"
+  },
+  "/writing-samples/ita/Integration/integrate-c-client/-018": {
+    "__comp": "17896441",
+    "content": "863bf2ea"
+  },
+  "/writing-samples/ita/Integration/integrate-gcp-cs/-235": {
+    "__comp": "17896441",
+    "content": "fbaa8181"
+  },
+  "/writing-samples/ita/Integration/integrate-go-client/-e09": {
+    "__comp": "17896441",
+    "content": "b4f22701"
+  },
+  "/writing-samples/ita/Integration/integrate-go-tdx-cli/-8e1": {
+    "__comp": "17896441",
+    "content": "5fb3c815"
+  },
+  "/writing-samples/ita/Integration/integrate-go-tpm/-394": {
+    "__comp": "17896441",
+    "content": "55641281"
+  },
+  "/writing-samples/ita/Integration/integrate-gramine/-e2e": {
+    "__comp": "17896441",
+    "content": "c6998a88"
+  },
+  "/writing-samples/ita/Integration/integrate-java-client/-223": {
+    "__comp": "17896441",
+    "content": "3da45aed"
+  },
+  "/writing-samples/ita/Integration/integrate-overview/-12a": {
+    "__comp": "17896441",
+    "content": "e5faad2c"
+  },
+  "/writing-samples/ita/Integration/integrate-python-client/-47c": {
+    "__comp": "17896441",
+    "content": "2779e4fa"
+  },
+  "/writing-samples/ita/Integration/integrate-relying-party/-4be": {
+    "__comp": "17896441",
+    "content": "a333421e"
+  },
+  "/writing-samples/ita/Key-broker/kbs.key.creation.retrieval/-3c6": {
+    "__comp": "17896441",
+    "content": "2020412a"
+  },
+  "/writing-samples/ita/Key-broker/key-broker-service-install/-fc0": {
+    "__comp": "17896441",
+    "content": "0a10627c"
+  },
+  "/writing-samples/ita/Key-broker/key-broker-service-kms-install/-6c3": {
+    "__comp": "17896441",
+    "content": "26efad30"
+  },
+  "/writing-samples/ita/Key-broker/key-broker-service-user-management/-c3a": {
+    "__comp": "17896441",
+    "content": "65dcbaf1"
+  },
+  "/writing-samples/ita/Key-broker/key-broker-service/-ca7": {
+    "__comp": "17896441",
+    "content": "738f4c6b"
+  },
+  "/writing-samples/ita/Quickstart/howto-manage-subscriptions/-5c1": {
+    "__comp": "17896441",
+    "content": "d015f120"
+  },
+  "/writing-samples/ita/Quickstart/tutorial-api-key/-ad8": {
+    "__comp": "17896441",
+    "content": "efcdeb73"
+  },
+  "/writing-samples/ita/Restapi/restapi-attestation-v2/-cfb": {
+    "__comp": "17896441",
+    "content": "755d15e4"
+  },
+  "/writing-samples/ita/Restapi/restapi-attestation/-dea": {
+    "__comp": "17896441",
+    "content": "d43abfc8"
+  },
+  "/writing-samples/ita/Restapi/restapi-azure-attestation/-53f": {
+    "__comp": "17896441",
+    "content": "0456d358"
+  },
+  "/writing-samples/ita/Restapi/restapi-client-management/-f35": {
+    "__comp": "17896441",
+    "content": "3a0b52e6"
+  },
+  "/writing-samples/ita/Restapi/restapi-faithful/-17f": {
+    "__comp": "17896441",
+    "content": "fc61e0ee"
+  },
+  "/writing-samples/ita/Restapi/restapi-intro/-aa1": {
+    "__comp": "17896441",
+    "content": "2d924f47"
+  },
+  "/writing-samples/ita/Restapi/restapi-policy-management/-8d7": {
+    "__comp": "17896441",
+    "content": "3828e9db"
+  },
+  "/writing-samples/ita/Restapi/restapi-product-management/-9e5": {
+    "__comp": "17896441",
+    "content": "a02cb2f9"
+  },
+  "/writing-samples/ita/Restapi/restapi-service-management/-b22": {
+    "__comp": "17896441",
+    "content": "329afe65"
+  },
+  "/writing-samples/ita/Restapi/restapi-service-offer-management/-e07": {
+    "__comp": "17896441",
+    "content": "9e215bf9"
+  },
+  "/writing-samples/ita/Restapi/restapi-tenant-management/-42c": {
+    "__comp": "17896441",
+    "content": "574c3421"
+  },
+  "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-amd-azure-vm/-6a1": {
+    "__comp": "17896441",
+    "content": "2365c6c3"
+  },
+  "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-azure-vtpm/-e95": {
+    "__comp": "17896441",
+    "content": "b587e4bc"
+  },
+  "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sevsnp-gcp/-6f7": {
+    "__comp": "17896441",
+    "content": "a06c4b09"
+  },
+  "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-sgx/-28a": {
+    "__comp": "17896441",
+    "content": "63b032cd"
+  },
+  "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx-gcp/-b72": {
+    "__comp": "17896441",
+    "content": "0b98362a"
+  },
+  "/writing-samples/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx/-d44": {
+    "__comp": "17896441",
+    "content": "d9ef2744"
+  },
+  "/writing-samples/ita/Tutorials and examples/tutorial-cicd/-1c2": {
+    "__comp": "17896441",
+    "content": "e758b9de"
+  },
+  "/writing-samples/ita/Tutorials and examples/tutorial-tdx-workload/-ce9": {
+    "__comp": "17896441",
+    "content": "aace74fa"
+  },
+  "/writing-samples/ita/Utilites/utility-faithful-verifier/-e7f": {
+    "__comp": "17896441",
+    "content": "a6a731ed"
+  },
+  "/writing-samples/ita/Utilites/utility-policy-builder/-399": {
+    "__comp": "17896441",
+    "content": "d34839dc"
+  },
+  "/writing-samples/ita/Utilites/utility-policy-signing/-c35": {
+    "__comp": "17896441",
+    "content": "91c571c2"
+  },
+  "/writing-samples/ita/Utilites/whats-new/-1bb": {
+    "__comp": "17896441",
+    "content": "65f0ec6a"
+  },
+  "/writing-samples/reference/identity-router-api/-a29": {
+    "__comp": "17896441",
+    "content": "8588b4c6"
+  },
+  "/writing-samples/-119": {
+    "__comp": "17896441",
+    "content": "0e384e19"
+  }
+}

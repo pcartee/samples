@@ -1,0 +1,30 @@
+{
+  "id": "ita/Attestation Technologies/GPU confidential computing/concept-gpu-attestation",
+  "title": "GPU remote attestation with Intel® Trust Authority",
+  "description": "Learn about the Intel® Trust Authority Python Client, CLI for Intel TDX and NVIDIA GPU, and Intel Trust Authority REST API that support GPU attestation.",
+  "source": "@site/docs/ita/Attestation Technologies/GPU confidential computing/concept-gpu-attestation.md",
+  "sourceDirName": "ita/Attestation Technologies/GPU confidential computing",
+  "slug": "/ita/Attestation Technologies/GPU confidential computing/concept-gpu-attestation",
+  "permalink": "/writing-samples/ita/Attestation Technologies/GPU confidential computing/concept-gpu-attestation",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "GPU remote attestation with Intel® Trust Authority",
+    "description": "Learn about the Intel® Trust Authority Python Client, CLI for Intel TDX and NVIDIA GPU, and Intel Trust Authority REST API that support GPU attestation.",
+    "author": "pcartee",
+    "topic": "conceptual, attestation, gpu",
+    "date": "09/17/2024",
+    "uid": "gpu.attestation"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "AMD SEV-SNP",
+    "permalink": "/writing-samples/ita/Attestation Technologies/Trusted execution environments/tee-sev-snp"
+  },
+  "next": {
+    "title": "Attestation overview",
+    "permalink": "/writing-samples/ita/Concepts/concept-attestation-overview"
+  }
+}

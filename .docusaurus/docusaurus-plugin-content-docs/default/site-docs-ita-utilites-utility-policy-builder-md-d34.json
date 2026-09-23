@@ -1,0 +1,21 @@
+{
+  "id": "ita/Utilites/utility-policy-builder",
+  "title": "Policy builder tool",
+  "description": "An overview of the policy builder tool and how to use it to create simplified policies.",
+  "source": "@site/docs/ita/Utilites/utility-policy-builder.md",
+  "sourceDirName": "ita/Utilites",
+  "slug": "/ita/Utilites/utility-policy-builder",
+  "permalink": "/writing-samples/ita/Utilites/utility-policy-builder",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Policy builder tool",
+    "description": "An overview of the policy builder tool and how to use it to create simplified policies.",
+    "author": "pcartee",
+    "topic": "conceptual",
+    "date": "07/18/2024",
+    "uid": "policy.builder.tool"
+  }
+}

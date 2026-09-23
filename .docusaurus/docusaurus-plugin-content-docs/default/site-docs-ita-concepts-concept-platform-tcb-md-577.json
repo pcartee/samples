@@ -1,0 +1,21 @@
+{
+  "id": "ita/Concepts/concept-platform-tcb",
+  "title": "Platform TCB Policy",
+  "description": "An overview of platform trusted compute base (TCB) recovery policy.",
+  "source": "@site/docs/ita/Concepts/concept-platform-tcb.md",
+  "sourceDirName": "ita/Concepts",
+  "slug": "/ita/Concepts/concept-platform-tcb",
+  "permalink": "/writing-samples/ita/Concepts/concept-platform-tcb",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Platform TCB Policy",
+    "description": "An overview of platform trusted compute base (TCB) recovery policy.",
+    "author": "pcartee",
+    "topic": "conceptual",
+    "date": "01/26/2024",
+    "uid": "attestation.tcb.policy"
+  }
+}

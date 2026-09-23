@@ -1,0 +1,32 @@
+{
+  "id": "ita/Quickstart/howto-manage-subscriptions",
+  "title": "Subscription Management",
+  "description": "An overview of subscription management in Trust Authority.",
+  "source": "@site/docs/ita/Quickstart/howto-manage-subscriptions.md",
+  "sourceDirName": "ita/Quickstart",
+  "slug": "/ita/Quickstart/howto-manage-subscriptions",
+  "permalink": "/writing-samples/ita/Quickstart/howto-manage-subscriptions",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "Subscription Management",
+    "description": "An overview of subscription management in Trust Authority.",
+    "author": "pcartee",
+    "topic": "how to",
+    "date": "07/18/2024",
+    "uid": "manage.subscriptions",
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Overview",
+    "permalink": "/writing-samples/"
+  },
+  "next": {
+    "title": "Getting Started",
+    "permalink": "/writing-samples/ita/Quickstart/tutorial-api-key"
+  }
+}

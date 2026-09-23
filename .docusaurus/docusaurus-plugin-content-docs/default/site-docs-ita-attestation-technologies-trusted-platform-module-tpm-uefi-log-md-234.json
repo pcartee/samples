@@ -1,0 +1,21 @@
+{
+  "id": "ita/Attestation Technologies/Trusted Platform Module/tpm-uefi-log",
+  "title": "UEFI Event Logs",
+  "description": "How Intel Trust Authority uses UEFI event logs to validate PCR values and help with troubleshooting.",
+  "source": "@site/docs/ita/Attestation Technologies/Trusted Platform Module/tpm-uefi-log.md",
+  "sourceDirName": "ita/Attestation Technologies/Trusted Platform Module",
+  "slug": "/ita/Attestation Technologies/Trusted Platform Module/tpm-uefi-log",
+  "permalink": "/writing-samples/ita/Attestation Technologies/Trusted Platform Module/tpm-uefi-log",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "UEFI Event Logs",
+    "description": "How Intel Trust Authority uses UEFI event logs to validate PCR values and help with troubleshooting.",
+    "author": "pcartee",
+    "topic-type": "conceptual",
+    "date": "11/14/2024",
+    "uid": "uefi.log"
+  }
+}
