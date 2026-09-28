@@ -14,15 +14,15 @@ export default [
   },
   {
     path: '/writing-samples/',
-    component: ComponentCreator('/writing-samples/', 'dd6'),
+    component: ComponentCreator('/writing-samples/', '9c1'),
     routes: [
       {
         path: '/writing-samples/',
-        component: ComponentCreator('/writing-samples/', '485'),
+        component: ComponentCreator('/writing-samples/', 'fad'),
         routes: [
           {
             path: '/writing-samples/',
-            component: ComponentCreator('/writing-samples/', '4a2'),
+            component: ComponentCreator('/writing-samples/', 'bbb'),
             routes: [
               {
                 path: '/writing-samples/ita/Attestation Technologies/concept-tees-overview/',
@@ -285,6 +285,66 @@ export default [
               {
                 path: '/writing-samples/ita/Key-broker/key-broker-service/',
                 component: ComponentCreator('/writing-samples/ita/Key-broker/key-broker-service/', 'ca7'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/writing-samples/ita/Operation Guide/ad-federation-services/',
+                component: ComponentCreator('/writing-samples/ita/Operation Guide/ad-federation-services/', '540'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/writing-samples/ita/Operation Guide/amazon-ec2/',
+                component: ComponentCreator('/writing-samples/ita/Operation Guide/amazon-ec2/', 'cb0'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/writing-samples/ita/Operation Guide/application-types/',
+                component: ComponentCreator('/writing-samples/ita/Operation Guide/application-types/', 'cb9'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/writing-samples/ita/Operation Guide/certificates/',
+                component: ComponentCreator('/writing-samples/ita/Operation Guide/certificates/', '158'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/writing-samples/ita/Operation Guide/customers/',
+                component: ComponentCreator('/writing-samples/ita/Operation Guide/customers/', 'f4e'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/writing-samples/ita/Operation Guide/edit -profile/',
+                component: ComponentCreator('/writing-samples/ita/Operation Guide/edit -profile/', 'ab3'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/writing-samples/ita/Operation Guide/handlers/',
+                component: ComponentCreator('/writing-samples/ita/Operation Guide/handlers/', '9d6'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/writing-samples/ita/Operation Guide/idenity-routers/',
+                component: ComponentCreator('/writing-samples/ita/Operation Guide/idenity-routers/', '4ea'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/writing-samples/ita/Operation Guide/idr-administrators/',
+                component: ComponentCreator('/writing-samples/ita/Operation Guide/idr-administrators/', '2ce'),
+                exact: true,
+                sidebar: "tutorialSidebar"
+              },
+              {
+                path: '/writing-samples/ita/Operation Guide/operations-guide/',
+                component: ComponentCreator('/writing-samples/ita/Operation Guide/operations-guide/', '869'),
                 exact: true,
                 sidebar: "tutorialSidebar"
               },

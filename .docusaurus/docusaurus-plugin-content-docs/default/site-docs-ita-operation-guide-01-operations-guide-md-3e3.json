@@ -1,0 +1,31 @@
+{
+  "id": "ita/Operation Guide/operations-guide",
+  "title": "Identity Routers Operations Guide",
+  "description": "Explains how Identity Routers authenticate users, enforce access policies, and provide single sign-on for protected applications, with links to guidance on router operations, Studio administration, federation, certificates, and deployment.",
+  "source": "@site/docs/ita/Operation Guide/01-operations-guide.md",
+  "sourceDirName": "ita/Operation Guide",
+  "slug": "/ita/Operation Guide/operations-guide",
+  "permalink": "/writing-samples/ita/Operation Guide/operations-guide",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Identity Routers Operations Guide",
+    "description": "Explains how Identity Routers authenticate users, enforce access policies, and provide single sign-on for protected applications, with links to guidance on router operations, Studio administration, federation, certificates, and deployment.",
+    "author": "pcartee",
+    "topic": "administration",
+    "date": "09/17/2024",
+    "uid": "idr-operations-guide-intro"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "SIEM integration",
+    "permalink": "/writing-samples/ita/How-to workflows/howto-SIEM-integration"
+  },
+  "next": {
+    "title": "Identity Routers Operations Guide",
+    "permalink": "/writing-samples/ita/Operation Guide/idenity-routers"
+  }
+}

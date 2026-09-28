@@ -1,0 +1,31 @@
+{
+  "id": "ita/Operation Guide/certificates",
+  "title": "Identity Routers Certificates",
+  "description": "Configure and manage Identity Router SSL/TLS certificates for secure web traffic and delegated authentication, including CA-signed certificates, intermediate certificate chains, non-wildcard certificates, wildcard certificates, Subject Alternative Name (SAN) certificates, self-signed certificates, virtual domains, certificate file installation, and router restart requirements.",
+  "source": "@site/docs/ita/Operation Guide/07-certificates.md",
+  "sourceDirName": "ita/Operation Guide",
+  "slug": "/ita/Operation Guide/certificates",
+  "permalink": "/writing-samples/ita/Operation Guide/certificates",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 7,
+  "frontMatter": {
+    "title": "Identity Routers Certificates",
+    "description": "Configure and manage Identity Router SSL/TLS certificates for secure web traffic and delegated authentication, including CA-signed certificates, intermediate certificate chains, non-wildcard certificates, wildcard certificates, Subject Alternative Name (SAN) certificates, self-signed certificates, virtual domains, certificate file installation, and router restart requirements.",
+    "author": "pcartee",
+    "topic": "administration",
+    "date": "09/17/2024",
+    "uid": "idr-certificates"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Identity Router Handlers",
+    "permalink": "/writing-samples/ita/Operation Guide/handlers"
+  },
+  "next": {
+    "title": "Amazon EC2 Identity Router Deployment",
+    "permalink": "/writing-samples/ita/Operation Guide/amazon-ec2"
+  }
+}

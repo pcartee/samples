@@ -15,17 +15,17 @@
     },
     "content": "4c678320"
   },
-  "/writing-samples/-dd6": {
+  "/writing-samples/-9c1": {
     "__comp": "5e95c892",
     "__context": {
       "plugin": "aba21aa0"
     }
   },
-  "/writing-samples/-485": {
+  "/writing-samples/-fad": {
     "__comp": "a7bd4aaa",
     "__props": "f5964265"
   },
-  "/writing-samples/-4a2": {
+  "/writing-samples/-bbb": {
     "__comp": "a94703ab"
   },
   "/writing-samples/ita/Attestation Technologies/concept-tees-overview/-1d5": {
@@ -223,6 +223,46 @@
   "/writing-samples/ita/Key-broker/key-broker-service/-ca7": {
     "__comp": "17896441",
     "content": "738f4c6b"
+  },
+  "/writing-samples/ita/Operation Guide/ad-federation-services/-540": {
+    "__comp": "17896441",
+    "content": "620ed49a"
+  },
+  "/writing-samples/ita/Operation Guide/amazon-ec2/-cb0": {
+    "__comp": "17896441",
+    "content": "6d67f0a4"
+  },
+  "/writing-samples/ita/Operation Guide/application-types/-cb9": {
+    "__comp": "17896441",
+    "content": "dc45ebe1"
+  },
+  "/writing-samples/ita/Operation Guide/certificates/-158": {
+    "__comp": "17896441",
+    "content": "7ce94c59"
+  },
+  "/writing-samples/ita/Operation Guide/customers/-f4e": {
+    "__comp": "17896441",
+    "content": "c46a3498"
+  },
+  "/writing-samples/ita/Operation Guide/edit -profile/-ab3": {
+    "__comp": "17896441",
+    "content": "d3ea4b58"
+  },
+  "/writing-samples/ita/Operation Guide/handlers/-9d6": {
+    "__comp": "17896441",
+    "content": "dcce5d51"
+  },
+  "/writing-samples/ita/Operation Guide/idenity-routers/-4ea": {
+    "__comp": "17896441",
+    "content": "6d9bca4c"
+  },
+  "/writing-samples/ita/Operation Guide/idr-administrators/-2ce": {
+    "__comp": "17896441",
+    "content": "87a05dee"
+  },
+  "/writing-samples/ita/Operation Guide/operations-guide/-869": {
+    "__comp": "17896441",
+    "content": "3e30c14a"
   },
   "/writing-samples/ita/Quickstart/howto-manage-subscriptions/-5c1": {
     "__comp": "17896441",

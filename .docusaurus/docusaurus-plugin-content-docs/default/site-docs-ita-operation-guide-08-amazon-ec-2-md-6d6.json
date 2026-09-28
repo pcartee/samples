@@ -1,0 +1,31 @@
+{
+  "id": "ita/Operation Guide/amazon-ec2",
+  "title": "Amazon EC2 Identity Router Deployment",
+  "description": "Deploy Identity Routers on Amazon Web Services (AWS) Elastic Compute Cloud (EC2), including AWS account and X.509 certificate setup, security groups, Elastic IP addresses, key pairs, EC2 instances, Amazon Machine Images (AMIs), regional deployment, and access through the AWS Management Console. The guide covers creating and uploading a CentOS-based Identity Router AMI and provisioning Identity Router instances in an AWS environment.",
+  "source": "@site/docs/ita/Operation Guide/08-amazon-ec2.md",
+  "sourceDirName": "ita/Operation Guide",
+  "slug": "/ita/Operation Guide/amazon-ec2",
+  "permalink": "/writing-samples/ita/Operation Guide/amazon-ec2",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 8,
+  "frontMatter": {
+    "title": "Amazon EC2 Identity Router Deployment",
+    "description": "Deploy Identity Routers on Amazon Web Services (AWS) Elastic Compute Cloud (EC2), including AWS account and X.509 certificate setup, security groups, Elastic IP addresses, key pairs, EC2 instances, Amazon Machine Images (AMIs), regional deployment, and access through the AWS Management Console. The guide covers creating and uploading a CentOS-based Identity Router AMI and provisioning Identity Router instances in an AWS environment.",
+    "author": "pcartee",
+    "topic": "administration, deployment, aws, ec2",
+    "date": "09/17/2024",
+    "uid": "idr-amazon-ec2"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Identity Routers Certificates",
+    "permalink": "/writing-samples/ita/Operation Guide/certificates"
+  },
+  "next": {
+    "title": "Active Directory Federation Services",
+    "permalink": "/writing-samples/ita/Operation Guide/ad-federation-services"
+  }
+}

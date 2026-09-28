@@ -50,6 +50,22 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Operation Guide',
+      link: { type: 'doc', id: 'ita/Operation Guide/operations-guide' },
+      items: [
+        { type: 'doc', id: 'ita/Operation Guide/idenity-routers', label: 'Identity Routers Operations Guide' },
+        { type: 'doc', id: 'ita/Operation Guide/idr-administrators', label: 'Identity Router Administrators' },
+        { type: 'doc', id: 'ita/Operation Guide/customers', label: 'Create/Edit Customers' },
+        { type: 'doc', id: 'ita/Operation Guide/application-types', label: 'My Application Types' },
+        { type: 'doc', id: 'ita/Operation Guide/handlers', label: 'Identity Router Handlers' },
+        { type: 'doc', id: 'ita/Operation Guide/certificates', label: 'Identity Routers Certificates' },
+        { type: 'doc', id: 'ita/Operation Guide/amazon-ec2', label: 'Amazon EC2 Identity Router Deployment' },
+        { type: 'doc', id: 'ita/Operation Guide/ad-federation-services', label: 'Active Directory Federation Services' },
+        { type: 'doc', id: 'ita/Operation Guide/edit -profile', label: 'Edit Profile Information' },
+      ],
+    },
+    {
+      type: 'category',
       label: 'Attestation technologies',
       items: [
         {

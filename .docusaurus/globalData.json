@@ -231,6 +231,56 @@
               "path": "/writing-samples/ita/Key-broker/key-broker-service-user-management"
             },
             {
+              "id": "ita/Operation Guide/ad-federation-services",
+              "path": "/writing-samples/ita/Operation Guide/ad-federation-services",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Operation Guide/amazon-ec2",
+              "path": "/writing-samples/ita/Operation Guide/amazon-ec2",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Operation Guide/application-types",
+              "path": "/writing-samples/ita/Operation Guide/application-types",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Operation Guide/certificates",
+              "path": "/writing-samples/ita/Operation Guide/certificates",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Operation Guide/customers",
+              "path": "/writing-samples/ita/Operation Guide/customers",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Operation Guide/edit -profile",
+              "path": "/writing-samples/ita/Operation Guide/edit -profile",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Operation Guide/handlers",
+              "path": "/writing-samples/ita/Operation Guide/handlers",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Operation Guide/idenity-routers",
+              "path": "/writing-samples/ita/Operation Guide/idenity-routers",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Operation Guide/idr-administrators",
+              "path": "/writing-samples/ita/Operation Guide/idr-administrators",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ita/Operation Guide/operations-guide",
+              "path": "/writing-samples/ita/Operation Guide/operations-guide",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "ita/Quickstart/howto-manage-subscriptions",
               "path": "/writing-samples/ita/Quickstart/howto-manage-subscriptions",
               "sidebar": "tutorialSidebar"
