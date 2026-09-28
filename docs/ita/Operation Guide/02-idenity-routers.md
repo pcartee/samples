@@ -7,7 +7,7 @@ date: 09/17/2024
 uid: identity-routers
 ---
 
-## **Identity Routers**
+## Identity Routers
 
 The *Identity Routers* page lists all the Identity Routers assigned to your organization in Studio. This page also shows the status of the Identity Routers. If an Identity Router is online, the highlight color of the icon is green. If the Identity Router is not online, the highlight color of the icon is red.
 
@@ -28,13 +28,13 @@ The table below describes the icons and the activities they initiate.
 | ![Delete icon](/img/operations-guide/delete.png)           | Delete the selected Identity Router.                                                |
 |  ![Expand icon](/img/operations-guide/expand.png)          | Expands the fly-over dialog for the Identity Router.                                |
 
-## **Configure an Identity Router in Studio**
+## Configure an Identity Router in Studio
 
 The Identity Router is a specialized server designed for ease of installation and maintenance. Server appliances have their hardware and software bundled into the product, so all applications are preinstalled. The appliance can be plugged into an existing network and can begin working almost immediately, with little configuration. The Identity Router is designed to run with little or no support.
 
 In the Studio environment, the Identity Router is the computer that sits in front of the network that polices incoming users.
 
-### **Before You Begin**
+### Before You Begin
 
 Review the list below to ensure all the information needed to perform the task is at hand.
 
@@ -62,9 +62,9 @@ Review the list below to ensure all the information needed to perform the task i
 
 1. On the *Identity Routers* page, mouse-over the new **Identity Router** icon and then click the **Test** icon to ensure the Identity Router is connected. The Identity Router's highlight color will turn green when a connection is established.
 
-## **Identity Router Status**
+## Identity Router Status
 
-The **Status** tab contains 7 buttons. Select a button to retrieve information about the Identity Router. The functions of the buttons are listed below.
+The **Status** tab has seven buttons, each of which displays specific information about the Identity Router when selected. The functions of the buttons are listed below.
 
 ![Identity Router Status tab with system status charts](/img/operations-guide/_page_7_Figure_1.jpeg)
 
@@ -76,7 +76,7 @@ The **Status** tab contains 7 buttons. Select a button to retrieve information a
 - **System Memory** - This graph displays the use of system memory by the Identity Router for the preceding ten minutes 
 - **Uptime** - Displays how long the Identity Router has been up and running
 
-## **Identity Router Firewall Setup**
+## Identity Router Firewall Setup
 
 Follow these instructions to configure Studio to recognize your firewall.
 
@@ -92,7 +92,7 @@ Follow these instructions to configure Studio to recognize your firewall.
 
 1. Click **Save** to persist the changes.
 
-## **Identity Router Static DNS Entries**
+## Identity Router Static DNS Entries
 
 Follow these instructions to enter static DNS addresses into Studio. These static DNS entries are used to edit the /etc/host file. The IP Addresses and Aliases are written to the etc/host file so that they will be recognized by the Identity Router.
 
@@ -109,7 +109,7 @@ Follow these instructions to enter static DNS addresses into Studio. These stati
 1. Repeat step 3 to add additional DNS entries.
     . Click **Save** to persist the changes.
 
-## **Identity Router Hardware Setup**
+## Identity Router Hardware Setup
 
 These instructions explain how to configure your Identity Router.
 
@@ -117,18 +117,18 @@ These instructions explain how to configure your Identity Router.
 
     The *IDR Setup* page displays. There are five sections in these instructions each corresponding to a section on the *IDR Setup* page.
 
-    ![Symplified IDR Setup interface with a blue background and a white sheet for IDR setup.](/img/operations-guide/_page_9_Picture_1.jpeg)The image shows the IDR setup interface for Symplified IDR. The background is a blue color with a white piece of piece paper in the upper right corner. The top band is a blue bar with a white background and a blue horizontal bar at the top. The top band contains the text "Symplified IDR Classificable Content" and "IDR Setup | Upload Certificate | Change Password". The main section is a white sheet with a blue background and a white sheet for IDR setup. The section is titled "Management Information" and contains fields for Identify Router Key, Management IP Address, Management Netmark, and Management Gateway IP Address. The section is titled "Proxy Information" and contains fields for Proxy IP Address, Proxy Netmark, and Proxy Gateway IP Address. The section is titled "DNS Configuration" and contains fields for Domain, IP, and Default. The section is titled "Misc Configuration" and contains fields for Primary/Secondary Management Server IP Address, Controller URL, and SinglePoint™ Server Name. The section is titled "Protected Application Configuration" and contains fields for SinglePoint™ Server Name, and a button "Update Configuration".
+    ![Symplified IDR Setup interface with a blue background and a white sheet for IDR setup.](/img/operations-guide/idr-hardware.png)
 
 ### Management Information
 
 1. Complete the following *Management Information* fields:
 
-    - •**Identity Router Key** - Enter the key for the Identity Router
+    - **Identity Router Key** - Enter the key for the Identity Router
     - **Management IP Address** Enter the IP address of the Identity Router
     - **Management Netmask** - Enter the IP range that contains the Identity Router's Management IP address
     - **Management Gateway IP Address** - Enter the Gateway IP Address for the Identity Router
 
-### **Proxy Information**
+### Proxy Information
 
 1. Complete the following *Proxy Information* fields:
 
@@ -136,37 +136,33 @@ These instructions explain how to configure your Identity Router.
     - **Proxy Netmask** - Enter the IP range in which the Identity Router resides 
     - **Proxy Gateway IP Address** - Enter the gateway IP address for the Identity Router
 
-### **DNS Configuration**
+### DNS Configuration
 
 1. Complete the following DNS information:
 
     - **Domain** - Enter the Domain to which the Identity Router belongs
-    - **IP**  Enter the IP address or re-enter the Gateway IP Address for the Identity Router
-    1 **Default** - Check this box if the IP address entered is to be the default IP address for the Identity Router 
+    - **IP** - Enter the IP address or re-enter the Gateway IP Address for the Identity Router
+    - **Default** - Check this box if the IP address entered is to be the default IP address for the Identity Router 
     - **Add DNS Record** - Optionally click **Add DNS Record** to add additional DNS records
 
-### **Misc Configuration**
+### Misc Configuration
 
 1. Complete the following Configuration fields:
 
-    - **Management Servicer IP Address** Enter the IP address to which vpn.symplified.net resolves
-    - **Controller URL** Enter the URL the controller uses to communicate to the cloud
+    - **Management Servicer IP Address** - Enter the IP address to which vpn.symplified.net resolves
+    - **Controller URL** - Enter the URL the controller uses to communicate to the cloud
 
 :::note
 These fields will need different values when Studio is implemented by a platinum customer.
 :::
 
-### **Protected Application Configuration**
+### Protected Application Configuration
 
 1. **Studio Server Name** - Enter the name of the Identity Router.
 
 1. Click **Update Configuration** to persist the changes.
 
-### **In This Chapter**
-
-Change Password - Identity Router ...................................................... 3 Upload Certificate ................................................................................ 4
-
-## **Change Password - Identity Router**
+## Change Password - Identity Router
 
 Follow these instructions to change the username and password for the Identity Router.
 
@@ -186,14 +182,14 @@ Follow these instructions to change the username and password for the Identity R
 
 1. Complete the following fields:
 
-    **Old Password** - Enter the password to be changed 
-    - **New Username** - Enter the username associated with the Identity Router 
-    - **New Password** - Enter the new password 
+    - **Old Password** - Enter the password to be changed 
+    - **New Username** - Enter the username associated with the Identity Router
+    - **New Password** - Enter the new password
     - **Confirm New Password** - Re-enter the new password
 
 1. Click **Change Password** to persist the changes. A message appears at the top of the page affirming your changes.
 
-## **Upload Certificate**
+## Upload Certificate
 
 Follow these instructions to upload your certificate to the Identity Router.
 

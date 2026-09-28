@@ -1,6 +1,6 @@
 {
   "id": "ita/Operation Guide/operations-guide",
-  "title": "Identity Routers Operations Guide",
+  "title": "Identity Routers Overview",
   "description": "Explains how Identity Routers authenticate users, enforce access policies, and provide single sign-on for protected applications, with links to guidance on router operations, Studio administration, federation, certificates, and deployment.",
   "source": "@site/docs/ita/Operation Guide/01-operations-guide.md",
   "sourceDirName": "ita/Operation Guide",
@@ -12,7 +12,7 @@
   "version": "current",
   "sidebarPosition": 1,
   "frontMatter": {
-    "title": "Identity Routers Operations Guide",
+    "title": "Identity Routers Overview",
     "description": "Explains how Identity Routers authenticate users, enforce access policies, and provide single sign-on for protected applications, with links to guidance on router operations, Studio administration, federation, certificates, and deployment.",
     "author": "pcartee",
     "topic": "administration",
