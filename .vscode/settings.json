@@ -1,4 +1,15 @@
 {
     "iis.configDir": "",
-    "python-envs.defaultEnvManager": "ms-python.python:system"
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+    "cSpell.words": [
+        "Broomfield",
+        "Camtasia",
+        "Cartee",
+        "Digitech",
+        "Gramine",
+        "Medecision",
+        "Romeoville",
+        "Socure",
+        "Vyond"
+    ]
 }

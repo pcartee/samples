@@ -66,10 +66,7 @@ Oct 2025 -- June 2026 \| Remote \| Contract
 
 Oct 2022 -- June 2025 \| Remote
 
-- **Translated complex confidential computing concepts,** such as remote
-  attestation into accessible documentation for Intel Trust Authority,
-  including REST API references, admin guides, concept documents, and
-  tutorials.
+- **Wrote confidential computing documentation** for remote attestation for Intel Trust Authority, which included REST API references, admin guides, concept documents, and tutorials.
 
 - **Assisted in building out our docs-as-code pipeline** using Markdown
   and GitHub, integrating CI/CD to handle version control automatically
@@ -87,8 +84,6 @@ Oct 2022 -- June 2025 \| Remote
   and Sphinx, working directly with department heads to rewrite content
   to make the information flow more naturally and be easier to find for
   nontechnical stakeholders.
-
-<!-- -->
 
 - **Updated and standardized READMEs and code comments in**
   multi-language repositories (Go, C, Python, Java) to improve

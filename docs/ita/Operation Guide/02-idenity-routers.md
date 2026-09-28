@@ -197,8 +197,6 @@ Follow these instructions to upload your certificate to the Identity Router.
 
     ![Certificate Bundle Upload page](/img/operations-guide/_page_13_Picture_12.jpeg)
 
-    ![A screenshot of a Computer Service Contract application interface. The title bar at the top reads 'Upload Certificate'. Below the title is a section titled 'Certificate Bundle Upload'. This section contains a field for choosing a 'Choose a Certificate Bundle' and a button 'Browse'. Below the button is a box labeled 'Upload Certificate Bundle'.](/img/operations-guide/_page_13_Picture_12.jpeg)
-
 1. Click **Browse** and then navigate to the directory in which the certificate is stored.
 1. Select the certificate and then click **Open**.
 
