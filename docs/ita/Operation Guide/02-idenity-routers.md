@@ -9,34 +9,34 @@ uid: identity-routers
 
 ## Identity Routers
 
-The *Identity Routers* page lists all the Identity Routers assigned to your organization in Studio and their status. If an Identity Router is online, its status icon is green. If it's offline, the icon is red.
+The *Identity Routers* page lists all  Identity Routers assigned to your organization in Studio and shows their status. Online Identity Routers have green icons, and offline Identity Routers have red icons.
 
-System Administrators manage Identity Routers. Hover over the Identity Router and then select the expand icon to see its status.
+System Administrators manage Identity Routers. To view status, hover over an Identity router and select the expand icon.
 
 ![Identity Routers page with router status indicators and action icons](/img/operations-guide/_page_4_Picture_3.jpeg)
 
 The table below describes each icon and its action.
 
-| ICON                                                                        | DESCRIPTION                                                                         |
-|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| ![Test icon](/img/operations-guide/test.png)           | Test the Identity Router's communication with Studio.                         |
-| ![Reboot](/img/operations-guide/reboot.png)            | Reboot the Identity Router. This option is only available to super administrators. |
-| ![Restart icon](/img/operations-guide/restart.png)        | Restart the SinglePoint Studio service.                                            |
-| ![View icon](/img/operations-guide/view.png) | View the log files for the selected Identity Router.                                |
-| ![View icon](/img/operations-guide/view.png)     | View the provisioning log files for the selected Identity Router.                   |
-| ![Apply icon](/img/operations-guide/apply.png)    | Apply updates to the selected Identity Router.                                      |
-| ![Delete icon](/img/operations-guide/delete.png)           | Delete the selected Identity Router.                                                |
-|  ![Expand icon](/img/operations-guide/expand.png)          | Expand the flyover dialog for the Identity Router.                                |
+| ICON                                               | DESCRIPTION                                                                        |
+|----------------------------------------------------|------------------------------------------------------------------------------------|
+| ![Test icon](/img/operations-guide/test.png)       | Test the Identity Router's communication with Studio.                              |
+| ![Reboot](/img/operations-guide/reboot.png)        | Reboot the Identity Router. This option is only available to super administrators. |
+| ![Restart icon](/img/operations-guide/restart.png) | Restart the SinglePoint Studio service.                                            |
+| ![View icon](/img/operations-guide/view.png)       | View the log files for the selected Identity Router.                               |
+| ![View icon](/img/operations-guide/view.png)       | View the provisioning log files for the selected Identity Router.                  |
+| ![Apply icon](/img/operations-guide/apply.png)     | Apply updates to the selected Identity Router.                                     |
+| ![Delete icon](/img/operations-guide/delete.png)   | Delete the selected Identity Router.                                               |
+| ![Expand icon](/img/operations-guide/expand.png)   | Expand the flyover dialog for the Identity Router.                                 |
 
 ## Configure an Identity Router in Studio
 
-The Identity Router is a server appliance that simplifies installation and maintenance. It combines its hardware and software in one product and includes preinstalled applications. You can connect it to an existing network with little configuration. It requires little or no support.
+The Identity Router is a server appliance that simplifies installation and maintenance identity management services. It combines hardware and software, includes preinstalled applications, connects to an existing network with little configuration, and requires little or no support.
 
-In the Studio environment, the Identity Router polices incoming users. It sits in front of the network.
+In the Studio environment, the Identity Router polices incoming users in front of the network.
 
 ### Before You Begin
 
-Review the list below to ensure you have all the information needed to complete the task.
+Review the list below before you begin to ensure you have the information needed to complete the task.
 
 - The customer to assign the Identity Router
 - The serial number of the Identity Router being configured
@@ -52,17 +52,17 @@ Review the list below to ensure you have all the information needed to complete 
 
 1. Complete the following fields:
 
-    - **Serial Number** - Enter the Identity Router's serial number
-    - **Model** - Enter either "GT" or "GTX" depending on the model being used
-    - **Activation Key** - Enter the key supplied by the Technical Operations Group
-    - **Status**  Select a status for the Identity Router from the drop-down list
-    - **Timeout (secs)** - Enter the amount of time (in seconds) a user can be connected to the Identity Router
-    - **Customer** - Select a customer to assign to the Identity Router from the drop-down list
-    - **Disable automatic software updates** - Select this option to turn off automatic updates for this customer
+    - **Serial Number** - Enter the Identity Router serial number.
+    - **Model** - Enter either "GT" or "GTX" depending on the model.
+    - **Activation Key** - Enter the key supplied by the Technical Operations Group.
+    - **Status** - Select a status for the Identity Router from the drop-down list.
+    - **Timeout (secs)** - Enter the amount of time, in seconds, a user can be connected to the Identity Router.
+    - **Customer** - Select a customer to assign to the Identity Router from the drop-down list.
+    - **Disable automatic software updates** - Select this option to turn off automatic updates.
 
-1. After the fields are completed, select **Save**.
+1. After you complete the fields, select **Save**.
 
-1. On the *Identity Routers* page, hover over the new **Identity Router** icon and select the **Test** icon. The status icon turns green when the Identity Router connects to Studio.
+1. On the *Identity Routers* page, hover over the new **Identity Router** and select the **Test** icon. After it connects to Studio, the status icon turns green.
 
 ## Identity Router Status
 
@@ -71,9 +71,9 @@ Select a button on the **Status** tab to view specific information about the Ide
 ![Identity Router Status tab with system status charts](/img/operations-guide/_page_7_Figure_1.jpeg)
 
 - **CPU** - CPU usage over the preceding ten minutes
-- **File System** The amount of used and available file system space where the Identity Router saves Keychain data. In a High Availability environment, it displays the status of the cluster share that stores this data.
+- **File System** - Used and available file system space where the Identity Router saves Keychain data. In a High Availability environment, it displays the cluster share status for this data.
 - **Java Memory** - The use of system memory by Java applications
-- **Load** - The value of the UNIX `load` command, which estimates how much of an Identity Router's system resources are being consumed. It also includes averages over five and ten minutes.
+- **Load** - The value of the UNIX `load` command, which estimates how much of an Identity Router's system resources are being consumed. It also includes five and ten-minute averages.
 - **Sessions** - The number of user sessions currently active on the Identity Router
 - **System Memory** - The use of system memory by the Identity Router for the preceding ten minutes
 - **Uptime** - The amount of time the Identity Router has been running
@@ -90,9 +90,9 @@ Follow these instructions to configure Studio to recognize your firewall.
 1. Select **Add** and complete the following fields:
 
     - **Connection Method** - Select the connection method used by your organization. If your organization uses more than one connection method, select **All**.
-    - **Protocol** - Select the protocol used with your intranet
-    - **Port Range** Enter the port range used by your organization. This field is only available when **All** is selected from the **Connection Method** drop-down list
-    - **Source Network** - Enter the IP range used by your organization
+    - **Protocol** - Select the protocol used with your intranet.
+    - **Port Range** - Enter the port range your organization uses. This field is only available when **All** is selected from the **Connection Method** drop-down list.
+    - **Source Network** - Enter the IP range used by your organization.
 
 1. Select **Save**.
 
@@ -107,8 +107,8 @@ Add static DNS entries in Studio. Studio writes the IP addresses and aliases to 
 
 1. Complete the following fields:
 
-    - **IP Address** - Enter a static IP address
-    - **Aliases** - Enter an alias for the static IP address
+    - **IP Address** - Enter a static IP address.
+    - **Aliases** - Enter an alias for the static IP address.
 
 1. Repeat step 3 for each DNS entry you want to add.
 1. Select **Save**.
@@ -127,10 +127,10 @@ These instructions explain how to configure your Identity Router.
 
 1. Complete the following *Management Information* fields:
 
-    - **Identity Router Key** - Enter the key for the Identity Router
-    - **Management IP Address** - Enter the IP address of the Identity Router
-    - **Management Netmask** - Enter the IP range that contains the Identity Router's management IP address
-    - **Management Gateway IP Address** - Enter the gateway IP address for the Identity Router
+    - **Identity Router Key** - Enter the Identity Router key.
+    - **Management IP Address** - Enter the Identity Router's IP address.
+    - **Management Netmask** - Enter the IP range containing the Identity Router's management IP address.
+    - **Management Gateway IP Address** - Enter the gateway IP address for the Identity Router.
 
 ### Proxy Information
 
@@ -144,17 +144,17 @@ These instructions explain how to configure your Identity Router.
 
 1. Complete the following DNS information:
 
-    - **Domain** - Enter the domain to which the Identity Router belongs
-    - **IP** - Enter the IP address or re-enter the gateway IP address for the Identity Router
-    - **Default** - Select this box to make the IP address the Identity Router's default
-    - **Add DNS Record** - Select **Add DNS Record** to add a DNS record
+    - **Domain** - Enter the domain to which the Identity Router belongs.
+    - **IP** - Enter the Identity Router's IP address.
+    - **Default** - Select this box to make the IP address the Identity Router's default.
+    - **Add DNS Record** - Select **Add DNS Record** to add a DNS record.
 
 ### Misc Configuration
 
 1. Complete the following Configuration fields:
 
-    - **Management Server IP Address** - Enter the IP Address to which `vpn.symplified.net` resolves
-    - **Controller URL** - Enter the web address the controller uses to communicate with cloud services
+    - **Management Server IP Address** - Enter the IP address to which `vpn.symplified.net` resolves
+    - **Controller URL** - Enter the web address the controller uses to communicate with cloud services.
 
 :::note
 For platinum customers, enter different values in the Management Server IP Address and Controller URL fields. The Technical Operations Group supplies these values.
@@ -168,22 +168,20 @@ For platinum customers, enter different values in the Management Server IP Addre
 
 ## Change Password - Identity Router
 
-Follow these instructions to change the username and password for the Identity Router.
+Follow these instructions to change the Identity Router's username and password.
 
 1. Select the **Change Password** link in the upper-right-hand corner of the *IDR Setup* page. The *Change Password* page displays.
 
     ![Identity Router Change Password form.](/img/operations-guide/_page_13_Picture_2.jpeg)
 
-    A small box labeled 'Change Password' is located at the bottom center of the form.
-
 1. Complete the following fields:
 
-    - **Old Password** - Enter the current password
-    - **New Username** - Enter the username associated with the Identity Router
-    - **New Password** - Enter the new password
-    - **Confirm New Password** - Re-enter the new password
+    - **Old Password** - Enter the current password.
+    - **New Username** - Enter the Identity Router's username.
+    - **New Password** - Enter the new password.
+    - **Confirm New Password** - Re-enter the new password.
 
-1. Select **Change Password**. A message appears at the top of the page affirming your changes.
+1. Select **Change Password**. A message appears at the top of the page confirming your changes.
 
 ## Upload Certificate
 
