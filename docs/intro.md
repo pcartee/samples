@@ -1,5 +1,5 @@
 ---
-title: Paul Cartee — Senior Technical Writer
+title: Paul Cartee
 description: Senior Technical Writer specializing in docs-as-code, CI/CD pipelines, API and CLI reference documentation, and confidential computing content.
 author: pcartee
 date: 09/23/2026
@@ -8,13 +8,13 @@ sidebar_position: 1
 slug: /
 ---
 
-# Hi, I'm Paul Cartee
+## Paul Cartee
 
-### Senior Technical Writer — Docs-as-Code · CI/CD Pipelines · API/CLI Reference · AI-Assisted Workflows
+Senior Technical Writer | Docs-as-Code | CI/CD Pipelines | API/CLI Reference | AI-Assisted Workflows
 
-I've spent 15 years turning dense engineering work into documentation that developers actually use — for teams at **Apple**, **Intel**, **Workday**, **SentinelOne**, and **LogRhythm**. My specialty is docs-as-code: writing in Markdown or reStructuredText, versioning everything in Git, and wiring documentation into CI/CD pipelines so it ships alongside the product instead of trailing behind it.
+I have over 15 years of experience turning complicated concepts into documentation that users and developers actually use for teams at **Apple**, **Intel**, **Workday**, **SentinelOne**, and **LogRhythm**. My specialty is docs-as-code: writing in Markdown or reStructuredText, versioning everything in Git, and wiring documentation into CI/CD pipelines so it ships alongside the product instead of trailing behind it.
 
-Most recently, at Intel, I documented **Intel Trust Authority** — a remote attestation service for confidential computing — from the ground up. That meant REST API references, CLI guides, SDK integration docs, and tutorials for genuinely hard technical territory: TEEs, Kubernetes/Helm/Istio deployments, and zero-trust security models. Every sample linked below is real production documentation from that work.
+Most recently, at Intel, I documented **Intel Trust Authority** — a remote attestation service for confidential computing. That meant creating REST API references, CLI guides, and tutorials for software such as TEEs, Kubernetes/Helm/Istio deployments, and zero-trust security models.
 
 ## What I bring to your team
 
