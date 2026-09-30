@@ -7,50 +7,47 @@ date: 09/17/2024
 uid: idr-administrators
 ---
 
+The *Administrators* page lists all users with administrative access in your Studio system.
 
-## **Administrators**
-
-The *Administrators* page displays all of the administrators in your Studio system. There are two types of administrators: administrator and super administrator.
-
-| Role                  | Description                               |
-|-----------------------|-------------------------------------------|
-| Administrators        | Can add, edit, and delete existing users. |
-| Super Administrators  | Can add, edit, and delete existing users. |
-| System Administrator  | Can add, edit, and delete existing users. |
+| Role                  | Description                                                                                                                                                             |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Administrators        | Can add, edit, and delete existing user stores, application groups, applications, and application areas.                                                                |
+| Super Administrators  | Performs the same tasks as an administrator. Super administrators can also add, edit, and delete other administrators and super administrators, and manage SimpleLinks. |
+| System Administrator  | Performs the same tasks as a Super Administrator. System administrators can create, edit, and delete all other administrator types.                                     |
+| Support Administrator | Performs administrative tasks for resale customers.                                                                                                                     |
 
 ## **Create an Account Administrator**
 
-**Note**: You must be logged in as a super administrator or a system administrator to perform this task.
+:::note
+Only super administrators and system administrators can perform this task.
+:::
 
 ### **Configuration Tab**
 
+1. From the *Administrators* page, select the **New Admin User** icon.
 
+    The *New Administrator* dialog opens.
 
-1. From the *Administrators* page, click the **New Admin User** ![Administrators page with the New Admin User icon](/img/operations-guide/_page_15_Picture_6.jpeg) icon.
+    ![New Administrator dialog with account configuration fields](/img/operations-guide/_page_16_Picture_2.jpeg)
 
-The *New Administrator* dialog displays.
+1. Complete the following fields:
 
-![New Administrator dialog with account configuration fields](/img/operations-guide/_page_16_Picture_2.jpeg)
+    - **User ID (Email Address)** - Enter the email address used to sign in to Studio.
+    - **Administrator Name** - Enter a name to display in Studio. The name can be up to 50 characters long.
+    - **Phone Number** - Optionally enter a phone number for the administrator.
+    - **Time Zone** - Select a time zone from the drop-down list.
+    - **Group** - Select an administrator group from the drop-down list.
+    - **Customer** - This field is only available to Support Administrators. Select the customer for the Support Administrator.
+    - **Disabled** - Select this checkbox to deactivate the administrator account. This administrator can't sign in to Studio when the account is deactivated.
+    - **Require Password Change on Next Login** - Optionally select this checkbox to require the new administrator to change their password on first sign-in.
+    - **New Password** - Enter a password. The password can be up to 50 characters long.
+    - **Confirm Password** - Re-enter the password.
 
-2. Complete the following fields:
-
-- **User ID (Email Address)** - Enter the email address that will be used to log into Studio 
-- **Administrator Name** - Enter the name that will be displayed while in Studio. The name can be up to 50 characters long 
-- **Phone Number** - Optionally enter a phone number for the administrator • **Time Zone** - Select a time zone from the drop-down list 
-- **Group** - Select the administrator group to which this user will belong from the drop-down list 
-- **Customer** - This feature is only available to Support Administrators. Select the Customer to which the Support Administrator belongs.
-- **Disabled**  Select this checkbox to disable the administrator account. This administrator will not be able to sign in to Studio when the account is disabled 
-- **Require Password Change on Next Login** - Optionally select this checkbox to require the new administrator to change their password upon their first successful sign-in
-- **New Password** Enter a password. The password can be up to 50 characters long
-- **Confirm Password** Re-enter the password
-
-3. Click **Save**.
-
-The new administrator is created.
+1. Select **Save**.
 
 ### **Advanced Tab**
 
-The Advanced tab provides a means to attach an administrator to the customer they will manage.
+The Advanced tab lets you associate an administrator with the customer they manage.
 
 ![Advanced tab showing Studio API and customer association settings](/img/operations-guide/_page_17_Picture_2.jpeg)
 
