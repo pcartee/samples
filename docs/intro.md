@@ -8,8 +8,6 @@ sidebar_position: 1
 slug: /
 ---
 
-## Paul Cartee
-
 Senior Technical Writer | Docs-as-Code | CI/CD Pipelines | API/CLI Reference | AI-Assisted Workflows
 
 I have over 15 years of experience turning complicated concepts into documentation that users and developers actually use for teams at **Apple**, **Intel**, **Workday**, **SentinelOne**, and **LogRhythm**. My specialty is docs-as-code: writing in Markdown or reStructuredText, versioning everything in Git, and wiring documentation into CI/CD pipelines so it ships alongside the product instead of trailing behind it.
