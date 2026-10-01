@@ -24,7 +24,7 @@ Only super administrators and system administrators can perform this task.
 
 ### **Configuration Tab**
 
-1. From the *Administrators* page, select the **New Admin User** icon.
+1. From the *Administrators* page, select **New Admin User**.
 
     The *New Administrator* dialog opens.
 
