@@ -10,9 +10,9 @@ slug: /
 
 Senior Technical Writer | Docs-as-Code | CI/CD Pipelines | API/CLI Reference | AI-Assisted Workflows
 
-I have over 15 years of experience turning complicated concepts into documentation that users and developers actually use for teams at **Apple**, **Intel**, **Workday**, **SentinelOne**, and **LogRhythm**. My specialty is docs-as-code: writing in Markdown or reStructuredText, versioning everything in Git, and wiring documentation into CI/CD pipelines so it ships alongside the product instead of trailing behind it.
+I have 15+ years of experience documenting SaaS, enterprise, and user applications. Recently, I've worked for Apple, Intel, Workday, SentinelOne, and LogRhythm, writing cybersecurity, confidential computing, and machine learning documents. My specialty is docs-as-code: writing in Markdown or reStructuredText, versioning everything in Git, and wiring documentation into CI/CD pipelines so it ships alongside the product instead of trailing behind it.
 
-Most recently, at Intel, I documented **Intel Trust Authority** — a remote attestation service for confidential computing. That meant creating REST API references, CLI guides, and tutorials for software such as TEEs, Kubernetes/Helm/Istio deployments, and zero-trust security models.
+Most recently, at Intel, I documented Intel Trust Authority, a remote attestation service for confidential computing creating REST API references, CLI guides, and tutorials for TEEs, Kubernetes/Helm/Istio deployments, and zero-trust security models.
 
 ## What I bring to your team
 

@@ -20,7 +20,7 @@ The icons under the customer icon enable the System administrator to perform act
 | ![Delete icon](/img/operations-guide/delete.png)    | Delete the Administrator - Deletes the selected administrator. Only a super administrator can delete other super administrators and administrators.                                                                                                                                                                                                                                                |
 | ![Export icon](/img/operations-guide/export.png)     | Exports the customer's information to an XML file. This enables the customer to transition from one Identity Router to another one.                                                                                                                                                                                                                                                                |
 
-## **The New/Edit Customer Dialog**
+## The New/Edit Customer Dialog
 
 The *New/Edit Customer* dialog enables the System Administrator to create/edit Studio customers. A customer is anyone who is using Studio to manage access to their Web applications.
 
@@ -28,173 +28,178 @@ All customers are created or edited in the *Edit Customer* dialog, which is acce
 
 The *New/Edit Customer* dialog has six tabs on which the customer's information is maintained.
 
-•**Configure** - Create/Edit company information that will be displayed in the fly-over window
-
-- •**SSO Configuration**- Set session length, cipher-, and key-rotation schedules
+- **Configure** - Create/Edit company information that will be displayed in the fly-over window
+- **SSO Configuration**- Set session length, cipher-, and key-rotation schedules
 - **Portal** Configure the customer's portal page
 - **Windows Authentication** Configure Integrated Windows Authentication for this customer
-- **ID Router Clustering** Configure how multiple Identity Routers will communicate with each other •**Features** - Select the features to which the customer has subscribed
+- **ID Router Clustering** Configure how multiple Identity Routers will communicate with each other
+- **Features** - Select the features to which the customer has subscribed
 
-## **Set Customer Context**
+## Set Customer Context
 
 The **Set Customer Context** option enables a System administrator to mimic a customer. This option enables the System administrator to run Studio as if they were the customer and ensures they can provide help with the changes and configurations set by the customer.
 
-- 1) Click the **Customers** link at the top of the *Studio* page.
-- 2) Mouse over the customer that you want to mimic and click the **Set Customer Context** button.
+1. Click the **Customers** link at the top of the *Studio* page.
+1. Mouse over the customer that you want to mimic and click the **Set Customer Context** button.
 
-![Customer icon menu used to set customer context](/img/operations-guide/_page_19_Picture_4.jpeg)
+  ![Customer icon menu used to set customer context](/img/operations-guide/_page_19_Picture_4.jpeg)
 
-- 3) Click **Yes** at the confirmation window. The context is set to the selected customer.
+1. Click **Yes** at the confirmation window. The context is set to the selected customer.
 
 ## **Reset the Context**
 
 After making the necessary changes to the customer's Studio configuration, you must reset the context of the Studio application to the System Administrator context.
 
-- 1) Click **Reset Context** in the upper left-hand corner of the Studio page.
-- 2) The customer context is set back to System Administrator.
+1. Click **Reset Context** in the upper left-hand corner of the Studio page.
+1. The customer context is set back to System Administrator.
 
-## **Customer Configuration**
+## Customer Configuration
 
 These instructions explain how to create a new customer in Studio. Customers are created by recording information on the customer in the *New/Edit Customer* dialog. The *New/Edit Customer* dialog contains six tabs on which to enter information about the customer. Each tab is explained in the following pages.
 
 The information entered on the **Configuration** tab is displayed when the customer performs a mouse-over their super administrator icon on the *Administrators* page in Studio.
 
-### **Company Information**
+### Company Information
 
-- 1) Click the **Customers** link at the top of the page.
+1. Click the **Customers** link at the top of the page.
 
-![Customers page with the New Customer control](/img/operations-guide/_page_20_Picture_0.jpeg)
+  ![Customers page with the New Customer control](/img/operations-guide/_page_20_Picture_0.jpeg)
 
-- 2) Click the **New Customer** icon.
+1. Click the **New Customer** icon.
 
-The *New Customer* dialog displays.
+  The *New Customer* dialog displays.
 
-![New Customer dialog with configuration fields](/img/operations-guide/_page_20_Picture_3.jpeg)
+  ![New Customer dialog with configuration fields](/img/operations-guide/_page_20_Picture_3.jpeg)
 
-![Screenshot of the New Customer section with a blue house icon and a section titled 'Configuration'.](/img/operations-guide/_page_20_Picture_3.jpeg)The screenshot shows the 'New Customer' section of the New Customer service app. It features a blue house icon and a section titled 'Configuration'. The 'Configuration' section includes a 'SSO Configuration' section with a 'Portal' and 'Windows Authentication' buttons, and a 'IDE Clustering' and 'User Management' buttons. A 'Clipped Name' field is shown with a 'Mountain Standard Time' checkmark. A 'Status' field shows 'New'. A 'On Premises Identity Requirement' button is also visible. A 'License Agreement' section is at the top, with a checkmark for 'Enable Click-Through License Agreement'. The 'Studio Sessions' section is below, listing 'Max Session Length' at 42:00 and 'Installably Timeout' at 0:00. A 'Domain' field is shown with a 'Domain' checkmark. A 'Load Key...' button is also visible below the 'Domain' field. A 'Keychain API Configuration' section is below the 'Load Key...' field, with a 'Keychain API Key' checkmark. A 'Cancel' button is at the bottom center.
+1. Complete the following fields:
 
-- 3) Complete the following fields:
-  - **Display Name**  Enter a name for the company
-  - **Time Zone** Select the appropriate time zone for this customer from the drop-down list • **Status** - Select the appropriate status from the drop-down list •**Parent** - Select the parent organization for this customer
-- 4) Select the **On Premises Identity Router** checkbox if the Identity Router is located within the customer's network.
+- **Display Name**  Enter a name for the company
+- **Time Zone** Select the appropriate time zone for this customer from the drop-down list
+- **Status** - Select the appropriate status from the drop-down list
+- **Parent** - Select the parent organization for this customer
 
-#### **License Agreement**
+1. Select the **On Premises Identity Router** checkbox if the Identity Router is located within the customer's network.
 
-- 5) To allow customers to agree to an online license agreement, select the **Enable Click-Through License Agreement** checkbox.
+1. To allow customers to agree to an online license agreement, select the **Enable Click-Through License Agreement** checkbox.
 
-#### **Domain**
+1. Enter the customer's domain name and then click **Load Key**.
+1. Navigate to the customer's private key. The file should end with the extension ".key".
 
-- 6) Enter the customer's domain name and then click **Load Key**.
-- 7) Navigate to the customer's private key. The file should end with the extension ".key".
+  :::note
+  PSA keys in the PEM format are supported.
+  :::
 
-**Note**: PSA keys in the PEM format are supported.
+1. Select the key and then click **Open**.
 
-8) Select the key and then click **Open**.
+1. Click **Upload**. The key is uploaded to Studio.
 
-9) Click **Upload**.
+1. Click **Load Cert**.
 
-The key is uploaded to Studio.
+1. Navigate to the customer's public key certificate file. It should end in ".cert".
 
-10) Click **Load Cert**.
+1. Select the key and then click **Open** to load the key.
 
-11) Navigate to the customer's public key certificate file. It should end in ".cert".
+1. In the **Keychain API Key** textfield, enter the key that will enable the Keychain API to communicate to the Identity Router.
 
-12) Select the key and then click **Open** to load the key.
+  :::note
+  The keychain API Key is created by your system administrator.
+  :::
 
-#### **Keychain API Key**
+1. Click **Save** to persist your changes.
 
-13) In the **Keychain API Key** textfield, enter the key that will enable the Keychain API to communicate to the Identity Router.
-
-**Note**: The keychain API Key is created by your system administrator.
-
-14) Click **Save** to persist your changes.
-
-## **SSO Configuration**
+## SSO Configuration
 
 The **SSO Configuration** tab is used to configure the customer's user session, cipher-rotation and keychainrefresh functions. Each section is explained below.
 
-## **User Session**
+1. Select the **SSO Configuration** tab.
+
+  ![SSO Configuration tab with user session and cipher rotation settings](/img/operations-guide/_page_21_Picture_10.jpeg)
+
+### User Session
 
 Set the length of time a customer can be logged into the portal with and without activity.
 
-1) Select the **SSO Configuration** tab.
+1. Complete the following fields:
 
-![SSO Configuration tab with user session and cipher rotation settings](/img/operations-guide/_page_21_Picture_10.jpeg)
+- **One Time Auth Window (sec)** - Enter the time, in seconds, that the Authentication Window displays.
+- **Max Session Length (secs)** Enter the time (in seconds) that can be spent by an active user on the portal.
+- **Inactivity Timeout (secs)** Enter the amount of time (in seconds) that can be spent on the portal before the user times out for inactivity.
+- **Session IP Validation** - To require a session validation, select the checkbox.
+- **Limit Concurrent Sessions** - To limit the number of sessions a user can initiate, select the **Concurrent Sessions** checkbox and then enter a value in **Limit** text field - The **Limit** textfield appears when the **Concurrent Sessions** checkbox is selected.
 
-![Screenshot of the New Customer section window showing the 'User Session' and 'Option Rotation' panels.](/img/operations-guide/_page_21_Picture_10.jpeg)The screenshot displays the 'New Customer' section of the New Customer window. The 'User Session' panel on the left shows an icon of a blue and white store building. The 'Option Rotation' panel on the right shows the 'SSO Configuration' and 'Partal' and 'Windows Authentication' icons. The 'User Session' panel contains fields for 'One Time Ruth Window' (3), 'Men Session Length' (43200), 'Inactivity Timeout' (1200), 'Session IP Validation' (checked), 'Limit Concurrent Sessions' (checked), and 'To' (1). The 'Option Rotation' panel contains 'Start' (09/31/2011), 'Internal' (5), and 'Davo' (checked). The 'Adapter Updates' panel on the right shows 'Adapter Updates Time' (10:40) and 'pH' (checked).
-
-2) Complete the following fields:
-
-- **Max Session Length (secs)** Enter the time (in seconds) that can be spent by an active user on the portal
-- **Inactivity Timeout (secs)** Enter the amount of time (in seconds) that can be spent on the portal before the user times out for inactivity •**Session IP Validation** - To require a session validation, select the checkbox
-
-• **Limit Concurrent Sessions** - To limit the number of sessions a user can initiate, select the **Concurrent Sessions** checkbox and then enter a value in **Limit** text field - The **Limit** textfield appears when the **Concurrent Sessions** checkbox is selected
-
-3) Click **Save** or continue onto *Cipher Rotation*.
-
-## **Cipher Rotation**
+### Cipher Rotation
 
 The cipher rotation determines how often the encryption key used to secure the communication between the Identity Router and the cloud is changed. Complete the following fields to configure cipher rotation.
 
-**Warning**: Cipher Rotation must be disabled for High Availability customers.
+:::warning
+Cipher Rotation must be disabled for High Availability customers.
+:::
 
-1) Select the **SSO Configuration** tab.
+1. Complete the following fields:
 
-2) Complete the following fields:
+- **Disable** - To disable the **Cipher Rotation** feature, select the **Disable** checkbox.
+- **Start** - Click the calendar, select a start date, enter the starting time in the textfield, and then select either **AM** or **PM** from the drop-down list.
+- **Interval** - Enter the amount variable in the **Interval** textfield and then select the value from the drop-down list..
 
-- **Disable** To disable the **Cipher Rotation** feature, select the **Disable** checkbox • **Start** - Click the calendar, select a start date, enter the starting time in the textfield, and then select either **AM** or **PM** from the drop-down list • **Interval** - Enter the amount variable in the **Interval** textfield and then select the value from the drop-down list
+:::warning
+During the cipher rotation process, users cannot log in. Be sure to set the cipher rotation to occur at a time when the least amount of user will be logged into Studio.
+:::
 
-**Warning**: During the cipher rotation process, users cannot log in. Be sure to set the cipher rotation to occur at a time when the least amount of user will be logged into Studio.
+1. Click **Save** or continue onto *Cloud Keychain Refresh or Adapter Updates below.*
 
-3) Click **Save** or continue onto *Cloud Keychain Refresh or Adapter Updates below.*
+## Adapter Updates
 
-## **Adapter Updates**
+1. Select the **SSO Configuration** tab.
+1. To select when the adapter update takes place, enter a time in the **Adapter Update Time** textfield and then select either **AM** or **PM** from the drop-down list
+1. Click **Save**.
 
-- 1) Select the **SSO Configuration** tab.
-- 2) To select when the adapter update takes place, enter a time in the **Adapter Update Time** textfield and then select either **AM** or **PM** from the drop-down list
-- 3) Click **Save**.
-
-## **Portal - Edit Profile**
+## Portal - Edit Profile
 
 The **Portal** tab enables you to configure *SinglePoint® Studio* to funnel all traffic to a portal proxy. There are two types of portal configurations: Default Portal and Custom Portal.
 
-### **Before you begin**
+### Before you begin
 
 Ensure the following steps have been completed before attempting these instructions.
 
-• Create a Web server with a backend hostname set to the machine hosting the portal and whichever front-end server you want
+- Create a Web server with a backend hostname set to the machine hosting the portal and whichever front-end server you want
 
-• Create a new application that has no authentication required and select the **Pass Headers** checkbox. This application needs to use the portal server, have an **Allow All** policy, and needs to protect minimally the portal page itself, though it probably ought to protect all of the portal integration pages
+- Create a new application that has no authentication required and select the **Pass Headers** checkbox. This application needs to use the portal server, have an **Allow All** policy, and needs to protect minimally the portal page itself, though it probably ought to protect all of the portal integration pages
 
-**Note**: If you use the default **Protect All Application Areas** to protect the entire portal Web server, then **everything** on the Web server will be protected. Trying to access images on a login page with the entire portal server protected will result in the images not being displayed because the Identity Router requires you to be logged in to see the images.
+:::note
+If you use the default **Protect All Application Areas** to protect the entire portal Web server, then **everything** on the Web server will be protected. Trying to access images on a login page with the entire portal server protected will result in the images not being displayed because the Identity Router requires you to be logged in to see the images.
+:::
 
 Choose the type of portal to configure:
 
 - **Default Portal** on page 14 Configure the default portal
 - **Custom Portal** on page 15- Configure a custom portal
 
-## **Default Portal - New Customer**
+## Default Portal - New Customer
 
-- 1) Access the *Edit Customer* dialog.
-- 2) Select the **Portal** tab if it is not already selected.
+1. Access the *Edit Customer* dialog.
+1. Select the **Portal** tab if it is not already selected.
 
-The *Portal* dialog displays with the **Default Portal** option selected.
+  The *Portal* dialog displays with the **Default Portal** option selected.
 
-![New Customer dialog with portal configuration options](/img/operations-guide/_page_23_Picture_8.jpeg)
+  ![New Customer dialog with portal configuration options](/img/operations-guide/_page_23_Picture_8.jpeg)
 
-### **Portal Type**
+1. ### Portal Type
 
-3) Click the Default Portal button.
+1. Click the Default Portal button.
 
-The default portal fields display.
+  The default portal fields display.
 
-**Default Portal Server Configuration**
+#### Default Portal Server Configuration
 
-4) Complete the following fields:
+1. Complete the following fields:
 
-• **Company Name** - Enter the company name for this portal • **Home Background URL** - Enter the background URL for this portal • **Portal Background URL** - Enter the portal background • **Help URL** - Enter the help URL for this portal •**Settings URL** - Enter the settings URL for this portal
+- **Company Name** - Enter the company name for this portal
+- **Home Background URL** - Enter the background URL for this portal
+- **Portal Background URL** - Enter the portal background
+- **Help URL** - Enter the help URL for this portal
+- **Settings URL** - Enter the settings URL for this portal
 
-#### **Default Portal Client Configuration**
+#### Default Portal Client Configuration
 
 - 5) Complete the following fields: • **Image Path** - Enter the relative path to the images used for this portal page • **Default Language** - Select a default language for the Studio user interface • **Default Theme** - Select the default theme from the drop-down list • **Default Position** - Select the default position for the portal •**Auto Dim** - Select this option to enable the auto-dim feature.
 
