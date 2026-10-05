@@ -1,0 +1,18 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@12.0.2
+2 info using node@v24.19.0
+3 silly config load:file:/usr/local/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/pcartee/Downloads/github/samples/.npmrc
+5 silly config load:file:/Users/pcartee/.npmrc
+6 silly config load:file:/Users/pcartee/.npm-global/etc/npmrc
+7 verbose title npm build
+8 verbose argv "build"
+9 verbose logfile logs-max:10 dir:/Users/pcartee/Downloads/github/samples/.npm-cache/_logs/2026-10-05T22_10_31_295Z-
+10 verbose logfile /Users/pcartee/Downloads/github/samples/.npm-cache/_logs/2026-10-05T22_10_31_295Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 verbose cwd /Users/pcartee/Downloads/github/samples
+13 verbose os Darwin 25.6.0
+14 verbose node v24.19.0
+15 verbose npm  v12.0.2
+16 verbose exit 1
+17 verbose code 1
