@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Replace the value of every ``author:`` frontmatter field with a single name.
 
-By default this walks ``/docs`` recursively, finds every ``.md`` and ``.mdx``
-file, and rewrites the value that follows ``author:`` in the YAML frontmatter
-to ``pcartee`` -- e.g.::
+By default this walks this repository's ``docs`` directory recursively, finds
+every ``.md`` and ``.mdx`` file, and rewrites the value that follows ``author:``
+in the YAML frontmatter to ``pcartee`` -- e.g.::
 
     author: Paul Cartee          ->  author: pcartee
     author: carteepaul, mkwilbux ->  author: pcartee
@@ -19,7 +19,7 @@ Notes / guarantees:
   idempotent -- re-running it is safe and a no-op.
 
 Usage:
-    python3 replace_author.py                 # real run against /docs
+    python3 replace_author.py                 # real run against this repo's docs
     python3 replace_author.py --dry-run       # preview changes, write nothing
     python3 replace_author.py --value pcartee # use a different replacement
     python3 replace_author.py /other/docs     # point at another directory
@@ -33,7 +33,7 @@ import sys
 from dataclasses import dataclass, field
 from pathlib import Path
 
-DEFAULT_DOCS_DIR = "/Users/pcartee/github/writing-samples/docs"
+DEFAULT_DOCS_DIR = Path(__file__).resolve().parent / "docs"
 DEFAULT_VALUE = "pcartee"
 EXTENSIONS = (".md", ".mdx")
 

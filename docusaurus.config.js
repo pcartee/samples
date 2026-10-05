@@ -9,7 +9,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const DEFAULT_OWNER = 'pcartee';
-const DEFAULT_REPO = 'writing-samples';
+const DEFAULT_REPO = 'samples';
 
 const repository = process.env.GITHUB_REPOSITORY || `${DEFAULT_OWNER}/${DEFAULT_REPO}`;
 const [owner, repoName] = repository.split('/');
