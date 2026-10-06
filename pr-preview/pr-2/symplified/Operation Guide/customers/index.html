@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-symplified/Operation Guide/customers" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Create/Edit Customers | Paul Cartee&#x27;s Writing Samples</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://pcartee.github.io/samples/pr-preview/pr-2/img/trust.png"><meta data-rh="true" name="twitter:image" content="https://pcartee.github.io/samples/pr-preview/pr-2/img/trust.png"><meta data-rh="true" property="og:url" content="https://pcartee.github.io/samples/pr-preview/pr-2/symplified/Operation Guide/customers/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Create/Edit Customers | Paul Cartee&#x27;s Writing Samples"><meta data-rh="true" name="description" content="Create and configure customers in Identity Router Studio, including customer context, company and domain information, license agreements, SSO session and cipher-rotation settings, portal configuration, Integrated Windows Authentication, Identity Router NFS and CIFS clustering, User Management, and audit logging."><meta data-rh="true" property="og:description" content="Create and configure customers in Identity Router Studio, including customer context, company and domain information, license agreements, SSO session and cipher-rotation settings, portal configuration, Integrated Windows Authentication, Identity Router NFS and CIFS clustering, User Management, and audit logging."><link data-rh="true" rel="icon" href="/samples/pr-preview/pr-2/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://pcartee.github.io/samples/pr-preview/pr-2/symplified/Operation Guide/customers/"><link data-rh="true" rel="alternate" href="https://pcartee.github.io/samples/pr-preview/pr-2/symplified/Operation Guide/customers/" hreflang="en"><link data-rh="true" rel="alternate" href="https://pcartee.github.io/samples/pr-preview/pr-2/symplified/Operation Guide/customers/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Operation Guide","item":"https://pcartee.github.io/samples/pr-preview/pr-2/symplified/Operation Guide/operations-guide"},{"@type":"ListItem","position":2,"name":"Create/Edit Customers","item":"https://pcartee.github.io/samples/pr-preview/pr-2/symplified/Operation Guide/customers"}]}</script><link rel="stylesheet" href="/samples/pr-preview/pr-2/assets/css/styles.15c065ee.css">
+<script src="/samples/pr-preview/pr-2/assets/js/runtime~main.efe53f89.js" defer="defer"></script>
+<script src="/samples/pr-preview/pr-2/assets/js/main.b3526a2b.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-8f9")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/samples/pr-preview/pr-2/img/trust.png"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/samples/pr-preview/pr-2/"><div class="navbar__logo"><img src="/samples/pr-preview/pr-2/img/trust.png" alt="Paul Cartee&#x27;s Writing Samples" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/samples/pr-preview/pr-2/img/trust.png" alt="Paul Cartee&#x27;s Writing Samples" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Paul Cartee&#x27;s Writing Samples</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/samples/pr-preview/pr-2/">Paul Cartee&#x27;s Writing Samples</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/samples/pr-preview/pr-2/"><span class="linkLabel_WmDU">Overview</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/samples/pr-preview/pr-2/ita/Quickstart/howto-manage-subscriptions/"><span class="categoryLinkLabel_W154">Quickstart</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/samples/pr-preview/pr-2/ita/Tutorials and examples/Intel Trust Authority Client examples/tutorial-amd-azure-vm/"><span class="categoryLinkLabel_W154">Tutorials and examples</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/samples/pr-preview/pr-2/ita/How-to workflows/howto-manage-users/"><span class="categoryLinkLabel_W154">How-to workflows</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" href="/samples/pr-preview/pr-2/symplified/Operation Guide/operations-guide/"><span class="categoryLinkLabel_W154">Operation Guide</span></a><button aria-label="Collapse sidebar category &#x27;Operation Guide&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/pr-preview/pr-2/symplified/Operation Guide/idenity-routers/"><span class="linkLabel_WmDU">Identity Routers Operations Guide</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/pr-preview/pr-2/symplified/Operation Guide/idr-administrators/"><span class="linkLabel_WmDU">Identity Router Administrators</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/samples/pr-preview/pr-2/symplified/Operation Guide/customers/"><span class="linkLabel_WmDU">Create/Edit Customers</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/pr-preview/pr-2/symplified/Operation Guide/application-types/"><span class="linkLabel_WmDU">My Application Types</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/pr-preview/pr-2/symplified/Operation Guide/handlers/"><span class="linkLabel_WmDU">Identity Router Handlers</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/pr-preview/pr-2/symplified/Operation Guide/certificates/"><span class="linkLabel_WmDU">Identity Routers Certificates</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/pr-preview/pr-2/symplified/Operation Guide/amazon-ec2/"><span class="linkLabel_WmDU">Amazon EC2 Identity Router Deployment</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/pr-preview/pr-2/symplified/Operation Guide/ad-federation-services/"><span class="linkLabel_WmDU">Active Directory Federation Services</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/pr-preview/pr-2/symplified/Operation Guide/edit -profile/"><span class="linkLabel_WmDU">Edit Profile Information</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/samples/pr-preview/pr-2/ita/Attestation Technologies/concept-tees-overview/"><span class="categoryLinkLabel_W154">Attestation technologies</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/samples/pr-preview/pr-2/ita/Concepts/concept-attestation-overview/"><span class="categoryLinkLabel_W154">Concepts</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/samples/pr-preview/pr-2/ita/Command-line/cli-examples/"><span class="categoryLinkLabel_W154">Resources</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/samples/pr-preview/pr-2/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/samples/pr-preview/pr-2/symplified/Operation Guide/operations-guide/"><span>Operation Guide</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Create/Edit Customers</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Create/Edit Customers</h1></header><p>The <em>Customers</em> page displays all of the customers associated to your Studio System. Studio is designed to enable its users to manage their customers easily and efficiently. For example, the status of a customer is displayed by the highlight of the customer&#x27;s icon. More information about the customer can be seen by moving your mouse-pointer over the customer&#x27;s icon and clicking the expand Icon. A fly-over window displays current customer information.</p>
+<p><img decoding="async" loading="lazy" alt="Customers page with customer status icons" src="data:image/jpeg;base64,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" width="498" height="138" class="img_ev3q"></p>
+<p>The icons under the customer icon enable the System administrator to perform actions on the selected customer. The table below lists the icons and describes the action they enable.</p>
+<table><thead><tr><th>ICON</th><th>DESCRIPTION</th></tr></thead><tbody><tr><td><img decoding="async" loading="lazy" alt="Context icon" src="data:image/png;base64,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" width="32" height="35" class="img_ev3q"></td><td>Sets the context of Studio to that of the customer. Setting the context to a particular customer filters the GUI so that you only see the Studio elements that the customer sees (while keeping your System Administrator rights.) Clicking the <strong>Reset Context</strong> link in the upper right-hand corner cancels the impersonating process and returns you to your Administrator role with Studio.</td></tr><tr><td><img decoding="async" loading="lazy" alt="Cipher Rotation icon" src="data:image/png;base64,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" width="35" height="34" class="img_ev3q"></td><td>Rotate cipher key - Manually force a cipher-key rotation.</td></tr><tr><td><img decoding="async" loading="lazy" alt="Delete icon" src="data:image/png;base64,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" width="44" height="40" class="img_ev3q"></td><td>Delete the Administrator - Deletes the selected administrator. Only a super administrator can delete other super administrators and administrators.</td></tr><tr><td><img decoding="async" loading="lazy" alt="Export icon" src="data:image/png;base64,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" width="31" height="32" class="img_ev3q"></td><td>Exports the customer&#x27;s information to an XML file. This enables the customer to transition from one Identity Router to another one.</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-newedit-customer-dialog">The New/Edit Customer Dialog<a href="#the-newedit-customer-dialog" class="hash-link" aria-label="Direct link to The New/Edit Customer Dialog" title="Direct link to The New/Edit Customer Dialog" translate="no">​</a></h2>
+<p>The <em>New/Edit Customer</em> dialog enables the System Administrator to create/edit Studio customers. A customer is anyone who is using Studio to manage access to their Web applications.</p>
+<p>All customers are created or edited in the <em>Edit Customer</em> dialog, which is accessed from the <strong>Customers</strong> tab on the <em>System Admin</em> page.</p>
+<p>The <em>New/Edit Customer</em> dialog has six tabs on which the customer&#x27;s information is maintained.</p>
+<ul>
+<li class=""><strong>Configure</strong> - Create/Edit company information that will be displayed in the fly-over window</li>
+<li class=""><strong>SSO Configuration</strong>- Set session length, cipher-, and key-rotation schedules</li>
+<li class=""><strong>Portal</strong> Configure the customer&#x27;s portal page</li>
+<li class=""><strong>Windows Authentication</strong> Configure Integrated Windows Authentication for this customer</li>
+<li class=""><strong>ID Router Clustering</strong> Configure how multiple Identity Routers will communicate with each other</li>
+<li class=""><strong>Features</strong> - Select the features to which the customer has subscribed</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="set-customer-context">Set Customer Context<a href="#set-customer-context" class="hash-link" aria-label="Direct link to Set Customer Context" title="Direct link to Set Customer Context" translate="no">​</a></h2>
+<p>The <strong>Set Customer Context</strong> option enables a System administrator to mimic a customer. This option enables the System administrator to run Studio as if they were the customer and ensures they can provide help with the changes and configurations set by the customer.</p>
+<ol>
+<li class="">Click the <strong>Customers</strong> link at the top of the <em>Studio</em> page.</li>
+<li class="">Mouse over the customer that you want to mimic and click the <strong>Set Customer Context</strong> button.</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="Customer icon menu used to set customer context" src="data:image/jpeg;base64,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" width="304" height="127" class="img_ev3q"></p>
+<ol>
+<li class="">Click <strong>Yes</strong> at the confirmation window. The context is set to the selected customer.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="reset-the-context"><strong>Reset the Context</strong><a href="#reset-the-context" class="hash-link" aria-label="Direct link to reset-the-context" title="Direct link to reset-the-context" translate="no">​</a></h2>
+<p>After making the necessary changes to the customer&#x27;s Studio configuration, you must reset the context of the Studio application to the System Administrator context.</p>
+<ol>
+<li class="">Click <strong>Reset Context</strong> in the upper left-hand corner of the Studio page.</li>
+<li class="">The customer context is set back to System Administrator.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="customer-configuration">Customer Configuration<a href="#customer-configuration" class="hash-link" aria-label="Direct link to Customer Configuration" title="Direct link to Customer Configuration" translate="no">​</a></h2>
+<p>These instructions explain how to create a new customer in Studio. Customers are created by recording information on the customer in the <em>New/Edit Customer</em> dialog. The <em>New/Edit Customer</em> dialog contains six tabs on which to enter information about the customer. Each tab is explained in the following pages.</p>
+<p>The information entered on the <strong>Configuration</strong> tab is displayed when the customer performs a mouse-over their super administrator icon on the <em>Administrators</em> page in Studio.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="company-information">Company Information<a href="#company-information" class="hash-link" aria-label="Direct link to Company Information" title="Direct link to Company Information" translate="no">​</a></h3>
+<ol>
+<li class="">Click the <strong>Customers</strong> link at the top of the page.</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="Customers page with the New Customer control" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAA8ADwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD2aV9v1NNWGaQZBxSSD9+uavjgYFAFP7LN/eH50fZZv7w/Oruagur2Czi8yeRUX1JxTWonoQ/ZZv7w/Oj7LN/eH51X0vXLfU5rhIpEIjbC88nitXNDTWjBNPVFFreZBnOaYJcDB61o5rNuABO2KQx8v+vWrmapzcTrU/mD1oAlzXjHja/v7nWrq2a4c28cmAmeK9Q1TxBY6VCzzyjI/hXk5rw/XNXN7rN1dx/clk3ACu7BU25czRw42olHlTNXQzfxN5to7RHqW6D869E0PxlbykWd6+LheN3UH8a8+XVUg0W2ijdmeVNzIegqlbW7ySNcFlVc5xmt60acvidjmpVZU9j3pJFdQyMGU9CDVK4/1zVS8M3CyaBatnnbVuY5lJry2rOx6qd0mS3P+tFJS3X+uH0rN1pb19PYWLES59e1JlHjHiLUJ/8AhK9RjYmSITEAE8AVFb6ebtiLeEdMnPFWNQ0m6j1KaW5Vi7tliR1NNGpXiyLbWamMoNjMO4r1414qknE8OcG6j5jU0qygSFzcRhj/AAg1feytPsnywKJPWiysLo2CSbTgD5iarrOzTeUD82cV8JmGKrVazbex1RhZWN3wleXkWpRWbyEwMDhfSu6f7xrj/D2n3EWqRTyL8oB5rsH+8a9bLpznSvPudtK/LqWLtSHDdqjBBFXpFDIQRWa4wxAruNSrf6TaahGVljUnsfSsey8GWVtO0krCUE5AIxiugoosS4p6jJbKJ7T7OgCLjAxWCvgy1WfzhL82c9K6GisKuFpVXeaE4Re46GJYIVQYO0daCCxyBSDk1oRRJ5Y4rZJRVkUf/9k=" width="60" height="60" class="img_ev3q"></p>
+<ol>
+<li class="">Click the <strong>New Customer</strong> icon.</li>
+</ol>
+<p>The <em>New Customer</em> dialog displays.</p>
+<p><img decoding="async" loading="lazy" alt="New Customer dialog with configuration fields" src="/samples/pr-preview/pr-2/assets/images/_page_20_Picture_3-d1b2574a7318d86c516ea58ec453b3eb.jpeg" width="1023" height="668" class="img_ev3q"></p>
+<ol>
+<li class="">Complete the following fields:</li>
+</ol>
+<ul>
+<li class=""><strong>Display Name</strong>  Enter a name for the company</li>
+<li class=""><strong>Time Zone</strong> Select the appropriate time zone for this customer from the drop-down list</li>
+<li class=""><strong>Status</strong> - Select the appropriate status from the drop-down list</li>
+<li class=""><strong>Parent</strong> - Select the parent organization for this customer</li>
+</ul>
+<ol>
+<li class="">
+<p>Select the <strong>On Premises Identity Router</strong> checkbox if the Identity Router is located within the customer&#x27;s network.</p>
+</li>
+<li class="">
+<p>To allow customers to agree to an online license agreement, select the <strong>Enable Click-Through License Agreement</strong> checkbox.</p>
+</li>
+<li class="">
+<p>Enter the customer&#x27;s domain name and then click <strong>Load Key</strong>.</p>
+</li>
+<li class="">
+<p>Navigate to the customer&#x27;s private key. The file should end with the extension &quot;.key&quot;.</p>
+</li>
+</ol>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>PSA keys in the PEM format are supported.</p></div></div>
+<ol>
+<li class="">
+<p>Select the key and then click <strong>Open</strong>.</p>
+</li>
+<li class="">
+<p>Click <strong>Upload</strong>. The key is uploaded to Studio.</p>
+</li>
+<li class="">
+<p>Click <strong>Load Cert</strong>.</p>
+</li>
+<li class="">
+<p>Navigate to the customer&#x27;s public key certificate file. It should end in &quot;.cert&quot;.</p>
+</li>
+<li class="">
+<p>Select the key and then click <strong>Open</strong> to load the key.</p>
+</li>
+<li class="">
+<p>In the <strong>Keychain API Key</strong> textfield, enter the key that will enable the Keychain API to communicate to the Identity Router.</p>
+</li>
+</ol>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>The keychain API Key is created by your system administrator.</p></div></div>
+<ol>
+<li class="">Click <strong>Save</strong> to persist your changes.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="sso-configuration">SSO Configuration<a href="#sso-configuration" class="hash-link" aria-label="Direct link to SSO Configuration" title="Direct link to SSO Configuration" translate="no">​</a></h2>
+<p>The <strong>SSO Configuration</strong> tab is used to configure the customer&#x27;s user session, cipher-rotation and keychainrefresh functions. Each section is explained below.</p>
+<ol>
+<li class="">Select the <strong>SSO Configuration</strong> tab.</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="SSO Configuration tab with user session and cipher rotation settings" src="/samples/pr-preview/pr-2/assets/images/_page_21_Picture_10-4c30f7c766b03a5b08baa8baaab14f7f.jpeg" width="1023" height="675" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="user-session">User Session<a href="#user-session" class="hash-link" aria-label="Direct link to User Session" title="Direct link to User Session" translate="no">​</a></h3>
+<p>Set the length of time a customer can be logged into the portal with and without activity.</p>
+<ol>
+<li class="">Complete the following fields:</li>
+</ol>
+<ul>
+<li class=""><strong>One Time Auth Window (sec)</strong> - Enter the time, in seconds, that the Authentication Window displays.</li>
+<li class=""><strong>Max Session Length (secs)</strong> Enter the time (in seconds) that can be spent by an active user on the portal.</li>
+<li class=""><strong>Inactivity Timeout (secs)</strong> Enter the amount of time (in seconds) that can be spent on the portal before the user times out for inactivity.</li>
+<li class=""><strong>Session IP Validation</strong> - To require a session validation, select the checkbox.</li>
+<li class=""><strong>Limit Concurrent Sessions</strong> - To limit the number of sessions a user can initiate, select the <strong>Concurrent Sessions</strong> checkbox and then enter a value in <strong>Limit</strong> text field - The <strong>Limit</strong> textfield appears when the <strong>Concurrent Sessions</strong> checkbox is selected.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cipher-rotation">Cipher Rotation<a href="#cipher-rotation" class="hash-link" aria-label="Direct link to Cipher Rotation" title="Direct link to Cipher Rotation" translate="no">​</a></h3>
+<p>The cipher rotation determines how often the encryption key used to secure the communication between the Identity Router and the cloud is changed. Complete the following fields to configure cipher rotation.</p>
+<div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>warning</div><div class="admonitionContent_BuS1"><p>Cipher Rotation must be disabled for High Availability customers.</p></div></div>
+<ol>
+<li class="">Complete the following fields:</li>
+</ol>
+<ul>
+<li class=""><strong>Disable</strong> - To disable the <strong>Cipher Rotation</strong> feature, select the <strong>Disable</strong> checkbox.</li>
+<li class=""><strong>Start</strong> - Click the calendar, select a start date, enter the starting time in the textfield, and then select either <strong>AM</strong> or <strong>PM</strong> from the drop-down list.</li>
+<li class=""><strong>Interval</strong> - Enter the amount variable in the <strong>Interval</strong> textfield and then select the value from the drop-down list..</li>
+</ul>
+<div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>warning</div><div class="admonitionContent_BuS1"><p>During the cipher rotation process, users cannot log in. Be sure to set the cipher rotation to occur at a time when the least amount of user will be logged into Studio.</p></div></div>
+<ol>
+<li class="">Click <strong>Save</strong> or continue onto <em>Cloud Keychain Refresh or Adapter Updates below.</em></li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="adapter-updates">Adapter Updates<a href="#adapter-updates" class="hash-link" aria-label="Direct link to Adapter Updates" title="Direct link to Adapter Updates" translate="no">​</a></h2>
+<ol>
+<li class="">Select the <strong>SSO Configuration</strong> tab.</li>
+<li class="">To select when the adapter update takes place, enter a time in the <strong>Adapter Update Time</strong> textfield and then select either <strong>AM</strong> or <strong>PM</strong> from the drop-down list</li>
+<li class="">Click <strong>Save</strong>.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="portal---edit-profile">Portal - Edit Profile<a href="#portal---edit-profile" class="hash-link" aria-label="Direct link to Portal - Edit Profile" title="Direct link to Portal - Edit Profile" translate="no">​</a></h2>
+<p>The <strong>Portal</strong> tab enables you to configure <em>SinglePoint® Studio</em> to funnel all traffic to a portal proxy. There are two types of portal configurations: Default Portal and Custom Portal.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="before-you-begin">Before you begin<a href="#before-you-begin" class="hash-link" aria-label="Direct link to Before you begin" title="Direct link to Before you begin" translate="no">​</a></h3>
+<p>Ensure the following steps have been completed before attempting these instructions.</p>
+<ul>
+<li class="">
+<p>Create a Web server with a backend hostname set to the machine hosting the portal and whichever front-end server you want</p>
+</li>
+<li class="">
+<p>Create a new application that has no authentication required and select the <strong>Pass Headers</strong> checkbox. This application needs to use the portal server, have an <strong>Allow All</strong> policy, and needs to protect minimally the portal page itself, though it probably ought to protect all of the portal integration pages</p>
+</li>
+</ul>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>If you use the default <strong>Protect All Application Areas</strong> to protect the entire portal Web server, then <strong>everything</strong> on the Web server will be protected. Trying to access images on a login page with the entire portal server protected will result in the images not being displayed because the Identity Router requires you to be logged in to see the images.</p></div></div>
+<p>Choose the type of portal to configure:</p>
+<ul>
+<li class=""><strong>Default Portal</strong> on page 14 Configure the default portal</li>
+<li class=""><strong>Custom Portal</strong> on page 15- Configure a custom portal</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="default-portal---new-customer">Default Portal - New Customer<a href="#default-portal---new-customer" class="hash-link" aria-label="Direct link to Default Portal - New Customer" title="Direct link to Default Portal - New Customer" translate="no">​</a></h2>
+<ol>
+<li class="">Access the <em>Edit Customer</em> dialog.</li>
+<li class="">Select the <strong>Portal</strong> tab if it is not already selected.</li>
+</ol>
+<p>The <em>Portal</em> dialog displays with the <strong>Default Portal</strong> option selected.</p>
+<p><img decoding="async" loading="lazy" alt="New Customer dialog with portal configuration options" src="/samples/pr-preview/pr-2/assets/images/_page_23_Picture_8-f692f7d5117d48a7833f3010ed6784e1.jpeg" width="1028" height="674" class="img_ev3q"></p>
+<ol>
+<li class="">
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="portal-type">Portal Type<a href="#portal-type" class="hash-link" aria-label="Direct link to Portal Type" title="Direct link to Portal Type" translate="no">​</a></h3>
+</li>
+<li class="">
+<p>Click the Default Portal button.</p>
+</li>
+</ol>
+<p>The default portal fields display.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="default-portal-server-configuration">Default Portal Server Configuration<a href="#default-portal-server-configuration" class="hash-link" aria-label="Direct link to Default Portal Server Configuration" title="Direct link to Default Portal Server Configuration" translate="no">​</a></h4>
+<ol>
+<li class="">Complete the following fields:</li>
+</ol>
+<ul>
+<li class=""><strong>Company Name</strong> - Enter the company name for this portal</li>
+<li class=""><strong>Home Background URL</strong> - Enter the background URL for this portal</li>
+<li class=""><strong>Portal Background URL</strong> - Enter the portal background</li>
+<li class=""><strong>Help URL</strong> - Enter the help URL for this portal</li>
+<li class=""><strong>Settings URL</strong> - Enter the settings URL for this portal</li>
+</ul>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="default-portal-client-configuration">Default Portal Client Configuration<a href="#default-portal-client-configuration" class="hash-link" aria-label="Direct link to Default Portal Client Configuration" title="Direct link to Default Portal Client Configuration" translate="no">​</a></h4>
+<ul>
+<li class="">
+<ol start="5">
+<li class="">Complete the following fields: • <strong>Image Path</strong> - Enter the relative path to the images used for this portal page • <strong>Default Language</strong> - Select a default language for the Studio user interface • <strong>Default Theme</strong> - Select the default theme from the drop-down list • <strong>Default Position</strong> - Select the default position for the portal •<strong>Auto Dim</strong> - Select this option to enable the auto-dim feature.</li>
+</ol>
+</li>
+</ul>
+<ol start="6">
+<li class="">Click <strong>Save</strong> to persist the changes.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="custom-portal---new-customer"><strong>Custom Portal - New Customer</strong><a href="#custom-portal---new-customer" class="hash-link" aria-label="Direct link to custom-portal---new-customer" title="Direct link to custom-portal---new-customer" translate="no">​</a></h2>
+<ol>
+<li class="">
+<p>Access the <em>Edit Customer</em> dialog.</p>
+</li>
+<li class="">
+<p>Select the <strong>Portal</strong> tab if it is not already selected.</p>
+</li>
+</ol>
+<p>The <em>Portal</em> dialog displays with the <strong>Default Portal</strong> option selected.</p>
+<p><img decoding="async" loading="lazy" alt="Custom Portal configuration screen" src="/samples/pr-preview/pr-2/assets/images/_page_24_Diagram_9-b6169a6c18e31f2de77aaf3cd6b5b371.jpeg" width="1031" height="683" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="portal-type-1"><strong>Portal Type</strong><a href="#portal-type-1" class="hash-link" aria-label="Direct link to portal-type-1" title="Direct link to portal-type-1" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-click-the-custom-portal-button">3) Click the <strong>Custom Portal</strong> button.<a href="#3-click-the-custom-portal-button" class="hash-link" aria-label="Direct link to 3-click-the-custom-portal-button" title="Direct link to 3-click-the-custom-portal-button" translate="no">​</a></h4>
+<p>The <em>Custom Portal</em> textfields display.</p>
+<p><strong>Note</strong>: In the <em>Edit Profile</em> dialog on the <strong>Portal</strong> tab, enter the end-user facing URLs for the portal page, i.e. &quot;<a href="https://portal.myco.com/login.jsp" target="_blank" rel="noopener noreferrer" class="">https://portal.myco.com/login.jsp</a>&quot;, &quot;<a href="https://portal.myco.com/portal.jsp" target="_blank" rel="noopener noreferrer" class="">https://portal.myco.com/portal.jsp</a>&quot;, etc... (rather than</p>
+<p>&quot;<a href="https://backendhostname/login.jsp" target="_blank" rel="noopener noreferrer" class="">https://backendhostname/login.jsp</a>&quot;)</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="basic-custom-portal-configuration"><strong>Basic Custom Portal Configuration</strong><a href="#basic-custom-portal-configuration" class="hash-link" aria-label="Direct link to basic-custom-portal-configuration" title="Direct link to basic-custom-portal-configuration" translate="no">​</a></h4>
+<ul>
+<li class="">
+<ol start="4">
+<li class="">Complete the following fields:</li>
+</ol>
+<ul>
+<li class=""><strong>Login Page</strong> Enter the URL to the login page for the portal</li>
+<li class=""><strong>Portal Page</strong> Enter the URL for the portal page that contains the list of Web applications for this customer</li>
+<li class=""><strong>Error Page</strong> Enter the URL of the error page to be displayed for this customer</li>
+<li class=""><strong>Logout Page</strong> Enter the URL of the page that will be displayed in the event of a logout</li>
+</ul>
+</li>
+</ul>
+<p><strong>Technical Note</strong>: Inside of the head tag of your logout page, include this line:</p>
+<script language="javascript" src="https://&lt;HOSTNAME\_OF\_ROUTER\_HERE&gt;/LogoutJsServlet"></script>
+<p>When configuring a custom portal, the following pages must be protected resources: portal, error, and logout.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="ajax-proxy-configuration"><strong>AJAX Proxy Configuration</strong><a href="#ajax-proxy-configuration" class="hash-link" aria-label="Direct link to ajax-proxy-configuration" title="Direct link to ajax-proxy-configuration" translate="no">​</a></h4>
+<ul>
+<li class="">
+<ol start="5">
+<li class="">Optionally select the <strong>Enable AJAX Proxy</strong> checkbox to configure an AJAX proxy, then complete the following fields: • <strong>Portal Path</strong> - Enter the portal path •<strong>Backing Portal Location</strong> - Enter the backing portal location</li>
+</ol>
+</li>
+<li class="">
+<ol start="6">
+<li class="">Click <strong>Save</strong> to capture the URLs for this customer in SinglePoint® Studio.</li>
+</ol>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="windows-authentication"><strong>Windows Authentication</strong><a href="#windows-authentication" class="hash-link" aria-label="Direct link to windows-authentication" title="Direct link to windows-authentication" translate="no">​</a></h2>
+<p>Integrated Windows Authentication (IWA) is a mechanism which allows an end-user&#x27;s client (the Internet Explorer Web browser) to log into a domain using stored client information, rather than prompting the end user to manually supply a username and password. To use IWA, the end user must be logged into a local computer as a domain user. Should the initial cryptographic exchange fail, the browser will prompt the user to enter credentials for the domain.</p>
+<p>When IWA is enabled on the ID Router, end users that are logged into the Windows domain will not have to manually authenticate to the SinglePoint-portal page or SinglePoint-protected applications in the same domain. SinglePoint® Studio can perform IWA authentication with either a domain controller or with multiple Windows Internet Naming Service (WINS) servers.</p>
+<p>To further customize your authentication scheme, SinglePoint® Studio allows administrators to specify a range of client networks which will use IWA. In this scenario, the ID Router will only attempt to initiate an IWA exchange for requests coming from computers in the specified client network. This is useful when a network configuration is configured such that computers using a Microsoft operating system are assigned similar IP addresses.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="before-you-begin-1"><strong>Before You Begin</strong><a href="#before-you-begin-1" class="hash-link" aria-label="Direct link to before-you-begin-1" title="Direct link to before-you-begin-1" translate="no">​</a></h3>
+<p>Review the list below to ensure all the information needed to perform the task is at hand.</p>
+<ul>
+<li class="">A valid username and password combination for a user account in the domain. This account will be used to retrieve the initial IWA challenge from the domain controller • The fully qualified name for the domain •The domain name or IP address of the domain controller</li>
+<li class="">There are two options when configuring IWA in SinglePoint® Studio: o <strong>IWA Enabled - New Customer</strong> on page 64 o <strong>IWA Enabled by IP Networks - New Customer</strong> on page 66</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="iwa-enabled"><strong>IWA Enabled</strong><a href="#iwa-enabled" class="hash-link" aria-label="Direct link to iwa-enabled" title="Direct link to iwa-enabled" translate="no">​</a></h2>
+<p>Use these instructions to configure Integrated Windows Authentication with Kerberos in SinglePoint® Studio.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="before-you-begin-2"><strong>Before You Begin</strong><a href="#before-you-begin-2" class="hash-link" aria-label="Direct link to before-you-begin-2" title="Direct link to before-you-begin-2" translate="no">​</a></h3>
+<p>Review the list below to ensure all the information needed to perform the task is at hand.</p>
+<ul>
+<li class="">A valid username and password combination for a user account in the domain. This account will be used to retrieve the initial IWA challenge from the domain controller •The fully qualified name for the domain</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="configure-iwa-with-kerberos"><strong>Configure IWA with Kerberos</strong><a href="#configure-iwa-with-kerberos" class="hash-link" aria-label="Direct link to configure-iwa-with-kerberos" title="Direct link to configure-iwa-with-kerberos" translate="no">​</a></h2>
+<p>Follow these steps to configure IWA with Kerberos within SinglePoint® Studio. The <strong>Windows Authentication</strong> tab is accessed from the <em>Edit Profile</em> dialog.</p>
+<ul>
+<li class="">
+<ol>
+<li class="">To access the <em>Edit Profile</em> dialog, click the <strong>Edit Profile</strong> link in the upper right-hand corner of the <em>SinglePoint® Studio</em> page.</li>
+</ol>
+</li>
+<li class="">
+<ol start="2">
+<li class="">The <em>Edit Profile</em> dialog displays.</li>
+</ol>
+</li>
+</ul>
+<ol start="3">
+<li class="">Select the <strong>Windows Authentication</strong> tab.</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="Windows Authentication configuration fields in Studio" src="/samples/pr-preview/pr-2/assets/images/_page_27_Picture_1-890e62f1b4ff349f0febedfef3b24069.jpeg" width="1034" height="681" class="img_ev3q"></p>
+<ol start="4">
+<li class="">Select <strong>Enabled</strong> from the <strong>Status</strong> drop-down list.</li>
+</ol>
+<p><strong>Note</strong>: If you have an existing IWA configuration and you change the status to <strong>Disabled</strong>, the configuration information is deleted.</p>
+<ol start="5">
+<li class="">Complete the following fields:</li>
+</ol>
+<ul>
+<li class="">• <strong>Username</strong> - A username for an account on the domain •<strong>Password</strong> - The password for the specified account</li>
+<li class=""><strong>Domain Name</strong> The fully qualified name of the domain</li>
+<li class=""><strong>WINS Name</strong> The WINS-style domain name is automatically extracted and displayed</li>
+</ul>
+<ol start="6">
+<li class="">Optionally make the ID Router a member of your network by clicking the <strong>Join</strong> button. The ID Router must be on the domain network, and does not have to be on the premises.</li>
+</ol>
+<p><strong>Technical Note</strong>: - Add Identity Router to Windows DNS Manager - Kerberos</p>
+<p>You must add the Identity Router to your Windows DNS Manager to enable the Identity Router to perform IWA.</p>
+<p><strong>To add the Identity Router to your DNS Manager on Windows Server 2003 - 2008:</strong></p>
+<p>Go to <strong>Administrative Tools&gt;DNS</strong>. In the left-hand menu, select your domain in the <strong>Forward Lookup Zones</strong> section. In the right-hand window, right-click and select <strong>New Host (A or AAAA),</strong> and then enter the information about your ID Router. The IP address of the host should be configured with the proxy IP address (public IP address) of your Identity Router.</p>
+<p>When adding a new host record to the forward lookup zone, please be sure that the checkbox labeled</p>
+<p><strong>Create associated pointer (PTR) record</strong> is checked (it will be checked by default). If the proxy IP address of the Identity Router is in an IP address range that is already defined as a reverse lookup zone, create the new record in the forward lookup zone. If the IP address range IS NOT defined as a reverse lookup zone, then do not add the record to the forward lookup zone until the IP address range containing the proxy IP address has been added as a new reverse lookup zone. For more information on creating reverse lookup zones, please consult Microsoft&#x27;s documentation.</p>
+<p><strong>Technical Note:</strong> - Add the Identity Router to the Trusted Intranet Servers List</p>
+<p>Windows clients will only respond to IWA challenges from servers located within the client&#x27;s domain. The client&#x27;s browser determines if a server is within their domain by verifying that the server&#x27;s DNS short name is used instead of the fully qualified DNS name. To allow a client to receive a successful IWA challenge and respond to that challenge, the URL of the Identity Router must be added to the &quot;Local Intranet Sites List&quot; in Internet Explorer (<strong>Tools&gt;Internet Options&gt;Local Intranet&gt;Sites&gt;Advanced</strong>). To add the Identity Router&#x27;s URL to all clients&#x27; Internet Explorer&#x27;s &quot;Local Intranet sites list&quot;, use the GPO to push the registry settings that represent the &quot;Local Intranet Sites List&quot; to all clients. Please refer to Microsoft&#x27;s documentation on how to push registry settings via the GPO to all machines in a domain.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="technical-note-iwa-kerberos-windows-7-security-update"><strong>Technical Note: IWA Kerberos Windows 7 Security Update</strong><a href="#technical-note-iwa-kerberos-windows-7-security-update" class="hash-link" aria-label="Direct link to technical-note-iwa-kerberos-windows-7-security-update" title="Direct link to technical-note-iwa-kerberos-windows-7-security-update" translate="no">​</a></h3>
+<p>Due to a new feature in Windows 7 (which has been backported to older versions of Windows via a security patch) a registry entry must be added to individual Windows clients before they can perform IWA. The registry entry that must be added is</p>
+<p><strong>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\LSA\SuppressExtendedProtection.</strong> The value of the entry should be <strong>2</strong>. This addition needs to be applied ONLY if the client machines have been updated with the Windows 7 Security Update. The official announcement from Microsoft can be found at <a href="http://support.microsoft.com/kb/968389" target="_blank" rel="noopener noreferrer" class="">http://support.microsoft.com/kb/968389</a>. Please refer to Microsoft&#x27;s documentation on how to push registry settings via the GPO to all machines in a domain.</p>
+<ol start="7">
+<li class="">Click <strong>Save</strong> to persist your changes.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="iwa---enabled-by-ip-networks"><strong>IWA - Enabled by IP Networks</strong><a href="#iwa---enabled-by-ip-networks" class="hash-link" aria-label="Direct link to iwa---enabled-by-ip-networks" title="Direct link to iwa---enabled-by-ip-networks" translate="no">​</a></h2>
+<p>When IWA by IP Networks with Kerberos is configured, the ID Router(s) will only attempt IWA for requests coming from machines in the specified IP range(s).</p>
+<p>Use these instructions to configure Integrated Windows Authentication with Kerberos in IP Networks in SinglePoint® Studio.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="before-you-begin-3"><strong>Before You Begin</strong><a href="#before-you-begin-3" class="hash-link" aria-label="Direct link to before-you-begin-3" title="Direct link to before-you-begin-3" translate="no">​</a></h3>
+<p>Review the list below to ensure all the information needed to perform the task is at hand.</p>
+<p>• A valid username and password combination for a user account in the domain. This account will be used to retrieve the initial IWA challenge from the domain controller • The fully qualified name for the domain •The domain name or IP address of the domain controller</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="configure-iwa-with-kerberos-by-ip-networks"><strong>Configure IWA with Kerberos by IP Networks</strong><a href="#configure-iwa-with-kerberos-by-ip-networks" class="hash-link" aria-label="Direct link to configure-iwa-with-kerberos-by-ip-networks" title="Direct link to configure-iwa-with-kerberos-by-ip-networks" translate="no">​</a></h2>
+<p>Follow these steps to configure IWA with Kerberos by IP Networks within SinglePoint® Studio. The <strong>Windows Authentication</strong> tab is accessed from the <em>Edit Profile</em> dialog.</p>
+<ul>
+<li class="">
+<ol>
+<li class="">To access the <em>Edit Profile</em> dialog, click the <strong>Edit Profile</strong> link in the upper right-hand corner of the <em>SinglePoint® Studio</em> page.</li>
+</ol>
+</li>
+<li class="">
+<ol start="2">
+<li class="">The <em>Edit Profile</em> dialog displays.</li>
+</ol>
+</li>
+<li class="">
+<ol start="3">
+<li class="">Select the <strong>Windows Authentication</strong> tab.</li>
+</ol>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="Windows Authentication settings with client IP network fields" src="/samples/pr-preview/pr-2/assets/images/_page_29_Picture_4-dc26fc5edf19a18b207410e78d153657.jpeg" width="1025" height="672" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Screenshot of the New Customer window showing the Integrated Windows Authentication section. The IP address is &amp;#39;IP Networks&amp;#39;. The Windows Authentication section includes fields for Status (Enabled by IP Networks), Username, Password, Domain Name, WINS Name, Token Validity Period, and IWA Client Networks. A screenshot of the IP Networks section is shown at the bottom left." src="/samples/pr-preview/pr-2/assets/images/_page_29_Picture_4-dc26fc5edf19a18b207410e78d153657.jpeg" width="1025" height="672" class="img_ev3q"></p>
+<ul>
+<li class="">
+<ol start="4">
+<li class="">Select the <strong>Enabled by IP Networks</strong> from the <strong>Status</strong> drop-down list. <strong>Note</strong>: If you have an existing IWA configuration and you change the status to <strong>Disabled</strong>, the configuration information is deleted.</li>
+</ol>
+</li>
+<li class="">
+<ol start="5">
+<li class="">Complete the following fields: • <strong>Username</strong> - A username for an account on the domain</li>
+</ol>
+<ul>
+<li class=""><strong>Password</strong>  The password for the specified account •<strong>Domain Name</strong> - The fully qualified name of the domain</li>
+<li class=""><strong>WINS Name</strong> The WINS-style domain name is automatically extracted and displayed</li>
+</ul>
+</li>
+<li class="">
+<ol start="6">
+<li class="">In the <strong>IP</strong> field, enter the starting IP for your network.</li>
+</ol>
+</li>
+<li class="">
+<ol start="7">
+<li class="">In the <strong>Mask</strong> field, enter a value to allow eight or more addresses in the class C subnet. For example:</li>
+</ol>
+</li>
+</ul>
+<p><strong>255.255.248.0</strong>.</p>
+<ul>
+<li class="">
+<ol start="8">
+<li class="">Click the <strong>Join</strong> button to make the ID Router a member of your domain. The ID Router only needs to be connected to the domain network, and does not have to be physically on the premises.</li>
+</ol>
+</li>
+<li class="">
+<ol start="9">
+<li class="">Click <strong>Save</strong> to persist your changes.</li>
+</ol>
+</li>
+</ul>
+<p><strong>Technical Note</strong>: - Add Identity Router to Windows DNS Manager - Kerberos</p>
+<p>You must add the Identity Router to your Windows DNS Manager to enable the Identity Router to perform IWA.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="to-add-the-identity-router-to-your-dns-manager-on-windows-server-2003---2008"><strong>To add the Identity Router to your DNS Manager on Windows Server 2003 - 2008:</strong><a href="#to-add-the-identity-router-to-your-dns-manager-on-windows-server-2003---2008" class="hash-link" aria-label="Direct link to to-add-the-identity-router-to-your-dns-manager-on-windows-server-2003---2008" title="Direct link to to-add-the-identity-router-to-your-dns-manager-on-windows-server-2003---2008" translate="no">​</a></h3>
+<p>Go to <strong>Administrative Tools&gt;DNS</strong>. In the left-hand menu, select your domain in the <strong>Forward Lookup Zones</strong> section. In the right-hand window, right-click and select <strong>New Host (A or AAAA),</strong> and then enter the information about your ID Router. The IP address of the host should be configured with the proxy IP address (public IP address) of your Identity Router.</p>
+<p>When adding a new host record to the forward lookup zone, please be sure that the checkbox labeled <strong>Create associated pointer (PTR) record</strong> is checked (it will be checked by default). If the proxy IP address of the Identity Router is in an IP address range that is already defined as a reverse lookup zone, create the new record in the forward lookup zone. If the IP address range IS NOT defined as a reverse lookup zone, then do not add the record to the forward lookup zone until the IP address range containing the proxy IP address has been added as a new reverse lookup zone. For more information on creating reverse lookup zones, please consult Microsoft&#x27;s documentation.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="technical-note---add-the-identity-router-to-the-trusted-intranet-servers-list"><strong>Technical Note:</strong> - Add the Identity Router to the Trusted Intranet Servers List<a href="#technical-note---add-the-identity-router-to-the-trusted-intranet-servers-list" class="hash-link" aria-label="Direct link to technical-note---add-the-identity-router-to-the-trusted-intranet-servers-list" title="Direct link to technical-note---add-the-identity-router-to-the-trusted-intranet-servers-list" translate="no">​</a></h4>
+<p>Windows clients will only respond to IWA challenges from servers located within the client&#x27;s domain. The client&#x27;s browser determines if a server is within their domain by verifying that the server&#x27;s DNS short name is used instead of the fully qualified DNS name. To allow a client to receive a successful IWA challenge and respond to that challenge, the URL of the Identity Router must be added to the &quot;Local Intranet Sites List&quot; in Internet Explorer (<strong>Tools&gt;Internet Options&gt;Local Intranet&gt;Sites&gt;Advanced</strong>). To add the Identity Router&#x27;s URL to all clients&#x27; Internet Explorer&#x27;s &quot;Local Intranet sites list&quot;, use the GPO to push the registry settings that represent the &quot;Local Intranet Sites List&quot; to all clients. Please refer to Microsoft&#x27;s documentation on how to push registry settings via the GPO to all machines in a domain.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="technical-note---iwa-kerberos-windows-7-security-update"><strong>Technical Note:</strong> - IWA Kerberos Windows 7 Security Update<a href="#technical-note---iwa-kerberos-windows-7-security-update" class="hash-link" aria-label="Direct link to technical-note---iwa-kerberos-windows-7-security-update" title="Direct link to technical-note---iwa-kerberos-windows-7-security-update" translate="no">​</a></h4>
+<p>Due to a new feature in Windows 7 (which has been backported to older versions of Windows via a security patch) a registry entry must be added to individual Windows clients before they can perform IWA. The registry entry that must be added is</p>
+<p><strong>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\LSA\SuppressExtendedProtection.</strong> The</p>
+<p>value of the entry should be <strong>2</strong>. This addition needs to be applied ONLY if the client machines have been updated with the Windows 7 Security Update. The official announcement from Microsoft can be found at <a href="http://support.microsoft.com/kb/968389" target="_blank" rel="noopener noreferrer" class="">http://support.microsoft.com/kb/968389</a>. Please refer to Microsoft&#x27;s documentation on how to push registry settings via the GPO to all machines in a domain.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="identity-router-clustering---new-customer"><strong>Identity Router Clustering - New Customer</strong><a href="#identity-router-clustering---new-customer" class="hash-link" aria-label="Direct link to identity-router-clustering---new-customer" title="Direct link to identity-router-clustering---new-customer" translate="no">​</a></h2>
+<p>When using more than one ID Router, you must designate one router as the connection to the outside world to accept all incoming traffic. These instructions explain how to designate an ID Router to handle all incoming traffic.</p>
+<p><strong>Note</strong>: Identity Router clustering can only be enabled by a Symplified Administrator.</p>
+<ul>
+<li class="">
+<ol>
+<li class="">Click the <strong>Customers</strong> link at the top of the page.</li>
+</ol>
+</li>
+<li class="">
+<ol start="2">
+<li class="">Click the <strong>New Customer</strong> icon. The <em>New Customer</em> dialog displays.</li>
+</ol>
+</li>
+<li class="">
+<ol start="3">
+<li class="">Select the <strong>IDR Clustering</strong> tab. The <em>IDR Clustering</em> dialog displays.</li>
+</ol>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="Customer dialog with the IDR Clustering tab selected" src="/samples/pr-preview/pr-2/assets/images/_page_31_Picture_5-51db7e240ff8c1f63493da83db1799e7.jpeg" width="1037" height="690" class="img_ev3q"></p>
+<ul>
+<li class="">
+<ol start="4">
+<li class="">Select the <strong>Clustering Enabled</strong> checkbox to enable IDR Clustering and then select the type of clustering to perform: •<strong>Identity Router NFS Clustering</strong> on page 73</li>
+</ol>
+</li>
+</ul>
+<p>•<strong>Identity Router CIFS Clustering</strong> on page 69</p>
+<p><strong>Technical Note:</strong> The following 3 load-balancer products are supported with SinglePoint® Studio:</p>
+<p>* CISCO ACE family * F5 Big-IP family * Citrix Netscaler</p>
+<p>All of these products support&quot; session persistence&quot; or sticky sessions.</p>
+<p>We recommend that you use &quot;HTTP Cookie Persistence with Cookie Insert method&quot; to support session stickiness</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="identity-router-nfs-clustering---new-customer"><strong>Identity Router NFS Clustering - New Customer</strong><a href="#identity-router-nfs-clustering---new-customer" class="hash-link" aria-label="Direct link to identity-router-nfs-clustering---new-customer" title="Direct link to identity-router-nfs-clustering---new-customer" translate="no">​</a></h2>
+<p>Follow these steps to configure Identity Router NFS clustering.</p>
+<ul>
+<li class="">
+<ol>
+<li class="">Click the <strong>Customers</strong> link at the top of the page.</li>
+</ol>
+</li>
+<li class="">
+<ol start="2">
+<li class="">Click the <strong>New Customer</strong> icon. The <em>New Customer</em> dialog displays.</li>
+</ol>
+</li>
+<li class="">
+<ol start="3">
+<li class="">Select the <strong>IDR Clustering</strong> tab. <code>&lt;Identity_Route_NSF_Clustering_New_Customer&gt;</code></li>
+</ol>
+</li>
+<li class="">
+<ol start="4">
+<li class="">Complete the following fields: • <strong>Clustering Enabled</strong> - Check this box to enable ID Router clustering • <strong>Clustering Type</strong> - Select <strong>NFS</strong> from the drop-down list</li>
+</ol>
+<ul>
+<li class=""><strong>Load balancer DNS name</strong> Enter the DNS name of the load balancer for the ID Router cluster • <strong>Routing Interface</strong> - Choose the type of interface the Identity Router will use frrom the following: o If the Identity Router is behind a protected firewall, select Private o If the Identity Router is behind outside of the firewall, select public</li>
+<li class=""><strong>IP Address</strong> Enter the IP Address for the NFS server •<strong>Path</strong> - Enter the path to the NFS server</li>
+</ul>
+</li>
+<li class="">
+<ol start="5">
+<li class="">Click <strong>Test</strong> to ensure a connection can be made between SinglePoint® Studio and the ID Router.</li>
+</ol>
+</li>
+<li class="">
+<ol start="6">
+<li class="">Click <strong>Save</strong> to keep the configuration. NFS clustering has been configured.</li>
+</ol>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="identity-router-cifs-clustering---new-customer"><strong>Identity Router CIFS Clustering - New Customer</strong><a href="#identity-router-cifs-clustering---new-customer" class="hash-link" aria-label="Direct link to identity-router-cifs-clustering---new-customer" title="Direct link to identity-router-cifs-clustering---new-customer" translate="no">​</a></h2>
+<p>These instructions are divided into 2 sections: <em>Set the LMCompatibilityLevel</em> and <em>Configure Identity Router CIFS Clustering</em>.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="set-the-lmcompatibilitylevel"><strong>Set the LMCompatibilityLevel</strong><a href="#set-the-lmcompatibilitylevel" class="hash-link" aria-label="Direct link to set-the-lmcompatibilitylevel" title="Direct link to set-the-lmcompatibilitylevel" translate="no">​</a></h2>
+<p>To configure an Identity Router for CIFS clustering, you must configure the LMCompatiblityLevel. This must be done through the UI in Windows Server 2008. Follow the instructions below to set the correct LMCompatibilityLevel.</p>
+<ul>
+<li class="">
+<ol>
+<li class="">At the Windows Server 2008 desktop, select Start-&gt;Run</li>
+</ol>
+</li>
+<li class="">
+<ol start="2">
+<li class="">Enter <strong>run gpmc.msc</strong> and click <strong>OK</strong>. The <em>Group Policy Management</em> dialog displays.</li>
+</ol>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="Group Policy Management console" src="/samples/pr-preview/pr-2/assets/images/_page_33_Picture_3-a89e5be3bc3f84c08cdab4d6c8c0055c.jpeg" width="1026" height="647" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Screenshot of the Group Policy Management window showing the &amp;#39;Defealt Domain Controllers Policy&amp;#39; section. The left sidebar shows the &amp;#39;Group Policy Management&amp;#39; section with various policy types like &amp;#39;Forest&amp;#39;, &amp;#39;Consens&amp;#39;, &amp;#39;Group Policy Objects&amp;#39;, &amp;#39;Stress&amp;#39;, &amp;#39;Group Policy Modeling&amp;#39;, and &amp;#39;Group Policy Results&amp;#39;. The right sidebar shows the &amp;#39;Defealt Domain Controllers Policy&amp;#39; section with &amp;#39;Scope&amp;#39; (Default), &amp;#39;Settings&amp;#39; (Delegation), &amp;#39;Links&amp;#39; (Display links in this location), and &amp;#39;The following sites, domains, and UIUs are linked to this GPD&amp;#39;. The &amp;#39;Location&amp;#39; section shows &amp;#39;Domain Controllers&amp;#39; and &amp;#39;States GPOs&amp;#39;. The &amp;#39;Security Filtering&amp;#39; section shows &amp;#39;Name&amp;#39; and &amp;#39;Sig, Sufficiented Users&amp;#39;. The &amp;#39;WMI Filtering&amp;#39; section shows &amp;#39;The GPD is linked to the following WMI links: &amp;#39;cnomo&amp;#39;." src="/samples/pr-preview/pr-2/assets/images/_page_33_Picture_3-a89e5be3bc3f84c08cdab4d6c8c0055c.jpeg" width="1026" height="647" class="img_ev3q"></p>
+<ul>
+<li class="">
+<ol start="3">
+<li class="">Select the domain of interest, e.g. cust2.env2, expand as follows: <code>&lt;domain&gt;-&gt;Domain Controllers-&gt;Default Domain Controllers Policy</code></li>
+</ol>
+</li>
+<li class="">
+<ol start="4">
+<li class="">Right click on <strong>Group Domain: Controller Policies</strong> under the domain of interest and select <strong>Edit</strong>.</li>
+</ol>
+</li>
+</ul>
+<p>The <em>Group Policy Management Editor</em> dialog displays.</p>
+<p><img decoding="async" loading="lazy" alt="Group Policy Management Editor navigation tree" src="/samples/pr-preview/pr-2/assets/images/_page_34_Picture_2-4d7d9b22c464e1d1b3de902ceb4e1076.jpeg" width="1059" height="705" class="img_ev3q"></p>
+<ul>
+<li class="">
+<ol start="5">
+<li class="">On the Group Policy Management <em>Editor</em> dialog, select <strong>Computer Configuration-&gt;Policies-&gt;Windows Settings-&gt;Security Settings-&gt;Local Policies-&gt;Security Options</strong>, as shown above.</li>
+</ol>
+</li>
+<li class="">
+<ol start="6">
+<li class="">In the <em>Policy</em> section, right click <strong>Network security: LAN Manager authentication level</strong> and select the desired policy and click <strong>OK</strong>.</li>
+</ol>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="LAN Manager authentication policy settings" src="/samples/pr-preview/pr-2/assets/images/_page_34_Picture_5-003bdffae989fd59c3b674d9ff3a9c2d.jpeg" width="557" height="660" class="img_ev3q"></p>
+<p><strong>Warning</strong>: Do not select <strong>Send NTLM v2 response only Refuse LM &amp; NTLM</strong> because this policy will not work with Studio.</p>
+<ul>
+<li class="">
+<ol start="7">
+<li class="">Exit the <em>Group Policy Management Editor</em> dialog and then exit the G<em>roup Policy Management</em> dialog.</li>
+</ol>
+</li>
+<li class="">
+<ol start="8">
+<li class="">At the command line, run <strong>gpupdate /force</strong> to push the changes.</li>
+</ol>
+</li>
+<li class="">
+<ol start="9">
+<li class="">Click the <strong>Customers</strong> link at the top of the page.</li>
+</ol>
+</li>
+</ul>
+<ol start="10">
+<li class="">Click the <strong>New Customer</strong> icon.</li>
+</ol>
+<p>The <em>New Customer</em> dialog displays.</p>
+<ol start="11">
+<li class="">Select the <strong>IDR Clustering</strong> tab.</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="New Customer dialog with clustering configuration" src="/samples/pr-preview/pr-2/assets/images/_page_35_Picture_4-d18522628b2ecd13a32b8a5e6d043e35.jpeg" width="1022" height="672" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Screenshot of the New Customer interface showing the &amp;#39;Clustering Configuration&amp;#39; tab with a blue house icon and a clustering tree button." src="/samples/pr-preview/pr-2/assets/images/_page_35_Picture_4-d18522628b2ecd13a32b8a5e6d043e35.jpeg" width="1022" height="672" class="img_ev3q"></p>
+<ul>
+<li class="">
+<ol start="12">
+<li class="">Complete the following fields: • <strong>Clustering Enabled</strong> - Check this box to enable clustering for this customer • <strong>Clustering Share Type</strong> - Select <strong>CIFS</strong> from the drop-down list • <strong>Load balancer DNS name</strong> - Enter the DNS name of the load balancer for ID Router clustering</li>
+</ol>
+<ul>
+<li class=""><strong>Routing Interface</strong> Choose the type of interface the Identity Router will use from the following: o If the Identity Router is behind ar protected firewall, select Private o If the Identity Router is behind outside of the firewall, select public</li>
+<li class=""><strong>IP Address</strong> Enter the IP Address of the CIFS server •<strong>CIFS Share Name -</strong> Enter the Share name of the CIFS server</li>
+<li class=""><strong>CIFS Username</strong> Enter the CIFS username</li>
+<li class=""><strong>CIFS Password</strong> Enter the CIFS password</li>
+<li class=""><strong>Use Guest</strong> If guest accounts are allowed, check the <strong>Use Guest</strong> checkbox</li>
+</ul>
+</li>
+<li class="">
+<ol start="13">
+<li class="">Click <strong>Test</strong> to ensure that the information is correct and that a connection can be established between SinglePoint® Studio and the Identity Router.</li>
+</ol>
+</li>
+<li class="">
+<ol start="14">
+<li class="">Click <strong>Save</strong> to keep the configuration. CIFS clustering has been configured.</li>
+</ol>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="user-management---new-customer"><strong>User Management - New Customer</strong><a href="#user-management---new-customer" class="hash-link" aria-label="Direct link to user-management---new-customer" title="Direct link to user-management---new-customer" translate="no">​</a></h3>
+<p>This User Management tab enables the customer to enable and configure User Management.</p>
+<p>User Management is a separate feature and must be enabled by the system administrator. If the User Management tab does not appear on the Edit Profile dialog, contact your system administrator.</p>
+<p><strong>Note</strong>: You must set the context of Studio to a customer before attempting these instructions.</p>
+<ul>
+<li class="">
+<ol>
+<li class="">Click the <strong>Edit Profile</strong> link in the upper right-hand corner of any Studio page. The <em>Edit Profile</em> dialog displays.</li>
+</ol>
+</li>
+<li class="">
+<ol start="2">
+<li class="">Select the <strong>User Management</strong> tab. The <em>User Management</em> dialog displays.</li>
+</ol>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="User Management Database Configuration settings" src="/samples/pr-preview/pr-2/assets/images/_page_36_Picture_6-47e8fc2abc40d7c8e89a9d573c4e6c01.jpeg" width="1024" height="675" class="img_ev3q"></p>
+<ul>
+<li class="">
+<ol start="3">
+<li class="">Complete the following fields: • <strong>User</strong> Management Enabled - Select this checkbox to activate User Management • <strong>Type</strong> - Select the database User Management wil use to store users • <strong>Routing Interface</strong> - Select the routing interface used on the Identity Router from the dropdown list • <strong>Server</strong> - Enter the IP of the server on which User Manager is installed • <strong>Port</strong> - enter the port use to connectd to User Manager • <strong>Instance Name</strong> - enter the instance for User Manager • <strong>Username</strong> - Enter the username for the database User Manager is accessing</li>
+</ol>
+<ul>
+<li class=""><strong>Password</strong>  Enter the password for the database User Manger is accessing</li>
+<li class=""><strong>Test</strong>  Click this button to test the configuration</li>
+</ul>
+</li>
+<li class="">
+<ol start="4">
+<li class="">Click <strong>Save</strong> to persist the changes.</li>
+</ol>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="audit-logging"><strong>Audit Logging</strong><a href="#audit-logging" class="hash-link" aria-label="Direct link to audit-logging" title="Direct link to audit-logging" translate="no">​</a></h2>
+<p>These instructions explain how to configure audit logging for your Identity Router. The audit logs can be stored to a file or stored on a customer&#x27;s SysLog server.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="audit-logging-configuration"><strong>Audit Logging Configuration</strong><a href="#audit-logging-configuration" class="hash-link" aria-label="Direct link to audit-logging-configuration" title="Direct link to audit-logging-configuration" translate="no">​</a></h3>
+<ul>
+<li class="">
+<ol>
+<li class="">Click the <strong>Edit Profile</strong> link in the upper right-hand corner of any Studio page. The <em>Edit Profile</em> dialog displays .</li>
+</ol>
+</li>
+<li class="">
+<ol start="2">
+<li class="">Select the <strong>Audit Logging</strong> tab.</li>
+</ol>
+</li>
+</ul>
+<p>The <em>Audit Logging</em> dialog displays.</p>
+<p><img decoding="async" loading="lazy" alt="Audit Logging Configuration tab and event settings" src="/samples/pr-preview/pr-2/assets/images/_page_37_Picture_5-b008980e446c2e6a9e88310e1f7186ce.jpeg" width="1058" height="773" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Screenshot of the Audit Logging Configuration interface showing the Audit Logging Enabled and User Events enabled checkboxes." src="/samples/pr-preview/pr-2/assets/images/_page_37_Picture_5-b008980e446c2e6a9e88310e1f7186ce.jpeg" width="1058" height="773" class="img_ev3q">The image shows the Audit Logging Configuration interface for a blue house. The top section has a bar with the title &#x27;Edit Profile&#x27; at the top and &#x27;Hy Profile&#x27; at the bottom. Below the title is a section titled &#x27;Audit Logging Configuration&#x27;. The interface includes the following tabs:</p>
+<ul>
+<li class=""><strong>Hy Profile</strong> - &#x27;Hy Company&#x27;</li>
+<li class=""><strong>Hy Company</strong> - &#x27;Portal&#x27;</li>
+<li class=""><strong>Portal</strong> - &#x27;Windows App&#x27;</li>
+<li class=""><strong>Windows App</strong> - &#x27;IDR ClusterL&#x27;</li>
+<li class=""><strong>IDR ClusterL</strong> - &#x27;User Handg...&#x27;</li>
+<li class=""><strong>User Handg...</strong> - &#x27;Backup&#x27;</li>
+<li class=""><strong>Backup</strong> - &#x27;Restare&#x27;</li>
+<li class=""><strong>Audit Logging</strong> - &#x27;Audit Logging&#x27;</li>
+<li class=""><strong>Audit Source</strong> - &#x27;AuditN Source...&#x27;</li>
+</ul>
+<p>The interface is divided into two main sections:</p>
+<ul>
+<li class=""><strong>Audit Logging Enabled</strong> - This section is the highlighted area with a checkbox for &#x27;Audit Logging Enabled&#x27;.</li>
+<li class=""><strong>User Events Enabled</strong> - This section is the highlighted area with a checkbox for &#x27;User Events Enabled&#x27;.</li>
+<li class=""><strong>Authorization Request Events Enabled</strong> - This section is the highlighted area with a checkbox for &#x27;Authorization Request Events Enabled&#x27;.</li>
+<li class=""><strong>System Events Enabled</strong> - This section is the highlighted area with a checkbox for &#x27;System Events Enabled&#x27;.</li>
+<li class=""><strong>System Error Events Enabled</strong> - This section is the highlighted area with a checkbox for &#x27;System Error Events Enabled&#x27;.</li>
+<li class=""><strong>Output Type</strong> - This section is the highlighted area with a button &#x27;File Data&#x27; and a &#x27;*&#x27; button.</li>
+</ul>
+<p>At the bottom of the screen, there is a control button titled &#x27;Stop&#x27; and a &#x27;Cancel&#x27; button.</p>
+<ul>
+<li class="">
+<ol start="3">
+<li class="">Configure Audit Logging by checking the boxes of the events to be logged: • <strong>Audit Logging Enabled</strong> - Check this box to enable the logging feature. Deselect this check box to hide the fields on the page • <strong>User Events Enabled</strong> - Check this box to log user events o <strong>Authorization Request Events Enabled</strong> - Check this box to log authorization request events (which are also user-related events, and therefore, affected by the above checkbox as well) • <strong>System Event Enabled</strong> - Check this box to log system-related events o <strong>System Error Events Enabled</strong> - Check this box to log system-errors events (which are also system-related events, and therefore affected by the above checkbox as well) •<strong>Output Type</strong> - Check this box to determine what method will be used to create logs</li>
+</ol>
+</li>
+</ul>
+<p>o <strong>File Only</strong> - This option only stores log files to the symplified-audit.log on the Identity Router - This is the default option o <strong>Syslog</strong> - In addition to storing the symplified-audit.log file on the Identity Router, this option also stores log files to a Syslog server as configured in <strong>Local Disk Backup</strong> on page 78 on the Backup tab</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="syslog-configuration"><strong>SysLog Configuration</strong><a href="#syslog-configuration" class="hash-link" aria-label="Direct link to syslog-configuration" title="Direct link to syslog-configuration" translate="no">​</a></h4>
+<p>The SysLog fields only display when the SysLog option is selected from the <strong>Output Type</strong> drop-down.</p>
+<p><strong>Note</strong>: The SysLog server is completely independent from Studio. It must setup by the customer.</p>
+<p>Before you begin, have the Systlog server information from which the logs will be drawn.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="4-complete-the-following-fields">4) Complete the following fields:<a href="#4-complete-the-following-fields" class="hash-link" aria-label="Direct link to 4) Complete the following fields:" title="Direct link to 4) Complete the following fields:" translate="no">​</a></h4>
+<p>• <strong>Server</strong> - Enter the IP address of the server that the to which the Identity Router will log to • <strong>Port</strong> - Enter the port number of the SysLog Server to which the Identity Router will send messages • <strong>Protocol</strong> - Select the protocol from the drop-down list that the Identity Router must use to send the messages to the SysLog server • <strong>Routing Interface</strong> - Select the interface from the drop-down list from which that SysLog logs will be sent out • <strong>Security Method</strong> - This option determines if the Identity Router will add additional information to the log messages to try to prove that they are authentic and have not been tampered with moving between the Identity Router and the SysLog server</p>
+<p><strong>Note</strong>: The HMAC, SHA-1 and SHA-2 security method options require a password. The Password field for these security method options displays when any of the options are selected.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="5-click-save-to-persist-the-changes">5) Click <strong>Save</strong> to persist the changes.<a href="#5-click-save-to-persist-the-changes" class="hash-link" aria-label="Direct link to 5-click-save-to-persist-the-changes" title="Direct link to 5-click-save-to-persist-the-changes" translate="no">​</a></h4>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="features"><strong>Features</strong><a href="#features" class="hash-link" aria-label="Direct link to features" title="Direct link to features" translate="no">​</a></h4>
+<p>The <strong>Features</strong> tab enables the System administrator to select the features to which the customer has subscribed.</p>
+<p><img decoding="async" loading="lazy" alt="Features tab listing customer features and their enabled status" src="/samples/pr-preview/pr-2/assets/images/_page_39_Picture_3-6a01f3766ac40c4aefa97cf0c47a26eb.jpeg" width="1024" height="674" class="img_ev3q"></p>
+<ul>
+<li class="">
+<ol>
+<li class="">Select the Features appropriate for the this customer: • To activate the Keycahin, select the <strong>PRODUCT</strong> checkbox</li>
+</ol>
+<ul>
+<li class="">
+<p>To activate Allow SSO Pass-through, select the <strong>PRODUCT</strong> checkbox</p>
+</li>
+<li class="">
+<p>To activate enable Prototype View, select the <strong>Development</strong> checkbox</p>
+</li>
+<li class="">
+<p>To activate the enable SinglePoint Studio Express, select the <strong>PRODUCT</strong> checkbox</p>
+</li>
+<li class="">
+<p>To enable the SinglePoint Identity Manager, select the <strong>PRODUCT</strong> checkbox</p>
+</li>
+<li class="">
+<ol start="2">
+<li class="">Click <strong>Save</strong> to persist the change(s).</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/samples/pr-preview/pr-2/symplified/Operation Guide/idr-administrators/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Identity Router Administrators</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/samples/pr-preview/pr-2/symplified/Operation Guide/application-types/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">My Application Types</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#the-newedit-customer-dialog" class="table-of-contents__link toc-highlight">The New/Edit Customer Dialog</a></li><li><a href="#set-customer-context" class="table-of-contents__link toc-highlight">Set Customer Context</a></li><li><a href="#reset-the-context" class="table-of-contents__link toc-highlight"><strong>Reset the Context</strong></a></li><li><a href="#customer-configuration" class="table-of-contents__link toc-highlight">Customer Configuration</a><ul><li><a href="#company-information" class="table-of-contents__link toc-highlight">Company Information</a></li></ul></li><li><a href="#sso-configuration" class="table-of-contents__link toc-highlight">SSO Configuration</a><ul><li><a href="#user-session" class="table-of-contents__link toc-highlight">User Session</a></li><li><a href="#cipher-rotation" class="table-of-contents__link toc-highlight">Cipher Rotation</a></li></ul></li><li><a href="#adapter-updates" class="table-of-contents__link toc-highlight">Adapter Updates</a></li><li><a href="#portal---edit-profile" class="table-of-contents__link toc-highlight">Portal - Edit Profile</a><ul><li><a href="#before-you-begin" class="table-of-contents__link toc-highlight">Before you begin</a></li></ul></li><li><a href="#default-portal---new-customer" class="table-of-contents__link toc-highlight">Default Portal - New Customer</a><ul><li><a href="#portal-type" class="table-of-contents__link toc-highlight">Portal Type</a></li></ul></li><li><a href="#custom-portal---new-customer" class="table-of-contents__link toc-highlight"><strong>Custom Portal - New Customer</strong></a><ul><li><a href="#portal-type-1" class="table-of-contents__link toc-highlight"><strong>Portal Type</strong></a></li></ul></li><li><a href="#windows-authentication" class="table-of-contents__link toc-highlight"><strong>Windows Authentication</strong></a><ul><li><a href="#before-you-begin-1" class="table-of-contents__link toc-highlight"><strong>Before You Begin</strong></a></li></ul></li><li><a href="#iwa-enabled" class="table-of-contents__link toc-highlight"><strong>IWA Enabled</strong></a><ul><li><a href="#before-you-begin-2" class="table-of-contents__link toc-highlight"><strong>Before You Begin</strong></a></li></ul></li><li><a href="#configure-iwa-with-kerberos" class="table-of-contents__link toc-highlight"><strong>Configure IWA with Kerberos</strong></a><ul><li><a href="#technical-note-iwa-kerberos-windows-7-security-update" class="table-of-contents__link toc-highlight"><strong>Technical Note: IWA Kerberos Windows 7 Security Update</strong></a></li></ul></li><li><a href="#iwa---enabled-by-ip-networks" class="table-of-contents__link toc-highlight"><strong>IWA - Enabled by IP Networks</strong></a><ul><li><a href="#before-you-begin-3" class="table-of-contents__link toc-highlight"><strong>Before You Begin</strong></a></li></ul></li><li><a href="#configure-iwa-with-kerberos-by-ip-networks" class="table-of-contents__link toc-highlight"><strong>Configure IWA with Kerberos by IP Networks</strong></a><ul><li><a href="#to-add-the-identity-router-to-your-dns-manager-on-windows-server-2003---2008" class="table-of-contents__link toc-highlight"><strong>To add the Identity Router to your DNS Manager on Windows Server 2003 - 2008:</strong></a></li></ul></li><li><a href="#identity-router-clustering---new-customer" class="table-of-contents__link toc-highlight"><strong>Identity Router Clustering - New Customer</strong></a></li><li><a href="#identity-router-nfs-clustering---new-customer" class="table-of-contents__link toc-highlight"><strong>Identity Router NFS Clustering - New Customer</strong></a></li><li><a href="#identity-router-cifs-clustering---new-customer" class="table-of-contents__link toc-highlight"><strong>Identity Router CIFS Clustering - New Customer</strong></a></li><li><a href="#set-the-lmcompatibilitylevel" class="table-of-contents__link toc-highlight"><strong>Set the LMCompatibilityLevel</strong></a><ul><li><a href="#user-management---new-customer" class="table-of-contents__link toc-highlight"><strong>User Management - New Customer</strong></a></li></ul></li><li><a href="#audit-logging" class="table-of-contents__link toc-highlight"><strong>Audit Logging</strong></a><ul><li><a href="#audit-logging-configuration" class="table-of-contents__link toc-highlight"><strong>Audit Logging Configuration</strong></a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
