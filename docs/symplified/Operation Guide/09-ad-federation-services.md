@@ -7,7 +7,6 @@ date: 09/17/2024
 uid: idr-ad-federation-services
 ---
 
-
 Studio's Active Directory Federation Services (ADFS) implementation enables the Identity Router to leverage existing Identity Provider Services for authenticating to your SSO enabled applications. The Identity Router is able to act as a Resource Federation Server and establish a Federation Trust relationship with your ADFS enabled infrastructure. One of the many benefits to using the ADFS connector is enabling Integrated Windows Authentication (IWA) without requiring the Identity Router to join your domain.
 
 The diagram below represents an example workflow for ADFS enabled authentication. In the diagram the Symplified Identity Router serves as the Resource Federation Server, and the ADFS system serves as the Account Federation Server. As such, there is no need for the Identity Router to speak directly with the ADFS server, but users accessing the system will need 80/443 connectivity to the Portal interface of the Identity Router, your custom Portal, and the relevant interface of the ADFS system. Additionally, the Identity Router will require LDAP access from the Management interface to your User Store to lookup authorization information and apply any access policies.

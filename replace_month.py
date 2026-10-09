@@ -17,7 +17,7 @@ than once.
 
 Excluded directories (relative to `docs/`, case-insensitive):
     include-shared
-    ita/include
+    confidential computing/include
 
 Usage:
     # Preview changes without writing any files
@@ -45,7 +45,7 @@ EXTENSIONS = {".md", ".mdx"}
 # Directory prefixes (relative to DOCS_DIR, case-insensitive) to skip.
 EXCLUDED_PREFIXES = (
     "include-shared",
-    "ita/include",
+    "confidential computing/include",
 )
 
 # Full month names, keyed by 1-based month number.

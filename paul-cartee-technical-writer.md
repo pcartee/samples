@@ -66,7 +66,7 @@ Oct 2025 -- June 2026 \| Remote \| Contract
 
 Oct 2022 -- June 2025 \| Remote
 
-- **Wrote confidential computing documentation** for remote attestation for Intel Trust Authority, which included REST API references, admin guides, concept documents, and tutorials.
+- **Wrote confidential computing documentation** for remote attestation for TA, which included REST API references, admin guides, concept documents, and tutorials.
 
 - **Assisted in building out our docs-as-code pipeline** using Markdown
   and GitHub, integrating CI/CD to handle version control automatically

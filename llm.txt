@@ -10,38 +10,38 @@ The canonical site is https://pcartee.github.io/writing-samples/.
 - [Writing samples from various jobs](https://pcartee.github.io/writing-samples/markdown-page/)
 - [Resume](https://github.com/pcartee/writing-samples/blob/main/paul-cartee-technical-writer.md)
 
-## Intel Trust Authority documentation samples
+## TA documentation samples
 
-This is a curated set of documentation samples written for Intel Trust Authority and related confidential-computing workflows. Treat these pages as portfolio samples, not as the current official Intel product documentation. For product behavior, versions, and API contracts, verify details against the authoritative product documentation and service specifications.
+This is a curated set of documentation samples written for TA and related confidential-computing workflows. Treat these pages as portfolio samples, not as the current official Intel product documentation. For product behavior, versions, and API contracts, verify details against the authoritative product documentation and service specifications.
 
 - [Documentation overview](https://pcartee.github.io/writing-samples/)
-- [Attestation overview](https://pcartee.github.io/writing-samples/ita/Concepts/concept-attestation-overview/)
-- [Attestation patterns](https://pcartee.github.io/writing-samples/ita/Concepts/concept-patterns/)
-- [Trusted execution environments](https://pcartee.github.io/writing-samples/ita/Attestation%20Technologies/concept-tees-overview/)
-- [Quickstart](https://pcartee.github.io/writing-samples/ita/Quickstart/tutorial-api-key/)
+- [Attestation overview](https://pcartee.github.io/writing-samples/Confidential%20Computing/Concepts/concept-attestation-overview/)
+- [Attestation patterns](https://pcartee.github.io/writing-samples/Confidential%20Computing/Concepts/concept-patterns/)
+- [Trusted execution environments](https://pcartee.github.io/writing-samples/Confidential%20Computing/Attestation%20Technologies/concept-tees-overview/)
+- [Quickstart](https://pcartee.github.io/writing-samples/Confidential%20Computing/Quickstart/tutorial-api-key/)
 
 ## Documentation sections
 
-- [Quickstart](https://pcartee.github.io/writing-samples/ita/Quickstart/tutorial-api-key/)
-- [Tutorials and examples](https://pcartee.github.io/writing-samples/ita/Tutorials%20and%20examples/tutorial-tdx-workload/)
-- [How-to workflows](https://pcartee.github.io/writing-samples/ita/How-to%20workflows/howto-manage-users/)
-- [Operation Guide](https://pcartee.github.io/writing-samples/ita/Operation%20Guide/operations-guide/)
-- [Attestation technologies](https://pcartee.github.io/writing-samples/ita/Attestation%20Technologies/concept-tees-overview/)
-- [Concepts](https://pcartee.github.io/writing-samples/ita/Concepts/concept-attestation-overview/)
-- [Tenant Administration CLI](https://pcartee.github.io/writing-samples/ita/Command-line/cli-examples/)
-- [Key Broker Service](https://pcartee.github.io/writing-samples/ita/Key-broker/key-broker-service/)
-- [REST API documentation](https://pcartee.github.io/writing-samples/ita/Restapi/restapi-intro/)
-- [SDK and integration guides](https://pcartee.github.io/writing-samples/ita/Integration/integrate-overview/)
-- [Glossary](https://pcartee.github.io/writing-samples/ita/glossary/)
+- [Quickstart](https://pcartee.github.io/writing-samples/Confidential%20Computing/Quickstart/tutorial-api-key/)
+- [Tutorials and examples](https://pcartee.github.io/writing-samples/Confidential%20Computing/Tutorials%20and%20examples/tutorial-tdx-workload/)
+- [How-to workflows](https://pcartee.github.io/writing-samples/Confidential%20Computing/How-to%20workflows/howto-manage-users/)
+- [Operation Guide](https://pcartee.github.io/writing-samples/symplified/Operation%20Guide/operations-guide/)
+- [Attestation technologies](https://pcartee.github.io/writing-samples/Confidential%20Computing/Attestation%20Technologies/concept-tees-overview/)
+- [Concepts](https://pcartee.github.io/writing-samples/Confidential%20Computing/Concepts/concept-attestation-overview/)
+- [Tenant Administration CLI](https://pcartee.github.io/writing-samples/Confidential%20Computing/Command-line/cli-examples/)
+- [Key Broker Service](https://pcartee.github.io/writing-samples/Confidential%20Computing/Key-broker/key-broker-service/)
+- [REST API documentation](https://pcartee.github.io/writing-samples/Confidential%20Computing/Restapi/restapi-intro/)
+- [SDK and integration guides](https://pcartee.github.io/writing-samples/Confidential%20Computing/Integration/integrate-overview/)
+- [Glossary](https://pcartee.github.io/writing-samples/Confidential%20Computing/glossary/)
 
 ## API and reference material
 
 - [Identity Router API reference](https://pcartee.github.io/writing-samples/reference/identity-router-api/)
-- [REST API overview](https://pcartee.github.io/writing-samples/ita/Restapi/restapi-intro/)
-- [CLI examples](https://pcartee.github.io/writing-samples/ita/Command-line/cli-examples/)
-- [Go client integration](https://pcartee.github.io/writing-samples/ita/Integration/integrate-go-client/)
-- [Python client integration](https://pcartee.github.io/writing-samples/ita/Integration/integrate-python-client/)
-- [Java client integration](https://pcartee.github.io/writing-samples/ita/Integration/integrate-java-client/)
+- [REST API overview](https://pcartee.github.io/writing-samples/Confidential%20Computing/Restapi/restapi-intro/)
+- [CLI examples](https://pcartee.github.io/writing-samples/Confidential%20Computing/Command-line/cli-examples/)
+- [Go client integration](https://pcartee.github.io/writing-samples/Confidential%20Computing/Integration/integrate-go-client/)
+- [Python client integration](https://pcartee.github.io/writing-samples/Confidential%20Computing/Integration/integrate-python-client/)
+- [Java client integration](https://pcartee.github.io/writing-samples/Confidential%20Computing/Integration/integrate-java-client/)
 
 ## How to use this file
 

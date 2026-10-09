@@ -7,8 +7,6 @@ date: 09/17/2024
 uid: identity-routers
 ---
 
-## Identity Routers
-
 The *Identity Routers* page lists all  Identity Routers assigned to your organization in Studio and shows their status. Online Identity Routers have green icons, and offline Identity Routers have red icons.
 
 System Administrators manage Identity Routers. To view status, hover over an Identity router and select the expand icon.
