@@ -23,8 +23,8 @@ const previewBaseUrl = process.env.PR_NUMBER
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: "Paul Cartee's Writing Samples",
+  tagline: "Paul Cartee's Writing Samples",
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -101,9 +101,9 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: '',
+        title: "Paul Cartee's Writing Samples",
         logo: {
-          alt: 'Trust Authority',
+          alt: "Paul Cartee's Writing Samples",
           src: 'img/trust.png',
         },
         items: [
@@ -111,7 +111,7 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Trust Authority',
+            label: "Paul Cartee's Writing Samples",
           },
           //{to: '/blog', label: 'Blog', position: 'left'},
         ],

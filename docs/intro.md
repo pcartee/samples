@@ -12,7 +12,7 @@ Senior Technical Writer | Docs-as-Code | CI/CD Pipelines | API/CLI Reference | A
 
 I have 15+ years of experience documenting SaaS, enterprise, and user applications. Recently, I've worked for Apple, Intel, Workday, SentinelOne, and LogRhythm, writing cybersecurity, confidential computing, and machine learning documents. My specialty is docs-as-code: writing in Markdown or reStructuredText, versioning everything in Git, and wiring documentation into CI/CD pipelines so it ships alongside the product instead of trailing behind it.
 
-Most recently, at Intel, I documented Intel Trust Authority, a remote attestation service for confidential computing creating REST API references, CLI guides, and tutorials for TEEs, Kubernetes/Helm/Istio deployments, and zero-trust security models.
+Most recently, at Intel, I documented TA, a remote attestation service for confidential computing creating REST API references, CLI guides, and tutorials for TEEs, Kubernetes/Helm/Istio deployments, and zero-trust security models.
 
 ## What I bring to your team
 
@@ -28,12 +28,12 @@ A cross-section of real documentation I've written, organized by type:
 
 | Type | Sample | Why it's here |
 | --- | --- | --- |
-| Concept doc | [Attestation overview](./ita/Concepts/concept-attestation-overview.md) | Explains a genuinely hard security concept in plain language |
-| CI/CD tutorial | [Update policies with GitHub Actions](./ita/Tutorials%20and%20examples/tutorial-cicd.md) | A GitHub Actions workflow I wrote to keep attestation policies in sync with every build |
-| REST API reference | [Trust Authority REST API](./ita/Restapi/restapi-intro.md) | Full API reference landing page, one of several I authored |
-| SDK/integration guide | [Go connector reference](./ita/Integration/integrate-go-client.md) | Developer-facing SDK documentation for a Go client library |
-| CLI reference | [CLI examples](./ita/Command-line/cli-examples.md) | Task-based examples for a multi-command attestation CLI |
-| How-to guide | [Author a custom policy](./ita/How-to%20workflows/howto-author-custom-policy.md) | Step-by-step procedural writing for a technical, security-sensitive task |
+| Concept doc | [Attestation overview](./Confidential%20Computing/Concepts/concept-attestation-overview.md) | Explains a genuinely hard security concept in plain language |
+| CI/CD tutorial | [Update policies with GitHub Actions](./Confidential%20Computing/Tutorials%20and%20examples/tutorial-cicd.md) | A GitHub Actions workflow I wrote to keep attestation policies in sync with every build |
+| REST API reference | [TA REST API](./Confidential%20Computing/Restapi/restapi-intro.md) | Full API reference landing page, one of several I authored |
+| SDK/integration guide | [Go connector reference](./Confidential%20Computing/Integration/integrate-go-client.md) | Developer-facing SDK documentation for a Go client library |
+| CLI reference | [CLI examples](./Confidential%20Computing/Command-line/cli-examples.md) | Task-based examples for a multi-command attestation CLI |
+| How-to guide | [Author a custom policy](./Confidential%20Computing/How-to%20workflows/howto-author-custom-policy.md) | Step-by-step procedural writing for a technical, security-sensitive task |
 
 Browse the sidebar for the complete library — concepts, tutorials, key-broker guides, and full REST/CLI/SDK references.
 
@@ -46,4 +46,3 @@ I'm open to senior technical writing roles, especially ones with docs-as-code pi
 - 📞 303.819.1583
 - 💼 [LinkedIn](https://www.linkedin.com/in/paul-cartee/)
 - 💻 [GitHub](https://github.com/pcartee)
-
