@@ -1,5 +1,5 @@
 ---
-title: TA CLI Service Management
+title: TA CLI service management
 description: TA CLI service management commands.
 author: pcartee
 topic-type: Reference
@@ -7,14 +7,10 @@ date: 08/16/2023
 uid: cli-service-commands
 ---
 
-*· August/15/2023 ·*
-
-## Service management
-
 Use the commands listed below to manage your services.
 
 :::note
-Have your API key available before attempting these commands. To obtain your API key, follow the [retrieve API key](cli-examples.md#retrieve-admin-api-keys) instructions.
+Have your API key available before attempting these commands. To obtain your API key, follow the retrieve API key instructions.
 :::
 
 ## Get service offers

@@ -1,20 +1,15 @@
 ---
-title: TA Java Client Integration
+title: TA Java client integration
 description: Java Client Adaptor documentation.
 author: pcartee
 topic: integration
 date: 11/08/2024
 uid: integrate.java.client
 ---
-
-*· November/08/2024 ·*
-
-## TA Client for Java
  
 The Java Connector is one of several language-specific clients available for TA. The client libraries provide an interface to the TA REST API and (for attesters) the platform software that collects measurements for a quote. A TEE adapter is needed to collect evidence for attestation. Currently, the Java TEE adapters support Intel SGX and Intel TDX. Supported Intel TDX platforms include on-premises Intel TDX hosts, GCP confidential VMs with Intel TDX, and Azure confidential VMs with Intel TDX.
 
-
-The TA Java client modules, build, and installation instructions are on [GitHub](https://github.com/intel/trustauthority-client-for-java).
+The TA Java client modules, build, and installation instructions are on [GitHub](https://github.com/intel/ta-client-for-java).
 
 ## Java client API index
 
@@ -65,7 +60,7 @@ Create a new Connector instance, then use the exposed interfaces to access diffe
 
 ```java
 
-// Initialize config required for connector using trustAuthorityBaseUrl (https://portal.trustauthority.intel.com), trustAuthorityApiUrl (https://api.trustauthority.intel.com), trustAuthorityApiKey, and retryConfig
+// Initialize config required for connector using trustAuthorityBaseUrl (https://portal.ta.intel.com), trustAuthorityApiUrl (https://api.ta.intel.com), trustAuthorityApiKey, and retryConfig
 Config cfg = new Config(trustAuthorityBaseUrl, trustAuthorityApiUrl, trustAuthorityApiKey, retryConfig);
 
 // Initialize TrustAuthorityConnector with the config
@@ -84,8 +79,8 @@ TrustAuthorityConnector connector = new TrustAuthorityConnector(cfg);
 
 |Name                  |I/O   |Description                                     |
 |----------------------|------|------------------------------------------------|
-|trustAuthorityBaseUrl |Input |TA URL. In the US, use `https://portal.trustauthority.intel.com`. In the EU, use `https://portal.eu.trustauthority.intel.com`.|
-|trustAuthorityApiUrl  |Input |TA API URL. In the US, use `https://api.trustauthority.intel.com`. In the EU, use `https://api.eu.trustauthority.intel.com`. |
+|trustAuthorityBaseUrl |Input |TA URL. In the US, use `https://portal.ta.intel.com`. In the EU, use `https://portal.eu.ta.intel.com`.|
+|trustAuthorityApiUrl  |Input |TA API URL. In the US, use `https://api.ta.intel.com`. In the EU, use `https://api.eu.ta.intel.com`. |
 |trustAuthorityApiKey  |Input |An Attestation API key for TA.  |
 |retryConfig           |Input |A java class object that holds multiple values required for retry mechanism like retryWaitMin, retryWaitMax, and retryMax.|
 |retryWaitMin          |Input |Minimum time required to wait between retries.The default is 2 seconds. | 
@@ -272,7 +267,7 @@ Evidence evidence = sgxAdapter.collectEvidence(nonce);
 
 
 
-The Intel TDX adapter for Java is actually two adapters, one for systems that use the configfs-tsm Linux subsystem for quote generation, such as on-premises Intel TDX hosts and Google Cloud Platform CVMs with Intel TDX, and one for Azure confidential VMs with Intel TDX. Azure uses a proprietary scheme for quote generation. These adapters are installed from the same source and they share an identical package name  (`com.intel.trustauthority.tdx`) and API in the `TdxAdapter` class.
+The Intel TDX adapter for Java is actually two adapters, one for systems that use the configfs-tsm Linux subsystem for quote generation, such as on-premises Intel TDX hosts and Google Cloud Platform CVMs with Intel TDX, and one for Azure confidential VMs with Intel TDX. Azure uses a proprietary scheme for quote generation. These adapters are installed from the same source and they share an identical package name  (`com.intel.ta.tdx`) and API in the `TdxAdapter` class.
 
 
 ### `TdxAdapter`

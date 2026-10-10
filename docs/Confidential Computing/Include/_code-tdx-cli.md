@@ -15,7 +15,7 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/intel/trustauthority-client-for-go/go-connector"
+	"github.com/intel/ta-client-for-go/go-connector"
 	"github.com/pkg/errors"
 )
 
@@ -37,14 +37,14 @@ func main() {
 		panic(err)
 	}
 
-	// optional: either caller can provide existing public key or create new using trustauthority-cli create-key-pair command
+	// optional: either caller can provide existing public key or create new using ta-cli create-key-pair command
 	pubPath := "pub.pem"
 	_, err = createRSAKeypair(pubPath)
 	if err != nil {
 		panic(err)
 	}
 
-	// trustauthority-cli looks for API URL and API Key in environment
+	// ta-cli looks for API URL and API Key in environment
 	os.Setenv("TRUSTAUTHORITY_URL", cfg.Url)
 	os.Setenv("TRUSTAUTHORITY_API_KEY", cfg.ApiKey)
 
@@ -71,9 +71,9 @@ func main() {
 
 func createRSAKeypair(pubPath string) ([]byte, error) {
 
-	out, err := exec.Command("trustauthority-cli", "create-key-pair", "-f", pubPath).Output()
+	out, err := exec.Command("ta-cli", "create-key-pair", "-f", pubPath).Output()
 	if err != nil {
-		return nil, errors.Wrap(err, "Failed to execute trustauthority-cli create-key-pair command")
+		return nil, errors.Wrap(err, "Failed to execute ta-cli create-key-pair command")
 	}
 	return out[:], nil
 }

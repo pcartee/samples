@@ -7,14 +7,6 @@ date: 05/20/2025
 uid: tee.sev.snp
 ---
 
-*· May/20/2025 ·*
-
-## AMD* Secure Encrypted Virtualization — Secure Nested Paging (AMD* SEV-SNP)
-
-:::note
-This feature is in pre-release status. For preview access, please contact your sales representative. Details of implementation and usage may change before general availability.
-:::
-
 AMD* Secure Encrypted Virtualization — Secure Nested Paging (AMD* SEV-SNP) provides a secure computing environment for virtual machines by isolating them from the hypervisor and other VMs on the host system. This allows for the creation of hardware-isolated virtual machines.
 
 Read more about [AMD* SEV-SNP](https://www.amd.com/en/developer/sev.html).
@@ -27,7 +19,7 @@ See [AMDSEV](https://github.com/AMDESE/AMDSEV/blob/snp-latest/stable-commits) fo
 
  A signed attestation report validates the state and identity to ensure it is genuine AMD hardware. Attestation provides confidence in the guest configuration, launch, and platform configuration.
 
- AMD* SEV-SNP attestation uses [V2 Policies](../../Concepts/concept-policy-v2.md) and a new [V2 appraisal API endpoint.](../../Restapi/restapi-attestation-v2.md).
+ AMD* SEV-SNP attestation uses V2 Policies and a new V2 appraisal API endpoint..
 
 ---
 ## Next steps
@@ -35,9 +27,9 @@ See [AMDSEV](https://github.com/AMDESE/AMDSEV/blob/snp-latest/stable-commits) fo
 SGX primary resources:
 
 - [TA Client Tutorial for Azure with vTPM and TDX](../../Tutorials%20and%20examples/Intel%20Trust%20Authority%20Client%20examples/tutorial-azure-vtpm.md)
-- [TA Client Tutorial - SGX Attestation on Microsoft Azure](../../Tutorials%20and%20examples/Intel%20Trust%20Authority%20Client%20examples/tutorial-sgx.md)
+- TA Client Tutorial - SGX Attestation on Microsoft Azure
 
 **\*** Other names and brands may be claimed as the property of others.
 
 
-[AMD Azure VM tutorial](../../Tutorials%20and%20examples/Intel%20Trust%20Authority%20Client%20examples/tutorial-amd-azure-vm.md)
+AMD Azure VM tutorial

@@ -7,8 +7,6 @@ date: 12/19/24
 uid: tutorial.sevsnp.gcp
 ---
 
-## TA Client Tutorial: AMD SEV-SNP Attestation on GCP
-
 This tutorial explains how to deploy a demo application that uses the TA client to secure an application with AMD SEV-SNP on Google Cloud Platform**\*** (GCP).
 
 The demo application, built for AMD SEV-SNP, uses the TA client to retrieve evidence from the platform and request an attestation from TA. This demonstrates a simple passport attestation model that stops before involving a relying party. The application's output is the resulting attestation token. The demo application can be used as a workflow reference for your applications.

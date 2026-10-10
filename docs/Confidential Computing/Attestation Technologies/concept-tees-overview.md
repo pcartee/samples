@@ -1,15 +1,11 @@
 ---
-title: TEEs Overview
+title: Trusted Execution Environments (TEE)
 description: A brief introduction to Trusted Execution Environments (TEEs).
 author: pcartee
 topic: conceptual
 date: 02/07/2025
 uid: tees.overview
 ---
-
-*· February/07/2025 ·*
-
-## Trusted Execution Environments (TEE)
 
 A trusted execution environment (TEE) helps to protect user-executed code and data from modification by untrusted software, hardware, and system components outside the TEE's boundaries. TEEs can provide a high level of protection against most software-based attacks and many hardware-based attacks and give assurance that the software and hardware in the TEE have not been tampered with.
 
@@ -39,8 +35,8 @@ SGX and TDX primary resources:
 TA TEE integrations:
 
 - [TA Go Client](../Integration/integrate-go-client.md)
-- [TDX CLI](../Integration/integrate-go-tdx-cli.md)
-- [Gramine client](../Integration/integrate-gramine.md)
+- TDX CLI
+- Gramine client
 
 
 **\*** Other names and brands may be claimed as the property of others.

@@ -14,8 +14,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
 
-	"github.com/intel/trustauthority-client-for-go/go-client"
-	"github.com/intel/trustauthority-client-for-go/go-sgx"
+	"github.com/intel/ta-client-for-go/go-client"
+	"github.com/intel/ta-client-for-go/go-sgx"
 )
 
 // #cgo CFLAGS: -I/opt/intel/sgxsdk/include -I../Minimal-enclave/ -fstack-protector-strong

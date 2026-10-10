@@ -30,9 +30,9 @@ A cross-section of real documentation I've written, organized by type:
 | --- | --- | --- |
 | Concept doc | [Attestation overview](./Confidential%20Computing/Concepts/concept-attestation-overview.md) | Explains a genuinely hard security concept in plain language |
 | CI/CD tutorial | [Update policies with GitHub Actions](./Confidential%20Computing/Tutorials%20and%20examples/tutorial-cicd.md) | A GitHub Actions workflow I wrote to keep attestation policies in sync with every build |
-| REST API reference | [TA REST API](./Confidential%20Computing/Restapi/restapi-intro.md) | Full API reference landing page, one of several I authored |
+| REST API reference | TA REST API | Full API reference landing page, one of several I authored |
 | SDK/integration guide | [Go connector reference](./Confidential%20Computing/Integration/integrate-go-client.md) | Developer-facing SDK documentation for a Go client library |
-| CLI reference | [CLI examples](./Confidential%20Computing/Command-line/cli-examples.md) | Task-based examples for a multi-command attestation CLI |
+| CLI reference | CLI examples | Task-based examples for a multi-command attestation CLI |
 | How-to guide | [Author a custom policy](./Confidential%20Computing/How-to%20workflows/howto-author-custom-policy.md) | Step-by-step procedural writing for a technical, security-sensitive task |
 
 Browse the sidebar for the complete library — concepts, tutorials, key-broker guides, and full REST/CLI/SDK references.

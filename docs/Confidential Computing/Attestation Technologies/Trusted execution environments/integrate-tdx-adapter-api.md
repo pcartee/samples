@@ -1,5 +1,5 @@
 ---
-title: TDX
+title: "`go-tdx` adapter API reference"
 description: Provides an overview of the TA Go client
 author: pcartee
 topic: integration
@@ -7,20 +7,20 @@ date: 12/22/2023
 uid: integrate.tdx.api
 ---
 
-## `go-tdx` adapter API reference
-
-The TA Intel® TDX Attestation client includes a Go client and a [CLI](../../Integration/integrate-go-tdx-cli.md) for use on the command line or by languages other than Go, enabling you to use TDX remote attestation in your application.
+The TA Intel® TDX Attestation client includes a Go client and a CLI for use on the command line or by languages other than Go, enabling you to use TDX remote attestation in your application.
 
 :::note
-TA uses the tdx_report_data claim to verify certain data provided with the quote. The TDX quote's `REPORTMACSTRUCT.REPORTDATA` must contain a SHA512 hash that is the cumulative value of of the nonce supplied with the evidence, runtime_data supplied during quote generation, optional user data (supplied via the `user_data` parameter in client APIs), and attester held data supplied by the TEE during quote generation. The TA clients take care of hashing the data for you, however, independently developed clients must contain the logic to add the hash to REPORTDATA. For more information, see the Go TDX adapter's [CollectEvidence](https://github.com/intel/trustauthority-client-for-go/blob/14b89ef3b58dac84feb125857f6837c1e1b166f0/go-tdx/collect_evidence.go#L26) function as an example.
+TA uses the tdx_report_data claim to verify certain data provided with the quote. The TDX quote's `REPORTMACSTRUCT.REPORTDATA` must contain a SHA512 hash that is the cumulative value of of the nonce supplied with the evidence, runtime_data supplied during quote generation, optional user data (supplied via the `user_data` parameter in client APIs), and attester held data supplied by the TEE during quote generation. The TA clients take care of hashing the data for you, however, independently developed clients must contain the logic to add the hash to REPORTDATA. For more information, see the Go TDX adapter's [CollectEvidence](https://github.com/intel/ta-client-for-go/blob/14b89ef3b58dac84feb125857f6837c1e1b166f0/go-tdx/collect_evidence.go#L26) function as an example.
 
-Microsoft Azure TDX Preview users should use the [azure-tdx-preview](https://github.com/intel/trustauthority-client-for-go/tree/azure-tdx-preview/go-tdx) branch.  There are some key differences in the prerequisites, build process, and commands that are specific to the Microsoft Azure implementation.  See the README.md file for details.
+Microsoft Azure TDX Preview users should use the [azure-tdx-preview](https://github.com/intel/ta-client-for-go/tree/azure-tdx-preview/go-tdx) branch.  There are some key differences in the prerequisites, build process, and commands that are specific to the Microsoft Azure implementation.  See the README.md file for details.
 :::
 
 The following APIs are exposed by **go-tdx**.
 
+## API reference
+
 ```go
-import "github.com/intel/trustauthority-client-for-go/go-tdx"
+import "github.com/intel/ta-client-for-go/go-tdx"
 ```
 
 [**func CollectEvidence**](#func-collectevidence)
@@ -38,7 +38,7 @@ import "github.com/intel/trustauthority-client-for-go/go-tdx"
 The following code fragment creates a new TDX adapter and then collects evidence for a quote. 
 
 ```go
-import "github.com/intel/trustauthority-client-for-go/go-tdx"
+import "github.com/intel/ta-client-for-go/go-tdx"
 
 evLogParser := tdx.NewEventLogParser()
 adapter, err := tdx.NewEvidenceAdapter(tdHeldData, evLogParser)
@@ -59,7 +59,7 @@ func (adapter *tdxAdapter) CollectEvidence(nonce []byte) (*connector.Evidence, e
 ```
 **CollectEvidence**  Collects evidence for a quote from the TDX trust domain. It takes a nonce as input, which is hashed during trust domain report creation. If successful, **CollectEvidence** returns an **Evidence** structure; otherwise it returns an error.
 
-[Back to top](#go-tdx-adapter-api-reference)
+[Back to top](#api-reference)
 
 ### `func Decrypt`
 
@@ -83,7 +83,7 @@ if err != nil {
 }
 ```
 
-[Back to top](#go-tdx-adapter-api-reference)
+[Back to top](#api-reference)
 
 ### `func GenerateKeyPair`
 
@@ -102,7 +102,7 @@ if err != nil {
     return err
 }
 ```
-[Back to top](#go-tdx-adapter-api-reference)
+[Back to top](#api-reference)
 
 ### `func GetEventLogs`
 
@@ -122,7 +122,7 @@ if err != nil {
 }
 ```
 
-[Back to top](#go-tdx-adapter-api-reference)
+[Back to top](#api-reference)
 
 ### `func NewEvidenceAdapter`
 
@@ -135,7 +135,7 @@ func NewEvidenceAdapter(udata []byte, evLogParser EventLogParser) (connector.Evi
 The following code snippet shows how to create a new Go TDX adapter, and then use the adapter to collect a quote from the TDX-enabled platform.
 
 ```go
-import "github.com/intel/trustauthority-client-for-go/go-tdx"
+import "github.com/intel/ta-client-for-go/go-tdx"
 
 evLogParser := tdx.NewEventLogParser()
 adapter, err := tdx.NewEvidenceAdapter(tdHeldData, evLogParser)
@@ -145,7 +145,7 @@ if err != nil {
 
 ```
 
-[Back to top](#go-tdx-adapter-api-reference)
+[Back to top](#api-reference)
 
 ### `func NewEventLogParser`
 
@@ -157,5 +157,5 @@ func NewEventLogParser() EventLogParser
 
 See the code snippet in [**GetEventLogs**](#func-geteventlogs) for sample usage. 
 
-[Back to top](#go-tdx-adapter-api-reference)
+[Back to top](#api-reference)
 

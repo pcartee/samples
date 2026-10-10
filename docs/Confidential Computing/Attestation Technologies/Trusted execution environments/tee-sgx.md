@@ -1,5 +1,5 @@
 ---
-title: Intel SGX
+title: Software Guard Extensions (SGX)
 description: A brief introduction to SGX.
 author: pcartee
 topic: conceptual
@@ -7,10 +7,6 @@ date: 11/18/2024
 uid: tee.sgx
 ---
 import DCAP from '../../Include/_install-dcap.md';
-
-*· November/18/2024 ·*
-
-## Software Guard Extensions (SGX)
 
 This article provides information related to Software Guard Extensions (SGX) and is focused on the requirements needed to enable SGX-enabled applications to provide quote capabilities.
 
@@ -71,7 +67,7 @@ Because Gramine encapsulates the entire application within an SGX enclave, more 
 
 SGX primary resources:
 
-[SGX Attestation on Microsoft Azure](../../Tutorials%20and%20examples/Intel%20Trust%20Authority%20Client%20examples/tutorial-sgx.md)
+SGX Attestation on Microsoft Azure
 
 
 **\*** Other names and brands may be claimed as the property of others.

@@ -1,5 +1,5 @@
 ---
-title: Hashicorp Vault Installation
+title: Hashicorp Vault installation
 description: Hashicorp Vault Installation
 author: pcartee
 topic: kbs
@@ -9,10 +9,6 @@ uid: kms.install
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-*· April/14/2025 ·*
-
-## Key Management Service installation
 
 A Key Management Service (KMS) must be installed before installing the Key Broker System (KBS). The KBS is compatible with two key management systems, Hashicorp Vault and PyKMIP. Select the proper key management system for your environment and follow the instructions.
 

@@ -7,6 +7,8 @@ date: 08/01/2023
 uid: tutorial.update.policies
 ---
 
+This tutorial shows how to automate updates to an Intel SGX appraisal policy in a GitHub Actions workflow. It retrieves the `mrenclave` measurement from a newly built application image and updates the existing policy so it matches the application version being attested. The example uses a Gramine Shielded Container, but the workflow can be adapted to other SGX build pipelines.
+
 ## Update Policies with GitHub Actions
 
 When a TEE-protected application is part of a continuous delivery (CD) workflow, the policies used to attest to the application's security often must also be a part of the CD workflow. Some of the application's attributes (for example, the `mrenclave` measurement) change every time an application is built. If updating the policy is not part of the CD workflow, the policy uses the attributes of the previous version to attest to the application's security. Appraisals of the unmodified policy will not match the new evidence. These instructions describe a sample GitHub Actions workflow that will automate the policy-updating process. This can be included in your CD workflow to keep your attestation policies up-to-date.
@@ -33,7 +35,7 @@ This example assumes that you have an existing application that uses Software Gu
 
 ## GitHub Actions Workflow
 
-The following steps explain how to write a GitHub Actions workflow to update the `mrenclave` value in an existing policy. This example illustrates retrieving TEE information for an SGX application running in a [Gramine Shielded Container (GSC)](../Integration/integrate-gramine.md) with the integrated TA client. It uses the [Docker integration for Gramine](https://github.com/gramineproject/gsc) `gsc/gsc info-image` action to get the latest `mrenclave` value from a newly-built container image. This new value is used to update an existing appraisal policy so that the TA can attest the GSC enclave with the correct, updated value.
+The following steps explain how to write a GitHub Actions workflow to update the `mrenclave` value in an existing policy. This example illustrates retrieving TEE information for an SGX application running in a Gramine Shielded Container (GSC) with the integrated TA client. It uses the [Docker integration for Gramine](https://github.com/gramineproject/gsc) `gsc/gsc info-image` action to get the latest `mrenclave` value from a newly-built container image. This new value is used to update an existing appraisal policy so that the TA can attest the GSC enclave with the correct, updated value.
 
 While this sample uses a Gramine Shielded container, it still represents a workflow useful for images not using a Gramine Shielded container.
 

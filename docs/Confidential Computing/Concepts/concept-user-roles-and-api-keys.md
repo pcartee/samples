@@ -7,10 +7,6 @@ date: 05/29/2024
 uid: user-roles-and-api-keys
 ---
 
-*· November/16/2023 ·*
-
-## User roles and API keys
-
 User roles and API keys are provisioned through the TA web portal. The user role determines the type of API keys you can access. This article explains the relationship between user roles and API keys.
 
 ## User roles
@@ -47,7 +43,7 @@ Two types of API keys are provided to clients to manage resources: Attestation A
 
 ### Tenant Admin API keys
 
-Each tenant is issued two Admin API keys accessible through the UI. Admin API keys are required by the [TA CLI](../Command-line/cli-examples.md) and [REST APIs](../Restapi/restapi-intro.md), and they allow you to access all the same functions managed in the portal. (An exception is retrieving the value of an Attestation or Admin API key, which can only be done through the portal.) An Admin API key can't be used for attestation-related APIs, such as getting a nonce or an attestation token. 
+Each tenant is issued two Admin API keys accessible through the UI. Admin API keys are required by the TA CLI and REST APIs, and they allow you to access all the same functions managed in the portal. (An exception is retrieving the value of an Attestation or Admin API key, which can only be done through the portal.) An Admin API key can't be used for attestation-related APIs, such as getting a nonce or an attestation token. 
 
 :::warning
 Intel recommends rotating the Admin API keys whenever a Tenant Admin user is removed, or "downgraded" to User. The Admin API keys previously accessible to the former Tenant Admin remain active and usable unless rotated.

@@ -1,16 +1,13 @@
 ---
-title: TA CLI Installation
+title: TA CLI installation
 description: TA CLI prerequisites and installation guide.
 author: pcartee
 topic-type: Reference
 date: 06/12/2024
 uid: cli-install
 ---
-*· June/12/2024 ·*
 
-## TA CLI installation guide
-
-These instructions describe how to build and install the TA CLI. The TA CLI is an open-source tool tenants use to make API calls to their instance of TA. The source code for the TA CLI is available on [GitHub](https://github.com/company/trustauthority-cli).
+These instructions describe how to build and install the TA CLI. The TA CLI is an open-source tool tenants use to make API calls to their instance of TA. The source code for the TA CLI is available on [GitHub](https://github.com/company/ta-cli).
 
 :::note
 Valid characters include: numbers 0 through 9, upper and lowercase English characters, underscore (_), colon (;), period (.), slash  (/), dash (-), and a space ( ).
@@ -60,7 +57,7 @@ You must be a Tenant Admin to install the CLI, however, both the admin and users
 
 1. To clone the TA CLI code to the newly created CLI directory, run the following command.
 
-    `git clone https://github.com/company/trustauthority-cli`
+    `git clone https://github.com/company/ta-cli`
 
 1. Create the CLI installer in the newly created CLI directory.
 
@@ -83,11 +80,11 @@ Before beginning these instructions, have the following information available:
 
 1. The `trustauthorityctl.env` file enables the CLI to contact a specific TA instance so it can be used to make changes. Create the trustauthorityctl.env file in your home directory and add the following contents:
 
-    - `TRUSTAUTHORITY_URL=https://api.trustauthority.intel.com`
+    - `TRUSTAUTHORITY_URL=https://api.ta.intel.com`
     - `TRUSTAUTHORITY_API_KEY="< Admin API Key >`
 
        :::note
-       If you are in the European Union (EU) region, use the following TA URL: `TRUSTAUTHORITY_URL=https://api.eu.trustauthority.intel.com`
+       If you are in the European Union (EU) region, use the following TA URL: `TRUSTAUTHORITY_URL=https://api.eu.ta.intel.com`
        :::
 
 1. To install the tenant CLI on your system, run following command:

@@ -1,5 +1,5 @@
 ---
-title: Getting Started
+title: Getting started
 description: Quickstart for TA that explains how to view and copy admin API keys, create attestation API keys in the portal or with the REST API, request a first SGX attestation token with the REST API or Go client, and resolve sign-in issues after a password change.
 author: pcartee
 topic: tutorial
@@ -21,7 +21,7 @@ Admin API keys are required to manage all non-attestation functions in TA. These
 Rotate the admin API keys whenever a Tenant Admin user is removed or downgraded to User. The admin API keys that the former Tenant Admin could access remain active and usable unless you rotate them.
 :::
 
-An admin API key is the only authorization required to run nearly all REST APIs, except attestation-related APIs, which require an attestation API key. An admin API key can't be used to attest a TEE. You can do nearly anything in the portal by using the [TA REST API](../Restapi/restapi-intro.md). The exception is retrieving the value of an attestation API key, which you can do only in the portal.
+An admin API key is the only authorization required to run nearly all REST APIs, except attestation-related APIs, which require an attestation API key. An admin API key can't be used to attest a TEE. You can do nearly anything in the portal by using the TA REST API. The exception is retrieving the value of an attestation API key, which you can do only in the portal.
 
 ### View admin API keys
 
@@ -65,7 +65,7 @@ You can create a new attestation API key in the portal or by using the REST API.
 
 You can associate one or more attestation policies with an attestation API key. The policies, if any, are applied to all attestation requests that the key authorizes. You can also specify policies in the attestation request. In that case, the policies specified in the request replace the associated policies. The associated policies aren't evaluated; only the specified policies are evaluated.
 
-Attestation API keys can also have [tags](../How-to%20workflows/howto-manage-tags.md), which provide reporting and metrics visibility. All API keys have at least one tag, the default **Workload** tag.
+Attestation API keys can also have tags, which provide reporting and metrics visibility. All API keys have at least one tag, the default **Workload** tag.
 
 <Tabs>
     <TabItem value="portal" label="Portal" default>
@@ -88,9 +88,9 @@ Any user can create attestation API keys available for all users within the tena
 
 1. Enter a name for the API key. The name can be up to 64 alphanumeric characters. Spaces and special characters other than underscores (_) and hyphens (-) aren't supported.
 
-1. (Optional) Assign one or more tags to the new API key. Tags are key-value pairs that help track utilization for reports and metrics. The **Workload** tag is predefined. You can use values such as an application's name with the **Workload** tag to track the attestations that the application requests. For more information, see [Tag management](../How-to%20workflows/howto-manage-tags.md).
+1. (Optional) Assign one or more tags to the new API key. Tags are key-value pairs that help track utilization for reports and metrics. The **Workload** tag is predefined. You can use values such as an application's name with the **Workload** tag to track the attestations that the application requests. For more information, see Tag management.
 
-1. (Optional) Assign one or more policies to the new API key. Use the **Select an existing policy** list to choose from existing policies. Alternatively, select **Create a new policy** to create one. For more information, see [Policy management](../How-to%20workflows/howto-manage-attestation-policies.md).
+1. (Optional) Assign one or more policies to the new API key. Use the **Select an existing policy** list to choose from existing policies. Alternatively, select **Create a new policy** to create one. For more information, see Policy management.
 
 1. When you finish, select **SAVE & CONTINUE**.
 
@@ -110,11 +110,11 @@ Creating an attestation API key by using the REST API requires an admin API key 
 
 1. (Optional) Create and retrieve the IDs for the tags or policies to associate with the attestation API key.
 
-1. [Find the service offer ID](../Restapi/restapi-service-offer-management.md).
+1. Find the service offer ID.
 
-1. [Retrieve the product ID](../Restapi/restapi-product-management.md) by using the service offer ID.
+1. Retrieve the product ID by using the service offer ID.
 
-1. [Create a new API client](../Restapi/restapi-client-management.md) by using the POST method.
+1. Create a new API client by using the POST method.
 
   </TabItem>
 
@@ -138,7 +138,7 @@ This option uses the TA REST API directly to request an attestation. It assumes 
 1. Request a nonce.
 
    ```bash
-   curl --location 'https://api.trustauthority.company.com/appraisal/v1/nonce' \
+   curl --location 'https://api.ta.company.com/appraisal/v1/nonce' \
      --header 'Accept: application/json' \
      --header 'x-api-key: <attestation API key>'
    ```
@@ -147,7 +147,7 @@ This option uses the TA REST API directly to request an attestation. It assumes 
    If you're in the European Union (EU) region, use the following URL instead:
 
    ```bash
-   curl --location 'https://api.eu.trustauthority.company.com/appraisal/v1/nonce' \
+   curl --location 'https://api.eu.ta.company.com/appraisal/v1/nonce' \
      --header 'Accept: application/json' \
      --header 'x-api-key: <attestation API key>'
    ```
@@ -172,7 +172,7 @@ This option uses the TA REST API directly to request an attestation. It assumes 
 1. Request an attestation token.
 
    ```bash
-   curl --location 'https://api.trustauthority.company.com/appraisal/v1/attest' \
+   curl --location 'https://api.ta.company.com/appraisal/v1/attest' \
     --header 'Accept: application/json' \
     --header 'x-api-key: <attestation API key>' \
     --header 'Content-Type: application/json' \
@@ -196,7 +196,7 @@ This option uses the TA REST API directly to request an attestation. It assumes 
 
 This option uses the TA Go client libraries to request a new attestation token. This example assumes that you integrated the Go client, including the `go-sgx` module, with an existing SGX-enabled application.
 
-For more code samples, see the [TA client repo](https://github.com/trustauthority-client-for-go/tree/main).
+For more code samples, see the [TA client repo](https://github.com/ta-client-for-go/tree/main).
 
 1. Instantiate the client.
 

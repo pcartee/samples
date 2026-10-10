@@ -6,12 +6,9 @@ topic: conceptual
 date: 07/18/2024
 uid: policy.builder.tool
 ---
-*· July/18/2024 ·*
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
-## Policy builder tool
 
 The Policy Builder tool is a command line interface tool used to author simplified policies written in JSON format and convert them to Rego policies readable by TA. The Policy Builder currently supports Intel® Software Guard Extensions (Intel® SGX) and Intel® Trust Domain Extensions (Intel® TDX) TEEs.
 
@@ -24,7 +21,7 @@ The purpose of the Policy Builder is to simplify the creation of basic/common po
 :::note
  JSON policies are simplified and have reduced capability from Rego policies. This utility exists to help users who do not want/need the complexity and power available through Rego but who still want to use a simple policy for attestation. The "default" policies only check whether the TEE is genuine and has an up-to-date TCB, but do not check any workload specific attributes of the TEE. Policies are needed to check those attributes, or to customize the attribute names, or to customize the acceptable TCB based on the capabilities and update schedule of the TEE provider. The Policy Builder can help create simplified policies for the most commonly used attributes.
 
-When you run the Policy Builder with a JSON input file, it will generate Rego output that you can copy to the TA Portal to create a policy, or you can use the [Policy Management REST API](../../Restapi/restapi-policy-management.md) or the [TA CLI (`trustauthorityctl`)](../../Command-line/cli-policy-commands.md).
+When you run the Policy Builder with a JSON input file, it will generate Rego output that you can copy to the TA Portal to create a policy, or you can use the Policy Management REST API or the TA CLI (`trustauthorityctl`).
 
 Creating policies is discussed in Attestation Policies and How To Author A Custom Policy.
 :::
@@ -56,15 +53,15 @@ Windows
 
 The output is displayed in the terminal in Rego with two format options. 
 
-The **original** format is used with the [Manage Policies](../../How-to%20workflows/howto-manage-attestation-policies.md) page of the web portal. 
+The **original** format is used with the Manage Policies page of the web portal. 
 
-The **escaped** format is used with the [Policy Management REST API](../../Restapi/restapi-policy-management.md) or with the [TA CLI (`trustauthorityctl`)](../../Command-line/cli-policy-commands.md). 
+The **escaped** format is used with the Policy Management REST API or with the TA CLI (`trustauthorityctl`). 
 
 ## Appraisal policy
 
 ### Intel SGX incoming claims
 
-The following claims can be used in the JSON policy input file. For a complete description of the claims, see [Attestation Tokens](../../Concepts/concept-attestation-tokens.md#tee-specific-claims). 
+The following claims can be used in the JSON policy input file. For a complete description of the claims, see Attestation Tokens. 
 
 |Claim                  | Datatype                | 
 |-----------------------|--------------------------|
@@ -127,7 +124,7 @@ input.sgx_is_debuggable == false
 
 ### Intel TDX incoming claims
 
-The following claims can be used in the JSON policy input file. For a complete description of the claims, see [Attestation Tokens](../../Concepts/concept-attestation-tokens.md#tee-specific-claims). 
+The following claims can be used in the JSON policy input file. For a complete description of the claims, see Attestation Tokens. 
 
 |Claim                  | Datatype                 |
 |-----------------------|----------------------------|
@@ -197,7 +194,7 @@ input.tdx_is_debuggable == true
 
 Custom TCB policies are used to adjust the default policy evaluation of the attester TEE's TCB update status. This is needed to account for the TEE provider's update schedule. TCB updates can be complex for datacenter and cloud providers and may take more time than allotted in the default policy.
 
-The following attester TCB pseudo-claims can be used in the JSON policy input file. These are not claims in the usual sense because they're not in the TA EAT profile and they don't appear in an attestation token. These are keywords that expand to Rego code blocks to implement custom attester TCB policies. For more information, see [Platform TCB Policies](../../Concepts/concept-platform-tcb.md). 
+The following attester TCB pseudo-claims can be used in the JSON policy input file. These are not claims in the usual sense because they're not in the TA EAT profile and they don't appear in an attestation token. These are keywords that expand to Rego code blocks to implement custom attester TCB policies. For more information, see Platform TCB Policies. 
 
 |Field Name            |Type       |Field Description             |
 |---------------------|---------------------|-----------------------------------|
@@ -261,11 +258,11 @@ object.subset(allowed_advisory_ids,  attester_advisory_ids)
 
 ## Token customization policies
 
-A token customization policy allows you to create a new claim name, that you can map to a default claim. The new claim gets the value of the default claim. This allows for easier integration with relying parties that are looking for a specific claim name. For more information on token customization policies, see [Attestation Policies](../../Concepts/concept-policies.md#token-customization-policies-and-custom-claims)
+A token customization policy allows you to create a new claim name, that you can map to a default claim. The new claim gets the value of the default claim. This allows for easier integration with relying parties that are looking for a specific claim name. For more information on token customization policies, see Attestation Policies
 
 ### Intel SGX incoming claims
 
-The following claims can be used in the JSON policy input file. For a complete description of the claims, see [Attestation Tokens](../../Concepts/concept-attestation-tokens.md#tee-specific-claims). 
+The following claims can be used in the JSON policy input file. For a complete description of the claims, see Attestation Tokens. 
 
 |Field Name            |Type       |Field Description             |
 |---------------------|---------------------|-----------------------------------|
@@ -331,7 +328,7 @@ token_fields := {
 
 ### Intel TDX incoming claims
 
-The following claims can be used in the JSON policy input file. For a complete description of the claims, see [Attestation Tokens](../../Concepts/concept-attestation-tokens.md#tee-specific-claims). 
+The following claims can be used in the JSON policy input file. For a complete description of the claims, see Attestation Tokens. 
 
 The following claims can be used in the JSON custom policy input file. That is, this is the list of input claims you can _rename_ in the output attestation token by using a custom policy. Any claim not on this list can't be renamed.
 

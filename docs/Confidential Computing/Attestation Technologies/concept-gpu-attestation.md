@@ -6,12 +6,8 @@ topic: conceptual, attestation, gpu
 date: 09/17/2024
 uid: gpu.attestation
 ---
-import BasicToken from '../../Include/eat/_nv-basic-token.md';
-import NVIDIA from '../../Include/eat/_nvidia-policy-claims.md';
-
-*· September/17/2025 ·*
-
-## GPU remote attestation with TA
+import BasicToken from '../Include/eat/_nv-basic-token.md';
+import NVIDIA from '../Include/eat/_nvidia-policy-claims.md';
 
 Intel and NVIDIA have collaborated to add NVIDIA\* Tensor Core\* H100 GPU TEE remote attestation to TA. It's now possible to attest a confidential virtual machine TEE and a NVIDIA H100 GPU in one composite attestation workflow. This article provides an overview of the GPU attestation architecture, the TA PythonS Client, CLI, and REST API updates that support GPU attestation, and examples of GPU and composite attestation JWTs.
 
@@ -72,14 +68,14 @@ An **ITAConnector.get_token** method is available for singular attestation of In
 
 ## Python CLI
 
-TA Python CLI for Intel® Trust Domain Extensions (Intel® TDX) and NVIDIA GPU **trustauthority-pycli** provides a CLI to attest an Intel TDX trust domain (TD) and NVIDIA GPU with TA. 
+TA Python CLI for Intel® Trust Domain Extensions (Intel® TDX) and NVIDIA GPU **ta-pycli** provides a CLI to attest an Intel TDX trust domain (TD) and NVIDIA GPU with TA. 
 
-**trustauthority-pycli** requires **`python-connector`**, **`python-intel-tdx`**, **`python-nvgpu`**, and NVIDIA Attestation SDK. A configuration file is required to be present in the **trustauthority-pycli** directory. See the README for details and more extensive documentation of the following commands.
+**ta-pycli** requires **`python-connector`**, **`python-intel-tdx`**, **`python-nvgpu`**, and NVIDIA Attestation SDK. A configuration file is required to be present in the **ta-pycli** directory. See the README for details and more extensive documentation of the following commands.
 
-**trustauthority-pycli** has three commands: **attest**, **evidence**, and **verify**. 
+**ta-pycli** has three commands: **attest**, **evidence**, and **verify**. 
 
 :::note
-Root permissions are required to access the configfs-tsm device to collect evidence for Intel TDX attestation. You must run both **attest** and **evidence** commands as root. For example: `sudo python3 trustauthority-pycli attest --attest_type tdx+nvgpu`.  GPU-only attestation doesn't require sudo.
+Root permissions are required to access the configfs-tsm device to collect evidence for Intel TDX attestation. You must run both **attest** and **evidence** commands as root. For example: `sudo python3 ta-pycli attest --attest_type tdx+nvgpu`.  GPU-only attestation doesn't require sudo.
 :::
 
 The **attest** command collects evidence from the attester(s) and then forwards the evidence with an attestation request to TA. `attest` requires an `--attest_type` parameter that can be one of `tdx`, `nvgpu`, or `tdx+nvgpu`. The `tdx+nvgpu` option is used for composite attestation of both the Intel TDX TD and the NVIDIA H100 GPU. 
@@ -114,7 +110,7 @@ This particular token shows a mixed result; the attestation report is valid, but
 
 ## Example appraisals
 
-This section includes sample appraisal policies that can be used to verify the GPU attestation results. Most of these examples are really fragments meant to be combined for a complete GPU or composite policy. For more information about appraisal policies, see the [Appraisal Policy V2](../../Concepts/concept-policy-v2.md) article.
+This section includes sample appraisal policies that can be used to verify the GPU attestation results. Most of these examples are really fragments meant to be combined for a complete GPU or composite policy. For more information about appraisal policies, see the Appraisal Policy V2 article.
 
 ### Secure boot
 
@@ -182,7 +178,7 @@ match {
 
 Policy that checks the GPU HW information (e.g. Driver and VBIOS information). To use this, you need to know the specific values that apply to your GPU. 
 
-This example is written in policy v2 format; for more information, see [Attestation Policies v2](../../Concepts/concept-policy-v2.md).
+This example is written in policy v2 format; for more information, see Attestation Policies v2.
 
 ```rego
 

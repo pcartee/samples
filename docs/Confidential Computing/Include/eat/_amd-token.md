@@ -23,7 +23,7 @@ Long values have been truncated for brevity.
   "sevsnpvm-snpfw-svn": 18,
   "sevsnpvm-tee-svn": 0,
   "sevsnpvm-vmpl": 0,
-  "ita-ver": "1.0",
+  "ta-ver": "1.0",
   "sevsnpvm-collateral": "84d15a56",
   "attester_held_data": "dGVzd",
   "policy_ids_matched": [
@@ -46,7 +46,7 @@ Long values have been truncated for brevity.
   ],
 
   "dbgstat": "disabled",
-  "eat_profile": "https://portal.trustauthority.intel.com",
+  "eat_profile": "https://portal.ta.intel.com",
   "intuse": "generic",
   "ver": "1.0.0",
   "exp": 1718252618,

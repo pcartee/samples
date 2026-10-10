@@ -7,10 +7,6 @@ date: 10/28/2024
 uid: tpm.ak.provision
 ---
 
-*· October/28/2024 ·*
-
-## Physical TPM Attestation Keys and certificates
-
 TA can be used as a certificate authority to issue attestation keys (AK) and certificates (AK certificate) to physical TPMs. This feature doesn't apply to vTPMs.
 
 You can provision a TPM with an AK certificate endorsed by a TA. TA AK provisioning does the following:
@@ -72,13 +68,13 @@ The following is an example of the `ak_certificate` field in the configuration f
 Use the following command to collect an AK certificate from TA.
 
 ```bash
-./trustauthority-cli provision-ak -c ~/config.json
+./ta-cli provision-ak -c ~/config.json
 ```
 
 Use the following command to collect and copy the AK certificate to the location specified in `config.json` (For example, `~/akcert.pem`).
 
 ```bash
-./trustauthority-cli provision-ak -c ~/config.json > ~/akcert.pem
+./ta-cli provision-ak -c ~/config.json > ~/akcert.pem
 ```
 
 ### Generate a TPM quote and request attestation from TA
@@ -86,7 +82,7 @@ Use the following command to collect and copy the AK certificate to the location
 With EK and AK handles specified, a TA signed AK certificate, and `config.json` pointing to that certificate, use the following command to collect a token from TA.
 
 ```bash
-./trustauthority-cli token --tpm --tdx -c ~/config.json
+./ta-cli token --tpm --tdx -c ~/config.json
 ```
 
 ### Troubleshooting provision-ak

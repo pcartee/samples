@@ -25,7 +25,7 @@ This is a curated set of documentation samples written for TA and related confid
 - [Quickstart](https://pcartee.github.io/writing-samples/Confidential%20Computing/Quickstart/tutorial-api-key/)
 - [Tutorials and examples](https://pcartee.github.io/writing-samples/Confidential%20Computing/Tutorials%20and%20examples/tutorial-tdx-workload/)
 - [How-to workflows](https://pcartee.github.io/writing-samples/Confidential%20Computing/How-to%20workflows/howto-manage-users/)
-- [Operation Guide](https://pcartee.github.io/writing-samples/symplified/Operation%20Guide/operations-guide/)
+- [Operation Guide](https://pcartee.github.io/writing-samples/Cybersecurity/Operation%20Guide/01-operations-guide/)
 - [Attestation technologies](https://pcartee.github.io/writing-samples/Confidential%20Computing/Attestation%20Technologies/concept-tees-overview/)
 - [Concepts](https://pcartee.github.io/writing-samples/Confidential%20Computing/Concepts/concept-attestation-overview/)
 - [Tenant Administration CLI](https://pcartee.github.io/writing-samples/Confidential%20Computing/Command-line/cli-examples/)

@@ -1,5 +1,5 @@
 ---
-title: Subscription Management
+title: Subscription management
 description: An overview of subscription management in TA.
 author: pcartee
 topic: how to

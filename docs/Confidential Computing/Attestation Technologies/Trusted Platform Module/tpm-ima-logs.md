@@ -7,10 +7,6 @@ date: 11/14/2024
 uid: ima-log 
 ---
 
-*· October/25/2024 ·*
-
-## Integrity Measurement Architecture (IMA)
-
 The Linux Integrity Measurement Architecture (IMA) is a security subsystem in the Linux kernel that includes three main features: IMA-Measurement, IMA-Appraisal, and IMA-Audit. These features are activated based on IMA Policy rule actions. TA can include IMA event logs in TPM attestations.
 
 :::note
@@ -25,7 +21,7 @@ IMA generates event logs using the hash algorithm set by kernel modules. The def
 
 In this example, the IMA default hash algorithm is set to SHA-256. For event log replays to work correctly, the SHA-256 PCR bank must be enabled on the TPM.
 
-Also note that the `pcr_slections` setting in the `config.json` configuration file defines the PCR bank that the attestation client CLI will use. This must match the algorith used for any event logs, so that the attestation client CLI picks the correct PCR bank for use in the event log replay.
+Also note that the `pcr_selections` setting in the `config.json` configuration file defines the PCR bank that the attestation client CLI will use. This must match the algorithm used for any event logs, so that the attestation client CLI picks the correct PCR bank for use in the event log replay.
 :::
 
 ## IMA boot-time vs. runtime measurement
@@ -48,11 +44,13 @@ If the event log replay does not match the PCR value, the event log is untrustwo
 
 You must provision an IMA policy to determine what files or resources need to be measured to satisfy your security needs. The IMA policy is configured on the system to be attested (the "attester"), and differs from appraisal policies configured using TA.
 
-IMA policy:
+#### IMA police
+
 - Configured on the attester (the system with a TPM), using a text file provisioned to `/etc/ima/ima-policy`
 - Determines which files on the system will be measured, and under what conditions the measurement will be repeated
 
-Appraisal policy:
+#### Appraisal policy
+
 - Configured on the verifier (TA) using Rego policy language
 - Determines required claims values in an attestation token to indicate that the policy matches
 
@@ -67,13 +65,13 @@ To learn more about configuring IMA and understanding IMA policies, see the [Int
 1. Create an Azure confidential virtual machine (CVM) with Intel TDX. Azure's vTPM uses Intel TDX as its root of trust, and IMA is enabled by default on Azure confidential VMs. However, you must add an IMA policy to measure anything other than the default TCB policy.
 
 :::note
-See the [Intel TDX Attestation on Microsoft Azure](<../../Tutorials and examples/Intel Trust Authority Client examples/tutorial-tdx.md>) tutorial for guidance on how to build an Azure CVM with the required features enabled.
+See the Intel TDX Attestation on Microsoft Azure tutorial for guidance on how to build an Azure CVM with the required features enabled.
 :::
 
 1. Install the TA attestation client CLI on the new Azure confidential VM.
 
 ```sh
-curl https://raw.githubusercontent.com/intel/trustauthority-client-for-go/main/release/install-tdx-cli-azure.sh | sudo bash - 
+curl https://raw.githubusercontent.com/intel/ta-client-for-go/main/release/install-tdx-cli-azure.sh | sudo bash - 
 ```
 
 1. Configure the attestation client CLI.
@@ -83,8 +81,8 @@ You must configure certain properties before using the token and verify commands
 ```json
 {
     "cloud_provider": "azure"
-    "trustauthority_url": "https://portal.trustauthority.intel.com",
-    "trustauthority_api_url": "https://api.trustauthority.intel.com",
+    "trustauthority_url": "https://portal.ta.intel.com",
+    "trustauthority_api_url": "https://api.ta.intel.com",
     "trustauthority_api_key": "<trustauthority attestation api key>",
     "tpm": {
         "owner_auth": "",
@@ -122,13 +120,13 @@ Grant read access to the IMA logs for the TSS group so "imajean" can read them.
 
 1. `sudo chmod g+r /sys/kernel/security/ima/ascii_runtime_measurements`
 
-#### Deploy the trustauthority-cli and configuration to the "imajean" user's home directory
+#### Deploy the ta-cli and configuration to the "imajean" user's home directory
 
-1. `sudo cp trustauthority-cli /home/imajean`
+1. `sudo cp ta-cli /home/imajean`
 
 1. `sudo cp config.json /home/imajean`
 
-1. `sudo chown -R imajean:imajean /home/imajean/trustauthority-cli`
+1. `sudo chown -R imajean:imajean /home/imajean/ta-cli`
 
 1. `sudo chown -R imajean:imajean /home/imajean/config.json`
 
@@ -228,10 +226,10 @@ Be sure to log in as the "imajean" user first. This will ensure the files execut
 
 ```sh
 # Azure Confidential VM with vTPM:
-sudo ./trustauthority-cli token --tdx --tpm --ima -c config.json
+sudo ./ta-cli token --tdx --tpm --ima -c config.json
 
 # Physical TPM or vTPM not dependent on Intel TDX:
-sudo ./trustauthority-cli token --tpm --ima -c config.json
+sudo ./ta-cli token --tpm --ima -c config.json
 ```
 
 1. The returned token is base64 encoded. Decode the token to make it human-readable so you can retrieve the claims.
@@ -245,7 +243,7 @@ sudo ./trustauthority-cli token --tpm --ima -c config.json
       "cumulative_hash": "6128FC2C16F02D...",
       "measurements": [
         {
-          "file_path": "/usr/bin/trustauthority-cli",
+          "file_path": "/usr/bin/ta-cli",
           "digest": "c25e74f77e121e7a61429..."
         }
 ```
@@ -266,10 +264,10 @@ valid_runtime_measurements = true {
 
 default ima_cli_rtm_match := false
 ima_cli_rtm_match if {
-  ima_rtm_match(input.tpm.runtime_measurements, 10, "/home/imajean/trustauthority-cli", "753a72acc9828e99ad8f1b37b8954471e31803f6fee66fda6bad09ecd3dfa534")
+  ima_rtm_match(input.tpm.runtime_measurements, 10, "/home/imajean/ta-cli", "753a72acc9828e99ad8f1b37b8954471e31803f6fee66fda6bad09ecd3dfa534")
 }
 
-# The section above invokes the "ima_rtm_match" function, which is defined below. It passes the IMA event log from the "tpm.runtime_measurements" claim, sets the TPM PCR index to 10 (where IMA extends measurements), sets the event file path to "/home/imajean/trustauthority-cli", and asserts the required measurement.
+# The section above invokes the "ima_rtm_match" function, which is defined below. It passes the IMA event log from the "tpm.runtime_measurements" claim, sets the TPM PCR index to 10 (where IMA extends measurements), sets the event file path to "/home/imajean/ta-cli", and asserts the required measurement.
 
 ima_rtm_match(runtime_measurements, idx, fp, dig) := r if {
   fp_digests := [ digest |
@@ -288,11 +286,11 @@ ima_rtm_match(runtime_measurements, idx, fp, dig) := r if {
 # The "ima_rtm_match" function iterates over the array of event log measurements for the specified PCR index and finds events where the file path matches. It then checks only the latest event if multiple measurements of the same file path are present. Because IMA measurements are triggered during runtime whenever the specified file is executed, this function ensures that older, matching measurements are disregarded and it only checks the most recent measurement of that file. This way the policy will detect changes to the executable. Note that only changes in the measurement are recorded (so repeated executions of the same binary with the same hash measurement will be represented by just one measurement event) and that attestation must still be triggered for the appraisal policy to be evaluated. In this example the policy is checking the attestation client CLI, so every attestation request is also verifying the integrity of the client that provided the evidence.
 ```
 
-1. Use this file (with real digest values captured from the attestation token claims and without comments) to create a new appraisal policy using the [TA web UI](<../../How-to workflows/howto-manage-attestation-policies.md>) or the [tenant management CLI](../../Command-line/cli-policy-commands.md).
+1. Use this file (with real digest values captured from the attestation token claims and without comments) to create a new appraisal policy using the TA web UI or the tenant management CLI.
 
 ### Demonstrate Attestation
 
-Run trustauthority-cli as the "imajean" user and inspect token claims to verify the policy.
+Run ta-cli as the "imajean" user and inspect token claims to verify the policy.
 
 1. Log in to the Azure confidenctial VM as the "imajean" user.
   
@@ -303,7 +301,7 @@ su - imajean (provide password)
 1. Run the following command to attest the system using the new IMA appraisal policy.
 
 ```bash
-./trustauthority-cli token --tdx --tpm --ima -c config.json --policy-ids <appraisal policy UUID>
+./ta-cli token --tdx --tpm --ima -c config.json --policy-ids <appraisal policy UUID>
 ```
 
 The output includes details such as the EAT profile, intended use, matched policy IDs, and unmatched policy IDs.
@@ -343,7 +341,7 @@ tpm {
       "cumulative_hash": "6128FC2C16F02D...",
       "measurements": [
         {
-          "file_path": "/usr/bin/trustauthority-cli",
+          "file_path": "/usr/bin/ta-cli",
           "digest": "c25e74f77e121e7a61429..."
         }
         ...

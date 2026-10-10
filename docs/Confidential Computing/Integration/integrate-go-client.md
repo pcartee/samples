@@ -1,5 +1,5 @@
 ---
-title: TA Go Connector 
+title: TA Go connector 
 description: TA Go Connector API reference documentation.
 author: pcartee
 topic: integration
@@ -7,17 +7,12 @@ date: 05/16/2025
 uid: integrate.go.client
 ---
 
-*· May/16/2025 ·*
-
-## TA Go Connector 
-
- 
 The TA client and related TEE adapters encapsulate all the functions needed to collect evidence, package it as a quote, and obtain an attestation token from the TA service. The client modules are designed to be used by both attesters and relying parties.
 
-The TA Go client modules, build, and installation instructions are on GitHub at [intel/trustauthority-client-for-go][ita-go-client]. The **main** branch contains the latest release. TA Go client code is [open source][ita-client-license]. The client code is a good source of examples that show how to use the following API functions. 
+The TA Go client modules, build, and installation instructions are on GitHub at [intel/ta-client-for-go][ta-go-client]. The **main** branch contains the latest release. TA Go client code is [open source][ta-client-license]. The client code is a good source of examples that show how to use the following API functions. 
 
 :::note
-We are transitioning from manually created API documentation (this article) to Go Package documentation generated from comments in the codebase. For more information, see [TA Client for Go][ita-pkg-go] package documentation on pkg.go.dev. The package documentation is more complete than this documentation. The API documentation will be removed from this article in a future release.
+We are transitioning from manually created API documentation (this article) to Go Package documentation generated from comments in the codebase. For more information, see [TA Client for Go][ta-pkg-go] package documentation on pkg.go.dev. The package documentation is more complete than this documentation. The API documentation will be removed from this article in a future release.
 :::
 
 ## Go client API index
@@ -130,19 +125,19 @@ There are two TA deployment regions: European Union (EU) region, > and a global 
 
 | Region | BaseUrl | ApiUrl |
 |--- | --- | --- |
-| **EU** | `https://portal.eu.trustauthority.intel.com` | `https://api.eu.trustauthority.intel.com` |
-| **World/US** | `https://portal.trustauthority.intel.com` | `api.trustauthority.intel.com` |
+| **EU** | `https://portal.eu.ta.intel.com` | `https://api.eu.ta.intel.com` |
+| **World/US** | `https://portal.ta.intel.com` | `api.ta.intel.com` |
 
 
 
 ```go
-import "github.com/intel/trustauthority-client-for-go/go-connector"
+import "github.com/intel/ta-client-for-go/go-connector"
 
 cfg := connector.Config{
         // The TA base URL.
-        BaseUrl: "https://portal.trustauthority.intel.com",
+        BaseUrl: "https://portal.ta.intel.com",
         // The TA API URL.
-        ApiUrl: "https://api.trustauthority.intel.com",
+        ApiUrl: "https://api.ta.intel.com",
         // Provide TLS config.
         TlsCfg: &tls.Config{},
         // Replace TRUSTAUTHORITY_API_KEY with a real API key.
@@ -188,7 +183,7 @@ func (connector *trustAuthorityConnector) Attest(args AttestArgs) (AttestRespons
 | ***AttestArgs.PolicyIds*** | []uuid.UUID | An optional array of up to ten policy IDs to apply during attestation. |
 | ***AttestArgs.RequestId*** | string | An optional [RequestID](../glossary.md#request-id).|
 | ***AttestArgs.TokenSigningAlg*** | string | An optional value to specify the token signing algorithm. Allowed values are `{ "PS384" \| "RS256" }`; the default is PS384. |
-| ***AttestArgs.PolicyMustMatch*** | bool | An optional value that overrides the default token issuance behavior. If set to true, all supplied policies must match for a token to be issued. If set to false or omitted, an attestation token will be issued unless an error occurs. For more information, see [Policy results](../Concepts/concept-policies.md#policy-results). |
+| ***AttestArgs.PolicyMustMatch*** | bool | An optional value that overrides the default token issuance behavior. If set to true, all supplied policies must match for a token to be issued. If set to false or omitted, an attestation token will be issued unless an error occurs. For more information, see Policy results. |
 
 #### Returns
 
@@ -281,7 +276,7 @@ func (connector *trustAuthorityConnector) GetToken(args GetTokenArgs) (GetTokenR
 | ***GetTokenArgs.PolicyIds*** | []uuid.UUID | An optional array of up to ten policy IDs to apply during attestation. |
 | ***GetTokenArgs.RequestId*** | string | An optional [RequestID](../glossary.md#request-id).|
 | ***GetTokenArgs.TokenSigningAlg*** | string | An optional value to specify the token signing algorithm. Allowed values are `{ "PS384" \| "RS256" }`; the default is PS384. |
-| ***GetTokenArgs.PolicyMustMatch*** | bool | An optional value that overrides the default token issuance behavior. If set to true, all supplied policies must match for a token to be issued. If set to false or omitted, an attestation token will be issued unless an error occurs. For more information, see [Policy results](../Concepts/concept-policies.md#policy-results). |
+| ***GetTokenArgs.PolicyMustMatch*** | bool | An optional value that overrides the default token issuance behavior. If set to true, all supplied policies must match for a token to be issued. If set to false or omitted, an attestation token will be issued unless an error occurs. For more information, see Policy results. |
 
 #### Returns
 
@@ -327,7 +322,7 @@ func (connector *trustAuthorityConnector) GetTokenSigningCertificates() ([]byte,
 
 #### Returns
 
-A [JWKS](../glossary.md#json-web-key-jwk). Use the [**kid**](../Concepts/concept-attestation-tokens.md#token-header) claim to find the JWK used to sign the token.
+A [JWKS](../glossary.md#json-web-key-jwk). Use the **kid** claim to find the JWK used to sign the token.
 
 #### Example
 
@@ -371,13 +366,13 @@ if err != nil {
 Prior to integrating an Intel® SGX workload with the TA client, the workload must implement a function to generate an enclave report. This function should take the SHA256 hash of the nonce and user data to form report data for the **sgx_create_report** API. The TA Attestation Service performs a report data verification where it expects the report data to be a SHA256 hash of nonce and user_data.
 
 ```go
-import "github.com/intel/trustauthority-client-for-go/go-sgx"
+import "github.com/intel/ta-client-for-go/go-sgx"
 ```
 
 The following code fragment creates a new Go SGX adapter and uses it to collect a quote from the SGX TEE.
 
 ```go
-import "github.com/intel/trustauthority-client-for-go/go-sgx"
+import "github.com/intel/ta-client-for-go/go-sgx"
 
 adapter, err := sgx.NewEvidenceAdapter(enclaveId, enclaveHeldData, unsafe.Pointer(C.enclave_create_report))
 if err != nil {
@@ -432,14 +427,14 @@ An **Evidence** structure that contains the quote for attestation.
 
 ## `go-tdx` adapter API reference
 
-The TA Intel® TDX Attestation client includes a Go client and a [CLI](integrate-go-tdx-cli.md) for use on the command line or by languages other than Go, enabling you to use Intel TDX remote attestation in your application.
+The TA Intel® TDX Attestation client includes a Go client and a CLI for use on the command line or by languages other than Go, enabling you to use Intel TDX remote attestation in your application.
 
 There are currently two variants of the TA go-tdx adapter, as explained below. Some details of an Intel TDX client implementation for CSP platforms are different than the "standard" Intel TDX TCB that runs on a hosted server or on-premises server. CSP platforms require a customized adapter to map CSP implementations to the requirements of TA's evidence verification service. TA **go-tdx** adapters differ mainly in terms of how the evidence collected from the TD is combined with user data (if supplied) and hashed for verification. Nearly all of the API functions are identical across adapters, but where there's a difference in behavior, it's described in the API's Usage section.
 
 ### TA go-tdx variants
 
-- **go-tdx** for Intel TDX-enabled platforms. Code for this adapter is located in  [intel/trustauthority-client-for-go/go-tdx](https://github.com/intel/trustauthority-client-for-go/tree/main/go-tdx) on the **main** branch.
-- **go-tdx** for [Microsoft Azure confidential VMs with Intel TDX](https://azure.microsoft.com/en-us/updates/confidential-vms-with-intel-tdx-dcesv5-ecesv5-public-preview/). Code for the Azure adapter is located in [intel/trustauthority-client-for-go/go-tdx](https://github.com/intel/trustauthority-client-for-go/tree/azure-tdx-preview/go-tdx) on the **azure_tdx_preview** branch. 
+- **go-tdx** for Intel TDX-enabled platforms. Code for this adapter is located in  [intel/ta-client-for-go/go-tdx](https://github.com/intel/ta-client-for-go/tree/main/go-tdx) on the **main** branch.
+- **go-tdx** for [Microsoft Azure confidential VMs with Intel TDX](https://azure.microsoft.com/en-us/updates/confidential-vms-with-intel-tdx-dcesv5-ecesv5-public-preview/). Code for the Azure adapter is located in [intel/ta-client-for-go/go-tdx](https://github.com/intel/ta-client-for-go/tree/azure-tdx-preview/go-tdx) on the **azure_tdx_preview** branch. 
 
 The go-tdx adapter for Azure confidential VMs with Intel TDX varies from the Intel TDX stack in the following ways.
 
@@ -466,7 +461,7 @@ The go-tdx adapter for Azure confidential VMs with Intel TDX varies from the Int
 The following code fragment creates a new TDX adapter and then collects evidence for a quote. This sample assumes that you have previously obtained a nonce for CollectEvidence.
 
 ```go
-import "github.com/intel/trustauthority-client/go-tdx"
+import "github.com/intel/ta-client/go-tdx"
 
 evLogParser := tdx.NewEventLogParser()
 adapter, err := tdx.NewEvidenceAdapter(tdHeldData, evLogParser)
@@ -648,7 +643,7 @@ Package nvgpu
 gpu_adapter.go
 
 ```go
-import "github.com/intel/trustauthority-client/go-nvgpu"
+import "github.com/intel/ta-client/go-nvgpu"
 ```
 
 ### NewCompositeEvidenceAdapter
@@ -730,6 +725,6 @@ If successful, **CollectEvidence** returns an **Evidence** structure; otherwise,
 
 /* External URLs */
 
-[ita-pkg-go]: https://pkg.go.dev/github.com/intel/trustauthority-client
-[ita-go-client]: https://github.com/intel/trustauthority-client-for-go
-[ita-client-license]: https://github.com/intel/trustauthority-client-for-go/blob/main/LICENSE
+[ta-pkg-go]: https://pkg.go.dev/github.com/intel/ta-client
+[ta-go-client]: https://github.com/intel/ta-client-for-go
+[ta-client-license]: https://github.com/intel/ta-client-for-go/blob/main/LICENSE

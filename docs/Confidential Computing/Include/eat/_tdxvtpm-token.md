@@ -1,5 +1,5 @@
 The following composite attestation token was collected after running 
-``` ./trustauthority-cli attest --aztdx --tpm --no-verifier-nonce```
+``` ./ta-cli attest --aztdx --tpm --no-verifier-nonce```
 
 ``` json
 {
