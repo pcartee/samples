@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Cybersecurity/Operation Guide/ad-federation-services" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.2">
+<title data-rh="true">Active Directory Federation Services | Paul Cartee&#x27;s Writing Samples</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://pcartee.github.io/samples/img/trust.png"><meta data-rh="true" name="twitter:image" content="https://pcartee.github.io/samples/img/trust.png"><meta data-rh="true" property="og:url" content="https://pcartee.github.io/samples/Cybersecurity/Operation Guide/ad-federation-services/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Active Directory Federation Services | Paul Cartee&#x27;s Writing Samples"><meta data-rh="true" name="description" content="Configure Active Directory Federation Services (ADFS) integration with an Identity Router for federated single sign-on (SSO). This guide covers federation trust architecture, Integrated Windows Authentication (IWA) without joining the Identity Router to the domain, ADFS prerequisites, domain proof and SSL certificate management, SAML 2.0 relying party trusts, LDAP claim rules, and exporting the ADFS public key to the Identity Router."><meta data-rh="true" property="og:description" content="Configure Active Directory Federation Services (ADFS) integration with an Identity Router for federated single sign-on (SSO). This guide covers federation trust architecture, Integrated Windows Authentication (IWA) without joining the Identity Router to the domain, ADFS prerequisites, domain proof and SSL certificate management, SAML 2.0 relying party trusts, LDAP claim rules, and exporting the ADFS public key to the Identity Router."><link data-rh="true" rel="icon" href="/samples/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://pcartee.github.io/samples/Cybersecurity/Operation Guide/ad-federation-services/"><link data-rh="true" rel="alternate" href="https://pcartee.github.io/samples/Cybersecurity/Operation Guide/ad-federation-services/" hreflang="en"><link data-rh="true" rel="alternate" href="https://pcartee.github.io/samples/Cybersecurity/Operation Guide/ad-federation-services/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Active Directory Federation Services","item":"https://pcartee.github.io/samples/Cybersecurity/Operation Guide/ad-federation-services"}]}</script><link rel="stylesheet" href="/samples/assets/css/styles.15c065ee.css">
+<script src="/samples/assets/js/runtime~main.1c61c325.js" defer="defer"></script>
+<script src="/samples/assets/js/main.ed60b033.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme-8d6")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")),document.documentElement.setAttribute("data-theme-choice",t||"system")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/samples/img/trust.png"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/samples/"><div class="navbar__logo"><img src="/samples/img/trust.png" alt="Paul Cartee&#x27;s Writing Samples" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/samples/img/trust.png" alt="Paul Cartee&#x27;s Writing Samples" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Paul Cartee&#x27;s Writing Samples</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/samples/">Paul Cartee&#x27;s Writing Samples</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/samples/"><span class="linkLabel_WmDU">Overview</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/samples/Confidential Computing/Quickstart/howto-manage-subscriptions/"><span class="categoryLinkLabel_W154">Confidential Computing</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/samples/reference/identity-router-api/"><span class="categoryLinkLabel_W154">Cybersecurity</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/samples/reference/identity-router-api/"><span class="categoryLinkLabel_W154">API Reference Guide</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/samples/Cybersecurity/Operation Guide/operations-guide/"><span class="categoryLinkLabel_W154">Operation Guide</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/Cybersecurity/Operation Guide/operations-guide/"><span class="linkLabel_WmDU">Identity Routers Overview</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/Cybersecurity/Operation Guide/idenity-routers/"><span class="linkLabel_WmDU">Identity Routers Operations Guide</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/Cybersecurity/Operation Guide/idr-administrators/"><span class="linkLabel_WmDU">Identity Router Administrators</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/Cybersecurity/Operation Guide/customers/"><span class="linkLabel_WmDU">Create/Edit Customers</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/Cybersecurity/Operation Guide/application-types/"><span class="linkLabel_WmDU">My Application Types</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/Cybersecurity/Operation Guide/handlers/"><span class="linkLabel_WmDU">Identity Router Handlers</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/Cybersecurity/Operation Guide/certificates/"><span class="linkLabel_WmDU">Identity Routers Certificates</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/Cybersecurity/Operation Guide/amazon-ec2/"><span class="linkLabel_WmDU">Amazon EC2 Identity Router Deployment</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/samples/Cybersecurity/Operation Guide/ad-federation-services/"><span class="linkLabel_WmDU">Active Directory Federation Services</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/samples/Cybersecurity/Operation Guide/edit -profile/"><span class="linkLabel_WmDU">Edit Profile Information</span></a></li></ul></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/samples/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Cybersecurity</span></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Operation Guide</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Active Directory Federation Services</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Active Directory Federation Services</h1></header><p>Studio&#x27;s Active Directory Federation Services (ADFS) implementation enables the Identity Router to leverage existing Identity Provider Services for authenticating to your SSO enabled applications. The Identity Router is able to act as a Resource Federation Server and establish a Federation Trust relationship with your ADFS enabled infrastructure. One of the many benefits to using the ADFS connector is enabling Integrated Windows Authentication (IWA) without requiring the Identity Router to join your domain.</p>
+<p>The diagram below represents an example workflow for ADFS enabled authentication. In the diagram the Symplified Identity Router serves as the Resource Federation Server, and the ADFS system serves as the Account Federation Server. As such, there is no need for the Identity Router to speak directly with the ADFS server, but users accessing the system will need 80/443 connectivity to the Portal interface of the Identity Router, your custom Portal, and the relevant interface of the ADFS system. Additionally, the Identity Router will require LDAP access from the Management interface to your User Store to lookup authorization information and apply any access policies.</p>
+<p><img decoding="async" loading="lazy" alt="ADFS federation workflow with the Identity Router as the resource federation server and ADFS as the account federation server" src="/samples/assets/images/_page_63_Diagram_3-65289e4dff563deea08d2f1792b99470.jpeg" width="829" height="743" class="img_ev3q"></p>
+<p>The Federation Services Trust relationship between the Identity Router and the ADFS server on this diagram is represented, although no direct communication between the two is necessary. Not represented in this diagram is the IWA relationship between your ADFS servers, the client machines, and the windows domain.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="external-references"><strong>External References</strong><a href="#external-references" class="hash-link" aria-label="Direct link to external-references" title="Direct link to external-references" translate="no">​</a></h2>
+<p>Several Microsoft TechNet articles may be of use for you in designing and deploying your ADFS enabled</p>
+<p>environment. Some of the relevant articles are below.</p>
+<p><strong>ADFS Overview <a href="http://technet.microsoft.com/en-us/library/cc772593%28WS.10%29.aspx" target="_blank" rel="noopener noreferrer" class="">http://technet.microsoft.com/en-us/library/cc772593%28WS.10%29.aspx</a> Install the ADFS Software <a href="http://technet.microsoft.com/en-us/library/dd807096%28WS.10%29.aspx" target="_blank" rel="noopener noreferrer" class="">http://technet.microsoft.com/en-us/library/dd807096%28WS.10%29.aspx</a> Federated SSO by Example <a href="http://technet.microsoft.com/en-us/library/cc779508(WS.10).aspx" target="_blank" rel="noopener noreferrer" class="">http://technet.microsoft.com/en-us/library/cc779508(WS.10).aspx</a></strong></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="configuring-your-adfs-server"><strong>Configuring Your ADFS Server</strong><a href="#configuring-your-adfs-server" class="hash-link" aria-label="Direct link to configuring-your-adfs-server" title="Direct link to configuring-your-adfs-server" translate="no">​</a></h2>
+<p>After completing the ADFS installation wizard, you need to import the domain proof certificate with its private key into the Personal Store on your ADFS server. This certificate will be used to sign the relevant SAML assertions between the Identity Router and your ADFS system.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="prerequisites"><strong>Prerequisites</strong><a href="#prerequisites" class="hash-link" aria-label="Direct link to prerequisites" title="Direct link to prerequisites" translate="no">​</a></h3>
+<ul>
+<li class="">Microsoft Windows Server 2008 R2 Standard with ADFS 2.0 enabled</li>
+<li class="">ADFS software installed per Microsoft Technet: Install the AD FS 2.0 Software • An installed and running IIS server • X.509 SSL certificate for the domain you are securing •The Identity Router running release 8.1 or later</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="to-import-the-domain-proof-certificate-onto-the-federation-server"><strong>To Import the Domain Proof Certificate onto the Federation Server</strong><a href="#to-import-the-domain-proof-certificate-onto-the-federation-server" class="hash-link" aria-label="Direct link to to-import-the-domain-proof-certificate-onto-the-federation-server" title="Direct link to to-import-the-domain-proof-certificate-onto-the-federation-server" translate="no">​</a></h2>
+<ul>
+<li class="">
+<ol>
+<li class="">Click <strong>Start</strong>, click <strong>Run</strong>, and then click <strong>OK</strong>. In the empty console, click <strong>File</strong>, and then click <strong>Add/Remove Snap-in</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="2">
+<li class="">In the <em>Add or Remove Snap-ins</em> dialog box: • select <strong>Certificates</strong> from the list of <strong>Available snap-ins</strong> •click <strong>Add</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="3">
+<li class="">In the <em>Certificates snap-in</em> dialog box: click <strong>Computer account</strong> • click <strong>Next</strong> • click <strong>Finish</strong> •click <strong>OK</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="4">
+<li class="">In the open console, double-click <strong>Certificates (Local Computer)</strong>, and then double-click <strong>Personal</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="5">
+<li class="">Right-click <strong>Certificates</strong>, select <strong>All Tasks</strong>, and then click <strong>Import</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="6">
+<li class="">On the <em>Welcome to the Certificate Import Wizard</em> page, click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="7">
+<li class="">On the <em>File to Import</em> page, type the path location to the client authentication certificate, and then click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="8">
+<li class="">On the <em>Password</em> page, type the password that is associated with this certificate, and then click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="9">
+<li class="">On the <em>Certificate Store</em> page, select <strong>Place all certificates in the following store</strong> and verify that it is</li>
+</ol>
+</li>
+</ul>
+<p>pointed to the <strong>Personal store</strong>, and then click <strong>Next</strong>.</p>
+<ol start="10">
+<li class="">On the <em>Completing the Certificate Import Wizard</em> page, click <strong>Finish</strong>, and then click <strong>OK</strong>.</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="defining-a-relying-party-trust"><strong>Defining a Relying Party Trust</strong><a href="#defining-a-relying-party-trust" class="hash-link" aria-label="Direct link to defining-a-relying-party-trust" title="Direct link to defining-a-relying-party-trust" translate="no">​</a></h2>
+<p>The Relying Party Trust configuration is where you will define the relationship with the Identity Router and allow it to become part of the Federation Services Trust relationship.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="create-a-relying-party-trust-manually"><strong>Create a Relying Party Trust Manually</strong><a href="#create-a-relying-party-trust-manually" class="hash-link" aria-label="Direct link to create-a-relying-party-trust-manually" title="Direct link to create-a-relying-party-trust-manually" translate="no">​</a></h2>
+<ul>
+<li class="">
+<ol>
+<li class="">Click <strong>Start</strong> and select the following: <strong>Programs</strong> &gt; <strong>Administrative Tools</strong> and then select <strong>AD FS 2.0 Management</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="2">
+<li class="">Under <em>AD FS 2.0\Trust Relationships</em>, right-click <strong>Relying Party Trusts</strong>, and then click <strong>Add Relying Party Trust.</strong> The <em>Add Relying Party Trust Wizard</em> displays.</li>
+</ol>
+</li>
+<li class="">
+<ol start="3">
+<li class="">On the <em>Welcome</em> page, click <strong>Start</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="4">
+<li class="">On the <em>Select Data Source</em> page, select <strong>Enter data about the relying party manually</strong>, and then click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="5">
+<li class="">On the <em>Specify Display Name</em> page type a name in the <strong>Display name</strong> field (perhaps Hewlett Packard Identity Router), under Notes type a description for this relying party trust, and then click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="6">
+<li class="">On the <em>Choose Profile</em> page, click <strong>AD FS 2.0 profile</strong>, and then click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="7">
+<li class="">On the <em>Configure Certificate</em> page, click <strong>Browse</strong> to locate a certificate file, and then click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="8">
+<li class="">On the <em>Configure URL</em> page, select the <strong>Enable support for the SAML 2.0 WebSSO protocol</strong> check box. Under Relying party SAML 2.0 SSO service URL, type the Security Assertion Markup Language (SAML) service endpoint URL for this relying party trust, and then click Next. (Assuming your Identity Router&#x27;s portal interface is &quot;sso.domain.com&quot; this link would <a href="https://sso.domain.com/SPServlet?sp%5C_id=fed.adfs&amp;RelayState=portal.jsf" target="_blank" rel="noopener noreferrer" class="">https://sso.domain.com/SPServlet?sp\_id=fed.adfs&amp;RelayState=portal.jsf</a> )</li>
+</ol>
+</li>
+<li class="">
+<ol start="9">
+<li class="">On the <em>Configure Identifiers</em> page, specify one or more identifiers for this relying party, click <strong>Add</strong> to add them to the list, and then click <strong>Next</strong>. (Assuming your Identity Rouoter&#x27;s portal interface is &quot;sso.domain.com&quot; this link would be <a href="https://sso.domain.com/SPServlet" target="_blank" rel="noopener noreferrer" class="">https://sso.domain.com/SPServlet</a> )</li>
+</ol>
+</li>
+<li class="">
+<ol start="10">
+<li class="">On the <em>Choose Issuance Authorization Rules</em> page, select either <strong>Permit</strong> all users to access this relying party or <strong>Deny</strong> all users access to this relying party, and then click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="11">
+<li class="">On the <em>Ready to Add Trust</em> page, review the settings, and then click <strong>Next</strong> to save your relying party trust information.</li>
+</ol>
+</li>
+<li class="">
+<ol start="12">
+<li class="">On the <em>Finish</em> page, click <strong>Close</strong>. This action automatically displays the <em>Edit Claim Rules</em> dialog box.</li>
+</ol>
+</li>
+<li class="">
+<ol start="13">
+<li class="">On the <em>Issuance Transform Rules</em> page, click <strong>Add</strong> Rule. This action automatically displays the <em>Add Transform Claim Rule</em> wizard.</li>
+</ol>
+</li>
+<li class="">
+<ol start="14">
+<li class="">In the <strong>Claim rule template</strong> drop-down, make sure <strong>Send LDAP Attributes as Claims</strong> is selected and click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="15">
+<li class="">Define a name for the <strong>Claim Rule</strong> you are creating, and choose your Active Directory store from the <strong>Attribute store</strong> drop-down. In the <strong>LDAP Attribute</strong> drop-down, choose <strong>sAM-Account-Name</strong>, and in the <strong>Outgoing Claim Type</strong> drop-down, select <strong>Name ID</strong>. Click <strong>Finish</strong> to establish the Claim Rule.</li>
+</ol>
+</li>
+<li class="">
+<ol start="16">
+<li class="">Verify that a <strong>Permit Access to All Users Rule = Permit</strong> is in place under the <em>Issuance Authorization Rules</em> tab.</li>
+</ol>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="export-your-public-key"><strong>Export Your Public Key</strong><a href="#export-your-public-key" class="hash-link" aria-label="Direct link to export-your-public-key" title="Direct link to export-your-public-key" translate="no">​</a></h2>
+<p>The public key for your SSL secured domain must be exported to the Identity Router. To accomplish this, follow the instructions below:</p>
+<ul>
+<li class="">
+<ol>
+<li class="">Click <strong>Start</strong>, <strong>Run</strong>, and type <strong>mmc</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="2">
+<li class="">When the console is launched, click <strong>File</strong>, <strong>Add/Remove Snap-in</strong>. This launches the <em>Add or Remove Snapins</em> dialog box.</li>
+</ol>
+</li>
+<li class="">
+<ol start="3">
+<li class="">Choose <strong>Certificates</strong> from the list of available snap-ins on the left, and specify <strong>Computer Account</strong>. Specify the Local computer and click <strong>Finish</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="4">
+<li class="">Under the <em>Certificates</em> tree, expand <strong>Personal</strong> and choose <strong>Certificates</strong>. You should see the certificate you added above.</li>
+</ol>
+</li>
+<li class="">
+<ol start="5">
+<li class="">Right click the certificate, and select <strong>Export</strong> from All Tasks. This will launch the <em>Certificate Export</em> wizard.</li>
+</ol>
+</li>
+<li class="">
+<ol start="6">
+<li class="">At the <em>Welcome</em> screen, click <strong>Next</strong>. select <strong>No</strong>, do not export the private key and click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="7">
+<li class="">On the <em>Export File Format</em> dialog, select <strong>DER</strong> encoded binary X.509 (.CER) and click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="8">
+<li class="">Specify a file name, and click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li class="">
+<ol start="9">
+<li class="">Finish the export of the public key by clicking <strong>Finish</strong>.</li>
+</ol>
+</li>
+</ul>
+<p>The exported key file will be supplied to the Operations team for loading to your Identity Router.</p></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/samples/Cybersecurity/Operation Guide/amazon-ec2/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Amazon EC2 Identity Router Deployment</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/samples/Cybersecurity/Operation Guide/edit -profile/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Edit Profile Information</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#external-references" class="table-of-contents__link toc-highlight"><strong>External References</strong></a></li><li><a href="#configuring-your-adfs-server" class="table-of-contents__link toc-highlight"><strong>Configuring Your ADFS Server</strong></a><ul><li><a href="#prerequisites" class="table-of-contents__link toc-highlight"><strong>Prerequisites</strong></a></li></ul></li><li><a href="#to-import-the-domain-proof-certificate-onto-the-federation-server" class="table-of-contents__link toc-highlight"><strong>To Import the Domain Proof Certificate onto the Federation Server</strong></a></li><li><a href="#defining-a-relying-party-trust" class="table-of-contents__link toc-highlight"><strong>Defining a Relying Party Trust</strong></a></li><li><a href="#create-a-relying-party-trust-manually" class="table-of-contents__link toc-highlight"><strong>Create a Relying Party Trust Manually</strong></a></li><li><a href="#export-your-public-key" class="table-of-contents__link toc-highlight"><strong>Export Your Public Key</strong></a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
