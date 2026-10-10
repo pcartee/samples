@@ -1,33 +1,33 @@
 ---
 title: Trusted Execution Environments (TEE)
-description: A brief introduction to Trusted Execution Environments (TEEs).
+description: Overview of trusted execution environments (TEEs), attestation and trusted computing base verification, and options for integrating SGX and TDX workloads with TA services.
 author: pcartee
 topic: conceptual
 date: 02/07/2025
 uid: tees.overview
 ---
 
-A trusted execution environment (TEE) helps to protect user-executed code and data from modification by untrusted software, hardware, and system components outside the TEE's boundaries. TEEs can provide a high level of protection against most software-based attacks and many hardware-based attacks and give assurance that the software and hardware in the TEE have not been tampered with.
+A trusted execution environment (TEE) helps protect code and data from modification by untrusted software, hardware, and system components outside the TEE boundary. TEEs can help defend against many software-based and some hardware-based attacks, and provide assurance that the software and hardware within the TEE have not been tampered with.
 
-TA currently supports Software Guard Extensions (SGX) and Trust Domain Extension (TDX) TEEs. Support for more TEEs is planned for future releases of TA. To understand how to use TA services, you need a working knowledge of the underlying TEE technology. To learn more about SGX and TDX, see [Next Steps](#next-steps) below.
+TA supports Software Guard Extensions (SGX) and Trust Domain Extensions (TDX) TEEs. To use TA services, you need a working knowledge of the underlying TEE technology. To learn more about SGX and TDX, see [Next steps](#next-steps).
 
-A TEE running directly on an SGX-enabled platform is called an _enclave_. A TDX virtual machine (VM) TEE running on an SGX-enabled platform is called a _trust domain_.
+A TEE running directly on an SGX-enabled platform is called an _enclave_. A TDX virtual machine (VM) running on a TDX-enabled platform is called a _trust domain_.
 
-Every TEE has a trusted computing base (TCB) that includes all the software, firmware, and hardware resources within the boundaries of the TEE. When a new enclave or trust domain is instantiated, the TEE's TCB must be verified (_attested_) before it can be trusted with sensitive workloads and data. For more information, see [TA Attestation](../Concepts/concept-attestation-overview.md).
+Every TEE has a trusted computing base (TCB), which includes the software, firmware, and hardware resources within the TEE's security boundary. When an enclave or trust domain is created, its TCB must be verified through attestation before it can be trusted with sensitive workloads and data. For more information, see [TA attestation](../Concepts/concept-attestation-overview.md).
 
-The attesting TEE collects cryptographic keys and platform collaterals, called a quote, as evidence to support its claim of authenticity. Evidence is collected by low-level attestation primitives (hardware drivers, essentially) for the TEE platform.
+A TEE generates a quote containing cryptographic evidence to support its claim of authenticity. Low-level, platform-specific attestation primitives collect the evidence.
 
-TA provides several ways to interact with a TEE to facilitate the migration of existing applications to TA and simplify new application development.
+TA provides several ways to integrate TEE workloads with its services:
 
-- Your TEE workload handles the low-level code to create a quote and then calls the TA REST API or TDX CLI (for TDX trust domains only) for attestation services. This is most useful for migrating existing applications to TA attestation.
-- You can use the TA Go client libraries to integrate SGX or TDX attestation into your application. The TA client library handles the low-level calls to platform-specific attestation primitives for the TEE. The client library masks some of the complexity of working with TEEs, making it the preferred option for new development. Currently, only the Go language is supported for integration. Support for more languages is planned for future releases of TA.
-- You can migrate existing Microsoft Azure Attestation (MAA) applications to use TA attestation. In this case, your existing Microsoft Azure TEE application code is responsible for creating the quote in a format that is compatible with MAA. The TA MAA Adaptor accepts quotes in MAA format for remote attestation by TA. For more information, see the [MAA Adapter Service](../Concepts/concept-maa-adapter.md)
+- Your workload can create a quote using platform-specific code, then call the TA REST API or, for TDX trust domains, the TDX CLI. This option can help migrate existing applications to TA attestation.
+- You can use the TA Go client libraries to integrate SGX or TDX attestation into your application. The client library handles low-level calls to platform-specific attestation primitives, reducing the complexity of working with TEEs. Go is the currently supported language for this integration.
+- You can migrate existing Microsoft Azure Attestation (MAA) applications to use TA attestation. In this case, your Microsoft Azure TEE application creates a quote in a format compatible with MAA. The TA MAA adapter accepts MAA-format quotes for remote attestation. For more information, see the [MAA adapter service](../Concepts/concept-maa-adapter.md).
 
 ---
 
 ## Next steps
 
-SGX and TDX primary resources:
+SGX and TDX resources:
 
 - [SGX main page](https://www.company.com/content/www/us/en/developer/tools/software-guard-extensions/overview.html)
 - [TDX main page](https://www.company.com/content/www/us/en/developer/articles/technical/trust-domain-extensions.html)
@@ -35,7 +35,7 @@ SGX and TDX primary resources:
 TA TEE integrations:
 
 - [TA Go Client](../Integration/integrate-go-client.md)
-- TDX CLI
+- TDX CLI (for TDX trust domains)
 - Gramine client
 
 

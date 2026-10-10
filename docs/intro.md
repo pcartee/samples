@@ -10,7 +10,7 @@ slug: /
 
 Senior Technical Writer | Docs-as-Code | CI/CD Pipelines | API/CLI Reference | AI-Assisted Workflows
 
-I have 15+ years of experience documenting SaaS, enterprise, and user applications. Recently, I've worked for Apple, Intel, Workday, SentinelOne, and LogRhythm, writing cybersecurity, confidential computing, and machine learning documents. My specialty is docs-as-code: writing in Markdown or reStructuredText, versioning everything in Git, and wiring documentation into CI/CD pipelines so it ships alongside the product instead of trailing behind it.
+I have 15+ years of experience documenting SaaS, enterprise, and user applications. My work spans cybersecurity, confidential computing, and machine learning, including remote-attestation concepts and developer guides, Identity Router API references, and operational documentation for identity and access management. I also specialize in docs-as-code: writing in Markdown or reStructuredText, versioning content in Git, and integrating documentation into CI/CD pipelines so it ships alongside the product.
 
 Most recently, at Intel, I documented TA, a remote attestation service for confidential computing creating REST API references, CLI guides, and tutorials for TEEs, Kubernetes/Helm/Istio deployments, and zero-trust security models.
 
@@ -34,6 +34,9 @@ A cross-section of real documentation I've written, organized by type:
 | SDK/integration guide | [Go connector reference](./Confidential%20Computing/Integration/integrate-go-client.md) | Developer-facing SDK documentation for a Go client library |
 | CLI reference | CLI examples | Task-based examples for a multi-command attestation CLI |
 | How-to guide | [Author a custom policy](./Confidential%20Computing/How-to%20workflows/howto-author-custom-policy.md) | Step-by-step procedural writing for a technical, security-sensitive task |
+| Cybersecurity API reference | [Identity Router API reference](./Cybersecurity/API%20Reference%20Guide/idr-api-reference.md) | Documents API data types and operations for an identity management service |
+| Cybersecurity operations guide | [Identity Routers overview](./Cybersecurity/Operation%20Guide/02-idenity-routers.md) | Operational guidance for configuring, monitoring, and maintaining identity routers |
+| Cybersecurity configuration guide | [Identity Router certificates](./Cybersecurity/Operation%20Guide/07-certificates.md) | Explains certificate options and configuration for secure router connections |
 
 Browse the sidebar for the complete library — concepts, tutorials, key-broker guides, and full REST/CLI/SDK references.
 
