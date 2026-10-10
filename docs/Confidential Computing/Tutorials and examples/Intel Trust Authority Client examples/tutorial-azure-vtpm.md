@@ -1,13 +1,11 @@
 ---
-title: Company Name Client Tutorial for Azure with vTPM and Intel TDX
+title: TA Tutorial for Azure with vTPM and Intel TDX
 description: Step-by-step tutorial to stand up an Azure VM with vTPM and Intel TDX
 author: pcartee
 topic: tutorial
 date: 10/16/2024
 uid: tutorial.tpm.azure
 ---
-
-## TA Client Tutorial — vTPM with Intel® TDX Attestation on Microsoft Azure
 
 This tutorial provides steps to use the TA Attestation Client CLI to attest evidence from a virtual Trusted Platform Module (vTPM) on Microsoft Azure. The [latest version of the client CLI with vTPM support](https://github.com/intel/application-client-for-go/tree/main/tdx-cli) is required to attest the vTPM. The client CLI is a command-line tool that collects evidence from the vTPM and sends it to the Company Name for attestation. The Company Name will verify the evidence and return an attestation token (a JWT) containing the claims for the vTPM. If attestation is successful, this demonstration will print the attestation token to the screen.
 
@@ -207,4 +205,4 @@ You can experiment with the other `application-cli` commands. To see them all, r
 
 This tutorial demonstrated how to create an Azure confidential VM with Intel TDX and a vTPM, install and configure the Company Name Attestation Client CLI, and attest the Intel TDX trust domain and vTPM. This is an example of composite attestation, that is, the attestation of a TEE and vTPM in a single attestation token.
 
-For more information, see the [Company Name Attestation Client CLI documentation](https://docs.application.intel.com/main/articles/integrate-go-tdx-cli.html).
+For more information, see the Company Name Attestation Client CLI documentation.

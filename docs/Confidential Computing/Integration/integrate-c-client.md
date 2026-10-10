@@ -1,5 +1,5 @@
 ---
-title: TA C Connector 
+title: TA C connector 
 description: Documentation for the TA C client libraries.
 author: pcartee
 topic: integration
@@ -7,20 +7,15 @@ date: 05/19/2025
 uid: integrate.c.client
 ---
 
-*· May/19/2025 ·*
-
-## TA C Connector
-
 TA Client provides a set of C libraries for attesting Intel® Software Guard Extensions (Intel® SGX), Intel® Trust Domain Extensions (Intel® TDX) TEEs, and Azure confidential VMs with Intel TDX. Users can import the C libraries into their application and make REST calls to TA to get an attestation token containing information about the TEE attestation and verification.
 
-The TA C client modules, build, and installation instructions are on GitHub at [**intel/trustauthority-client-for-c**](https://github.com/intel/trustauthority-client-for-c).
-
+The TA C client modules, build, and installation instructions are on GitHub at [**intel/ta-client-for-c**](https://github.com/intel/ta-client-for-c).
 
 ## Return values
 
 All the C Connector functions return an integer **TRUST_AUTHORITY_STATUS** value. Multiple status conditions are combined by using bitwise OR. Sub-components such as the platform adapters may include an error base value to identify the component (for example, `STATUS_TDX_ERROR_BASE 0x3000`), which is OR'd with **TRUST_AUTHORITY_STATUS** value.  
 
-For a complete list of status conditions, see the `TRUST_AUTHORITY_STATUS` enumeration in [intel/trustauthority-client-for-c/include/types.h](https://github.com/intel/trustauthority-client-for-c/include/types.h). 
+For a complete list of status conditions, see the `TRUST_AUTHORITY_STATUS` enumeration in [intel/ta-client-for-c/include/types.h](https://github.com/intel/ta-client-for-c/include/types.h). 
 
 ## C client library structure
 
@@ -37,7 +32,7 @@ The TA Client for C contains the following libraries:
 
 ## C Connector API
 
-The C Connector module communicates with the TA service by using TA [REST APIs](../Restapi/restapi-attestation.md). The first step for using the C Connector is to create a connector instance. 
+The C Connector module communicates with the TA service by using TA REST APIs. The first step for using the C Connector is to create a connector instance. 
 
 ### `trust_authority_connector_new` 
 
@@ -59,7 +54,7 @@ TRUST_AUTHORITY_STATUS trust_authority_connector_new(
 |:--- | --- | --- |
 |***connector*** | Output | Receives a pointer to a C Connector instance. |
 |***api_key***| Input | An Attestation API key for TA.|
-|***api_url***| Input | TA API URL: "https://api.trustauthority.intel.com".  If you're in the European Union region, use "https://api.eu.trustauthority.intel.com". |
+|***api_url***| Input | TA API URL: "https://api.ta.intel.com".  If you're in the European Union region, use "https://api.eu.ta.intel.com". |
 |***retry_max***| Input | Maximum retires allowed. If this value is != 0, it is copied to the *connector->retry_config and used for subsequent API calls. | 
 |***retry_wait_sec***| Input |Time in seconds to wait between retry attempts. If this value is != 0, it is copied to *connector->retry_config and used for subsequent API calls.|
 
@@ -163,7 +158,7 @@ TRUST_AUTHORITY_STATUS get_token_signing_certificate(
 
 | Name | I/O | Description |
 |:--- | --- | --- |
-|***tokensigncerturl***|  Input  | The TA base URL: `https://portal.trustauthority.intel.com/certs`. In the EU, use `https://portal.eu.trustauthority.intel.com/certs`.|
+|***tokensigncerturl***|  Input  | The TA base URL: `https://portal.ta.intel.com/certs`. In the EU, use `https://portal.eu.ta.intel.com/certs`.|
 |***jwks*** | Output  | A pointer to the [JWKS](../glossary.md#json-web-key-jwk) returned from TA.
 |***retry_max*** | Input | Maximum number of connection retry attempts. |
 |***retry_wait_time*** | Input | Time in seconds to wait between connection retry attempts. |
@@ -486,7 +481,7 @@ TRUST_AUTHORITY_STATUS verify_token(
 
 | Name | I/O | Description |
 |:--- | --- | --- |
-|***trust_authority_base_url*** | Input | In the US, use "https://portal.trustauthority.intel.com". In the EU, use "https://portal.eu.trustauthority.intel.com". |
+|***trust_authority_base_url*** | Input | In the US, use "https://portal.ta.intel.com". In the EU, use "https://portal.eu.ta.intel.com". |
 |***trust_authority_jwks_data*** | Input | Pointer to the JWKS returned from `<base_url>/certs`.  |
 |***parsed_token*** | Input |  A pointer to a TA attestation token.  |
 |***retry_max*** | Input |  The maximum number of times to attempt to verify the token. |
@@ -723,7 +718,7 @@ The resulting identifier.
 > [!NOTE]
 > AMD SEV-SNP attestation is currently in limited preview status in the pilot environment only. Details of implementation may change before release. For access to the preview, contact your Intel representative. 
 
-As of the v1.10 release, Azure CVM with AMD SEV-SNP + vTPM attestation is supported in the Pilot environment. For more information, see the [Azure TPM Token](https://github.com/intel/trustauthority-client-for-c/tree/main/examples/azure_tpm_token) example application.
+As of the v1.10 release, Azure CVM with AMD SEV-SNP + vTPM attestation is supported in the Pilot environment. For more information, see the [Azure TPM Token](https://github.com/intel/ta-client-for-c/tree/main/examples/azure_tpm_token) example application.
 
 ### `azure_sevsnp_adapter_new()`
 

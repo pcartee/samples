@@ -3,7 +3,7 @@ _Long values are truncated for better readability._
 
 {
   "alg": "PS384",
-  "jku": "https://portal.trustauthority.intel.com/certs",
+  "jku": "https://portal.ta.intel.com/certs",
   "kid": "c82989ba184f46ff363d23ed9612c0ab3849c712",
   "typ": "JWT"
 }
@@ -42,7 +42,7 @@ _Long values are truncated for better readability._
   ],
   "ver": "1.0.0",
   "provider" : "intel",
-  "eat_profile": "https://portal.trustauthority.intel.com/eat_profile.html",
+  "eat_profile": "https://portal.ta.intel.com/eat_profile.html",
   "intuse" : "generic",
   "exp": 1712619476,
   "jti": "7b42cdc6-1745-46a9-8bf5-2f3f225ad970",

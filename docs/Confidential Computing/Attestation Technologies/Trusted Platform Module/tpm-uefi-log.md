@@ -7,16 +7,12 @@ date: 11/14/2024
 uid: uefi.log
 ---
 
-*· October/25/2024 ·*
-
-## Unified Extensible Firmware Interface (UEFI) event logs
-
 Modern UEFI firmware triggers system integrity measurements during the boot sequence. These measurements are stored in event logs and can be consumed by TA during remote attestation. These logs include the individual measurement events for TPM PCRs 0-7 that were extended when the system booted. 
 
 :::note
 UEFI generates event logs using the hash algorithm set by the UEFI author, typically SHA-256. For UEFI event log replays to work correctly, the same algorithm must be enabled in the TPM PCR banks. Support for different TPM PCR banks differs by OEM. Some manufacturers allow multiple PCR banks to be enabled at the same time, while others only allow a single PCR bank to be enabled. Where possible, Intel recommends enabling all PCR banks on the TPM, as this will generally ensure that the PCR bank matching the event log algorithm is always available. Where this is not possible, check the UEFI event log at `/sys/firmware/security/tpm0/binary_bios_measurements` and use the hash length of the event measurements to determine the algorithm in use by your system's UEFI (16 bytes for SHA-1, 32 bytes for SHA-256, and 48 bytes for SHA-384).
 
-Also note that the `pcr_slections` setting in the `config.json` configuration file defines the PCR bank that the attestation client CLI will use. This must match the algorith used for any event logs, so that the attestation client CLI picks the correct PCR bank for use in the event log replay.
+Also note that the `pcr_selections` setting in the `config.json` configuration file defines the PCR bank that the attestation client CLI will use. This must match the algorithm used for any event logs, so that the attestation client CLI picks the correct PCR bank for use in the event log replay.
 :::
 
 ### When measurements change
@@ -64,10 +60,10 @@ valid_evlog_measurements = true {
 
 The TA attestation client CLI provides options for collecting and including UEFI event logs during remote attestation.
 
-To request an attestation including UEFI event logs with the TA attestation client CLI, use the `--evl` flag  with `trustauthority-cli token`. Note that the `--evl` option requires the `--tpm` option as well.
+To request an attestation including UEFI event logs with the TA attestation client CLI, use the `--evl` flag  with `ta-cli token`. Note that the `--evl` option requires the `--tpm` option as well.
 
 ```bash
-sudo trustauthority-cli token --tdx --tpm --evl -c config.json
+sudo ta-cli token --tdx --tpm --evl -c config.json
 ```
 
 Linux distributions expose the event logs for each UEFI measurement event. The `--evl` option enables the collection of UEFI event logs. By default, the UEFI event logs are stored at `/sys/kernel/security/tpm0/binary_bios_measurements`. To customize the log collection path for the attestation client CLI (this may be required for different Linux distributions that expose the logs elsewhere), use the `--evl-path` option. 
@@ -79,7 +75,7 @@ trustauthoritycli token --evl-path <path> --tdx --tpm --evl -c config.json
 The following sample of evidence with event logs includes runtime and uefi event log evidence using the command below.  
 
 ```bash
-./trustauthority-cli evidence --tpm --tdx --evl -c config.json > evidence-with-event-logs.json
+./ta-cli evidence --tpm --tdx --evl -c config.json > evidence-with-event-logs.json
 ```
 ```json
 {

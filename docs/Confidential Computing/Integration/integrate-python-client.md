@@ -1,21 +1,15 @@
 ---
-title: TA Python Connector 
+title: TA Python connector 
 description: TA Python Connector API reference documentation.
 author: pcartee
 topic: integration
 date: 05/16/2024
 uid: integrate.python.client
-# cassini-17747, v1.6 
 ---
-
-*· May/16/2024 ·*
-
-## TA Python Connector
-
 
 TA Client provides a set of Python libraries for attesting TEEs. Users can import the Python libraries into their application and make REST calls to TA to get an attestation token containing information about the TEE attestation and verification. 
 
-The TA Python client modules, build, and installation instructions are on GitHub at [**intel/trustauthority-client-for-python**](https://github.com/intel/trustauthority-client-for-python).
+The TA Python client modules, build, and installation instructions are on GitHub at [**intel/ta-client-for-python**](https://github.com/intel/ta-client-for-python).
 
 ## ITAConnector class and evidence adapters
 
@@ -46,8 +40,8 @@ Before you can use the API methods, you must set attributes of the **Config** ob
         config.RetryConfig(
             int(retry_wait_time_min), int(retry_wait_time_max), int(retry_max)
         ),
-        trustauthority_base_url, # https://portal.trustauthority.intel.com
-        trustAuthority_api_url, # https://api.trustauthority.intel.com
+        trustauthority_base_url, # https://portal.ta.intel.com
+        trustAuthority_api_url, # https://api.ta.intel.com
         trust_authority_api_key, # An attestation API key
     )
 ```
@@ -55,8 +49,8 @@ Before you can use the API methods, you must set attributes of the **Config** ob
  :::note
 
  If you are in the European Union (EU) region, use the following TA URLs:
- <br /> Base URL — https://portal.eu.trustauthority.intel.com
- <br /> API URL — https://api.eu.trustauthority.intel.com
+ <br /> Base URL — https://portal.eu.ta.intel.com
+ <br /> API URL — https://api.eu.ta.intel.com
 
 :::
 

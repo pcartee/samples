@@ -7,10 +7,6 @@ date: 09/01/2023
 uid: attestation.overview
 ---
 
-*· June/21/2024 ·*
-
-## Attestation overview
-
 This article is a brief, high-level overview of how attestation works with TA. TA is a _verifier_ in a remote attestation application architecture. To understand what a verifier is and how best to use TA attestation, it's helpful to have a basic understanding of the Remote Attestation Procedures Architecture, as defined in [IETF RFC9334](https://datatracker.ietf.org/doc/rfc9334/). The terminology in this article is based on RFC9334.
 
 Attestation is a process for establishing trust between a confidential computing workload and one or more relying parties. At its most basic, attestation involves three steps:
@@ -21,19 +17,19 @@ Attestation is a process for establishing trust between a confidential computing
 
 ## Verifier
 
-TA is focused on providing services for step 2, verification. For more information about where TA fits into various workflows and the steps involved in each, see [Attestation patterns](concept-patterns.md).
+TA is focused on providing services for step 2, verification. For more information about where TA fits into various workflows and the steps involved in each, see Attestation patterns.
 
 ## Attester
 
 The _attester_ is a confidential computing environment that needs to prove its identity and that it hasn't been tampered with or otherwise compromised.
 
-TA also provides a [client](../Integration/integrate-go-client.md) and [TDX CLI](../Integration/integrate-go-tdx-cli.md) to simplify the task of getting a quote from the attesting workload. The TA client adapter libraries handle the low-level calls to platform software, which greatly simplifies the integration of remote attestation into a confidential workload.
+TA also provides a [client](../Integration/integrate-go-client.md) and TDX CLI to simplify the task of getting a quote from the attesting workload. The TA client adapter libraries handle the low-level calls to platform software, which greatly simplifies the integration of remote attestation into a confidential workload.
 
 The attesting workload is responsible for collecting evidence for a quote, using a TA library or other compatible method. That quote is then forwarded directly (passport) to TA, or sent to a relying party that relays the quote (background check) to TA.
 
 ## Relying party
 
-The _relying party_ uses the attestation token to decide if it trusts the attester. The relying party must be able to process an attestation token issued by TA. In the simplest passport case, the relying party performs a minimal verification of the attestation token and signing certificate without using any TA services or REST API. In more complex scenarios, the relying party can have multiple points of contact with TA and related utilities. For more information, see [Relying party integration](../Integration/integrate-relying-party.md).
+The _relying party_ uses the attestation token to decide if it trusts the attester. The relying party must be able to process an attestation token issued by TA. In the simplest passport case, the relying party performs a minimal verification of the attestation token and signing certificate without using any TA services or REST API. In more complex scenarios, the relying party can have multiple points of contact with TA and related utilities. For more information, see Relying party integration.
 
 ## Faithful verification
 
@@ -41,4 +37,4 @@ An attestation token is only as good as the verifier and services in the chain o
 
 ## Attestation policies
 
-TA uses _attestation_ (also called _appraisal_) _policies_ to define comparison tests that are applied to a quote during verification. For example, a policy can compare the latest **mrsigner** hash to the **mrsigner** hash from the quote to determine if the values match and then set the policy result. The list of policies that are matched or unmatched is included in the attestation token for further evaluation by the relying party. For more information, see [Policies](../Concepts/concept-policies.md).
+TA uses _attestation_ (also called _appraisal_) _policies_ to define comparison tests that are applied to a quote during verification. For example, a policy can compare the latest **mrsigner** hash to the **mrsigner** hash from the quote to determine if the values match and then set the policy result. The list of policies that are matched or unmatched is included in the attestation token for further evaluation by the relying party. For more information, see Policies.

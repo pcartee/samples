@@ -1,5 +1,5 @@
 ---
-title: Key Broker Service Installation
+title: Key Broker service installation
 description: Key Broker Service Installation
 author: pcartee
 topic: KBS
@@ -10,16 +10,12 @@ uid: kbs.installation
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-*· April/14/2025 ·*
-
-## Key Broker Service installation and configuration
-
 Installing and configuring the Key Broker System (KBS) requires you to follow these steps:
 
 1. [Install and configure the Key Management System (KMS)](key-broker-service-kms-install.md)
 1. [Install and configure the KBS](key-broker-service-install.md)
-1. [KBS key creation and key retrieval](key-broker-service-key-creation.md)
-1. [KBS user management](key-broker-service-user-management.md)
+1. KBS key creation and key retrieval
+1. KBS user management
 
 ## Prerequisites
 
@@ -68,9 +64,9 @@ On Linux, follow the steps below to install the KBS:
    ADMIN_PASSWORD=<kbs admin password>
    HTTP_READ_HEADER_TIMEOUT=<kbs server read header timeout, default 10sec>
    BEARER_TOKEN_VALIDITY_IN_MINUTES=<kbs auth token validity, default 5 min>
-   TRUSTAUTHORITY_API_URL="api.trustauthority.company.com"
+   TRUSTAUTHORITY_API_URL="api.ta.company.com"
    TRUSTAUTHORITY_API_KEY=<TA API key>
-   TRUSTAUTHORITY_BASE_URL="portal.trustauthority.company.com"
+   TRUSTAUTHORITY_BASE_URL="portal.ta.company.com"
    AUTHENTICATION_DEFEND_MAX_ATTEMPTS=<max number of invalid login attempts;default 5 attempts>
    AUTHENTICATION_DEFEND_INTERVAL_MINUTES=<time interval of number of invalid token fetch attempts made;default 1 min>
    AUTHENTICATION_DEFEND_LOCKOUT_MINUTES=<number of minutes the user is blocked from getting a token in case of exceeds the number of attempts;default 1 min>
@@ -79,8 +75,8 @@ On Linux, follow the steps below to install the KBS:
 
 :::note
 If you are in the European Union (EU) region, use the following TA URLs:
-<br />`TRUSTAUTHORITY_API_URL=" https://api.eu.trustauthority.company.com"`
-<br />`TRUSTAUTHORITY_BASE_URL=" portal.eu.trustauthority.company.com"`
+<br />`TRUSTAUTHORITY_API_URL=" https://api.eu.ta.company.com"`
+<br />`TRUSTAUTHORITY_BASE_URL=" portal.eu.ta.company.com"`
 :::
 
 <Tabs>
@@ -130,5 +126,5 @@ Only use these configurations if using PyKMIP KMS.
 1. Run the KBS container.
 
     ```bash
-    docker run -d --restart unless-stopped --name kbs --env-file <KBS env file> -p <KBS port>:9443 -v /etc/kbs/certs:/etc/kbs/certs -v /etc/hosts:/etc/hosts -v /opt/kbs:/opt/kbs trustauthority/key-broker-service:v1.0.0
+    docker run -d --restart unless-stopped --name kbs --env-file <KBS env file> -p <KBS port>:9443 -v /etc/kbs/certs:/etc/kbs/certs -v /etc/hosts:/etc/hosts -v /opt/kbs:/opt/kbs ta/key-broker-service:v1.0.0
     ```

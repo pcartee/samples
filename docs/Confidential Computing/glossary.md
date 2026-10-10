@@ -7,8 +7,6 @@ date: 10/15/2024
 uid: concept.glossary
 ---
 
-*· October/15/2024 ·*
-
 # TA Glossary
 
 The following terms are used in the TA documentation. Terminology related to the attestation process (attester, endorser, verifier, etc) is derived from [IETF RFC 9334](https://datatracker.ietf.org/doc/rfc9334/), Remote ATestation procedureS (RATS). Terms specific to TA are prefixed with "TA," for example, "TA admin API key." Other terms are industry standard. Terms marked with an asterisk ( * ) may be names and/or brands that are claimed as the property of entities other than Intel.
@@ -24,20 +22,20 @@ TA admin API keys are extremely sensitive values that must be safeguarded agains
 
 **TA Base URL** redirects here.
 
-The REST API, and therefore all integration clients and CLIs, require two URLs to function: the Base URL `https://portal.trustauthority.intel.com` and the API URL `https://api.trustauthority.intel.com`.
+The REST API, and therefore all integration clients and CLIs, require two URLs to function: the Base URL `https://portal.ta.intel.com` and the API URL `https://api.ta.intel.com`.
 
-There is a third well-known URL to return the JWKS of signing certificates used for TA attestation tokens and nonces: `https://portal.trustauthority.intel.com/certs`.
+There is a third well-known URL to return the JWKS of signing certificates used for TA attestation tokens and nonces: `https://portal.ta.intel.com/certs`.
 
 :::note
 If you are in the European Union (EU) region, use the following TA URLs:
 
-- Base URL — `https://portal.eu.trustauthority.intel.com`
-- API URL — `https://api.eu.trustauthority.intel.com`
+- Base URL — `https://portal.eu.ta.intel.com`
+- API URL — `https://api.eu.ta.intel.com`
 
 :::
 
 #### Attestation API key
-A TA _attestation API key_ is required for all attestation-related functions. An attestation API key can't be used for management APIs (and vice-versa; an Admin API key can't be used for attestation). An Attestation API key can be created using the REST API, but the key value can only be retrieved through the [TA Portal](https://portal.trustauthority.intel.com).
+A TA _attestation API key_ is required for all attestation-related functions. An attestation API key can't be used for management APIs (and vice-versa; an Admin API key can't be used for attestation). An Attestation API key can be created using the REST API, but the key value can only be retrieved through the [TA Portal](https://portal.ta.intel.com).
 
 #### Attestation appraisal policy
 An _attestation appraisal policy_ is used by the relying party to evaluate claims in the attestation token.
@@ -55,7 +53,7 @@ _Attestation_ is the process by which cryptographically verifiable claims can be
 A _challenger_ is an entity that requests integrity metrics and evaluates the level of trust in the attester. When an attester is challenged, it may respond with either a quote or an attestation token, depending on the needs of the relying party.
 
 #### Claim
-Quotes and attestation tokens are composed of elements called _claims_. A claim usually assigns some value to a named element, often a cryptographic token that represents the signature of a component of the TCB. _Incoming claims_ are part of the attester quote. _Outgoing claims_ are elements added to the attestation token by TA. For more information, see [Attestation tokens and claims](Concepts/concept-attestation-tokens.md).
+Quotes and attestation tokens are composed of elements called _claims_. A claim usually assigns some value to a named element, often a cryptographic token that represents the signature of a component of the TCB. _Incoming claims_ are part of the attester quote. _Outgoing claims_ are elements added to the attestation token by TA. For more information, see Attestation tokens and claims.
 
 
 
@@ -81,7 +79,7 @@ An _entity_ is any component or actor with a role in the attestation process. En
 The [TA Faithful Verifier (FV) tool](./Attestation%20Technologies/Utilites/utility-faithful-verifier.md) is a Linux command-line utility that is used to verify the fidelity of a TA token. The Faithful Verifier tool can be downloaded from the TA web interface downloads page.
 
 #### GSC
-_Gramine Shielded Containers (GSC)_* provide the infrastructure to deploy Docker* containers protected by Intel SGX enclaves using the Gramine Library OS*. For more information, see [TA Gramine integration](./Integration/integrate-gramine.md).
+_Gramine Shielded Containers (GSC)_* provide the infrastructure to deploy Docker* containers protected by Intel SGX enclaves using the Gramine Library OS*. For more information, see TA Gramine integration.
 
 #### HSM
 A _Hardware Security Module (HSM)_ is a highly secure, tamper-resistant, hardware-based component for storing and managing digital secrets. 
@@ -94,7 +92,7 @@ The enclave author assigns a _product ID_ to each enclave. The product ID allows
 
 #### JSON Web Key (JWK)
 
-From [IETF RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517): "A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key." RFC 7517 also defines a JWK Set JSON data structure that represents a set of JWKs. TA signing certificates conform to the JWK standard. The list of signing certificates used by TA for signing attestation tokens and nonces is returned in a JWKS (JSON Web Key Set). The TA JWKS URL is `https://portal.trustauthority.intel.com/certs`.
+From [IETF RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517): "A JSON Web Key (JWK) is a JavaScript Object Notation (JSON) data structure that represents a cryptographic key." RFC 7517 also defines a JWK Set JSON data structure that represents a set of JWKs. TA signing certificates conform to the JWK standard. The list of signing certificates used by TA for signing attestation tokens and nonces is returned in a JWKS (JSON Web Key Set). The TA JWKS URL is `https://portal.ta.intel.com/certs`.
 
 #### KMS
 

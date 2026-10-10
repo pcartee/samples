@@ -1,5 +1,5 @@
 ---
-title: User Management
+title: User management
 description: An overview of user management in TA.
 author: pcartee
 topic: how to
@@ -10,17 +10,13 @@ uid: manage.users # Do not change uid!
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-*· July/18/2024 ·*
-
-## User management
-
 TA user permissions are divided into _tenant admins_ and _users_. Tenant admins can perform all regular user functions and manage other users through the Manage Users dashboard. At least one active tenant admin is required and is automatically assigned to the first TA subscriber from a tenant organization. Only tenant admins can invite, edit, and delete users.
 
 :::important
 Enable more than one tenant administrator account for redundancy purposes.
 :::
 
-Users can be managed using the TA portal, with the [CLI](../Command-line/cli-user-commands.md), or by [REST API](../Restapi/restapi-tenant-management.md).
+Users can be managed using the TA portal, with the [CLI](../Command-line/cli-user-commands.md), or by REST API.
 
 <Tabs>
   <TabItem value="TA portal" Label="TA portal" default>

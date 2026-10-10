@@ -1,14 +1,10 @@
 ---
-title: TA MAA Adapter Service
+title: TA MAA adapter service
 description: Describes the MAA adapter service functionality and how to use it.
 author: pcartee
 date: 06/12/2024
 uid: maa.adapter.service
 ---
-
-*· June/21/2024 ·*
-
-## TA MAA Adapter Service
 
 ## Overview
 
@@ -44,7 +40,7 @@ This section describes how to migrate an existing Azure Attestation workload to 
 
 ### Token signing algorithm 
 
-TA uses PS386 as the native signing algorithm. However, attestation requests through the MAA Adapter return tokens signed with RS256 to maintain compatibility with existing Azure Attestation applications. The signing algorithm is identified in the token header [**alg**](../Concepts/concept-attestation-tokens.md) claim.
+TA uses PS386 as the native signing algorithm. However, attestation requests through the MAA Adapter return tokens signed with RS256 to maintain compatibility with existing Azure Attestation applications. The signing algorithm is identified in the token header **alg** claim.
 
 ### Policy migration
 
@@ -118,9 +114,9 @@ The TA MAA adapter is designed to be very easy to use, with few or no code chang
 
 #### Attestation URI
 
-TA replicates the Azure Attestation APIs under the base URI `api.trustauthority.intel.com/azure-attestation`. The Azure workload must be changed to use the TA attestation URI.
+TA replicates the Azure Attestation APIs under the base URI `api.ta.intel.com/azure-attestation`. The Azure workload must be changed to use the TA attestation URI.
 
  :::note
 If you are in the European Union (EU) region, use the following TA URI: 
-`api.eu.trustauthority.intel.com/azure-attestation`
+`api.eu.ta.intel.com/azure-attestation`
 :::

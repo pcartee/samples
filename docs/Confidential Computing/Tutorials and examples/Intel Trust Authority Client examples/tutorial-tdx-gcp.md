@@ -103,7 +103,7 @@ The TA CLI client provides a command-line wrapper for Go client libraries. Follo
 curl -sL https://raw.githubusercontent.com/[redacted]/install-tdx-cli.sh | sudo bash -
 ```
 
-Verify the Attestation Client CLI is installed correctly by running `trustauthority-cli version`.
+Verify the Attestation Client CLI is installed correctly by running `ta-cli version`.
 
 Configure your API key and any desired policy to evaluate. Set the attestation API key and attestation endpoint.
 
@@ -137,7 +137,7 @@ This section takes you through the steps to attest your confidential virtual mac
 1. Display evidence for TDX. This displays the evidence that would be sent to the TA verifier for attestation.
 
    ```bash
-   sudo trustauthority-cli evidence --tdx -c config.json
+   sudo ta-cli evidence --tdx -c config.json
    ```
 
    ```text
@@ -160,14 +160,14 @@ This section takes you through the steps to attest your confidential virtual mac
 1. Generate a TDX attestation token. The *token* command automatically collects evidence from TDX, and sends it to TA for attestation. The output will be an attestation token containing the claims for TDX.
 
    ```bash
-   sudo trustauthority-cli token -c config.json
+   sudo ta-cli token -c config.json
    ```
 
-You can experiment with the other `trustauthority-cli` commands. To see them all, run `trustauthority-cli --help`. When you're done experimenting, you can delete the VM to free the resources you created for this tutorial.
+You can experiment with the other `ta-cli` commands. To see them all, run `ta-cli --help`. When you're done experimenting, you can delete the VM to free the resources you created for this tutorial.
 
 For more information about TDX, see the
 [TDX main page](https://www.company.com/content/www/us/en/developer/articles/technical/company-trust-domain-extensions.html).
 
-For more information, see the [TA Attestation Client CLI documentation](https://docs.trustauthority.company.com/main/articles/integrate-go-tdx-cli.html).
+For more information, see the TA Attestation Client CLI documentation.
 
 **\*** Other names and brands may be claimed as the property of others.

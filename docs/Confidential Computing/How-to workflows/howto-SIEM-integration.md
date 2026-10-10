@@ -7,10 +7,6 @@ date: 05/14/2024
 uid: siem-integration  # Do not change uid!
 ---
 
-*· May/14/2024 ·*
-
-## Security Information and Event Management (SIEM) integration
-
 This article shows how to integrate TA with 3rd party Security Information and Event Management (SIEM) services such as Splunk* or Datadog* to provide real-time notification of critical events such as attestation success or failure directly from your preferred reporting solution.
 
 :::note
@@ -22,7 +18,7 @@ TA SIEM events are approximately 12kb in size. Default Splunk* event sizes are l
 - Failed attestation
     If the attestation request returns an error response, the error will be sent to the SIEM platform. By default an error indicates a malformed API request or a failed attestation against the default policy. If policy enforcement is enabled in the attestation request, any policies that evaluate to unmatched will also throw an error and be included in the "failed attestation" event type.
 
-The data pushed to SIEM is the same data recorded in the Reports and Metrics date-range reports. For more details about reports and metrics, see the [Reports and Metrics article](../How-to%20workflows/howto-reports-metrics.md).
+The data pushed to SIEM is the same data recorded in the Reports and Metrics date-range reports. For more details about reports and metrics, see the Reports and Metrics article.
 
 :::note
 By default, TA always provides an attestation token regardless of policy evaluation unless the attestation request forces policy compliance.

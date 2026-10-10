@@ -1,5 +1,5 @@
 ---
-title: Event logs
+title: Trusted Platform Module (TPM) event logs
 description: TPM Logs
 author: pcartee
 topic-type: conceptual
@@ -7,18 +7,15 @@ date: 10/25/2024
 uid: tpm.log
 ---
 
-*· October/25/2024 ·*
-
-## Trusted Platform Module (TPM) event logs
-
 TPMs have 24 Platform Configuration Registers (PCRs). These PCRs contain hash measurements based on a large number of measurement events. Most of these happen during boot (UEFI events) and others happen during runtime (IMA events). You can use these PCR measurements to verify the integrity of parts of the system. 
 
 ## TPM/vTPM Attestation
+
 A Trusted Platform Module (TPM) is a device that provides several security functions. A Virtual TPM (vTPM) provides the functions of a TPM in software (typically in the hypervisor), providing TPM functions to virtual machines.
 
 System components (such as the UEFI, OS kernel, boot loader, etc) are measured before execution during the boot process, and these measurements can be used to detect any modifications or unauthorized changes to those measured components.
 
-# TPM Event Logs: Ensuring System Integrity
+## TPM Event Logs: Ensuring System Integrity
 
 TPMs (Trusted Platform Module) play a crucial role in ensuring the integrity of a system. One of the key components of TPMs is the PCR (Platform Configuration Register), which contains hash measurements based on various measurement events. These events can occur during boot, such as UEFI events, or during runtime, like IMA events. 
 

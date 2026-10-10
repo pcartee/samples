@@ -1,4 +1,4 @@
-The value of **eat_profile** is always `https://portal.trustauthority.intel.com/eat_profile.html`.
+The value of **eat_profile** is always `https://portal.ta.intel.com/eat_profile.html`.
 
 The following attestation token was generated from an Intel TDX trust domain.
 
@@ -58,7 +58,7 @@ The following attestation token was generated from an Intel TDX trust domain.
     "240426fa-d37a-4dde-8e37-ea236c9c961a"
   ],
   "dbgstat": "disabled",
-  "eat_profile": "https://portal.trustauthority.intel.com/eat_profile.html",
+  "eat_profile": "https://portal.ta.intel.com/eat_profile.html",
   "intuse": "generic",
   "ver": "1.0.0",
   "exp": 1692376314,
@@ -74,6 +74,6 @@ The following attestation token was generated from an Intel TDX trust domain.
 :::note
 
 If you are in the European Union (EU) region, use the following TA URL: 
-`https://portal.eu.trustauthority.intel.com `
+`https://portal.eu.ta.intel.com `
 
 :::

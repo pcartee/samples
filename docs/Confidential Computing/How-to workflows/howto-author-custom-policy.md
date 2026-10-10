@@ -8,12 +8,8 @@ uid: author.custom.policy  # Do not change uid!
 # Added pre-deprecation warning & article date - 06/12/2024 grminch cassini-17914
 ---
 
-*· November/16/2023 ·*
-
-## Author a custom policy
-
 :::important
-This article describes the initial version (V1) of the attestation policy supported by TA. A new version (V2) of the policy is now available. Users are strongly encouraged to transition from their existing V1 policies to V2 at their earliest convenience. While TA will continue to support V1 policies for the time being, it’s important to note that V1 will eventually be phased out. For more information about transitioning to V2 policy, see [Attestation policy V2](../Concepts/concept-policy-v2.md).
+This article describes the initial version (V1) of the attestation policy supported by TA. A new version (V2) of the policy is now available. Users are strongly encouraged to transition from their existing V1 policies to V2 at their earliest convenience. While TA will continue to support V1 policies for the time being, it’s important to note that V1 will eventually be phased out. For more information about transitioning to V2 policy, see Attestation policy V2.
 :::
 
 This article describes how to create policies for TA. TA uses [Open Policy Agent (OPA)](https://www.openpolicyagent.org/docs/latest/) to decouple policy evaluation logic from policy enforcement. Policies are written in [Rego policy language](https://www.openpolicyagent.org/docs/latest/policy-language/).
@@ -39,7 +35,7 @@ You can use any of the following built-in functions in your policy:
 - `<=`
 - `:=`
 
-For more information, see [Policy language functions](../Concepts/concept-policies.md#policy-language-functions).
+For more information, see Policy language functions.
 
 ## Minimum required contents for a policy
 
@@ -57,7 +53,7 @@ Attestation policies define the requirements that the appraiser (TA) compares ag
 
 Attestation policies require definition of expected claims values. For example, a policy might require that the claim "**sgx.mrenclave**" matches the specific value "83f4e819861adef6ffb2a4865efea9337b91ed30fa33491b17f0d5d9e8204410". The method to initially obtain the expected value so that it can be set in a policy depends on the claims being evaluated and the technology being attested. 
 
-The easiest method is to request an attestation for a known-good example of the application to be protected using the TA client. You can then examine the claims in the resulting attestation token to see all of the supported claims values, and use the specific claims values to author a policy that meets your application's trust requirements. For most attestation technologies, this can be accomplished using the [Attestation Client CLI](../Integration/integrate-go-tdx-cli.md) by using the `token` command. For example, to request an attestation of a VM protected by Intel TDX, use the command `trustauthority-cli token --config config.json`. 
+The easiest method is to request an attestation for a known-good example of the application to be protected using the TA client. You can then examine the claims in the resulting attestation token to see all of the supported claims values, and use the specific claims values to author a policy that meets your application's trust requirements. For most attestation technologies, this can be accomplished using the Attestation Client CLI by using the `token` command. For example, to request an attestation of a VM protected by Intel TDX, use the command `ta-cli token --config config.json`. 
 
 Alternatively, some technologies produce claims values as build outputs, or are defined by the software owner. For example, with Intel SGX, the **sgx.mrenclave** value is a hash of the SGX enclave (a code library) and can be output as part of the build process. The **sgx_isvsvn** is an integer value defined by the software developer indicating the security version level of the enclave.
 
@@ -199,6 +195,6 @@ Before beginning these instructions, have access to the hash for the **mrseam** 
 
 ## Next Steps
 
-- Optionally, sign the policy using the [Policy Signing Tool](../Attestation%20Technologies/Utilites/utility-policy-signing.md) to ensure policy integrity.
+- Optionally, sign the policy using the Policy Signing Tool to ensure policy integrity.
 - Upload the new policy using the web portal, REST API, or command line tool.
-- Learn more about [policies](../Concepts/concept-policies.md).
+- Learn more about policies.
