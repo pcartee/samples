@@ -17,12 +17,12 @@ You need your admin API key to perform these commands. See the [Copy Admin API k
 
 This command creates a new attestation API key and its associated metadata (associating the key with policies, tags, etc.). However, you need to access the portal to get the API key's value. See the [Getting Started](../Quickstart/tutorial-api-key.md) article for instructions on how to view and copy the attestation API key's.
 
-`trustauthorityctl create apiClient -r < service id > -p < product id > -n < api client name > -i "comma separated policy Ids" -v "tag-id1:tag-name1,tag-id2:tag-name2"`
+`tactl create apiClient -r < service id > -p < product id > -n < api client name > -i "comma separated policy Ids" -v "tag-id1:tag-name1,tag-id2:tag-name2"`
 
 ### Sample Call
 
 ```bash
-trustauthorityctl create apiClient -n "TestApiClientKeyDefaultTag" -p 095e2a13-b913-4d66-9c4d-f6e8a40f5915 -r 382d4141-103b-47f3-a001-13490db89d1d -v Workload:testworkload
+tactl create apiClient -n "TestApiClientKeyDefaultTag" -p 095e2a13-b913-4d66-9c4d-f6e8a40f5915 -r 382d4141-103b-47f3-a001-13490db89d1d -v Workload:testworkload
 ```
 
 ### Sample response
@@ -62,12 +62,12 @@ ApiClient:
 
  This command updates your current apiClient.
 
-`trustauthorityctl update apiClient -r < service id > -p < product id > -c < api client id > -i "comma separated policy Ids" -v "tag-key1:tag-value1,tag-key2:tag-value2"`
+`tactl update apiClient -r < service id > -p < product id > -c < api client id > -i "comma separated policy Ids" -v "tag-key1:tag-value1,tag-key2:tag-value2"`
 
 ### Sample call
 
 ```bash
-trustauthorityctl update apiClient -r 382d4141-103b-47f3-a001-13490db89d1d -p 095e2a13-b913-4d66-9c4d-f6e8a40f5915 -c 0c5be66c-fac0-4c27-825b-22ee5abbbf71 -i 32489d08-9a79-4643-b526-f4402cba3c29 -v "Tag:abc123"
+tactl update apiClient -r 382d4141-103b-47f3-a001-13490db89d1d -p 095e2a13-b913-4d66-9c4d-f6e8a40f5915 -c 0c5be66c-fac0-4c27-825b-22ee5abbbf71 -i 32489d08-9a79-4643-b526-f4402cba3c29 -v "Tag:abc123"
 ```
 
 ### Sample response
@@ -92,12 +92,12 @@ ApiClient:
 
 This command lists your apiClient.
 
-`trustauthorityctl list apiClient -r < service id >`
+`tactl list apiClient -r < service id >`
 
 ### Sample call
 
 ```bash
-trustauthorityctl list apiClient -r 382d4141-103b-47f33-a001-13490db89d1d
+tactl list apiClient -r 382d4141-103b-47f33-a001-13490db89d1d
 ```
 
 ### Sample response
@@ -123,13 +123,13 @@ ApiClient:
 
 This command lists a specific TA apiClient.
 
-`trustauthorityctl list apiClient -r < service id > -c < api Client id >`
+`tactl list apiClient -r < service id > -c < api Client id >`
 
 ### Sample call
 
 ```bash
 
-trustauthorityctl list apiClient -r 382d4141-103b-47f33-a001-13490db89d1d -c 0c5be66c-fac0-4c27-825b-22ee5abbbf71
+tactl list apiClient -r 382d4141-103b-47f33-a001-13490db89d1d -c 0c5be66c-fac0-4c27-825b-22ee5abbbf71
 ```
 
 ### Sample response
@@ -160,12 +160,12 @@ ApiClients:
 
 This command deletes a TA apiClient.
 
-`trustauthorityctl delete apiClient -r < service id > -c < api client id >`
+`tactl delete apiClient -r < service id > -c < api client id >`
 
 ### Sample Call
 
 ```bash
-trustauthorityctl delete apiClient -r 382d4141-103b-477f3-a001-13490db89d1d -c 0c5be66c-fac0-4c27-825b-22ee5abbbf71
+tactl delete apiClient -r 382d4141-103b-477f3-a001-13490db89d1d -c 0c5be66c-fac0-4c27-825b-22ee5abbbf71
 ```
 
 ### Sample response
@@ -177,12 +177,12 @@ Deleted api client with Id: 36ffa32c-e1df-46a2-9d57-f2be51c07d9f
 
 ## List apiClient policies
 
-`trustauthorityctl list apiClient policy -r < service id > -c < api client id >`
+`tactl list apiClient policy -r < service id > -c < api client id >`
 
 ### Sample call
 
 ```bash
-trustauthorityctl list apiClient policy -r 382d4141-103b-47f3-a001-13490db89d1d -c 3a7e48bc-0d7a-4078-b830-8d4da2b5b704
+tactl list apiClient policy -r 382d4141-103b-47f3-a001-13490db89d1d -c 3a7e48bc-0d7a-4078-b830-8d4da2b5b704
 
 ```
 
@@ -203,12 +203,12 @@ Policy IDs:
 
 This command creates a tag for TA.
 
-`trustauthorityctl create tag -n < tag name >`
+`tactl create tag -n < tag name >`
 
 ### Sample call
 
 ```bash
-trustauthorityctl create tag -n "TestTagUsername"
+tactl create tag -n "TestTagUsername"
 ```
 
 ### Sample response
@@ -226,12 +226,12 @@ trace-id:  LOnIBH5yIAMEJ5Q=
 
 This command list the tags associated to your TA system.
 
-`trustauthorityctl list tag`
+`tactl list tag`
 
 ### Sample call
 
 ```bash
-trustauthorityctl list tag
+tactl list tag
 ```
 
 ### Sample Response
@@ -270,11 +270,11 @@ Tags:
 
 This command deletes a tag.
 
-`trustauthorityctl delete tag -t < tag id >`
+`tactl delete tag -t < tag id >`
 
 ### Sample call
 ```bash
-trustauthorityctl delete tag -t 47yukjsv-29op-38sq-v3g8-xcqd456hju7i
+tactl delete tag -t 47yukjsv-29op-38sq-v3g8-xcqd456hju7i
 ```
 
 ### Sample response
@@ -290,12 +290,12 @@ trustauthorityctl delete tag -t 47yukjsv-29op-38sq-v3g8-xcqd456hju7i
 
 This command lists all your TA tags.
 
-`trustauthorityctl list apiClient tag -r < service id > -c <  api client id >`
+`tactl list apiClient tag -r < service id > -c <  api client id >`
 
 ### Sample call
 
 ```bash
-trustauthorityctl list apiClient tag -r 382d4141-103b-47f3-a001-13490db89d1d -c 30686bc0-0a75-4086-9a4c-4c59bea6df64
+tactl list apiClient tag -r 382d4141-103b-47f3-a001-13490db89d1d -c 30686bc0-0a75-4086-9a4c-4c59bea6df64
 ```
 
 ### Sample response
@@ -319,12 +319,12 @@ Tags:
 
 This command lists your subscriptions and policies.
 
-`trustauthorityctl list apiClient policy -r < service id > -c < api client id >`
+`tactl list apiClient policy -r < service id > -c < api client id >`
 
 ### Sample call
 
 ```bash
-trustauthorityctl list apiClient policy -r 382d4141-10
+tactl list apiClient policy -r 382d4141-10
 03b-47f3-a001-13490db89d1d -c 3a7e48bc-0d7a-4078-b830-8d4da2b5b704
 ```
 

@@ -53,7 +53,7 @@ An admin API key is the only authorization required to run nearly all REST APIs,
 
     The API key is copied to the clipboard.
 
-You can use the API key with the **trustauthorityctl** CLI utility to manage admins and users.
+You can use the API key with the **tactl** CLI utility to manage admins and users.
 
 <a id="attest-api-keys"></a>
 

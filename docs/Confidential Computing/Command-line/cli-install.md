@@ -76,9 +76,9 @@ Before beginning these instructions, have the following information available:
 
 1. Copy the binary installer to the system on which it is being deployed.
 
-     `trustauthorityctl-{version}.bin`
+     `tactl-{version}.bin`
 
-1. The `trustauthorityctl.env` file enables the CLI to contact a specific TA instance so it can be used to make changes. Create the trustauthorityctl.env file in your home directory and add the following contents:
+1. The `tactl.env` file enables the CLI to contact a specific TA instance so it can be used to make changes. Create the tactl.env file in your home directory and add the following contents:
 
     - `TRUSTAUTHORITY_URL=https://api.ta.intel.com`
     - `TRUSTAUTHORITY_API_KEY="< Admin API Key >`
@@ -89,7 +89,7 @@ Before beginning these instructions, have the following information available:
 
 1. To install the tenant CLI on your system, run following command:
 
-    `./trustauthorityctl-{version}.bin`
+    `./tactl-{version}.bin`
 
 :::note
 If you're behind a proxy, add the TA FQDN to the NO_PROXY environment variable.
@@ -99,9 +99,9 @@ If you're behind a proxy, add the TA FQDN to the NO_PROXY environment variable.
 
 All files are stored in the user's home directory. The contents of the directories are listed below:
 
-- Configuration: $HOME/.config/trustauthorityctl/config.yaml
-- Logs: $HOME/.config/trustauthorityctl/logs/trustauthorityctl.log
-- Bin: $HOME/.local/bin/trustauthorityctl
+- Configuration: $HOME/.config/tactl/config.yaml
+- Logs: $HOME/.config/tactl/logs/tactl.log
+- Bin: $HOME/.local/bin/tactl
 
 :::note
 If you cannot access the command, add the binary path to the PATH env variable
@@ -115,24 +115,24 @@ Request ID could be a randomly generated string of at most 128 bytes, which can 
 
 ## Tenant CLI configuration
 
-Use the command below to configure the tenant CLI. You need to know the file path to the `trustauthorityctl.env` file created in the previous step.
+Use the command below to configure the tenant CLI. You need to know the file path to the `tactl.env` file created in the previous step.
 
-`trustauthorityctl config -v < env file path >`
+`tactl config -v < env file path >`
 
 ## Install Bash completion
 
 Use the following command to install bash completion for the TA CLI.
 
-`trustauthorityctl completion`
+`tactl completion`
 
 ## Retrieve the version
 
 To get the version number of the tenant CLI installed on your system, run the following command:
 
-`trustauthorityctl version`
+`tactl version`
 
 ## Uninstall the CLI
 
 To uninstall the tenant CLI, use the following command:
 
-`trustauthorityctl uninstall`
+`tactl uninstall`

@@ -21,7 +21,7 @@ The purpose of the Policy Builder is to simplify the creation of basic/common po
 :::note
  JSON policies are simplified and have reduced capability from Rego policies. This utility exists to help users who do not want/need the complexity and power available through Rego but who still want to use a simple policy for attestation. The "default" policies only check whether the TEE is genuine and has an up-to-date TCB, but do not check any workload specific attributes of the TEE. Policies are needed to check those attributes, or to customize the attribute names, or to customize the acceptable TCB based on the capabilities and update schedule of the TEE provider. The Policy Builder can help create simplified policies for the most commonly used attributes.
 
-When you run the Policy Builder with a JSON input file, it will generate Rego output that you can copy to the TA Portal to create a policy, or you can use the Policy Management REST API or the TA CLI (`trustauthorityctl`).
+When you run the Policy Builder with a JSON input file, it will generate Rego output that you can copy to the TA Portal to create a policy, or you can use the Policy Management REST API or the TA CLI (`tactl`).
 
 Creating policies is discussed in Attestation Policies and How To Author A Custom Policy.
 :::
@@ -55,7 +55,7 @@ The output is displayed in the terminal in Rego with two format options.
 
 The **original** format is used with the Manage Policies page of the web portal. 
 
-The **escaped** format is used with the Policy Management REST API or with the TA CLI (`trustauthorityctl`). 
+The **escaped** format is used with the Policy Management REST API or with the TA CLI (`tactl`). 
 
 ## Appraisal policy
 
