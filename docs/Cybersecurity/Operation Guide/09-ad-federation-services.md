@@ -1,5 +1,5 @@
 ---
-title: Active Directory Federation Services
+title: Active Directory federation services
 description: Configure Active Directory Federation Services (ADFS) integration with an Identity Router for federated single sign-on (SSO). This guide covers federation trust architecture, Integrated Windows Authentication (IWA) without joining the Identity Router to the domain, ADFS prerequisites, domain proof and SSL certificate management, SAML 2.0 relying party trusts, LDAP claim rules, and exporting the ADFS public key to the Identity Router.
 author: pcartee
 topic: administration, federation, authentication, adfs, saml

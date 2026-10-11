@@ -1,5 +1,5 @@
 ---
-title: Identity Router Administrators
+title: Identity Router administrators
 description: Manage Studio administrator accounts, including creating administrator users, assigning groups and customers, configuring passwords, and setting advanced Studio API access and customer associations.
 author: pcartee
 topic: administration

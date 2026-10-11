@@ -1,5 +1,5 @@
 ---
-title: API Client management
+title: API client management
 description: TA CLI API client management commands.
 author: pcartee
 topic-type: Reference

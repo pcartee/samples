@@ -1,5 +1,5 @@
 ---
-title: Identity Routers Certificates
+title: Identity Routers certificates
 description: Configure and manage Identity Router SSL/TLS certificates for secure web traffic and delegated authentication, including CA-signed certificates, intermediate certificate chains, non-wildcard certificates, wildcard certificates, Subject Alternative Name (SAN) certificates, self-signed certificates, virtual domains, certificate file installation, and router restart requirements.
 author: pcartee
 topic: administration

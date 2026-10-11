@@ -1,5 +1,5 @@
 ---
-title: Amazon EC2 Identity Router Deployment
+title: Amazon EC2 Identity Router deployment
 description: Deploy Identity Routers on Amazon Web Services (AWS) Elastic Compute Cloud (EC2), including AWS account and X.509 certificate setup, security groups, Elastic IP addresses, key pairs, EC2 instances, Amazon Machine Images (AMIs), regional deployment, and access through the AWS Management Console. The guide covers creating and uploading a CentOS-based Identity Router AMI and provisioning Identity Router instances in an AWS environment.
 author: pcartee
 topic: administration, deployment, aws, ec2

@@ -18,7 +18,7 @@ Most recently, at Intel, I documented TA, a remote attestation service for confi
 
 - **Docs-as-code & CI/CD** — Git-based version control, GitHub Actions pipelines, automated metadata and link checking, and branching workflows that keep documentation in lockstep with releases.
 - **API & CLI reference documentation** — REST API references, SDK/connector guides (Go, Python, Java, C), and CLI command references written directly from source and hands-on testing.
-- **AI-assisted authoring** — I use tools like GitHub Copilot inside my docs-as-code workflow to accelerate drafting, enforce consistency, and catch issues (like the proprietary-data redaction pass across this very site) — with an editor's judgment on every change.
+- **AI-assisted authoring** — I use tools such as GitHub Copilot inside my docs-as-code workflow to accelerate drafting, enforce consistency, and catch issues (like the proprietary-data redaction pass across this very site) — with an editor's judgment on every change.
 - **Complex technical domains** — Confidential computing and remote attestation (Intel TDX, AMD SEV-SNP, Intel SGX), cloud infrastructure (Azure, GCP, AWS), and Kubernetes-based deployments.
 - **Editorial leadership** — Style guide governance, cross-functional stakeholder alignment, and mentoring other writers on Agile documentation practices.
 
@@ -44,7 +44,7 @@ Browse the sidebar for the complete library — concepts, tutorials, key-broker 
 
 I'm open to senior technical writing roles, especially ones with docs-as-code pipelines, GitHub-based workflows, and complex technical subject matter.
 
-- 📄 [Full résumé](https://github.com/pcartee/writing-samples/blob/main/paul-cartee-technical-writer.md)
+- 📄 [Full resume](https://github.com/pcartee/writing-samples/blob/main/paul-cartee-technical-writer.md)
 - ✉️ [paulcartee@yahoo.com](mailto:paulcartee@yahoo.com)
 - 📞 303.819.1583
 - 💼 [LinkedIn](https://www.linkedin.com/in/paul-cartee/)
