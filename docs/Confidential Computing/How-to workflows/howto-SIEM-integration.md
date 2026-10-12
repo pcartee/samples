@@ -5,6 +5,7 @@ author: pcartee
 topic: how to
 date: 05/14/2024
 uid: siem-integration  # Do not change uid!
+sidebar_position: 2
 ---
 
 This article shows how to integrate TA with 3rd party Security Information and Event Management (SIEM) services such as Splunk* or Datadog* to provide real-time notification of critical events such as attestation success or failure directly from your preferred reporting solution.

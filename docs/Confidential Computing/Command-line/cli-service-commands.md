@@ -5,6 +5,7 @@ author: pcartee
 topic-type: Reference
 date: 08/16/2023
 uid: cli-service-commands
+sidebar_position: 3
 ---
 
 Use the commands listed below to manage your services.

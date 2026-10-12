@@ -5,6 +5,7 @@ author: pcartee
 topic: Local Kubernetes deployment troubleshooting
 date: "2025-04-01"
 uid: pkg.trouble
+sidebar_position: 5
 --- 
 
 ## Expand storage on a bare-metal host

@@ -5,6 +5,7 @@ author: pcartee
 topic: how to
 date: 12/09/2024
 uid: manage.users # Do not change uid!
+sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';

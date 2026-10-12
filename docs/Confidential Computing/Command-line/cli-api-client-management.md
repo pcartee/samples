@@ -5,6 +5,7 @@ author: pcartee
 topic-type: Reference
 date: 01/03/2024
 uid: api-client-management
+sidebar_position: 4
 ---
 
 These commands are used to manage API clients.

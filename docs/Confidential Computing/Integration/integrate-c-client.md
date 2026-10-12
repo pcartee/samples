@@ -5,6 +5,7 @@ author: pcartee
 topic: integration
 date: 05/19/2025
 uid: integrate.c.client
+sidebar_position: 5
 ---
 
 TA Client provides a set of C libraries for attesting Intel® Software Guard Extensions (Intel® SGX), Intel® Trust Domain Extensions (Intel® TDX) TEEs, and Azure confidential VMs with Intel TDX. Users can import the C libraries into their application and make REST calls to TA to get an attestation token containing information about the TEE attestation and verification.

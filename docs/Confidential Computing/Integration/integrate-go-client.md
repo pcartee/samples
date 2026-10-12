@@ -5,6 +5,7 @@ author: pcartee
 topic: integration
 date: 05/16/2025
 uid: integrate.go.client
+sidebar_position: 2
 ---
 
 The TA client and related TEE adapters encapsulate all the functions needed to collect evidence, package it as a quote, and obtain an attestation token from the TA service. The client modules are designed to be used by both attesters and relying parties.

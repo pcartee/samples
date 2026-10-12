@@ -5,6 +5,7 @@ author: pcartee
 topic-type: Reference
 date: 06/12/2024
 uid: cli-install
+sidebar_position: 1
 ---
 
 These instructions describe how to build and install the TA CLI. The TA CLI is an open-source tool tenants use to make API calls to their instance of TA. The source code for the TA CLI is available on [GitHub](https://github.com/company/ta-cli).

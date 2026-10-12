@@ -5,6 +5,7 @@ author: pcartee
 topic: integration
 date: 05/16/2024
 uid: integrate.python.client
+sidebar_position: 4
 ---
 
 TA Client provides a set of Python libraries for attesting TEEs. Users can import the Python libraries into their application and make REST calls to TA to get an attestation token containing information about the TEE attestation and verification. 

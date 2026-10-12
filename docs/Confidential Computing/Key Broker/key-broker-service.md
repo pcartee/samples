@@ -78,4 +78,4 @@ Sample output of key retrieval is as follows:
 }
 ```
 
-Follow the [Key Broker Service installation](../Key-broker/key-broker-service-install.md) instructions to install KBS.
+Follow the [Key Broker Service installation](../Key%20Broker/key-broker-service-install.md) instructions to install KBS.

@@ -5,6 +5,7 @@ author: "Redacted"
 topic: Local Kubernetes cluster deployment with k3s and Calico
 date: "2025-04-09"
 uid: pkg.deploy.kubernetes
+sidebar_position: 1
 --- 
 
 ## Deploy Kubernetes
@@ -90,7 +91,9 @@ sudo sysctl -p
    kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.1/manifests/tigera-operator.yaml
 
    cat << EOF | kubectl apply -f -
-   ---
+   
+sidebar_position: 1
+---
    kind: Installation
    apiVersion: operator.tigera.io/v1
    metadata:

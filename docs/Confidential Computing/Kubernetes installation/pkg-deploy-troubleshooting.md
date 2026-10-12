@@ -5,6 +5,7 @@ author: pcartee
 topic: Local deployment maintenance and troubleshooting
 date: "2025-04-09"
 uid: pkg.deploy.troubleshooting
+sidebar_position: 4
 --- 
 
 This guide covers maintenance and troubleshooting for a local Kubernetes deployment. It explains how to refresh Trusted Platform Module (TPM) endorsement certificates, manage trusted execution environment (TEE) collateral, refresh certificate revocation lists (CRLs), uninstall the application or k3s, expand Linux logical volumes, and configure Docker proxies.
