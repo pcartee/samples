@@ -1,5 +1,5 @@
 ---
-title: Create/Edit customers
+title: Create and edit customers
 description: Create and configure customers in Identity Router Studio, including customer context, company and domain information, license agreements, SSO session and cipher-rotation settings, portal configuration, Integrated Windows Authentication, Identity Router NFS and CIFS clustering, User Management, and audit logging.
 author: pcartee
 topic: administration
@@ -7,170 +7,188 @@ date: 09/17/2024
 uid: idr-customers
 ---
 
-The *Customers* page displays all of the customers associated to your Studio System. Studio is designed to enable its users to manage their customers easily and efficiently. For example, the status of a customer is displayed by the highlight of the customer's icon. More information about the customer can be seen by moving your mouse-pointer over the customer's icon and clicking the expand Icon. A fly-over window displays current customer information.
+import MyPartial from '../../_includes/_network-auth.md';
+
+The *Customers* page displays all customers associated with your Studio system. Studio is designed to enable its users to manage their customers easily and efficiently. For example, the customer icon highlight indicates the customer’s status. To view more information, hover over the customer’s icon and select the expand icon. A flyout window displays the customer’s current information.
 
 ![Customers page with customer status icons](/img/operations-guide/_page_18_Picture_2.jpeg)
 
-The icons under the customer icon enable the System administrator to perform actions on the selected customer. The table below lists the icons and describes the action they enable.
+The icons below each customer icon let the system administrator perform actions for that customer. The following table describes each icon and its action.
 
 | ICON | DESCRIPTION |
 |------|-------------|
-| ![Context icon](/img/operations-guide/context.png) | Sets the context of Studio to that of the customer. Setting the context to a particular customer filters the GUI so that you only see the Studio elements that the customer sees (while keeping your System Administrator rights.) Clicking the **Reset Context** link in the upper right-hand corner cancels the impersonating process and returns you to your Administrator role with Studio. |
-| ![Cipher Rotation icon](/img/operations-guide/cipher-rotation.png) | Rotate cipher key - Manually force a cipher-key rotation. |
-| ![Delete icon](/img/operations-guide/delete.png) | Delete the Administrator - Deletes the selected administrator. Only a super administrator can delete other super administrators and administrators. |
-| ![Export icon](/img/operations-guide/export.png) | Exports the customer's information to an XML file. This enables the customer to transition from one Identity Router to another one. |
+| ![Context icon](/img/operations-guide/context.png) | Sets the context of Studio to that of the customer. Setting the context to a particular customer filters the GUI so that you only see the Studio elements that the customer sees (while keeping your system administrator rights). Selecting the **Reset Context** link in the upper-right corner ends customer context and returns you to the system administrator role in Studio. |
+| ![Cipher Rotation icon](/img/operations-guide/cipher-rotation.png) | Manually rotate the cipher key. |
+| ![Delete icon](/img/operations-guide/delete.png) | Deletes the selected administrator. Only a super administrator can delete other super administrators or administrators. |
+| ![Export icon](/img/operations-guide/export.png) | Exports the customer’s information to an XML file so it can be transferred to another Identity Router. |
 
 ## The New/Edit Customer Dialog
 
-The *New/Edit Customer* dialog enables the System Administrator to create/edit Studio customers. A customer is anyone who is using Studio to manage access to their Web applications.
+The *New/Edit Customer* dialog lets the system administrator create and edit Studio customers. A customer is an organization that uses Studio to manage access to its web applications.
 
 All customers are created or edited in the *Edit Customer* dialog, which is accessed from the **Customers** tab on the *System Admin* page.
 
-The *New/Edit Customer* dialog has six tabs on which the customer's information is maintained.
+The *New/Edit Customer* dialog has six tabs for maintaining customer information.
 
-- **Configure** - Create/Edit company information that will be displayed in the fly-over window
-- **SSO Configuration**- Set session length, cipher-, and key-rotation schedules
-- **Portal** Configure the customer's portal page
-- **Windows Authentication** Configure Integrated Windows Authentication for this customer
-- **ID Router Clustering** Configure how multiple Identity Routers will communicate with each other
-- **Features** - Select the features to which the customer has subscribed
+- **Configure** - Create or edit company information that will be displayed in the flyout window.
+- **SSO Configuration** - Set session length, cipher- and key-rotation schedules.
+- **Portal** - Configure the customer's portal page.
+- **Windows Authentication** - Configure Integrated Windows Authentication for this customer.
+- **ID Router Clustering** - Configure how multiple Identity Routers communicate with each other.
+- **Features** - Select the features the customer has subscribed to.
 
-## Set Customer Context
+## Set customer context
 
-The **Set Customer Context** option enables a System administrator to mimic a customer. This option enables the System administrator to run Studio as if they were the customer and ensures they can provide help with the changes and configurations set by the customer.
+The **Set Customer Context** option lets a system administrator view and manage Studio as the customer. Use it to help the customer with configuration changes.
 
-1. Click the **Customers** link at the top of the *Studio* page.
-1. Mouse over the customer that you want to mimic and click the **Set Customer Context** button.
+1. Select the **Customers** link at the top of the *Studio* page.
+
+1. Hover over the customer, then select the **Set Customer Context** button.
 
    ![Customer icon menu used to set customer context](/img/operations-guide/_page_19_Picture_4.jpeg)
 
-1. Click **Yes** at the confirmation window. The context is set to the selected customer.
+1. Select **Yes** in the confirmation window. The context is set to the selected customer.
 
-### Reset the Context
+### Reset customer context
 
-After making the necessary changes to the customer's Studio configuration, you must reset the context of the Studio application to the System Administrator context.
+After you finish changing the customer’s Studio configuration, return Studio to the system administrator context.
 
-1. Click **Reset Context** in the upper left-hand corner of the Studio page.
-1. The customer context is set back to System Administrator.
+1. Select **Reset Context** in the upper-left corner of the Studio page.
 
-## Customer Configuration
+1. Studio returns to the system administrator context.
 
-These instructions explain how to create a new customer in Studio. Customers are created by recording information on the customer in the *New/Edit Customer* dialog. The *New/Edit Customer* dialog contains six tabs on which to enter information about the customer. Each tab is explained in the following pages.
+## Configure a customer
 
-The information entered on the **Configuration** tab is displayed when the customer performs a mouse-over their super administrator icon on the *Administrators* page in Studio.
+Use the *New/Edit Customer* dialog to create a customer and enter its information. The dialog has six tabs, described in the following sections.
 
-### Company Information
+The information entered on the **Configuration** tab appears when the customer hovers over their super administrator’s icon on the *Administrators* page in Studio.
 
-1. Click the **Customers** link at the top of the page.
+### Company information
+
+1. Select the **Customers** link at the top of the page.
 
    ![Customers page with the New Customer control](/img/operations-guide/_page_20_Picture_0.jpeg)
 
-1. Click the **New Customer** icon. The *New Customer* dialog displays.
+1. Select the **New Customer** icon. The *New Customer* dialog displays.
 
    ![New Customer dialog with configuration fields](/img/operations-guide/_page_20_Picture_3.jpeg)
 
 1. Complete these fields:
 
-   - **Display Name**  Enter a name for the company
-   - **Time Zone** Select the appropriate time zone for this customer from the drop-down list
-   - **Status** - Select the appropriate status from the drop-down list
-   - **Parent** - Select the parent organization for this customer
+   - **Display Name** - Enter a name for the company.
+   - **Time Zone** - Select the appropriate time zone for this customer from the drop-down list.
+   - **Status** - Select the appropriate status from the drop-down list.
 
 1. Select the **On Premises Identity Router** checkbox if the Identity Router is located within the customer's network.
 
-1. Set the License Agreement - To allow customers to agree to an online license agreement, select the **Enable Click-Through License Agreement** checkbox.
+1. To let customers accept an online license agreement, select the **Enable Click-Through License Agreement** checkbox.
 
-1. Configure the customer's domain by completing the following fields
-    1. Enter the customer's domain name and then select **Load Key**.
-    1. Navigate to the customer's private key. The file ends with ".key".
+1. Configure the customer's domain by completing the following steps:
+
+    1. Enter the customer's domain name in the **Domain** field.
+
+    1. Select **Load Key**.
+
+    1. Navigate to the customer's private key. The file ends with `.key`.
 
     :::note
     PSA keys in the PEM format are supported.
     :::
 
-    1. Select the key and then select **Open**.
-    1. Select **Upload**. The key is uploaded to Studio.
+    1. Select the key, then select **Open**.
+
+    1. Select **Upload**. The key is uploaded to Studio, and the *New Customer* dialog reappears.
+
     1. Select **Load Cert**.
-    1. Navigate to the customer's public key certificate file. the file ends ".cert".
-    1. Select the key and then click **Open** to load the key.
-    1. In the **Keychain API Key** textfield, enter the key that will enable the Keychain API to communicate to the Identity Router.
+
+    1. Navigate to the customer's public key certificate file. The file ends with `.cert`.
+
+    1. Select the certificate, then select **Open**. The certificate loads, and the *New Customer* dialog reappears.
+
+    1. In the **Keychain API Configuration** section of the *New Customer* dialog, enter the administrator-provided key in the **Keychain API Key** field. This key lets the Keychain API communicate with the Identity Router.
 
     :::note
-    The keychain API Key is created by your system administrator.
+    Your system administrator creates the Keychain API key.
     :::
 
-    1. Click **Save** to persist your changes.
+    1. Select **Save**.
 
 ## SSO Configuration
 
-The **SSO Configuration** tab is used to configure the customer's user session, cipher-rotation and keychainrefresh functions. Each section is explained below.
+The **SSO Configuration** tab is used to configure the customer's user session, cipher rotation, and Keychain refresh functions.
 
 1. Select the **SSO Configuration** tab.
 
-    ![SSO Configuration tab with user session and cipher rotation settings](/img/operations-guide/_page_21_Picture_10.jpeg)
+   ![SSO Configuration tab with user session and cipher rotation settings](/img/operations-guide/_page_21_Picture_10.jpeg)
 
-### User Session
+### User session
 
-Set the length of time a customer can be logged into the portal with and without activity.
+Set the length of time a customer can be signed in to the portal with and without activity.
 
-1. Complete the following fields:
+1. Complete these fields:
 
    - **One Time Auth Window (sec)** - Enter the time, in seconds, that the Authentication Window displays.
-   - **Max Session Length (secs)** Enter the time (in seconds) that can be spent by an active user on the portal.
-   - **Inactivity Timeout (secs)** Enter the amount of time (in seconds) that can be spent on the portal before the user times out for inactivity.
-   - **Session IP Validation** - To require a session validation, select the checkbox.
-   - **Limit Concurrent Sessions** - To limit the number of sessions a user can initiate, select the **Concurrent Sessions** checkbox and then enter a value in **Limit** text field - The **Limit** textfield appears when the **Concurrent Sessions** checkbox is selected.
+   - **Max Session Length (secs)** - Enter the maximum time, in seconds, an active user can spend on the portal.
+   - **Inactivity Timeout (secs)** - Enter the amount of time a user can be inactive on the portal before timing out.
+   - **Session IP Validation** - Select this checkbox to require session validation.
+   - **Limit Concurrent Sessions** - To limit the number of sessions a user can initiate, select the **Concurrent Sessions** checkbox, then enter a value in the **Limit** text field. The **Limit** text field appears when you select the **Concurrent Sessions** checkbox.
 
-### Cipher Rotation
+1. Select **Save** or continue to *Cipher Rotation*.
 
-The cipher rotation determines how often the encryption key used to secure the communication between the Identity Router and the cloud is changed. Complete the following fields to configure cipher rotation.
+### Cipher rotation
+
+Cipher rotation determines how often the encryption key used to secure communication between the Identity Router and the cloud changes. Complete these fields to configure cipher rotation.
 
 :::warning
-Cipher Rotation must be disabled for High Availability customers.
+Cipher rotation must be disabled for High Availability customers.
 :::
 
 1. Select the **SSO Configuration** tab.
-1. Complete the following fields:
+
+1. Complete these fields:
 
    - **Disable** - To disable the **Cipher Rotation** feature, select the **Disable** checkbox.
-   - **Start** - Click the calendar, select a start date, enter the starting time in the textfield, and then select either **AM** or **PM** from the drop-down list.
-   - **Interval** - Enter the amount variable in the **Interval** textfield and then select the value from the drop-down list.
+   - **Start** - Select the calendar, select a start date, enter the starting time in the text field, then select **AM** or **PM** from the drop-down list.
+   - **Interval** - Enter the interval value in the **Interval** text field, then select the unit from the drop-down list.
 
    :::warning
-   During the cipher rotation process, users cannot log in. Be sure to set the cipher rotation to occur at a time when the least amount of user will be logged into Studio.
+   Users cannot sign in to Studio while cipher rotation is in progress. Schedule the rotation for a time when the fewest users are expected to be signed in.
    :::
 
-1. Select **Save** or continue onto *Cloud Keychain Refresh or Adapter Updates below.*
+1. Select **Save** or continue to *Adapter Updates*.
 
-### Adapter Updates
+### Adapter updates
 
 1. Select the **SSO Configuration** tab.
-1. To select when the adapter update takes place, enter a time in the **Adapter Update Time** textfield and then select either **AM** or **PM** from the drop-down list
-1. Click **Save**.
+
+1. To set when the adapter update takes place, enter a time in the **Adapter Update Time** text field, then select **AM** or **PM** from the drop-down list.
+
+1. Select **Save**.
 
 ## Portal - Edit Profile
 
-The **Portal** tab enables you to configure *SinglePoint Studio* to funnel all traffic to a portal proxy. There are two types of portal configurations: Default Portal and Custom Portal.
+The **Portal** tab lets you configure *SinglePoint Studio* to route traffic through a portal proxy. There are two types of portal configurations: Default Portal and Custom Portal.
 
-### Before you begin Edit Profile
+### Before you begin
 
-Ensure the following steps have been completed before attempting these instructions.
+Before following these instructions, complete these steps:
 
-- Create a Web server with a backend hostname set to the machine hosting the portal and whichever front-end server you want
-- Create a new application that has no authentication required and select the **Pass Headers** checkbox. This application needs to use the portal server, have an **Allow All** policy, and needs to protect minimally the portal page itself, though it probably ought to protect all of the portal integration pages
+- Create a web server with a backend hostname set to the machine hosting the portal and the front-end server you want to use.
+- Create an application that requires no authentication and select the **Pass Headers** checkbox. Configure the application to use the portal server and an **Allow All** policy. Protect at least the portal page; protecting all portal integration pages is recommended.
 
 :::note
-If you use the default **Protect All Application Areas** to protect the entire portal Web server, then **everything** on the Web server will be protected. Trying to access images on a login page with the entire portal server protected will result in the images not being displayed because the Identity Router requires you to be logged in to see the images.
+If you use **Protect All Application Areas** to protect the entire portal web server, everything on that server will be protected. Images on a login page will not display because the Identity Router requires users to sign in before viewing them.
 :::
 
-Choose the type of portal to configure:
+1. Choose the type of portal to configure:
 
-- [**Default Portal - New Customer**](#default-portal---new-customer)
-- [**Custom Portal - New Customer**](#custom-portal---new-customer)
+   - [**Default Portal - New Customer**](#default-portal---new-customer)
+   - [**Custom Portal - New Customer**](#custom-portal---new-customer)
 
 ### Default Portal - New Customer
 
 1. Access the *Edit Customer* dialog.
+
 1. Select the **Portal** tab if it is not already selected.
 
    The *Portal* dialog displays with the **Default Portal** option selected.
@@ -179,17 +197,15 @@ Choose the type of portal to configure:
 
 1. Select **Default Portal**. The default portal fields display.
 
-1. Configure the Default Portal - complete the following fields:
+1. To configure the default portal, complete these fields:
 
-   - **Company Name** - Enter the company name for this portal
-   - **Home Background URL** - Enter the background URL for this portal
-   - **Portal Background URL** - Enter the portal background
-   - **Help URL** - Enter the help URL for this portal
-   - **Settings URL** - Enter the settings URL for this portal
+   - **Company Name** - Enter the company name for this portal.
+   - **Home Background URL** - Enter the background URL for this portal.
+   - **Portal Background URL** - Enter the portal background.
+   - **Help URL** - Enter the help URL for this portal.
+   - **Settings URL** - Enter the settings URL for this portal.
 
-1. Configure the Default Portal Client Configuration - complete the following fields:
-
-1. Complete the following fields:
+1. To configure the default portal client, complete these fields:
 
     - **Image Path** - Enter the relative path to the images used for this portal page.
     - **Default Language** - Select a default language for the Studio user interface.
@@ -197,11 +213,12 @@ Choose the type of portal to configure:
     - **Default Position** - Select the default position for the portal.
     - **Auto Dim** - Select this option to enable the auto-dim feature.
 
-1. Click **Save**.
+1. Select **Save**.
 
 ### Custom Portal - New Customer
 
 1. Access the *Edit Customer* dialog.
+
 1. Select the **Portal** tab if it is not already selected. The *Portal* dialog displays with the **Default Portal** option selected.
 
    ![Custom Portal configuration screen](/img/operations-guide/_page_24_Diagram_9.jpeg)
@@ -209,53 +226,54 @@ Choose the type of portal to configure:
 1. Select **Custom Portal**. The *Custom Portal* text fields display.
 
     :::note
-    In the *Edit Profile* dialog on the **Portal** tab, enter the end-user facing URLs for the portal page, i.e.
+    In the *Edit Profile* dialog on the **Portal** tab, enter the end-user-facing URLs for the portal page. For example:
 
-    `https://portal.myco.com/login.jsp", https://portal.myco.com/portal.jsp, etc...`
+    `https://portal.myco.com/login.jsp`, `https://portal.myco.com/portal.jsp`
 
-    rather than
+    Do not enter backend URLs such as:
 
-   `https://backendhostname/login.jsp`
-   :::
+    `https://backendhostname/login.jsp`
+    :::
 
-1. Configure a Basic Custom Portal - complete the following fields" Configuration**
+1. To configure a basic custom portal, complete these fields:
 
-   - **Login Page** Enter the URL to the login page for the portal.
-   - **Portal Page** Enter the URL for the portal page that contains the list of Web applications for this customer.
-   - **Error Page** Enter the URL of the error page to be displayed for this customer.
-   - **Logout Page** Enter the URL of the page that will be displayed in the event of a logout.
+   - **Login Page** - Enter the URL to the login page for the portal.
+   - **Portal Page** - Enter the URL for the portal page that contains this customer's web applications.
+   - **Error Page** - Enter the URL of the error page to display for this customer.
+   - **Logout Page** - Enter the URL of the page to display when a user signs out.
 
     :::note
-    Inside of the head tag of your logout page, include this line:
+    In the head tag of your logout page, include this line:
 
     `<script language="javascript" src="https://<HOSTNAME\_OF\_ROUTER\_HERE>/LogoutJsServlet"></script>`
 
-    When configuring a custom portal, the following pages must be protected resources: portal, error, and logout.
+    When configuring a custom portal, protect the portal, error, and logout pages as resources.
     :::
 
-1. Configure the AJAX Proxy - complete the following fields:
-    - Select the **Enable AJAX Proxy** checkbox:
+1. Configure the AJAX proxy by completing these fields:
+
+    - **Enable AJAX Proxy** - Select this checkbox.
     - **Portal Path** - Enter the portal path.
     - **Backing Portal Location** - Enter the backing portal location.
 
-1. Click **Save**.
+1. Select **Save**.
 
 ## Windows Authentication
 
-Integrated Windows Authentication (IWA) is a mechanism which allows an end-user's client (the Internet Explorer Web browser) to log into a domain using stored client information, rather than prompting the end user to manually supply a username and password. To use IWA, the end user must be logged into a local computer as a domain user. Should the initial cryptographic exchange fail, the browser will prompt the user to enter credentials for the domain.
+Integrated Windows Authentication (IWA) lets an end user's web browser sign in to a domain using stored client information instead of prompting the user to enter a username and password. To use IWA, the end user must be signed in to a local computer as a domain user. If the initial cryptographic exchange fails, the browser prompts the user to enter domain credentials.
 
-When IWA is enabled on the ID Router, end users that are logged into the Windows domain will not have to manually authenticate to the SinglePoint-portal page or SinglePoint-protected applications in the same domain. SinglePoint Studio can perform IWA authentication with either a domain controller or with multiple Windows Internet Naming Service (WINS) servers.
+When IWA is enabled on the ID Router, end users signed in to the Windows domain do not have to manually authenticate to the SinglePoint portal page or SinglePoint-protected applications in the same domain. SinglePoint Studio can perform IWA authentication with a domain controller or multiple Windows Internet Naming Service (WINS) servers.
 
-To further customize your authentication scheme, SinglePoint Studio allows administrators to specify a range of client networks which will use IWA. In this scenario, the ID Router will only attempt to initiate an IWA exchange for requests coming from computers in the specified client network. This is useful when a network configuration is configured such that computers using a Microsoft operating system are assigned similar IP addresses.
+To further customize authentication, administrators can specify a range of client networks that use IWA. The ID Router attempts an IWA exchange only for requests from computers in the specified client networks. This is useful when computers running a Microsoft operating system are assigned similar IP addresses.
 
 ### Before You Begin Windows Authentication Configuration
 
-Review the list below to ensure you have all the information needed to complete this task.
+Before you begin, gather this information:
 
-- A valid username and password combination for a user account in the domain. This account will be used to retrieve the initial IWA challenge from the domain controller
-- The fully qualified name for the domain
-- The domain name or IP address of the domain controller
-- There are two options when configuring IWA in SinglePoint Studio:
+- A valid username and password for a domain user account. This account retrieves the initial IWA challenge from the domain controller.
+- The fully qualified domain name.
+- The domain name or IP address of the domain controller.
+- Choose an IWA configuration:
   - [**IWA Enabled - Edit Profile**](#iwa-enabled)
   - [**IWA Enabled by IP Networks - New Customer**](#iwa---enabled-by-ip-networks)
 
@@ -263,18 +281,16 @@ Review the list below to ensure you have all the information needed to complete 
 
 Use these instructions to configure Integrated Windows Authentication with Kerberos in SinglePoint Studio.
 
-#### Before You Begin IWA enabling
+#### Before you begin IWA configuration
 
-Review the list below to ensure you have all the information needed to complete this task.
+Before you begin, gather this information:
 
-- A valid username and password combination for a user account in the domain. This account will be used to retrieve the initial IWA challenge from the domain controller.
-- The fully qualified name for the domain.
+- A valid username and password for a domain user account. This account retrieves the initial IWA challenge from the domain controller.
+- The fully qualified domain name.
 
 #### Configure IWA with Kerberos
 
-Follow these steps to configure IWA with Kerberos within SinglePoint Studio.
-
-1. Select **Edit Profile** link in the upper right-hand corner of the *SinglePoint Studio* page. The *Edit Profile* dialog displays.
+1. Select the **Edit Profile** link in the upper-right corner of the *SinglePoint Studio* page. The *Edit Profile* dialog displays.
 
 1. Select the **Windows Authentication** tab.
 
@@ -283,310 +299,274 @@ Follow these steps to configure IWA with Kerberos within SinglePoint Studio.
 1. Select **Enabled** from the **Status** drop-down list.
 
    :::note
-   If you have an existing IWA configuration and you change the status to **Disabled**, the configuration information is deleted.
+   If you have an existing IWA configuration and change the status to **Disabled**, the configuration information is deleted.
    :::
 
-1. Complete the following fields:
+1. Complete these fields:
 
-   - **Username** - A username for an account on the domain
-   - **Password** - The password for the specified account
-   - **Domain Name** The fully qualified name of the domain
-   - **WINS Name** The WINS-style domain name is automatically extracted and displayed
+   - **Username** - Enter the username for a domain account.
+   - **Password** - Enter the password for the specified account.
+   - **Domain Name** - Enter the fully qualified domain name.
+   - **WINS Name** - The WINS-style domain name is extracted and displayed automatically.
 
-1. Optionally make the ID Router a member of your network by clicking **Join**. The ID Router must be on the domain network, and does not have to be on the premises.
+1. To optionally make the ID Router a member of your network, select **Join**. The ID Router must be on the domain network but does not have to be on the premises.
 
-    :::note
-    Add the Identity Router to Windows DNS Manager - Kerberos
+1. Select **Save**.
 
-    You must add the Identity Router to your Windows DNS Manager to enable the Identity Router to perform IWA.
-
-    Add the Identity Router to your DNS Manager on Windows Server 2003 - 2008
-
-    1. Go to **Administrative Tools > DNS**.
-    1. In the left-hand menu, select your domain in the **Forward Lookup Zones** section.
-    1. In the right-hand window, right-click and select **New Host (A or AAAA)**, and then enter the information about your ID Router. The IP address of the host should be configured with the proxy IP address (public IP address) of your Identity Router.
-
-    When adding a new host record to the forward lookup zone, please be sure that the checkbox labeled.
-
-    **Create associated pointer (PTR) record** is checked (it will be checked by default). If the proxy IP address of the Identity Router is in an IP address range that is already defined as a reverse lookup zone, create the new record in the forward lookup zone. If the IP address range IS NOT defined as a reverse lookup zone, then do not add the record to the forward lookup zone until the IP address range containing the proxy IP address has been added as a new reverse lookup zone. For more information on creating reverse lookup zones, please consult Microsoft's documentation.
-    :::
-
-   :::note
-   Add the Identity Router to the Trusted Intranet Servers List.
-
-   Windows clients only respond to IWA challenges from servers located within the client's domain. The client's browser determines if a server is within their domain by verifying that the server's DNS short name is used instead of the fully qualified DNS name. To allow a client to receive a successful IWA challenge and respond to that challenge, the URL of the Identity Router must be added to the "Local Intranet Sites List" in Internet Explorer (**Tools>Internet Options>Local Intranet>Sites>Advanced**). To add the Identity Router's URL to all clients' Internet Explorer's "Local Intranet sites list", use the GPO to push the registry settings that represent the "Local Intranet Sites List" to all clients. Please refer to Microsoft's documentation on how to push registry settings via the GPO to all machines in a domain.
-   :::
-
-   :::note
-   IWA Kerberos Windows 7 Security Update
-
-   Due to a new feature in Windows 7 (which has been backported to older versions of Windows via a security patch) a registry entry must be added to individual Windows clients before they can perform IWA. The registry entry that must be added is `HKEY\_LOCAL\_MACHINE\SYSTEM\CurrentControlSet\Control\LSA\SuppressExtendedProtection`
-
-   The value of the entry should be **2**. This addition needs to be applied ONLY if the client machines have been updated with the Windows 7 Security Update. The official announcement from Microsoft can be found at `http://support.microsoft.com/kb/968389`. Please refer to Microsoft's documentation on how to push registry settings via the GPO to all machines in a domain.
-   :::
-
-1. Click **Save**.
+<MyPartial />
 
 ### IWA - Enabled by IP Networks
 
-When IWA by IP Networks with Kerberos is configured, the ID Router(s) will only attempt IWA for requests coming from machines in the specified IP range(s).
+When IWA by IP Networks with Kerberos is configured, the Identity Routers attempt IWA only for requests from machines in the specified IP ranges.
 
-Use these instructions to configure Integrated Windows Authentication with Kerberos in IP Networks in SinglePoint Studio.
+Use these instructions to configure Integrated Windows Authentication with Kerberos by IP networks in SinglePoint Studio.
 
-#### Before You Begin
+#### Before you begin
 
-Review the list below to ensure all the information needed to perform the task is at hand.
+Before you begin, gather this information:
 
-- A valid username and password combination for a user account in the domain. This account will be used to retrieve the initial IWA challenge from the domain controller.
-- The fully qualified name for the domain.
--The domain name or IP address of the domain controller.
+- A valid username and password for a domain user account. This account retrieves the initial IWA challenge from the domain controller.
+- The fully qualified domain name.
+- The domain name or IP address of the domain controller.
 
-#### Configure IWA with Kerberos by IP Networks
+#### Configure IWA with Kerberos by IP networks
 
-Follow these steps to configure IWA with Kerberos by IP Networks within SinglePoint Studio. The **Windows Authentication** tab is accessed from the *Edit Profile* dialog.
+The **Windows Authentication** tab is accessed from the *Edit Profile* dialog.
 
-1. To access the *Edit Profile* dialog, click the **Edit Profile** link in the upper right-hand corner of the *SinglePoint Studio* page.
-1. The *Edit Profile* dialog displays.
+1. Select the **Edit Profile** link in the upper-right corner of the *SinglePoint Studio* page. The *Edit Profile* dialog displays.
+
 1. Select the **Windows Authentication** tab.
 
-    ![Windows Authentication settings with client IP network fields](/img/operations-guide/_page_29_Picture_4.jpeg)
+   ![Windows Authentication settings with client IP network fields](/img/operations-guide/_page_29_Picture_4.jpeg)
 
-1. Select the **Enabled by IP Networks** from the **Status** drop-down list.
+1. Select **Enabled by IP Networks** from the **Status** drop-down list.
 
-    :::note
-    If you have an existing IWA configuration and you change the status to **Disabled**, the configuration information is deleted.
-    :::
+   :::note
+   If you have an existing IWA configuration and change the status to **Disabled**, the configuration information is deleted.
+   :::
 
-1. Configure the Integrated windows Authentication - complete the following fields:
-    - **Username** - A username for an account on the domain.
-    - **Password** - The password for the specified account.
-    - **Domain Name** - The fully qualified name of the domain.
-    - **WINS Name** - The WINS-style domain name is automatically extracted and displayed.
-    - **Token Validity Period** - Enter the number of days a token is valid.
-1. Configure the client's IWA Client Networks - complete the following fields:
-    - **IP** - Enter the starting IP for the client's network.
-    - **Mask** - Enter a value to allow eight or more addresses in the class C subnet. For example: **255.255.248.0**.
-1. Click **Join Domain** button to make the ID Router a member of your domain. The ID Router only needs to be connected to the domain network, and does not have to be physically on the premises.
-1. Click **Save**.
+1. Configure Integrated Windows Authentication by completing these fields:
 
-    :::note**: - Add Identity Router to Windows DNS Manager - Kerberos
+   - **Username** - Enter the username for a domain account.
+   - **Password** - Enter the password for the account.
+   - **Domain Name** - Enter the fully qualified domain name.
+   - **WINS Name** - The WINS-style domain name is extracted and displayed automatically.
+   - **Token Validity Period** - Enter the number of days a token is valid.
 
-    You must add the Identity Router to your Windows DNS Manager to enable the Identity Router to perform IWA.
+1. Configure the client’s IWA client networks by completing these fields:
 
-    **To add the Identity Router to your DNS Manager on Windows Server 2003 - 2008:**
+   - **IP** - Enter the starting IP address for the client's network.
+   - **Mask** - Enter a value that allows eight or more addresses in the class C subnet. For example: **255.255.248.0**.
 
-    Go to **Administrative Tools>DNS**. In the left-hand menu, select your domain in the **Forward Lookup Zones** section. In the right-hand window, right-click and select **New Host (A or AAAA),** and then enter the information about your ID Router. The IP address of the host should be configured with the proxy IP address (public IP address) of your Identity Router.
+1. Select **Join Domain** to make the ID Router a member of your domain. The ID Router must be connected to the domain network but does not have to be physically on the premises.
 
-    When adding a new host record to the forward lookup zone, please be sure that the checkbox labeled **Create associated pointer (PTR) record** is checked (it will be checked by default). If the proxy IP address of the Identity Router is in an IP address range that is already defined as a reverse lookup zone, create the new record in the forward lookup zone. If the IP address range IS NOT defined as a reverse lookup zone, then do not add the record to the forward lookup zone until the IP address range containing the proxy IP address has been added as a new reverse lookup zone. For more information on creating reverse lookup zones, please consult Microsoft's documentation.
-    :::
+1. Select **Save**.
 
-    :::note
-    Add the Identity Router to the Trusted Intranet Servers List
-
-    Windows clients will only respond to IWA challenges from servers located within the client's domain. The client's browser determines if a server is within their domain by verifying that the server's DNS short name is used instead of the fully qualified DNS name. To allow a client to receive a successful IWA challenge and respond to that challenge, the URL of the Identity Router must be added to the "Local Intranet Sites List" in Internet Explorer (**Tools>Internet Options>Local Intranet>Sites>Advanced**). To add the Identity Router's URL to all clients' Internet Explorer's "Local Intranet sites list", use the GPO to push the registry settings that represent the "Local Intranet Sites List" to all clients. Please refer to Microsoft's documentation on how to push registry settings via the GPO to all machines in a domain.
-    :::
-
-    :::note
-    IWA Kerberos Windows 7 Security Update
-
-    Due to a new feature in Windows 7 (which has been backported to older versions of Windows via a security patch) a registry entry must be added to individual Windows clients before they can perform IWA. The registry entry that must be added is
-
-    `HKEY\_LOCAL\_MACHINE\SYSTEM\CurrentControlSet\Control\LSA\SuppressExtendedProtection`.
-    The value of the entry should be **2**. This addition needs to be applied ONLY if the client machines have been updated with the Windows 7 Security Update. The official announcement from Microsoft can be found at `http://support.microsoft.com/kb/968389`. Please refer to Microsoft's documentation on how to push registry settings via the GPO to all machines in a domain.
-    :::
+<MyPartial />
 
 ### Identity Router Clustering - New Customer
 
-When using more than one ID Router, you must designate one router as the connection to the outside world to accept all incoming traffic. These instructions explain how to designate an ID Router to handle all incoming traffic.
+When using more than one ID Router, designate one router as the connection to the outside world to accept all incoming traffic. These instructions explain how to designate an ID Router to handle incoming traffic.
 
 :::note
-Identity Router clustering can only be enabled by a Symplified Administrator.
+Only a Symplified administrator can enable Identity Router clustering.
 :::
 
-1. Click the **Customers** link at the top of the page.
-1. Click the **New Customer** icon. The *New Customer* dialog displays.
+1. Select the **Customers** link at the top of the page.
+
+1. Select the **New Customer** icon. The *New Customer* dialog displays.
+
 1. Select the **IDR Clustering** tab. The *IDR Clustering* dialog displays.
 
-    ![Customer dialog with the IDR Clustering tab selected](/img/operations-guide/_page_31_Picture_5.jpeg)
+   ![Customer dialog with the IDR Clustering tab selected](/img/operations-guide/_page_31_Picture_5.jpeg)
 
-1. Select the **Clustering Enabled** checkbox to enable IDR Clustering and then select the type of clustering to perform:
+1. Select the **Clustering Enabled** checkbox to enable IDR clustering, then select the type of clustering to perform:
 
-    - [**Identity Router NFS Clustering - New Customer**](#identity-router-nfs-clustering---new-customer)
-    - [**Identity Router CIFS Clustering New Customer**](#identity-router-cifs-clustering---new-customer)
+   - [**Identity Router NFS Clustering - New Customer**](#identity-router-nfs-clustering---new-customer)
+   - [**Identity Router CIFS Clustering - New Customer**](#identity-router-cifs-clustering---new-customer)
 
-    :::note
-    The following 3 load-balancer products are supported with SinglePoint Studio:
-    - CISCO ACE family
-    - F5 Big-IP family
-    - Citrix Netscaler
+   :::note
+   SinglePoint Studio supports these load balancer products:
 
-    All of these products support" session persistence" or sticky sessions.
+   - Cisco ACE family
+   - F5 BIG-IP family
+   - Citrix NetScaler
 
-    We recommend that you use "HTTP Cookie Persistence with Cookie Insert method" to support session stickiness.
-    :::
+   These products support session persistence, also known as sticky sessions. We recommend using the **HTTP Cookie Persistence with Cookie Insert** method to support session stickiness.
+   :::
 
 ### Identity Router NFS Clustering - New Customer
 
 Follow these steps to configure Identity Router NFS clustering.
 
-1. Click the **Customers** link at the top of the page.
-1. Click the **New Customer** icon. The *New Customer* dialog displays.
-1. Select the **IDR Clustering** tab. `<Identity_Route_NSF_Clustering_New_Customer>`
-1. Complete the following fields:
-    - **Clustering Enabled** - Check this box to enable ID Router clustering.
-    - **Clustering Type** - Select **NFS** from the drop-down list.
-    - **Load balancer DNS name** Enter the DNS name of the load balancer for the ID Router cluster.
-    - **Routing Interface** - Choose the type of interface the Identity Router will use from the following:
-      - If the Identity Router is behind a protected firewall, select Private.
-      - If the Identity Router is behind outside of the firewall, select public.
-    - **IP Address** Enter the IP Address for the NFS server.
-    - **Path** - Enter the path to the NFS server.
-1. Click **Test** to ensure a connection can be made between SinglePoint Studio and the ID Router.
-1. Click **Save** to keep the configuration. NFS clustering has been configured.
+1. Select the **Customers** link at the top of the page.
+
+1. Select the **New Customer** icon. The *New Customer* dialog displays.
+
+1. Select the **IDR Clustering** tab.
+
+1. Complete these fields:
+
+   - **Clustering Enabled** - Select this checkbox to enable ID Router clustering.
+   - **Clustering Type** - Select **NFS** from the drop-down list.
+   - **Load balancer DNS name** - Enter the DNS name of the load balancer for the ID Router cluster.
+   - **Routing Interface** - Choose the interface the Identity Router will use:
+     - If the Identity Router is behind a protected firewall, select **Private**.
+     - If the Identity Router is outside the firewall, select **Public**.
+   - **IP Address** - Enter the IP address for the NFS server.
+   - **Path** - Enter the path to the NFS server.
+
+1. Select **Test** to verify that SinglePoint Studio can connect to the ID Router.
+
+1. Select **Save** to save the configuration.
 
 ### Identity Router CIFS Clustering - New Customer
 
-These instructions are divided into 2 sections: *Set the LMCompatibilityLevel* and *Configure Identity Router CIFS Clustering*.
+These instructions are divided into two sections: *Set the LMCompatibilityLevel* and *Configure Identity Router CIFS Clustering*.
 
 #### Set the LMCompatibilityLevel
 
-To configure an Identity Router for CIFS clustering, you must configure the LMCompatiblityLevel. This must be done through the UI in Windows Server 2008. Follow the instructions below to set the correct LMCompatibilityLevel.
+To configure an Identity Router for CIFS clustering, configure the LMCompatibilityLevel in the Windows Server 2008 UI. Follow these instructions to set it.
 
-- 1) At the Windows Server 2008 desktop, select Start->Run
-- 2) Enter **run gpmc.msc** and click **OK**. The *Group Policy Management* dialog displays.
+1. At the Windows Server 2008 desktop, select **Start** > **Run**.
 
-![Group Policy Management console](/img/operations-guide/_page_33_Picture_3.jpeg)
+1. Enter **gpmc.msc**, then select **OK**. The *Group Policy Management* dialog displays.
 
-![Screenshot of the Group Policy Management window showing the 'Defealt Domain Controllers Policy' section. The left sidebar shows the 'Group Policy Management' section with various policy types like 'Forest', 'Consens', 'Group Policy Objects', 'Stress', 'Group Policy Modeling', and 'Group Policy Results'. The right sidebar shows the 'Defealt Domain Controllers Policy' section with 'Scope' (Default), 'Settings' (Delegation), 'Links' (Display links in this location), and 'The following sites, domains, and UIUs are linked to this GPD'. The 'Location' section shows 'Domain Controllers' and 'States GPOs'. The 'Security Filtering' section shows 'Name' and 'Sig, Sufficiented Users'. The 'WMI Filtering' section shows 'The GPD is linked to the following WMI links: 'cnomo'.](/img/operations-guide/_page_33_Picture_3.jpeg)
+   ![Group Policy Management console](/img/operations-guide/_page_33_Picture_3.jpeg)
 
-- 3) Select the domain of interest, e.g. cust2.env2, expand as follows: `<domain>->Domain Controllers->Default Domain Controllers Policy`
-- 4) Right click on **Group Domain: Controller Policies** under the domain of interest and select **Edit**.
+1. Select the domain of interest, for example, `cust2.env2`, and expand **`<domain>` > Domain Controllers > Default Domain Controllers Policy**.
 
-The *Group Policy Management Editor* dialog displays.
+1. Right-click **Group Domain: Controller Policies** under the domain, then select **Edit**.
 
-![Group Policy Management Editor navigation tree](/img/operations-guide/_page_34_Picture_2.jpeg)
+   The *Group Policy Management Editor* dialog displays.
 
-- 5) On the Group Policy Management *Editor* dialog, select **Computer Configuration->Policies->Windows Settings->Security Settings->Local Policies->Security Options**, as shown above.
-- 6) In the *Policy* section, right click **Network security: LAN Manager authentication level** and select the desired policy and click **OK**.
+   ![Group Policy Management Editor navigation tree](/img/operations-guide/_page_34_Picture_2.jpeg)
 
-![LAN Manager authentication policy settings](/img/operations-guide/_page_34_Picture_5.jpeg)
+1. In the Group Policy Management *Editor* dialog, select **Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > Security Options**, as shown above.
 
-**Warning**: Do not select **Send NTLM v2 response only Refuse LM & NTLM** because this policy will not work with Studio.
+1. In the *Policy* section, right-click **Network security: LAN Manager authentication level**, select the desired policy, then select **OK**.
 
-- 7) Exit the *Group Policy Management Editor* dialog and then exit the G*roup Policy Management* dialog.
-- 8) At the command line, run **gpupdate /force** to push the changes.
-- 9) Click the **Customers** link at the top of the page.
+   ![LAN Manager authentication policy settings](/img/operations-guide/_page_34_Picture_5.jpeg)
 
-10) Click the **New Customer** icon.
+   :::warning
+   Do not select **Send NTLM v2 response only Refuse LM & NTLM** because this policy does not work with Studio.
+   :::
 
-The *New Customer* dialog displays.
+1. Exit the *Group Policy Management Editor* dialog, then exit the *Group Policy Management* dialog.
 
-11) Select the **IDR Clustering** tab.
+1. At the command line, run **gpupdate /force** to apply the changes.
 
-![New Customer dialog with clustering configuration](/img/operations-guide/_page_35_Picture_4.jpeg)
+1. Select the **Customers** link at the top of the page.
 
-![Screenshot of the New Customer interface showing the 'Clustering Configuration' tab with a blue house icon and a clustering tree button.](/img/operations-guide/_page_35_Picture_4.jpeg)
+1. Select the **New Customer** icon. The *New Customer* dialog displays.
 
-- 12) Complete the following fields: • **Clustering Enabled** - Check this box to enable clustering for this customer • **Clustering Share Type** - Select **CIFS** from the drop-down list • **Load balancer DNS name** - Enter the DNS name of the load balancer for ID Router clustering
-  - **Routing Interface** Choose the type of interface the Identity Router will use from the following: o If the Identity Router is behind ar protected firewall, select Private o If the Identity Router is behind outside of the firewall, select public
-  - **IP Address** Enter the IP Address of the CIFS server •**CIFS Share Name -** Enter the Share name of the CIFS server
-  - **CIFS Username** Enter the CIFS username
-  - **CIFS Password** Enter the CIFS password
-  - **Use Guest** If guest accounts are allowed, check the **Use Guest** checkbox
-- 13) Click **Test** to ensure that the information is correct and that a connection can be established between SinglePoint Studio and the Identity Router.
-- 14) Click **Save** to keep the configuration. CIFS clustering has been configured.
+1. Select the **IDR Clustering** tab.
+
+   ![New Customer dialog with clustering configuration](/img/operations-guide/_page_35_Picture_4.jpeg)
+
+1. Complete these fields:
+
+   - **Clustering Enabled** - Select this checkbox to enable clustering for this customer.
+   - **Clustering Share Type** - Select **CIFS** from the drop-down list.
+   - **Load balancer DNS name** - Enter the load balancer DNS name for ID Router clustering.
+   - **Routing Interface** - Select the interface the Identity Router will use:
+     - If the Identity Router is behind a protected firewall, select **Private**.
+     - If the Identity Router is outside the firewall, select **Public**.
+   - **IP Address** - Enter the CIFS server IP address.
+   - **CIFS Share Name** - Enter the CIFS share name.
+   - **CIFS Username** - Enter the CIFS username.
+   - **CIFS Password** - Enter the CIFS password.
+   - **Use Guest** - Select this checkbox if guest accounts are allowed.
+
+1. Select **Test** to verify the information and confirm that SinglePoint Studio can connect to the Identity Router.
+
+1. Select **Save** to save the configuration.
 
 ## User Management - New Customer
 
-This User Management tab enables the customer to enable and configure User Management.
+Use the **User Management** tab to enable and configure User Management.
 
-User Management is a separate feature and must be enabled by the system administrator. If the User Management tab does not appear on the Edit Profile dialog, contact your system administrator.
+User Management is a separate feature that the system administrator must enable. If the **User Management** tab does not appear in the *Edit Profile* dialog, contact your system administrator.
 
-**Note**: You must set the context of Studio to a customer before attempting these instructions.
+**Note:** Set the Studio context to a customer before following these instructions.
 
-- 1) Click the **Edit Profile** link in the upper right-hand corner of any Studio page. The *Edit Profile* dialog displays.
-- 2) Select the **User Management** tab. The *User Management* dialog displays.
+1. Select the **Edit Profile** link in the upper-right corner of any Studio page. The *Edit Profile* dialog displays.
 
-![User Management Database Configuration settings](/img/operations-guide/_page_36_Picture_6.jpeg)
+1. Select the **User Management** tab. The *User Management* dialog displays.
 
-- 3) Complete the following fields: • **User** Management Enabled - Select this checkbox to activate User Management • **Type** - Select the database User Management wil use to store users • **Routing Interface** - Select the routing interface used on the Identity Router from the dropdown list • **Server** - Enter the IP of the server on which User Manager is installed • **Port** - enter the port use to connectd to User Manager • **Instance Name** - enter the instance for User Manager • **Username** - Enter the username for the database User Manager is accessing
-  - **Password**  Enter the password for the database User Manger is accessing
-  - **Test**  Click this button to test the configuration
-- 4) Click **Save** to persist the changes.
+   ![User Management Database Configuration settings](/img/operations-guide/_page_36_Picture_6.jpeg)
+
+1. Complete these fields:
+
+   - **User Management Enabled** - Select this checkbox to enable User Management.
+   - **Type** - Select the database that User Management will use to store users.
+   - **Routing Interface** - Select the Identity Router routing interface from the drop-down list.
+   - **Server** - Enter the IP address of the server running User Manager.
+   - **Port** - Enter the port used to connect to User Manager.
+   - **Instance Name** - Enter the User Manager instance name.
+   - **Username** - Enter the username for the database account User Manager uses.
+   - **Password** - Enter the password for the database account User Manager uses.
+   - **Test** - Select this button to test the configuration.
+
+1. Select **Save** to save the changes.
 
 ## Audit Logging
 
-These instructions explain how to configure audit logging for your Identity Router. The audit logs can be stored to a file or stored on a customer's SysLog server.
+Use these instructions to configure audit logging for your Identity Router. You can store audit logs in a file or on the customer’s Syslog server.
 
 ### Audit Logging Configuration
 
-1. Click the **Edit Profile** link in the upper right-hand corner of any Studio page. The *Edit Profile* dialog displays .
-2. Select the **Audit Logging** tab.
+1. Select the **Edit Profile** link in the upper-right corner of any Studio page. The *Edit Profile* dialog displays.
 
-   The *Audit Logging* dialog displays.
+1. Select the **Audit Logging** tab. The *Audit Logging* dialog displays.
 
    ![Audit Logging Configuration tab and event settings](/img/operations-guide/_page_37_Picture_5.jpeg)
 
-   - **Hy Profile** - 'Hy Company'
-   - **Hy Company** - 'Portal'
-   - **Portal** - 'Windows App'
-   - **Windows App** - 'IDR ClusterL'
-   - **IDR ClusterL** - 'User Handg...'
-   - **User Handg...** - 'Backup'
-   - **Backup** - 'Restare'
-   - **Audit Logging** - 'Audit Logging'
-   - **Audit Source** - 'AuditN Source...'
+1. Configure audit logging by selecting the event checkboxes:
 
-   The interface is divided into two main sections:
+   - **Audit Logging Enabled** - Select this checkbox to enable logging. Clear it to hide the remaining fields.
+   - **User Events Enabled** - Select this checkbox to log user events.
+   - **Authorization Request Events Enabled** - Select this checkbox to log authorization request events. These are also user-related events and are affected by **User Events Enabled**.
+   - **System Events Enabled** - Select this checkbox to log system events.
+   - **System Error Events Enabled** - Select this checkbox to log system error events. These are also system-related events and are affected by **System Events Enabled**.
+   - **Output Type** - Select the output method for the logs.
+   - **File Only** - Store logs in `symplified-audit.log` on the Identity Router. This is the default option.
+   - **Syslog** - Store logs in `symplified-audit.log` on the Identity Router and send them to a Syslog server configured under **Local Disk Backup** on the **Backup** tab.
 
-   - **Audit Logging Enabled** - This section is the highlighted area with a checkbox for 'Audit Logging Enabled'.
-   - **User Events Enabled** - This section is the highlighted area with a checkbox for 'User Events Enabled'.
-   - **Authorization Request Events Enabled** - This section is the highlighted area with a checkbox for 'Authorization Request Events Enabled'.
-   - **System Events Enabled** - This section is the highlighted area with a checkbox for 'System Events Enabled'.
-   - **System Error Events Enabled** - This section is the highlighted area with a checkbox for 'System Error Events Enabled'.
-   - **Output Type** - This section is the highlighted area with a button 'File Data' and a '\*' button.
+### Syslog configuration
 
-   At the bottom of the screen, there is a control button titled 'Stop' and a 'Cancel' button.
-
-3. Configure Audit Logging by checking the boxes of the events to be logged:
-   - **Audit Logging Enabled** - Check this box to enable the logging feature. Deselect this check box to hide the fields on the page
-   - **User Events Enabled** - Check this box to log user events
-   - **Authorization Request Events Enabled** - Check this box to log authorization request events (which are also user-related events, and therefore, affected by the above checkbox as well)
-   - **System Event Enabled** - Check this box to log system-related events
-   - **System Error Events Enabled** - Check this box to log system-errors events (which are also system-related events, and therefore affected by the above checkbox as well)
-   - **Output Type** - Check this box to determine what method will be used to create logs
-   - **File Only** - This option only stores log files to the symplified-audit.log on the Identity Router - This is the default option
-   - **Syslog** - In addition to storing the symplified-audit.log file on the Identity Router, this option also stores log files to a Syslog server as configured in **Local Disk Backup** on page 78 on the Backup tab
-
-### SysLog Configuration**
-
-The SysLog fields only display when the SysLog option is selected from the **Output Type** drop-down.
+Syslog fields appear only when you select **Syslog** from the **Output Type** drop-down list.
 
 :::note
-The SysLog server is completely independent from Studio. It must setup by the customer.
+The Syslog server operates independently of Studio. The customer must set it up.
 :::
 
-Before you begin, have the Systlog server information from which the logs will be drawn.
+Before you begin, obtain the Syslog server information for the destination that will receive the logs.
 
-1. Complete the following fields:
+1. Complete these fields:
 
-• **Server** - Enter the IP address of the server that the to which the Identity Router will log to • **Port** - Enter the port number of the SysLog Server to which the Identity Router will send messages • **Protocol** - Select the protocol from the drop-down list that the Identity Router must use to send the messages to the SysLog server • **Routing Interface** - Select the interface from the drop-down list from which that SysLog logs will be sent out • **Security Method** - This option determines if the Identity Router will add additional information to the log messages to try to prove that they are authentic and have not been tampered with moving between the Identity Router and the SysLog server
+   - **Server** - Enter the IP address of the server that will receive logs from the Identity Router.
+   - **Port** - Enter the Syslog server port number.
+   - **Protocol** - Select the protocol the Identity Router will use to send messages.
+   - **Routing Interface** - Select the interface used to send Syslog messages.
+   - **Security Method** - Select whether the Identity Router adds information to log messages to help verify their authenticity and integrity while in transit.
 
-**Note**: The HMAC, SHA-1 and SHA-2 security method options require a password. The Password field for these security method options displays when any of the options are selected.
+   The HMAC, SHA-1, and SHA-2 security methods require a password. The **Password** field appears when you select one of these methods.
 
-1. Click **Save** to persist the changes.
+1. Select **Save** to save your changes.
 
 ## Features
 
-The **Features** tab enables the System administrator to select the features to which the customer has subscribed.
+The **Features** tab lets the system administrator select the features to which the customer has subscribed.
 
 ![Features tab listing customer features and their enabled status](/img/operations-guide/_page_39_Picture_3.jpeg)
 
-1. Select the Features appropriate for the this customer:
-   - To activate the Keychain, select the **PRODUCT** checkbox
-   - To activate Allow SSO Pass-through, select the **PRODUCT** checkbox
-   - To activate enable Prototype View, select the **Development** checkbox
-   - To activate the enable SinglePoint Studio Express, select the **PRODUCT** checkbox
-   - To enable the SinglePoint Identity Manager, select the **PRODUCT** checkbox
+1. Select the appropriate features for this customer:
 
-2. Click **Save**.
+   - To activate Keychain, select the **PRODUCT** checkbox.
+   - To activate Allow SSO Pass-through, select the **PRODUCT** checkbox.
+   - To activate Prototype View, select the **Development** checkbox.
+   - To activate SinglePoint Studio Express, select the **PRODUCT** checkbox.
+   - To activate SinglePoint Identity Manager, select the **PRODUCT** checkbox.
+
+1. Select **Save**.
