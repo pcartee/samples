@@ -1,5 +1,5 @@
 ---
-title: Identity Routers Operations Guide
+title: Identity Routers operations guide
 description: Manage and configure Identity Routers in Studio, including registering routers with serial numbers and Activation Keys, assigning customers, testing connectivity, monitoring CPU, memory, sessions, uptime, and file-system status, configuring firewall rules and static DNS entries, setting up appliance network and DNS information, changing router credentials, and uploading certificate bundles.
 author: pcartee
 topic: administration

@@ -6,6 +6,7 @@ topic: Kubernetes deployment troubleshooting and logs
 date: "2024-08-14"
 uid: pkg.log  # Do not change uid!
 
+sidebar_position: 3
 ---
 
 The application runs on a Kubernetes cluster and is deployed and managed with Helm. Use `kubectl` to view pod logs.

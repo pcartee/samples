@@ -5,6 +5,7 @@ author: pcartee
 topic-type: Reference
 date: 08/17/2023
 uid: cli-user-commands
+sidebar_position: 2
 ---
 
 These instructions describe how to manage users with CLI commands. Users can also be managed through the [managing users](../How-to%20workflows/howto-manage-users.md) section of the TA portal.
@@ -13,12 +14,12 @@ These instructions describe how to manage users with CLI commands. Users can als
 
 Create a new TA user.
 
-`trustauthorityctl create user -e < email Id> -r < Role (Tenant Admin/User) >`
+`tactl create user -e < email Id> -r < Role (Tenant Admin/User) >`
 
 **Sample call**
 
 ```bash
-trustauthorityctl create user -e regularuser0@gmail.com -r User
+tactl create user -e regularuser0@gmail.com -r User
 ```
 
 **Sample response**
@@ -44,12 +45,12 @@ User:
 
 List the current users in your TA environment.
 
-`trustauthorityctl list user`
+`tactl list user`
 
 **Sample call**
 
 ```bash
-trustauthorityctl list user
+tactl list user
 ```
 
 **Sample response**
@@ -63,12 +64,12 @@ Users: [ { "id": "e3968eb8-e053-4646-98dd-7b61991a66d1", "email": user1@intel.co
 
 List the current users in your TA environment by their email.
 
-`trustauthorityctl list user -e`
+`tactl list user -e`
 
 **Sample call**
 
 ```bash
-trustauthorityctl list user -e "regularuser0@gmail.com"
+tactl list user -e "regularuser0@gmail.com"
 ```
 
 ### Sample response
@@ -94,12 +95,12 @@ Users:
 
 Update the user role of a specific user.
 
-`trustauthorityctl update user role -u < user id > -r < Role (Tenant Admin/User) >`
+`tactl update user role -u < user id > -r < Role (Tenant Admin/User) >`
 
 ### Sample call
 
 ```bash
-trustauthorityctl update user role -a 4rririr887604or09rfi484e7ordj879 -u "4324598fs-0404-4f4r-9oii9-8f8flk893w21" -r "Tenant Admin"
+tactl update user role -a 4rririr887604or09rfi484e7ordj879 -u "4324598fs-0404-4f4r-9oii9-8f8flk893w21" -r "Tenant Admin"
 ```
 
 ### Sample response
@@ -113,12 +114,12 @@ Updated User: { "id": "598db1fc-4340-4bbc-9e19-2d596c3b7bd8", "email": user1@int
 
 Delete a specific user.
 
-`trustauthorityctl delete user -u < user id >`
+`tactl delete user -u < user id >`
 
 ### Sample call
 
 ```bash
-trustauthorityctl delete user -a 4rririr887604or09rfi484e7ordj879 -u "4324598fs-0404-4f4r-9oii9-8f8flk893w21"
+tactl delete user -a 4rririr887604or09rfi484e7ordj879 -u "4324598fs-0404-4f4r-9oii9-8f8flk893w21"
 ```
 
 ### Sample response
@@ -132,7 +133,7 @@ User 4324598fs-0404-4f4r-9oii9-8f8flk893w21 deleted
 
 List the email address used to send notifications when an attestation failure occurs.
 
-`trustauthorityctl list tenant-settings`
+`tactl list tenant-settings`
 
 ### Sample response
 
@@ -148,12 +149,12 @@ Tenant Settings:
 
 Enter an email address and turn on notifications in the event of an attestation failure. Notifications are only sent when there is an attestation failure (not a policy mismatch). The default sends no notifications.
 
-`trustauthorityctl update tenant-settings -e "<email id>"`
+`tactl update tenant-settings -e "<email id>"`
 
 ### Sample call
 
 ```bash
-trustauthorityctl update tenant-settings -e user1@intel.com
+tactl update tenant-settings -e user1@intel.com
 ```
 
 ### Sample response
@@ -169,7 +170,7 @@ trace-id:  LOnTgGR2IAMEFAA=
 
 Disable notifications when an attestation failure occurs.
 
-`trustauthorityctl update tenant-settings -d`
+`tactl update tenant-settings -d`
 
 ### Sample Response
 

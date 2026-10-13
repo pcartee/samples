@@ -5,6 +5,7 @@ author: pcartee
 topic: conceptual
 date: 06/20/2024
 uid: integrate.overview
+sidebar_position: 1
 ---
 
 TA offers a variety of ways to integrate attestation with your confidential workload or relying party. Each method is designed to satisfy a different use case. All are designed to be easy to integrate into new applications and require minimal changes to retrofit existing applications.
@@ -13,7 +14,7 @@ TA offers a variety of ways to integrate attestation with your confidential work
 
 The following TA components are available for integrating remote attestation into your confidential process.
 
-The TA web portal is the starting point for integration. You'll need to create an Attestation API key for attestation-related tasks. You can create a new **apiClient** attestation key by using the REST API or **trustauthorityctl**, but you can't retrieve the key except by using the portal. An Attestation API key is required for all remote attestation APIs. The tenant administration CLI and the related management REST APIs require an Admin API key.
+The TA web portal is the starting point for integration. You'll need to create an Attestation API key for attestation-related tasks. You can create a new **apiClient** attestation key by using the REST API or **tactl**, but you can't retrieve the key except by using the portal. An Attestation API key is required for all remote attestation APIs. The tenant administration CLI and the related management REST APIs require an Admin API key.
 
 The REST API is the primary integration interface for TA. All remote attestation requests are processed through the REST API. In addition to client management, it offers faithful verification and policy management, among other functions. The REST API, designed for both attester and relying party use cases, is accessible via a public API gateway endpoint. 
 

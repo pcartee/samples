@@ -1,5 +1,5 @@
 ---
-title: My Application Types
+title: My application types
 description: Configure application types in Identity Router Studio, including HTTP Basic and HTTP Digest authentication, application discovery, login form detection, failure detection, authentication forms, and custom form inputs for web application login handling.
 author: pcartee
 topic: administration

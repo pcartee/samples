@@ -1,5 +1,5 @@
 ---
-title: CI/CD Integration
+title: CI/CD integration
 description: Tutorial for automating SGX appraisal policy updates in a GitHub Actions workflow.
 author: pcartee
 topic-type: tutorial
@@ -39,18 +39,18 @@ The following steps explain how to write a GitHub Actions workflow to update the
 
 While this sample uses a Gramine Shielded container, it still represents a workflow useful for images not using a Gramine Shielded container.
 
-1. The first step needs to acquire the TA tenant management [CLI utility](../Command-line/cli-install.md). Replace `run:wget path/to/executable` with the path and file name of the trustauthorityctl tool.
+1. The first step needs to acquire the TA tenant management [CLI utility](../Command-line/cli-install.md). Replace `run:wget path/to/executable` with the path and file name of the tactl tool.
 
    ```bash
-   name: get TA tenant CLI
-   run:  wget path/to/trustauthorityctl
+   name: get ta tenant CLI
+   run:  wget path/to/tactl
    ```
 
 1. This job retrieves the policy to be updated and temporarily writes it to `policy.txt`. The GitHub Actions variable `vars.APPRAISAL_POLICY_ID` should be configured with the UUID of the appraisal policy to be updated. The variable `secrets.TENANT_ADMIN_API_KEY` should contain a TA Tenant Admin API key. Be sure to configure this as a secret because a Tenant Admin API key has expansive permissions beyond updating a policy.
 
     ```bash
     name: retrieve policy
-    run:  `trustauthorityctl list policy -a ${{ secrets.TENANT_ADMIN_API_KEY }} -p ${{ vars.APPRAISAL_POLICY_ID }} > policy.txt`
+    run:  `tactl list policy -a ${{ secrets.TENANT_ADMIN_API_KEY }} -p ${{ vars.APPRAISAL_POLICY_ID }} > policy.txt`
     ```
 
 1. Retrieve the updated mrenclave value from the GSC image.
@@ -79,5 +79,5 @@ While this sample uses a Gramine Shielded container, it still represents a workf
 
     ```bash
     name: update the policy in TA
-    run:  trustauthorityctl update policy  -a ${{ secrets.TENANT_ADMIN_API_KEY }} -i ${{ vars.APPRAISAL_POLICY_ID }} -f policy.txt
+    run:  tactl update policy  -a ${{ secrets.TENANT_ADMIN_API_KEY }} -i ${{ vars.APPRAISAL_POLICY_ID }} -f policy.txt
     ```

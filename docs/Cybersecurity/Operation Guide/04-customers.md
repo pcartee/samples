@@ -1,5 +1,5 @@
 ---
-title: Create/Edit Customers
+title: Create/Edit customers
 description: Create and configure customers in Identity Router Studio, including customer context, company and domain information, license agreements, SSO session and cipher-rotation settings, portal configuration, Integrated Windows Authentication, Identity Router NFS and CIFS clustering, User Management, and audit logging.
 author: pcartee
 topic: administration

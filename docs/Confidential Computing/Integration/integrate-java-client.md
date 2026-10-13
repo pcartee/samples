@@ -5,6 +5,7 @@ author: pcartee
 topic: integration
 date: 11/08/2024
 uid: integrate.java.client
+sidebar_position: 3
 ---
  
 The Java Connector is one of several language-specific clients available for TA. The client libraries provide an interface to the TA REST API and (for attesters) the platform software that collects measurements for a quote. A TEE adapter is needed to collect evidence for attestation. Currently, the Java TEE adapters support Intel SGX and Intel TDX. Supported Intel TDX platforms include on-premises Intel TDX hosts, GCP confidential VMs with Intel TDX, and Azure confidential VMs with Intel TDX.

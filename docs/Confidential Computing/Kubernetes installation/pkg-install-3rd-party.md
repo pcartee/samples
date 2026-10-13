@@ -5,6 +5,7 @@ author: pcartee
 topic: Third-party Kubernetes components for local deployment
 date: "2024-12-12"
 uid: pkg.deploy.3rd.party
+sidebar_position: 2
 ---
 
 This guide describes how to prepare a single-node Kubernetes cluster with k3s and install the third-party components required by a local application. Run the commands on the host server.

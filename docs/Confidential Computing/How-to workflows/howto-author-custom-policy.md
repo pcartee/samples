@@ -6,6 +6,7 @@ topic: how to
 date: 07/17/2024
 uid: author.custom.policy  # Do not change uid!
 # Added pre-deprecation warning & article date - 06/12/2024 grminch cassini-17914
+sidebar_position: 3
 ---
 
 :::important

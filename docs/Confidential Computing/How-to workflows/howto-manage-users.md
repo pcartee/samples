@@ -5,6 +5,7 @@ author: pcartee
 topic: how to
 date: 12/09/2024
 uid: manage.users # Do not change uid!
+sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
@@ -114,12 +115,12 @@ A user's policy, tags, and API keys are **not** deleted when the user is deleted
 
 This command lists the current users in your environment.
 
-`trustauthorityctl list user`
+`tactl list user`
 
 #### Sample call
 
 ```bash
-trustauthorityctl list user
+tactl list user
 ```
 
 #### Sample response
@@ -133,12 +134,12 @@ Users: [ { "id": "e3968eb8-e053-4646-98dd-7b61991a66d1", "email": user1@company.
 
 Use the following command to create a new user for your environment.
 
-`trustauthorityctl create user -e < email Id> -r < Role (Tenant Admin/User) >`
+`tactl create user -e < email Id> -r < Role (Tenant Admin/User) >`
 
 #### Sample call
 
 ```bash
-trustauthorityctl create user -e regularuser0@gmail.com -r User
+tactl create user -e regularuser0@gmail.com -r User
 **Sample response**
 
 ```bash
@@ -162,12 +163,12 @@ User:
 
 Use the following command to Update the role of a specified user.
 
-`trustauthorityctl update user role -u < user id > -r < Role (Tenant Admin/User) >`
+`tactl update user role -u < user id > -r < Role (Tenant Admin/User) >`
 
 #### Sample call
 
 ```bash
-trustauthorityctl update user role -a 7110194b-a703-4657-9d7f-3e02b62f2ed8 -u "4324598fs-0404-4f4r-9oii9-8f8flk893w21" -r "Tenant Admin"
+tactl update user role -a 7110194b-a703-4657-9d7f-3e02b62f2ed8 -u "4324598fs-0404-4f4r-9oii9-8f8flk893w21" -r "Tenant Admin"
 ```
 
 #### Sample response
@@ -181,12 +182,12 @@ Updated User: { "id": "598db1fc-4340-4bbc-9e19-2d596c3b7bd8", "email": user1@com
 
 Deletes the user from the logged in tenant for specified userId.
 
-`trustauthorityctl delete user -u < user id >`
+`tactl delete user -u < user id >`
 
 #### Sample call
 
 ```bash
-trustauthorityctl delete user -u "4324598fs-0404-4f4r-9oii9-8f8flk893w21"
+tactl delete user -u "4324598fs-0404-4f4r-9oii9-8f8flk893w21"
 ```
 
 #### Sample Response

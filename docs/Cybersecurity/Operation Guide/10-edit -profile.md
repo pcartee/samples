@@ -1,5 +1,5 @@
 ---
-title: Edit Profile Information
+title: Edit profile information
 description: Configure Identity Router and customer settings in Studio through the Edit Profile dialog, including company information, user sessions, domains, Keychain API credentials, default and custom portals, Integrated Windows Authentication (IWA) with Kerberos and IP networks, CIFS and NFS clustering, User Management, SFTP, Amazon EC2 and local disk backups, keychain restore, audit logging, and authentication sources.
 author: pcartee
 topic: administration, configuration, authentication, clustering, backup, audit-logging

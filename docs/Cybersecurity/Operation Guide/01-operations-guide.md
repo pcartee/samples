@@ -1,5 +1,5 @@
 ---
-title: Identity Routers Overview
+title: Identity Routers overview
 description: Explains how Identity Routers authenticate users, enforce access policies, and provide single sign-on for protected applications, with links to guidance on router operations, Studio administration, federation, certificates, and deployment.
 author: pcartee
 topic: administration

@@ -5,6 +5,7 @@ author: pcartee
 topic-type: Reference
 date: 08/16/2023
 uid: cli-service-commands
+sidebar_position: 3
 ---
 
 Use the commands listed below to manage your services.
@@ -17,12 +18,12 @@ Have your API key available before attempting these commands. To obtain your API
 
 The following command list your TA service offer.
 
-`trustauthorityctl list serviceOffer`
+`tactl list serviceOffer`
 
 ### Sample call
 
 ```bash
-trustauthorityctl list serviceOffer
+tactl list serviceOffer
 ```
 
 ### Sample response
@@ -43,7 +44,7 @@ Service offers:
 
 Returns all the subscribed services for the tenant associated with the API key.
 
-`trustauthorityctl list service`
+`tactl list service`
 
 ### Sample response
 
@@ -67,12 +68,12 @@ trace-id:  LOm7kE9WoAMEG_w=
 
 Retrieves subscribed service details for the specified serviceId for tenant associated with the API key.
 
-`trustauthorityctl list service -r < service Id >`
+`tactl list service -r < service Id >`
 
 ### Sample call
 
 ```bash
-	trustauthorityctl list service -r 1dceedae-0f71-4bb7-a076-52b229f751fbd
+	tactl list service -r 1dceedae-0f71-4bb7-a076-52b229f751fbd
 ```
 
 ### Sample response
@@ -96,12 +97,12 @@ Services:
 
 This command retrieves the plans in your TA environment.
 
-`trustauthorityctl list plan -r < service offer id >`
+`tactl list plan -r < service offer id >`
 
 ### Sample call
 
 ```bash
-trustauthorityctl list plan -r 8fe770d6-aec0-4eca-bc9d-893ae1998fab7
+tactl list plan -r 8fe770d6-aec0-4eca-bc9d-893ae1998fab7
 ```
 
 ### Sample response
@@ -138,12 +139,12 @@ Plans:
 
 Retrieves details of a plan associated with the serviceOfferId for the specified planId.
 
-`trustauthorityctl list plan -r < service offer id > -p < plan id >`
+`tactl list plan -r < service offer id > -p < plan id >`
 
 ### Sample call
 
 ```bash
-trustauthorityctl list plan -r 8fe770d6-aec0-4eca-bc9d-893ae1998fab7 -p b5fae544-5894-4305-8754-5e18d7b4cb25
+tactl list plan -r 8fe770d6-aec0-4eca-bc9d-893ae1998fab7 -p b5fae544-5894-4305-8754-5e18d7b4cb25
 ```
 
 ### Sample response
@@ -196,12 +197,12 @@ Plans:
 
 The following command list the products in your TA environment.
 
-`trustauthorityctl list product -r < service offer id >`
+`tactl list product -r < service offer id >`
 
 ### Sample call
 
 ```bash
-trustauthorityctl list product -r ea6ad8d3-fd3f-4ccb-82c7-ac021899a199
+tactl list product -r ea6ad8d3-fd3f-4ccb-82c7-ac021899a199
 ```
 
 ### Sample Response
