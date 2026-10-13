@@ -13,14 +13,14 @@ The *Customers* page displays all of the customers associated to your Studio Sys
 
 The icons under the customer icon enable the System administrator to perform actions on the selected customer. The table below lists the icons and describes the action they enable.
 
-| ICON | DESCRIPTION                                                                                                                                                                                                                                                                                                                                                                                        |
-|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ![Context icon](/img/operations-guide/context.png)    | Sets the context of Studio to that of the customer. Setting the context to a particular customer filters the GUI so that you only see the Studio elements that the customer sees (while keeping your System Administrator rights.) Clicking the **Reset Context** link in the upper right-hand corner cancels the impersonating process and returns you to your Administrator role with Studio. |
-| ![Cipher Rotation icon](/img/operations-guide/cipher-rotation.png)    | Rotate cipher key - Manually force a cipher-key rotation.                                                                                                                                                                                                                                                                                                                                          |
-| ![Delete icon](/img/operations-guide/delete.png)    | Delete the Administrator - Deletes the selected administrator. Only a super administrator can delete other super administrators and administrators.                                                                                                                                                                                                                                                |
-| ![Export icon](/img/operations-guide/export.png)     | Exports the customer's information to an XML file. This enables the customer to transition from one Identity Router to another one.                                                                                                                                                                                                                                                                |
+| ICON | DESCRIPTION |
+|------|-------------|
+| ![Context icon](/img/operations-guide/context.png) | Sets the context of Studio to that of the customer. Setting the context to a particular customer filters the GUI so that you only see the Studio elements that the customer sees (while keeping your System Administrator rights.) Clicking the **Reset Context** link in the upper right-hand corner cancels the impersonating process and returns you to your Administrator role with Studio. |
+| ![Cipher Rotation icon](/img/operations-guide/cipher-rotation.png) | Rotate cipher key - Manually force a cipher-key rotation. |
+| ![Delete icon](/img/operations-guide/delete.png) | Delete the Administrator - Deletes the selected administrator. Only a super administrator can delete other super administrators and administrators. |
+| ![Export icon](/img/operations-guide/export.png) | Exports the customer's information to an XML file. This enables the customer to transition from one Identity Router to another one. |
 
-### The New/Edit Customer Dialog
+## The New/Edit Customer Dialog
 
 The *New/Edit Customer* dialog enables the System Administrator to create/edit Studio customers. A customer is anyone who is using Studio to manage access to their Web applications.
 
@@ -496,7 +496,7 @@ The *New Customer* dialog displays.
 - 13) Click **Test** to ensure that the information is correct and that a connection can be established between SinglePoint Studio and the Identity Router.
 - 14) Click **Save** to keep the configuration. CIFS clustering has been configured.
 
-### **User Management - New Customer**
+## User Management - New Customer
 
 This User Management tab enables the customer to enable and configure User Management.
 
@@ -514,72 +514,79 @@ User Management is a separate feature and must be enabled by the system administ
   - **Test**  Click this button to test the configuration
 - 4) Click **Save** to persist the changes.
 
-## **Audit Logging**
+## Audit Logging
 
 These instructions explain how to configure audit logging for your Identity Router. The audit logs can be stored to a file or stored on a customer's SysLog server.
 
-### **Audit Logging Configuration**
+### Audit Logging Configuration
 
-- 1) Click the **Edit Profile** link in the upper right-hand corner of any Studio page. The *Edit Profile* dialog displays .
-- 2) Select the **Audit Logging** tab.
+1. Click the **Edit Profile** link in the upper right-hand corner of any Studio page. The *Edit Profile* dialog displays .
+2. Select the **Audit Logging** tab.
 
-The *Audit Logging* dialog displays.
+   The *Audit Logging* dialog displays.
 
-![Audit Logging Configuration tab and event settings](/img/operations-guide/_page_37_Picture_5.jpeg)
+   ![Audit Logging Configuration tab and event settings](/img/operations-guide/_page_37_Picture_5.jpeg)
 
-![Screenshot of the Audit Logging Configuration interface showing the Audit Logging Enabled and User Events enabled checkboxes.](/img/operations-guide/_page_37_Picture_5.jpeg)The image shows the Audit Logging Configuration interface for a blue house. The top section has a bar with the title 'Edit Profile' at the top and 'Hy Profile' at the bottom. Below the title is a section titled 'Audit Logging Configuration'. The interface includes the following tabs:
+   - **Hy Profile** - 'Hy Company'
+   - **Hy Company** - 'Portal'
+   - **Portal** - 'Windows App'
+   - **Windows App** - 'IDR ClusterL'
+   - **IDR ClusterL** - 'User Handg...'
+   - **User Handg...** - 'Backup'
+   - **Backup** - 'Restare'
+   - **Audit Logging** - 'Audit Logging'
+   - **Audit Source** - 'AuditN Source...'
 
-- **Hy Profile** - 'Hy Company'
-- **Hy Company** - 'Portal'
-- **Portal** - 'Windows App'
-- **Windows App** - 'IDR ClusterL'
-- **IDR ClusterL** - 'User Handg...'
-- **User Handg...** - 'Backup'
-- **Backup** - 'Restare'
-- **Audit Logging** - 'Audit Logging'
-- **Audit Source** - 'AuditN Source...'
+   The interface is divided into two main sections:
 
-The interface is divided into two main sections:
+   - **Audit Logging Enabled** - This section is the highlighted area with a checkbox for 'Audit Logging Enabled'.
+   - **User Events Enabled** - This section is the highlighted area with a checkbox for 'User Events Enabled'.
+   - **Authorization Request Events Enabled** - This section is the highlighted area with a checkbox for 'Authorization Request Events Enabled'.
+   - **System Events Enabled** - This section is the highlighted area with a checkbox for 'System Events Enabled'.
+   - **System Error Events Enabled** - This section is the highlighted area with a checkbox for 'System Error Events Enabled'.
+   - **Output Type** - This section is the highlighted area with a button 'File Data' and a '\*' button.
 
-- **Audit Logging Enabled** - This section is the highlighted area with a checkbox for 'Audit Logging Enabled'.
-- **User Events Enabled** - This section is the highlighted area with a checkbox for 'User Events Enabled'.
-- **Authorization Request Events Enabled** - This section is the highlighted area with a checkbox for 'Authorization Request Events Enabled'.
-- **System Events Enabled** - This section is the highlighted area with a checkbox for 'System Events Enabled'.
-- **System Error Events Enabled** - This section is the highlighted area with a checkbox for 'System Error Events Enabled'.
-- **Output Type** - This section is the highlighted area with a button 'File Data' and a '\*' button.
+   At the bottom of the screen, there is a control button titled 'Stop' and a 'Cancel' button.
 
-At the bottom of the screen, there is a control button titled 'Stop' and a 'Cancel' button.
+3. Configure Audit Logging by checking the boxes of the events to be logged:
+   - **Audit Logging Enabled** - Check this box to enable the logging feature. Deselect this check box to hide the fields on the page
+   - **User Events Enabled** - Check this box to log user events
+   - **Authorization Request Events Enabled** - Check this box to log authorization request events (which are also user-related events, and therefore, affected by the above checkbox as well)
+   - **System Event Enabled** - Check this box to log system-related events
+   - **System Error Events Enabled** - Check this box to log system-errors events (which are also system-related events, and therefore affected by the above checkbox as well)
+   - **Output Type** - Check this box to determine what method will be used to create logs
+   - **File Only** - This option only stores log files to the symplified-audit.log on the Identity Router - This is the default option
+   - **Syslog** - In addition to storing the symplified-audit.log file on the Identity Router, this option also stores log files to a Syslog server as configured in **Local Disk Backup** on page 78 on the Backup tab
 
-- 3) Configure Audit Logging by checking the boxes of the events to be logged: • **Audit Logging Enabled** - Check this box to enable the logging feature. Deselect this check box to hide the fields on the page • **User Events Enabled** - Check this box to log user events o **Authorization Request Events Enabled** - Check this box to log authorization request events (which are also user-related events, and therefore, affected by the above checkbox as well) • **System Event Enabled** - Check this box to log system-related events o **System Error Events Enabled** - Check this box to log system-errors events (which are also system-related events, and therefore affected by the above checkbox as well) •**Output Type** - Check this box to determine what method will be used to create logs
-
-o **File Only** - This option only stores log files to the symplified-audit.log on the Identity Router - This is the default option o **Syslog** - In addition to storing the symplified-audit.log file on the Identity Router, this option also stores log files to a Syslog server as configured in **Local Disk Backup** on page 78 on the Backup tab
-
-#### **SysLog Configuration**
+### SysLog Configuration**
 
 The SysLog fields only display when the SysLog option is selected from the **Output Type** drop-down.
 
-**Note**: The SysLog server is completely independent from Studio. It must setup by the customer.
+:::note
+The SysLog server is completely independent from Studio. It must setup by the customer.
+:::
 
 Before you begin, have the Systlog server information from which the logs will be drawn.
 
-#### 4) Complete the following fields:
+1. Complete the following fields:
 
 • **Server** - Enter the IP address of the server that the to which the Identity Router will log to • **Port** - Enter the port number of the SysLog Server to which the Identity Router will send messages • **Protocol** - Select the protocol from the drop-down list that the Identity Router must use to send the messages to the SysLog server • **Routing Interface** - Select the interface from the drop-down list from which that SysLog logs will be sent out • **Security Method** - This option determines if the Identity Router will add additional information to the log messages to try to prove that they are authentic and have not been tampered with moving between the Identity Router and the SysLog server
 
 **Note**: The HMAC, SHA-1 and SHA-2 security method options require a password. The Password field for these security method options displays when any of the options are selected.
 
-#### 5) Click **Save** to persist the changes.
+1. Click **Save** to persist the changes.
 
-#### **Features**
+## Features
 
 The **Features** tab enables the System administrator to select the features to which the customer has subscribed.
 
 ![Features tab listing customer features and their enabled status](/img/operations-guide/_page_39_Picture_3.jpeg)
 
-- 1) Select the Features appropriate for the this customer: • To activate the Keycahin, select the **PRODUCT** checkbox
-  - To activate Allow SSO Pass-through, select the **PRODUCT** checkbox
-  - To activate enable Prototype View, select the **Development** checkbox
-  - To activate the enable SinglePoint Studio Express, select the **PRODUCT** checkbox
-  - To enable the SinglePoint Identity Manager, select the **PRODUCT** checkbox
+1. Select the Features appropriate for the this customer:
+   - To activate the Keychain, select the **PRODUCT** checkbox
+   - To activate Allow SSO Pass-through, select the **PRODUCT** checkbox
+   - To activate enable Prototype View, select the **Development** checkbox
+   - To activate the enable SinglePoint Studio Express, select the **PRODUCT** checkbox
+   - To enable the SinglePoint Identity Manager, select the **PRODUCT** checkbox
 
-  - 2) Click **Save** to persist the change(s).
+2. Click **Save**.
