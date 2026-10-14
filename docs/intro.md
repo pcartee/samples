@@ -34,9 +34,9 @@ A cross-section of real documentation I've written, organized by type:
 | SDK/integration guide | [Go connector reference](./Confidential%20Computing/Integration/integrate-go-client.md) | Developer-facing SDK documentation for a Go client library |
 | CLI reference | CLI examples | Task-based examples for a multi-command attestation CLI |
 | How-to guide | [Author a custom policy](./Confidential%20Computing/How-to%20workflows/howto-author-custom-policy.md) | Step-by-step procedural writing for a technical, security-sensitive task |
-| Cybersecurity API reference | [Identity Router API reference](./Cybersecurity/API%20Reference%20Guide/idr-api-reference.md) | Documents API data types and operations for an identity management service |
-| Cybersecurity operations guide | [Identity Routers overview](./Cybersecurity/Operation%20Guide/02-idenity-routers.md) | Operational guidance for configuring, monitoring, and maintaining identity routers |
-| Cybersecurity configuration guide | [Identity Router certificates](./Cybersecurity/Operation%20Guide/07-certificates.md) | Explains certificate options and configuration for secure router connections |
+| ID verification API reference | [Identity Router API reference](./ID%20verification/API%20Reference%20Guide/idr-api-reference.md) | Documents API data types and operations for an identity management service |
+| ID verification operations guide | [Identity Routers overview](./ID%20verification/Operation%20Guide/02-idenity-routers.md) | Operational guidance for configuring, monitoring, and maintaining identity routers |
+| ID verification configuration guide | [Identity Router certificates](./ID%20verification/Operation%20Guide/07-certificates.md) | Explains certificate options and configuration for secure router connections |
 
 Browse the sidebar for the complete library — concepts, tutorials, key-broker guides, and full REST/CLI/SDK references.
 
