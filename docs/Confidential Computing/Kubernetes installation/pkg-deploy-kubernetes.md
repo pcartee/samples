@@ -1,5 +1,5 @@
 ---
-title: Deploy Kubernetes for a local deployment
+title: Install a Local Kubernetes deployment
 description: "Guide to preparing an Ubuntu host and deploying a local Kubernetes cluster with k3s (v1.30.9+k3s1) and Calico (v3.29.1). Covers package installation, inotify limits, cluster initialization, KUBECONFIG configuration, Calico CNI setup, and verifying that pods are running."
 author: "Redacted"
 topic: Local Kubernetes cluster deployment with k3s and Calico
@@ -9,7 +9,6 @@ sidebar_position: 1
 --- 
 
 ## Deploy Kubernetes
-
 
 This guide explains how to prepare an Ubuntu server for a local application, install a Kubernetes cluster with `k3s`, and configure Calico as the cluster's Container Network Interface (CNI).
 

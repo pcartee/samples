@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot deployments and view Kubernetes logs
+title: View Kubernetes logs
 description: "Guide to troubleshooting a local Kubernetes deployment and viewing application logs with kubectl. Covers protected-secret attestation failures, identifying pods and containers, retrieving and following deployment or pod logs, inspecting Kubernetes resources, and searching logs by request ID."
 author: pcartee
 topic: Kubernetes deployment troubleshooting and logs

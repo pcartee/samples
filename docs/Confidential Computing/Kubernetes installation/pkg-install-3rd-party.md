@@ -1,5 +1,5 @@
 ---
-title: Install third-party components for a Kubernetes deployment
+title: Third-party components for a Kubernetes
 description: "Guide to preparing a single-node k3s cluster and installing third-party Kubernetes components for a local application. Covers Helm, Kustomize, Calico, secret management, certificate management, Istio, node feature discovery, hardware device plugins, PostgreSQL, deployment prerequisites, and a local authenticated Docker registry."
 author: pcartee
 topic: Third-party Kubernetes components for local deployment

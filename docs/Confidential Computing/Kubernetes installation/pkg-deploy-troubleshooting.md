@@ -1,5 +1,5 @@
 ---
-title: Maintain and troubleshoot a local deployment
+title: Maintain a local Kubernetes deployment
 description: "Maintenance and troubleshooting guide for a local Kubernetes deployment. Covers refreshing TPM endorsement certificates and trusted execution environment collateral, refreshing certificate revocation lists (CRLs), uninstalling the application or k3s, expanding Linux logical volumes, and configuring Docker proxies."
 author: pcartee
 topic: Local deployment maintenance and troubleshooting
