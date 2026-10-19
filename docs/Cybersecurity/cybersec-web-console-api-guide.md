@@ -3,7 +3,7 @@ title: "Web Console Case API Reference Guide"
 description: "Reference for the LogRhythm Web Console Case REST API, including authentication, case properties, routes, responses, errors, throttling, and JavaScript and C# examples."
 author: pcartee
 topic: Reference
-date: 2016-01-20
+date: 2017-01-20
 uid: cybersec.case.ape.ref
 ---
 
