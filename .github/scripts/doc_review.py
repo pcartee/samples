@@ -118,7 +118,7 @@ def create_review() -> None:
             method="POST",
         )
         try:
-            with urllib.request.urlopen(request, timeout=180) as response:
+            with urllib.request.urlopen(request, timeout=900) as response:
                 result = json.loads(response.read().decode("utf-8"))
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as error:
             raise RuntimeError(f"Local AI review request failed: {error}") from error
