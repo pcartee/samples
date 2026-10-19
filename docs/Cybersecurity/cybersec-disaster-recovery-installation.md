@@ -93,14 +93,14 @@ Use only static IPs for the replication interface. Do not use DHCP.
 
 The following table describes terms used in this guide.
 
-| Term | Definition |
-| --- | --- |
-| Disaster recovery sites | The solution uses two sites. **Primary** is the main site that collects and processes log data. **Secondary** is the mirrored site that can be available if the Primary site fails. |
-| System status | **Active** describes the site currently collecting and processing log data. The Primary site is usually active unless failover has occurred. **Standby** describes a system available to collect and process log data. |
-| Site types | **Cold:** available, but possibly powered off or unconfigured. **Warm:** configured, but unable to become active until it receives the Primary site's backup files. **Hot:** mirrored and able to become active within minutes. The Secondary site in the LogRhythm DR solution is a hot site. |
-| Recovery objectives | **Recovery Point Objective (RPO):** the maximum tolerable period of data loss from the Primary site after a disruption. **Recovery Time Objective (RTO):** the maximum period a site can be unavailable before restoration is required to avoid unacceptable business consequences. Each organization must determine its acceptable RPO and RTO based on the impact to its applications and systems. |
-| Transmission methods | **Asynchronous (default and recommended):** the Primary site acknowledges the data transfer before sending it to the Secondary site. This supports performance during peak periods and allows synchronization to catch up during slower periods. **Synchronous:** the Secondary site commits the data before the Primary acknowledges the transfer. Primary performance is limited by the link between the sites. |
-| Failover situations | **Unplanned failover:** occurs because of a disaster or unforeseen event. **Planned failover:** occurs when administrators schedule the switch to another site. |
+| Term                    | Definition                                                                                                                                                                                                                                                                                                                                                                                                        |
+| :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Disaster recovery sites | The solution uses two sites. **Primary** is the main site that collects and processes log data. **Secondary** is the mirrored site that can be available if the Primary site fails.                                                                                                                                                                                                                               |
+| System status           | **Active** describes the site currently collecting and processing log data. The Primary site is usually active unless failover has occurred. **Standby** describes a system available to collect and process log data.                                                                                                                                                                                            |
+| Site types              | **Cold:** available, but possibly powered off or unconfigured. **Warm:** configured, but unable to become active until it receives the Primary site's backup files. **Hot:** mirrored and able to become active within minutes. The Secondary site in the LogRhythm DR solution is a hot site.                                                                                                                    |
+| Recovery objectives     | **Recovery Point Objective (RPO):** the maximum tolerable period of data loss from the Primary site after a disruption. **Recovery Time Objective (RTO):** the maximum period a site can be unavailable before restoration is required to avoid unacceptable business consequences. Each organization must determine its acceptable RPO and RTO based on the impact to its applications and systems.              |
+| Transmission methods    | **Asynchronous (default and recommended):** the Primary site acknowledges the data transfer before sending it to the Secondary site. This supports performance during peak periods and allows synchronization to catch up during slower periods. **Synchronous:** the Secondary site commits the data before the Primary acknowledges the transfer. Primary performance is limited by the link between the sites. |
+| Failover situations     | **Unplanned failover:** occurs because of a disaster or unforeseen event. **Planned failover:** occurs when administrators schedule the switch to another site.                                                                                                                                                                                                                                                   |
 
 ## Overview of the LogRhythm DR solution
 
@@ -189,15 +189,15 @@ failover, as outlined below:
 Before you install the DR solution, make sure the environment meets the
 prerequisites in the following table.
 
-| Requirement | Details |
-| --- | --- |
-| LogRhythm SIEM | Deploy the same LogRhythm software version at the Primary and Secondary sites. |
-| SQL Server and SQL Server Agent | Run the SQL Server and SQL Server Agent services under the same account at both sites. Use a domain account or identical local user accounts. |
-| Network | A dedicated replication network is recommended to isolate replication traffic. Configure replication IP addresses on dedicated interfaces; they do not need to be on the same subnet. The network must support 10 Mbs/second bandwidth and a maximum latency of 150 milliseconds. |
-| Ports and firewall | Keep the replication ports open between the sites. The DR setup opens ports secured by Windows Firewall, but it does not configure other firewalls. |
-| DNS | Configure a common DNS record that can point to either Platform Manager. Configure Data Indexers and AI Engines to use a DNS name for the Platform Manager. DNS zones must span both sites. Configure DNS address records with a two-minute time to live (TTL) for faster failover. A shared name for Data Indexers and AI Engines is optional. |
-| Platform Manager disk space | During setup, back up the Primary Platform Manager databases and copy them to the Secondary system. The installer checks database sizes and estimates the required disk space. You can use a network drive if the SQL Agent service account has write access to the share. **Note:** The backup can take several hours, depending on the data volume and backup media write speed. |
-| Existing High Availability deployment | If you are adding DR to an existing LogRhythm High Availability deployment, complete the additional preparation steps in Appendix A and installation and configuration steps in Appendix B. |
+| Requirement                           | Details                                                                                                                                                                                                                                                                                                                                                                            |
+| :------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| LogRhythm SIEM                        | Deploy the same LogRhythm software version at the Primary and Secondary sites.                                                                                                                                                                                                                                                                                                     |
+| SQL Server and SQL Server Agent       | Run the SQL Server and SQL Server Agent services under the same account at both sites. Use a domain account or identical local user accounts.                                                                                                                                                                                                                                      |
+| Network                               | A dedicated replication network is recommended to isolate replication traffic. Configure replication IP addresses on dedicated interfaces; they do not need to be on the same subnet. The network must support 10 Mbs/second bandwidth and a maximum latency of 150 milliseconds.                                                                                                  |
+| Ports and firewall                    | Keep the replication ports open between the sites. The DR setup opens ports secured by Windows Firewall, but it does not configure other firewalls.                                                                                                                                                                                                                                |
+| DNS                                   | Configure a common DNS record that can point to either Platform Manager. Configure Data Indexers and AI Engines to use a DNS name for the Platform Manager. DNS zones must span both sites. Configure DNS address records with a two-minute time to live (TTL) for faster failover. A shared name for Data Indexers and AI Engines is optional.                                    |
+| Platform Manager disk space           | During setup, back up the Primary Platform Manager databases and copy them to the Secondary system. The installer checks database sizes and estimates the required disk space. You can use a network drive if the SQL Agent service account has write access to the share. **Note:** The backup can take several hours, depending on the data volume and backup media write speed. |
+| Existing High Availability deployment | If you are adding DR to an existing LogRhythm High Availability deployment, complete the additional preparation steps in Appendix A and installation and configuration steps in Appendix B.                                                                                                                                                                                        |
 
 ## Installation and configuration
 
@@ -228,16 +228,16 @@ Use only static IPs for the replication interface. Do not use DHCP.
 
     :::note
     The user you enter here must have the `sysadmin` role in SQL Server. To verify permissions, connect to SQL Server Management Studio (SSMS). In Object Explorer, expand **Security > Logins**, select the user (or create one), and open **Properties**. Select **Server Roles** and verify that **sysadmin** is selected.
-    
+
     ![Screenshot](../../static/img/cybersec/replication-5.png)
 
 1. Select **Primary** and select **Next**.
 
     ![Screenshot](../../static/img/cybersec/replication-6.png)
 
-1. Under **Primary**, select the IP address for the Primary site (use the drop-down arrow to select from discovered IPs). 
+1. Under **Primary**, select the IP address for the Primary site (use the drop-down arrow to select from discovered IPs).
 
-1. Under **Secondary**, enter the IP address of the Secondary site. If desired, you can also select a different port number as long as that port is not used by other systems. The port used for the Primary site and the port used for the Secondary site can be different. 
+1. Under **Secondary**, enter the IP address of the Secondary site. If desired, you can also select a different port number as long as that port is not used by other systems. The port used for the Primary site and the port used for the Secondary site can be different.
 
 1. Select **Next**.
 
@@ -251,7 +251,7 @@ Use only static IPs for the replication interface. Do not use DHCP.
     :::important
     The DR solution does not replicate the LogRhythm Archives.
     :::
-    
+
     ![Screenshot](../../static/img/cybersec/replication-8.png)
 
 1. Select a folder for temporarily storing the database backup, and then select **Next**.

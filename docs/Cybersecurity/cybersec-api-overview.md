@@ -53,25 +53,25 @@ The following tables list the URLs to request the WSDL for each service. Web Ser
 
 ### Basic Authentication
 
-| Service         | WSDL URL |
-|:----------------|:---------|
-| Alarm Service   | `https://hostname/LogRhythm.API/Services/AlarmServiceBasicAuth.svc?wsdl` |
-| Entity Service  | `https://hostname/LogRhythm.API/Services/EntityServiceBasicAuth.svc?wsdl` |
-| Host Service    | `https://hostname/LogRhythm.API/Services/HostServiceBasicAuth.svc?wsdl` |
-| List Service    | `https://hostname/LogRhythm.API/Services/ListServiceBasicAuth.svc?wsdl` |
+| Service           | WSDL URL                                                                    |
+| :---------------- | :-------------------------------------------------------------------------- |
+| Alarm Service     | `https://hostname/LogRhythm.API/Services/AlarmServiceBasicAuth.svc?wsdl`    |
+| Entity Service    | `https://hostname/LogRhythm.API/Services/EntityServiceBasicAuth.svc?wsdl`   |
+| Host Service      | `https://hostname/LogRhythm.API/Services/HostServiceBasicAuth.svc?wsdl`     |
+| List Service      | `https://hostname/LogRhythm.API/Services/ListServiceBasicAuth.svc?wsdl`     |
 | Log Query Service | `https://hostname/LogRhythm.API/Services/LogQueryServiceBasicAuth.svc?wsdl` |
-| Lookup Service  | `https://hostname/LogRhythm.API/Services/LookupServiceBasicAuth.svc?wsdl` |
+| Lookup Service    | `https://hostname/LogRhythm.API/Services/LookupServiceBasicAuth.svc?wsdl`   |
 
 ### Windows Authentication
 
-| Service         | WSDL URL |
-|:----------------|:---------|
-| Alarm Service   | `https://hostname/LogRhythm.API/Services/AlarmServiceWindowsAuth.svc?wsdl` |
-| Entity Service  | `https://hostname/LogRhythm.API/Services/EntityServiceWindowsAuth.svc?wsdl` |
-| Host Service    | `https://hostname/LogRhythm.API/Services/HostServiceWindowsAuth.svc?wsdl` |
-| List Service    | `https://hostname/LogRhythm.API/Services/ListServiceWindowsAuth.svc?wsdl` |
+| Service           | WSDL URL                                                                      |
+| :---------------- | :---------------------------------------------------------------------------- |
+| Alarm Service     | `https://hostname/LogRhythm.API/Services/AlarmServiceWindowsAuth.svc?wsdl`    |
+| Entity Service    | `https://hostname/LogRhythm.API/Services/EntityServiceWindowsAuth.svc?wsdl`   |
+| Host Service      | `https://hostname/LogRhythm.API/Services/HostServiceWindowsAuth.svc?wsdl`     |
+| List Service      | `https://hostname/LogRhythm.API/Services/ListServiceWindowsAuth.svc?wsdl`     |
 | Log Query Service | `https://hostname/LogRhythm.API/Services/LogQueryServiceWindowsAuth.svc?wsdl` |
-| Lookup Service  | `https://hostname/LogRhythm.API/Services/LookupServiceWindowsAuth.svc?wsdl` |
+| Lookup Service    | `https://hostname/LogRhythm.API/Services/LookupServiceWindowsAuth.svc?wsdl`   |
 
 ## Calling Web Services from Visual Studio
 

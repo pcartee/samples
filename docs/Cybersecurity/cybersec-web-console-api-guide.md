@@ -20,23 +20,23 @@ Use the Case API to:
 
 The Case API can retrieve, add, or update the following properties:
 
-| Parameter | Type | Definition |
-| --- | --- | --- |
-| `id` | string | Database-generated case GUID. You cannot set this value. |
-| `number` | number | Case number shown in the Web Console. You cannot set this value. |
-| `externalId` | string | Custom unique identifier, such as a foreign key. |
-| `name` | string | Case name. Required when creating a case; 1–250 characters. |
+| Parameter    | Type   | Definition                                                                   |
+| :----------- | :----- | :--------------------------------------------------------------------------- |
+| `id`         | string | Database-generated case GUID. You cannot set this value.                     |
+| `number`     | number | Case number shown in the Web Console. You cannot set this value.             |
+| `externalId` | string | Custom unique identifier, such as a foreign key.                             |
+| `name`       | string | Case name. Required when creating a case; 1–250 characters.                  |
 | `statusName` | string | Case status: `Created`, `Completed`, `Incident`, `Mitigated`, or `Resolved`. |
-| `priority` | number | Case priority from 1 to 5. Required when creating a case. |
-| `summary` | string | Case summary, up to 4,000 characters. |
+| `priority`   | number | Case priority from 1 to 5. Required when creating a case.                    |
+| `summary`    | string | Case summary, up to 4,000 characters.                                        |
 
 ## Additional case properties
 
 The following property can be used when adding a note to a case:
 
-| Parameter | Type | Definition |
-| --- | --- | --- |
-| `text` | string | Text of the note to add to the case. |
+| Parameter | Type   | Definition                           |
+| :-------- | :----- | :----------------------------------- |
+| `text`    | string | Text of the note to add to the case. |
 
 ## Security
 
@@ -258,7 +258,7 @@ request('POST', '/cases', {
 });
 ```
 
-### C#
+### C# example
 
 This example uses RestSharp and Newtonsoft.Json, both available from NuGet. It assumes a version of .NET that supports TLS 1.1 and TLS 1.2.
 

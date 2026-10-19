@@ -7,8 +7,6 @@ date: 2016-01-20
 uid: cybersec-data-indexer-install
 ---
 
-# Getting Started Guide: LogRhythm Data Indexer Appliance Hardware Installation
-
 This guide will help you install your Data Indexer Appliance
 and direct you to additional information.
 
@@ -100,22 +98,13 @@ values, simply press **Enter**.
 
 1. Enter the network and NTP information, as follows:
 
-  ------------------------------------------------------------------
-  **Prompt**   **Description**
-  ------------ -----------------------------------------------------
-  IP address   The IP address that you want to assign to this Data
-               Indexer node.
+  | Prompt          | Description                                                                                                                        |
+  | :-------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
+  | IP address      | The IP address that you want to assign to this Data Indexer node.                                                                  |
+  | Netmask         | The netmask to use.                                                                                                                |
+  | Default gateway | The IP address of the network gateway.                                                                                             |
+  | NTP servers     | The IP address of one or more NTP servers. Enter each server address, then press **Enter**. When finished, press **Ctrl** + **D**. |
 
-  Netmask      The netmask to use.
-
-  Default      The IP address of the network gateway.
-  gateway      
-
-  NTP servers  The IP address of one or more NTP servers. Enter the
-               IP address of each server one at a time, followed by
-               **Enter**. When you are finished, press **Ctrl** +
-               **D** to end.
-  ------------------------------------------------------------------
 
 > After completing the items in the configuration script, the system
 > will test connectivity to the default gateway and the NTP servers. If
@@ -241,7 +230,7 @@ LogRhythm Inc., 4780 Pearl East Circle, Boulder, CO 80301
 [www.logrhythm.com](http://www.logrhythm.com) \| (303) 413-8745 \|
 [support@logrhythm.com](mailto:support@logrhythm.com)
 
-**© LogRhythm, Inc. All rights reserved**
+© LogRhythm, Inc. All rights reserved
 
 This document contains proprietary and confidential information of
 LogRhythm, Inc., which is protected by copyright and possible
@@ -253,7 +242,7 @@ part of this Guide may be reproduced or transmitted in any form or by
 any means, electronic or mechanical, including photocopying and
 recording for any purpose other than what is permitted in the Agreement.
 
-**Disclaimer**
+### Disclaimer
 
 The information contained in this document is subject to change without
 notice. LogRhythm, Inc. makes no warranty of any kind with respect to
@@ -263,7 +252,7 @@ LogRhythm, Inc. shall not be liable for any direct, indirect,
 incidental, consequential, or other damages alleged in connection with
 the furnishing or use of this information.
 
-**Trademark**
+### Trademark
 
 LogRhythm is a registered trademark of LogRhythm, Inc. All other company
 or product names mentioned may be trademarks, registered trademarks, or
