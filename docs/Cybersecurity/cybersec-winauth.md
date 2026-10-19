@@ -1,71 +1,71 @@
 ---
 title: "Set up Windows authentication"
-description: "Configure Kerberos delegation, IIS, SQL Server, and WCF clients to use Windows authentication with the LogRhythm API."
+description: "Instructions for configuring Kerberos delegation, IIS, SQL Server, application accounts, and WCF clients to use Windows authentication with the LogRhythm API, including troubleshooting guidance."
 author: pcartee
 topic: Reference
 date: 2017-01-22
 uid: cybersec.win.auth
 ---
 
-To use the LogRhythm API with Windows authentication, configure the web server for cross-machine delegation by using Kerberos. Some steps require changes to Active Directory and must be completed by a domain administrator. Windows authentication is supported only when all servers and accounts belong to the same Active Directory forest.
+To use Windows authentication with the LogRhythm API, configure the web server for cross-machine delegation with Kerberos. A domain administrator must complete steps that require changes to Active Directory. Windows authentication is supported only when all servers and accounts belong to the same Active Directory forest.
 
 ## Configuration steps
 
 ### Create a domain service account
 
-The IIS application pool needs permissions in the LogRhythm databases to validate Windows user permissions. The preferred method is to create a domain account for this purpose in Active Directory.
+The IIS application pool account needs permissions in the LogRhythm databases to validate Windows user permissions. The preferred approach is to create a domain account for this purpose in Active Directory.
 
-Alternatively, use the default `ApplicationPoolIdentity` and grant the web server's machine account (`<domain>\<hostname>$`) permission in the databases. This option is less secure.
+Alternatively, use the default `ApplicationPoolIdentity` and grant the web server's machine account (`<domain>\<hostname>$`) permission to access the databases. This option is less secure.
 
 ### Enable Kerberos delegation in Active Directory
 
 1. In the Active Directory Users and Computers snap-in, locate the web server's computer account.
-2. Open the computer account's properties and select the **Delegation** tab.
-3. Select **Trust this computer for delegation to any service (Kerberos only)**.
-4. To use constrained delegation (the **Trust this computer for delegation to specified services only** option), first complete this setup and verify that Kerberos authentication works from a client application. Then configure delegation for a restricted set of services.
+1. Open the computer account's properties and select the **Delegation** tab.
+1. Select **Trust this computer for delegation to any service (Kerberos only)**.
+1. To use constrained delegation (the **Trust this computer for delegation to specified services only** option), first complete this setup and verify Kerberos authentication from a client application. Then configure delegation for a restricted set of services.
 
 ### Configure the IIS application pool
 
 1. On the LogRhythm API server, open Internet Information Services (IIS) Manager.
-2. Select **Application Pools**.
-3. Open **Advanced Settings** for `LogRhythmAppPool`.
-4. Open the **Identity** dialog. Select **Custom account**, and enter the service account name and password.
+1. Select **Application Pools**.
+1. Open **Advanced Settings** for `LogRhythmAppPool`.
+1. Open the **Identity** dialog. Select **Custom account**, and enter the service account name and password.
 
 ### Enable Windows authentication in IIS
 
 1. On the LogRhythm API server, open IIS Manager.
-2. Select **LogRhythm Web Site**.
-3. In **Features View**, open **Authentication**.
-4. Enable **Anonymous Authentication**, **Basic Authentication**, and **Windows Authentication**. Disable other authentication methods.
-5. Select **Windows Authentication**, then select **Providers**. Make sure **Negotiate** is at the top of the list.
-6. Select **Windows Authentication**, then select **Advanced Settings**. Make sure **Enable Kernel-mode authentication** is selected.
+1. Select **LogRhythm Web Site**.
+1. In **Features View**, open **Authentication**.
+1. Enable **Anonymous Authentication**, **Basic Authentication**, and **Windows Authentication**. Disable the other authentication methods.
+1. Select **Windows Authentication**, then select **Providers**. Make sure **Negotiate** is at the top of the list.
+1. Select **Windows Authentication**, then select **Advanced Settings**. Make sure **Enable Kernel-mode authentication** is selected.
 
 ### Configure SQL Server for Kerberos authentication
 
 1. On each LogRhythm XM, PM, or DPX appliance, open SQL Server Configuration Manager.
-2. Select **SQL Server Services**.
-3. For the SQL Server service, note the account shown under **Log On As**.
-4. If the service account is `NT AUTHORITY\LOCALSERVICE`, change it to `NT AUTHORITY\NETWORKSERVICE`. Shut down LogRhythm services before restarting the database.
-5. If the service account is `LocalSystem` or `NT AUTHORITY\NETWORKSERVICE` (the preferred option), SQL Server should register the Service Principal Names (SPNs) automatically when it starts.
-6. If the service account is a domain account, a domain administrator must register the SPNs manually. Run these commands for each XM, PM, or DPX appliance that the application may query:
+1. Select **SQL Server Services**.
+1. For the SQL Server service, note the account shown under **Log On As**.
+1. If the service account is `NT AUTHORITY\LOCALSERVICE`, change it to `NT AUTHORITY\NETWORKSERVICE`. Stop LogRhythm services before you restart the database.
+1. If the service account is `LocalSystem` or `NT AUTHORITY\NETWORKSERVICE` (the preferred option), SQL Server should register the Service Principal Names (SPNs) automatically when it starts.
+1. If the service account is a domain account, a domain administrator must register the SPNs manually. Run these commands for each XM, PM, or DPX appliance that the application might query:
 
    ```cmd
    setspn -S MSSQLSvc/<fully-qualified-domain-name>:1433 <domain>\<sql-service-account>
    setspn -S MSSQLSvc/<host-name>:1433 <domain>\<sql-service-account>
    ```
 
-   Alternatively, run the SQL Server service on each LogRhythm appliance under the account specified for the SQL Server SPN.
+   Alternatively, run the SQL Server service on each LogRhythm appliance under the account specified for its SQL Server SPN.
 
 ### Grant the service account database permissions
 
 1. On the LogRhythm XM or PM, open SQL Server Management Studio.
-2. Open **Server > Security > Logins**, then create a new login.
-3. Enter or select the web server service account created earlier.
-4. On the **User Mapping** page, select `LogRhythmEMDB` and the `LogRhythmRestrictedAnalyst` role.
+1. Open **Server > Security > Logins**, then create a new login.
+1. Enter or select the web server service account created earlier.
+1. On the **User Mapping** page, select `LogRhythmEMDB` and the `LogRhythmRestrictedAnalyst` role.
 
 ### Configure the client
 
-The Windows Communication Foundation (WCF) client application must delegate credentials.
+The Windows Communication Foundation (WCF) client application must be configured to delegate credentials.
 
 In the client's `web.config`, define an endpoint behavior for each service reference that uses Windows authentication. Add a behavior like this:
 
@@ -102,10 +102,10 @@ You can also configure delegation in your .NET client code after you instantiate
 The LogRhythm web service application pool must run under an account with the `WebServiceAdmin` role. By default, no `WebServiceAdmin` accounts are configured in a LogRhythm deployment, so create a profile and account for this purpose. Grant the profile Web API access, then configure the account as the identity for `LogRhythmAppPool`.
 
 1. Start the LogRhythm Client Console and sign in as a Global Administrator.
-2. On the **Tools** menu, select **Administration**, then select **User Profile Manager**.
-3. Right-click below the list of existing profiles, then select **New**.
-4. Create the user profile and select **Web Service Administrator** as the security role.
-5. Complete the profile details, then select **OK**.
+1. On the **Tools** menu, select **Administration**, then select **User Profile Manager**.
+1. Right-click below the list of existing profiles, then select **New**.
+1. Create the user profile and select **Web Service Administrator** as the security role.
+1. Complete the profile details, then select **OK**.
 
 ## Configure web.config user initialization
 
