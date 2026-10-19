@@ -55,6 +55,9 @@ jobs:
       group: gh-pages-publish
       cancel-in-progress: false
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
       - name: Download preview artifact
         uses: actions/download-artifact@v4
         with:
