@@ -1,5 +1,5 @@
 ---
-title: "Web Console Case API reference guide"
+title: "Web Console Case API Reference Guide"
 description: "Reference for the LogRhythm Web Console Case REST API, including authentication, case properties, routes, responses, errors, throttling, and JavaScript and C# examples."
 author: pcartee
 topic: Reference
@@ -7,7 +7,7 @@ date: 2016-01-20
 uid: cybersec.case.ape.ref
 ---
 
-The LogRhythm Web Console Case API is a REST API that communicates over HTTPS and uses JSON. Its routes and methods support sending information to LogRhythm, such as synchronizing tickets from a bug-tracking system with LogRhythm cases. Each request runs on behalf of an API account identified by the API key in the request.
+The LogRhythm Web Console Case API is a REST API that communicates over HTTPS and uses JSON. Its routes and methods let you work with cases, such as synchronizing tickets from a bug-tracking system with LogRhythm cases. Each request runs on behalf of the API account associated with the API token in the request.
 
 Use the Case API to:
 
@@ -40,13 +40,13 @@ The following property can be used when adding a note to a case:
 
 ## Security
 
-The Case API uses standard protocols to help protect the security and integrity of API integrations.
+The Case API uses standard protocols to help protect API integrations and maintain data integrity.
 
 - All communication uses HTTPS. The API supports TLS 1.1 and TLS 1.2.
-- The installation generates self-signed certificates and keys by default. To use your own certificates and keys, update the service configuration files (`.env` files). For details, see the Web Console Installation Guide or the Client Console Help Guide.
+- By default, installation generates self-signed certificates and keys. To use your own certificates and keys, update the service configuration files (`.env` files). For details, see the *Web Console Installation Guide* or the *Client Console Help Guide*.
 - The service is stateless. Include a valid API token with every request; the API does not use a login process or maintain a session.
 - API tokens are JSON Web Tokens (JWTs) generated through the Client Console and associated with an API account.
-- To revoke a token's API access, disable its associated API account or delete the token. The API will reject subsequent requests that use that token.
+- To revoke a token's API access, disable its associated API account or delete the token. The API rejects subsequent requests that use that token.
 
 ## Case API reference
 
@@ -166,7 +166,7 @@ Content-Type: application/json
 
 ### Errors
 
-Responses with an HTTP status code of 400 or higher indicate an error. The JSON response body includes these properties:
+Responses with an HTTP status code of 400 or higher indicate an error. The JSON response body includes the following properties:
 
 - `statusCode` (number): HTTP status code. For details, see [Response status code explanations](#response-status-code-explanations).
 - `name` (string): Short error name, usually associated with the HTTP status code.
@@ -193,13 +193,13 @@ The Case API uses the following response status codes:
   - Invalid JSON in the request body.
   - Missing required fields.
   - A field that fails validation, such as a priority outside the range of 1 to 5.
-- `401` — The API key is missing, invalid, or expired.
+- `401` — The API token is missing, invalid, or expired.
 - `429` — The client sent too many requests too quickly. Check the response headers for rate-limit information.
 - `500` — An unexpected server error occurred. Check the API service logs for troubleshooting information, or contact [LogRhythm Support](https://logrhythm.com/contact/).
 
 ## Sample code
 
-The following examples show how to call the Case API from JavaScript and C#. They disable certificate validation for demonstration purposes only. In production, validate the server certificate.
+The following examples show how to call the Case API from JavaScript and C#. They use the default certificate validation behavior of their respective HTTP clients. In production, ensure that the server certificate is trusted and validated.
 
 ### JavaScript
 
