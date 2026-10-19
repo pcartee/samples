@@ -31,7 +31,7 @@ jobs:
         run: npm run build
 
       - name: Upload site artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: production-site
           path: build/
@@ -54,7 +54,7 @@ jobs:
           ref: main
 
       - name: Download site artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: production-site
           path: build/
