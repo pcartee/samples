@@ -37,10 +37,13 @@ def changed_docs() -> list[str]:
         "--",
         DOC_ROOT,
     )
-    return sorted(
+    paths = (
         path.decode("utf-8", errors="surrogateescape")
         for path in names.split(b"\0")
-        if path and path.lower().endswith((".md", ".mdx"))
+        if path
+    )
+    return sorted(
+        path for path in paths if path.lower().endswith((".md", ".mdx"))
     )
 
 
