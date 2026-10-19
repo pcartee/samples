@@ -59,6 +59,7 @@ jobs:
     # The local model is available only on the self-hosted runner. Restrict it to
     # same-repository PRs from trusted contributors; fork PR content is untrusted.
     if: >-
+      vars.ENABLE_LOCAL_AI_REVIEW == 'true' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.pull_request.author_association)
     runs-on: self-hosted
