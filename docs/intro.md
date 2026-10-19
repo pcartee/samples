@@ -8,37 +8,48 @@ sidebar_position: 1
 slug: /
 ---
 
-Senior Technical Writer | Docs-as-Code | CI/CD Pipelines | API/CLI Reference | AI-Assisted Workflows
+Senior Technical Writer | Cybersecurity | Confidential Computing | Docs-as-Code | API/CLI Reference
 
-I have 15+ years of experience documenting SaaS, enterprise, and user applications. My work spans cybersecurity, confidential computing, and machine learning, including remote-attestation concepts and developer guides, Identity Router API references, and operational documentation for identity and access management. I also specialize in docs-as-code: writing in Markdown or reStructuredText, versioning content in Git, and integrating documentation into CI/CD pipelines so it ships alongside the product.
+I have more than 15 years of experience documenting SaaS, enterprise, and user applications. This portfolio brings together work in cybersecurity, confidential computing, identity and access management, and machine learning. It includes API references, installation and operations guides, tutorials, and conceptual content.
 
-Most recently, at Intel, I documented TA, a remote attestation service for confidential computing creating REST API references, CLI guides, and tutorials for TEEs, Kubernetes/Helm/Istio deployments, and zero-trust security models.
+Most recently, at Intel, I documented Intel Trust Authority (TA), a remote attestation service for confidential computing. My work included API and CLI documentation, tutorials for trusted execution environments (TEEs), and guidance for Kubernetes, Helm, Istio, and zero-trust deployments.
 
 ## What I bring to your team
 
 - **Docs-as-code & CI/CD** — Git-based version control, GitHub Actions pipelines, automated metadata and link checking, and branching workflows that keep documentation in lockstep with releases.
-- **API & CLI reference documentation** — REST API references, SDK/connector guides (Go, Python, Java, C), and CLI command references written directly from source and hands-on testing.
-- **AI-assisted authoring** — I use tools such as GitHub Copilot inside my docs-as-code workflow to accelerate drafting, enforce consistency, and catch issues (like the proprietary-data redaction pass across this very site) — with an editor's judgment on every change.
+- **API & CLI documentation** — API references, SDK and connector guides, and command-line documentation grounded in product behavior and hands-on testing.
+- **AI-assisted authoring** — I use tools such as GitHub Copilot to support drafting and consistency checks, while applying editorial judgment and reviewing the results.
 - **Complex technical domains** — Confidential computing and remote attestation (Intel TDX, AMD SEV-SNP, Intel SGX), cloud infrastructure (Azure, GCP, AWS), and Kubernetes-based deployments.
 - **Editorial leadership** — Style guide governance, cross-functional stakeholder alignment, and mentoring other writers on Agile documentation practices.
 
 ## See the work
 
-A cross-section of real documentation I've written, organized by type:
+Explore samples by subject:
 
-| Type | Sample | Why it's here |
-| --- | --- | --- |
-| Concept doc | [Attestation overview](./Confidential%20Computing/Concepts/concept-attestation-overview.md) | Explains a genuinely hard security concept in plain language |
-| CI/CD tutorial | [Update policies with GitHub Actions](./Confidential%20Computing/Tutorials%20and%20examples/tutorial-cicd.md) | A GitHub Actions workflow I wrote to keep attestation policies in sync with every build |
-| REST API reference | TA REST API | Full API reference landing page, one of several I authored |
-| SDK/integration guide | [Go connector reference](./Confidential%20Computing/Integration/integrate-go-client.md) | Developer-facing SDK documentation for a Go client library |
-| CLI reference | CLI examples | Task-based examples for a multi-command attestation CLI |
-| How-to guide | [Author a custom policy](./Confidential%20Computing/How-to%20workflows/howto-author-custom-policy.md) | Step-by-step procedural writing for a technical, security-sensitive task |
-| ID verification API reference | [Identity Router API reference](./ID%20verification/API%20Reference%20Guide/idr-api-reference.md) | Documents API data types and operations for an identity management service |
-| ID verification operations guide | [Identity Routers overview](./ID%20verification/Operation%20Guide/02-idenity-routers.md) | Operational guidance for configuring, monitoring, and maintaining identity routers |
-| ID verification configuration guide | [Identity Router certificates](./ID%20verification/Operation%20Guide/07-certificates.md) | Explains certificate options and configuration for secure router connections |
+### Cybersecurity
 
-Browse the sidebar for the complete library — concepts, tutorials, key-broker guides, and full REST/CLI/SDK references.
+These LogRhythm samples demonstrate security-product documentation across APIs, authentication, installation, and disaster recovery.
+
+- [LogRhythm API overview](./Cybersecurity/cybersec-api-overview.md) — API architecture, security requirements, deployment, and service endpoints.
+- [Web Console Case API reference](./Cybersecurity/cybersec-web-console-api-guide.md) — REST API routes, authentication, responses, and examples for managing cases.
+- [Windows authentication setup](./Cybersecurity/cybersec-winauth.md) — Kerberos, IIS, SQL Server, and client configuration for API authentication.
+- [Data Indexer appliance installation](./Cybersecurity/cybersec-data-indexer-install.md) — Hardware installation and setup guidance for Data Indexer appliances.
+- [Disaster recovery installation and configuration](./Cybersecurity/cybersec-disaster-recovery-installation.md) — Deployment and configuration guidance for LogRhythm disaster recovery.
+
+### Confidential computing
+
+- [Attestation overview](./Confidential%20Computing/Concepts/concept-attestation-overview.md) — A conceptual introduction to remote attestation.
+- [CI/CD tutorial: update policies with GitHub Actions](./Confidential%20Computing/Tutorials%20and%20examples/tutorial-cicd.md) — Automate attestation policy updates in a build workflow.
+- [Go client integration guide](./Confidential%20Computing/Integration/integrate-go-client.md) — Integrate with the TA Go client.
+- [Author a custom policy](./Confidential%20Computing/How-to%20workflows/howto-author-custom-policy.md) — A procedural guide to creating an attestation policy.
+
+### Identity and access management
+
+- [Identity Router API reference](./ID%20verification/API%20Reference%20Guide/idr-api-reference.md) — API data types and operations.
+- [Identity Routers overview](./ID%20verification/Operation%20Guide/02-idenity-routers.md) — Operational guidance for identity routers.
+- [Identity Router certificates](./ID%20verification/Operation%20Guide/07-certificates.md) — Certificate configuration for secure router connections.
+
+Browse the sidebar to explore the complete documentation library.
 
 ## Let's talk
 
