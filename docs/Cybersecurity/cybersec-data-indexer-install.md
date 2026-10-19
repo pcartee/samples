@@ -1,6 +1,6 @@
 ---
 title: "Data Indexer Appliance Hardware Installation"
-description: "Reference for the LogRhythm Web Console Case REST API, including authentication, case properties, routes, responses, errors, throttling, and JavaScript and C# examples."
+description: "Install LogRhythm Data Indexer appliances, configure their network settings, and deploy single-node or multi-node clusters."
 author: pcartee
 topic: Reference
 date: 2016-01-20
@@ -104,7 +104,6 @@ values, simply press **Enter**.
   | Netmask         | The netmask to use.                                                                                                                |
   | Default gateway | The IP address of the network gateway.                                                                                             |
   | NTP servers     | The IP address of one or more NTP servers. Enter each server address, then press **Enter**. When finished, press **Ctrl** + **D**. |
-
 
 > After completing the items in the configuration script, the system
 > will test connectivity to the default gateway and the NTP servers. If
@@ -242,7 +241,7 @@ part of this Guide may be reproduced or transmitted in any form or by
 any means, electronic or mechanical, including photocopying and
 recording for any purpose other than what is permitted in the Agreement.
 
-### Disclaimer
+## Disclaimer
 
 The information contained in this document is subject to change without
 notice. LogRhythm, Inc. makes no warranty of any kind with respect to
@@ -252,7 +251,7 @@ LogRhythm, Inc. shall not be liable for any direct, indirect,
 incidental, consequential, or other damages alleged in connection with
 the furnishing or use of this information.
 
-### Trademark
+## Trademark
 
 LogRhythm is a registered trademark of LogRhythm, Inc. All other company
 or product names mentioned may be trademarks, registered trademarks, or
