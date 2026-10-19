@@ -4,25 +4,21 @@ on:
   push:
     branches:
       - main
-      - master
-      - develop
   workflow_dispatch:
 
 permissions:
-  contents: write
-
-concurrency:
-  group: github-pages
-  cancel-in-progress: true
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Check out source
         uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v5
         with:
           node-version: 24
@@ -34,9 +30,52 @@ jobs:
       - name: Build site
         run: npm run build
 
-      - name: Deploy to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v7
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
-          keep_files: true
+          name: production-site
+          path: build/
+          if-no-files-found: error
+          retention-days: 1
+
+  publish:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: gh-pages-publish
+      cancel-in-progress: false
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Download site artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: production-site
+          path: build/
+
+      - name: Check whether this build is current
+        id: freshness
+        env:
+          BUILD_SHA: ${{ github.sha }}
+        run: |
+          if [[ "$(git rev-parse HEAD)" == "$BUILD_SHA" ]]; then
+            echo "current=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Production branch advanced after this build; skipping stale artifact."
+            echo "current=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Configure Git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Publish site and retain PR previews
+        if: steps.freshness.outputs.current == 'true'
+        run: bash .github/scripts/deploy-pages.sh

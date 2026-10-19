@@ -31,16 +31,6 @@ This command generates static content into the `build` directory and can be serv
 
 ## Deployment
 
-Using SSH:
+GitHub Actions builds and publishes the production site when changes are pushed to `main`. Pull request previews are published for same-repository pull requests from owners, members, and collaborators. Configure GitHub Pages to deploy from the `gh-pages` branch; see [.github/pages-setup.md](.github/pages-setup.md) for setup instructions.
 
-```bash
-USE_SSH=true npm run deploy
-```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> npm run deploy
-```
-
-If you are using GitHub Pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+For local development, use `npm run build` to generate the site in the `build` directory. Avoid running `npm run deploy` while the GitHub Actions workflows manage the `gh-pages` branch, because a manual deployment can replace the production site or PR previews.

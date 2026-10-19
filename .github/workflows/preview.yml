@@ -5,16 +5,22 @@ on:
     types: [opened, reopened, synchronize, closed]
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
-  deploy-preview:
+  build-preview:
+    if: github.event.action != 'closed'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v5
+      - name: Check out pull request
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
-      - uses: actions/setup-node@v5
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
         with:
           node-version: 24
           cache: npm
@@ -22,49 +28,95 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build site
-        if: github.event.action != 'closed'
+      - name: Build preview
         env:
-          PR_NUMBER: ${{ github.event.number }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: npm run build
 
-      - name: Deploy PR Preview
-        if: github.event.action != 'closed'
-        uses: rossjrw/pr-preview-action@v1
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v7
         with:
-          source-dir: ./build
-          preview-branch: gh-pages
-          umbrella-dir: pr-preview
+          name: pr-preview-${{ github.event.pull_request.number }}
+          path: build/
+          if-no-files-found: error
+          retention-days: 1
+
+  deploy-preview:
+    needs: build-preview
+    if: >-
+      github.event.action != 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.pull_request.author_association)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    concurrency:
+      group: gh-pages-publish
+      cancel-in-progress: false
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Download preview artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: pr-preview-${{ github.event.pull_request.number }}
+          path: build/
+
+      - name: Publish PR preview
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
+        with:
+          folder: ./build
+          branch: gh-pages
+          target-folder: pr-preview/pr-${{ github.event.pull_request.number }}
+          force: false
+
+      - name: Comment with PR preview link
+        uses: marocchino/sticky-pull-request-comment@v3.0.5
+        with:
+          header: pr-preview
+          message: |
+            🚀 Preview for this pull request:
+            https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-preview/pr-${{ github.event.pull_request.number }}/
 
   cleanup-preview:
-    if: github.event.action == 'closed'
+    if: >-
+      github.event.action == 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.pull_request.author_association)
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: gh-pages-publish
+      cancel-in-progress: false
     steps:
-      - name: Checkout repository
+      - name: Check out base branch
         uses: actions/checkout@v5
         with:
+          ref: ${{ github.event.pull_request.base.ref }}
           fetch-depth: 0
 
-      - name: Configure git
+      - name: Remove closed PR preview
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Remove PR preview from gh-pages
-        run: |
-          set -e
-          PR_DIR="pr-preview/${{ github.event.number }}"
-          git fetch origin gh-pages || true
-          if git ls-remote --heads origin gh-pages | grep -q gh-pages; then
-            git checkout gh-pages
-            if [ -d "$PR_DIR" ]; then
-              rm -rf "$PR_DIR"
-              git add -A
-              git commit -m "Remove preview for PR #${{ github.event.number }}" || echo "No changes to commit"
-              git push origin gh-pages
-            else
-              echo "No preview dir $PR_DIR found"
-            fi
-          else
+          set -euo pipefail
+          if ! git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
             echo "gh-pages branch does not exist; nothing to remove"
+            exit 0
           fi
+
+          git fetch origin refs/heads/gh-pages:refs/remotes/origin/gh-pages
+          git checkout -B gh-pages origin/gh-pages
+          preview_dir="pr-preview/${PR_NUMBER}"
+          git rm -r --ignore-unmatch -- "$preview_dir"
+
+          if git diff --cached --quiet; then
+            echo "No preview files found for PR #${PR_NUMBER}"
+            exit 0
+          fi
+
+          git commit -m "Remove preview for PR #${PR_NUMBER}"
+          git push origin HEAD:gh-pages
