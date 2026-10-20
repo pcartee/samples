@@ -16,8 +16,8 @@ from pathlib import Path
 
 DOC_ROOT = "docs"
 DIFF_LIMIT = 20_000
-MODEL = "deepseek-coder:latest"
-OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
+MODEL = "openai/gpt-4.1"
+MODELS_URL = "https://models.github.ai/inference/chat/completions"
 REVIEW_SKILL = Path(__file__).resolve().parents[1] / "SKILL.md"
 
 
@@ -110,22 +110,29 @@ def create_review() -> None:
         if omitted:
             prompt += "\n\nDiffs omitted because of the review size limit: " + ", ".join(omitted)
 
-        payload = json.dumps({"model": MODEL, "prompt": prompt, "stream": False}).encode("utf-8")
+        payload = json.dumps(
+            {"model": MODEL, "messages": [{"role": "user", "content": prompt}]}
+        ).encode("utf-8")
         request = urllib.request.Request(
-            OLLAMA_URL,
+            MODELS_URL,
             data=payload,
-            headers={"Content-Type": "application/json"},
+            headers={
+                "Content-Type": "application/json",
+                "Accept": "application/vnd.github+json",
+                "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
+                "X-GitHub-Api-Version": "2022-11-28",
+            },
             method="POST",
         )
         try:
-            with urllib.request.urlopen(request, timeout=900) as response:
+            with urllib.request.urlopen(request, timeout=180) as response:
                 result = json.loads(response.read().decode("utf-8"))
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as error:
-            raise RuntimeError(f"Local AI review request failed: {error}") from error
+            raise RuntimeError(f"AI review request failed: {error}") from error
 
-        review = result.get("response", "").strip()
+        review = (result.get("choices") or [{}])[0].get("message", {}).get("content", "").strip()
         if not review:
-            raise RuntimeError("Local AI review returned an empty response.")
+            raise RuntimeError("AI review returned an empty response.")
         if omitted:
             review += "\n\nSome changed files were omitted because the combined diff exceeded the review size limit: " + ", ".join(omitted) + "."
 

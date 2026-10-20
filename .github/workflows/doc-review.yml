@@ -55,17 +55,18 @@ jobs:
           globs: ${{ steps.changed.outputs.globs }}
 
   ai-review:
-    name: Local AI documentation review
+    name: AI documentation review
     # Restrict to same-repository PRs from trusted contributors; fork PR content is untrusted.
     if: >-
       vars.ENABLE_LOCAL_AI_REVIEW == 'true' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
       contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.pull_request.author_association)
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 15
     permissions:
       contents: read
       pull-requests: write
+      models: read
     steps:
       - name: Check out pull request
         uses: actions/checkout@v4
@@ -86,23 +87,14 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: python .github/scripts/doc_review.py changed-files
 
-      - name: Install Ollama and model
-        if: steps.changed.outputs.has_files == 'true'
-        run: |
-          curl -fsSL https://ollama.com/install.sh | sh
-          for i in $(seq 1 30); do
-            curl -sf http://127.0.0.1:11434/ >/dev/null && break
-            sleep 2
-          done
-          ollama pull deepseek-coder:latest
-
-      - name: Generate local AI review
+      - name: Generate AI review
         id: review
         if: steps.changed.outputs.has_files == 'true'
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           RUNNER_TEMP: ${{ runner.temp }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python .github/scripts/doc_review.py ai-review
 
       - name: Post or update AI review comment
@@ -119,7 +111,7 @@ jobs:
               throw new Error('The local AI review returned an empty response.');
             }
 
-            const body = `${marker}\n### AI Documentation Review (local DeepSeek)\n\n${review}`;
+            const body = `${marker}\n### AI Documentation Review (GitHub Models)\n\n${review}`;
             const { owner, repo } = context.repo;
             const issue_number = context.issue.number;
             const comments = await github.paginate(github.rest.issues.listComments, {
