@@ -5,6 +5,7 @@ author: pcartee
 topic: Reference
 date: 2017-01-22
 uid: cybersec.disaster.recovery.installation
+sidebar_position: 3
 ---
 
 This guide describes how to install and configure the LogRhythm Disaster
