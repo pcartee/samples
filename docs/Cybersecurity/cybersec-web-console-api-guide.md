@@ -5,6 +5,7 @@ author: pcartee
 topic: Reference
 date: 2017-01-22
 uid: cybersec.case.ape.ref
+sidebar_position: 5
 ---
 
 The LogRhythm Web Console Case API is a REST API that communicates over HTTPS and uses JSON. Its routes and methods let you work with cases, such as synchronizing tickets from a bug-tracking system with LogRhythm cases. Each request runs on behalf of the API account associated with the API token in the request.

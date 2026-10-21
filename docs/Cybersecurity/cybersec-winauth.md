@@ -5,6 +5,7 @@ author: pcartee
 topic: Reference
 date: 2017-01-22
 uid: cybersec.win.auth
+sidebar_position: 5
 ---
 
 To use Windows authentication with the LogRhythm API, configure the web server for cross-machine delegation with Kerberos. A domain administrator must complete steps that require changes to Active Directory. Windows authentication is supported only when all servers and accounts belong to the same Active Directory forest.

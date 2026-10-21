@@ -3,21 +3,16 @@
 
 from __future__ import annotations
 
-import json
 import os
 import subprocess
 import sys
 import tempfile
-import urllib.error
-import urllib.request
 import uuid
 from pathlib import Path
 
 
 DOC_ROOT = "docs"
 DIFF_LIMIT = 20_000
-MODEL = "openai/gpt-4.1"
-MODELS_URL = "https://models.github.ai/inference/chat/completions"
 REVIEW_SKILL = Path(__file__).resolve().parents[1] / "SKILL.md"
 
 
@@ -110,29 +105,40 @@ def create_review() -> None:
         if omitted:
             prompt += "\n\nDiffs omitted because of the review size limit: " + ", ".join(omitted)
 
-        payload = json.dumps(
-            {"model": MODEL, "messages": [{"role": "user", "content": prompt}]}
-        ).encode("utf-8")
-        request = urllib.request.Request(
-            MODELS_URL,
-            data=payload,
-            headers={
-                "Content-Type": "application/json",
-                "Accept": "application/vnd.github+json",
-                "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
-                "X-GitHub-Api-Version": "2022-11-28",
-            },
-            method="POST",
-        )
+        if not os.environ.get("COPILOT_GITHUB_TOKEN"):
+            raise RuntimeError(
+                "COPILOT_GITHUB_TOKEN must be configured as a fine-grained "
+                "personal access token with the Copilot Requests permission."
+            )
         try:
-            with urllib.request.urlopen(request, timeout=180) as response:
-                result = json.loads(response.read().decode("utf-8"))
-        except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as error:
-            raise RuntimeError(f"AI review request failed: {error}") from error
+            response = subprocess.run(
+                [
+                    "copilot",
+                    "-p",
+                    prompt,
+                    "--silent",
+                    "--no-ask-user",
+                    "--available-tools",
+                    "--disable-builtin-mcps",
+                    "--no-custom-instructions",
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+                timeout=180,
+            )
+        except subprocess.CalledProcessError as error:
+            raise RuntimeError(
+                f"Copilot CLI review failed with exit code {error.returncode}."
+            ) from error
+        except subprocess.TimeoutExpired as error:
+            raise RuntimeError("Copilot CLI review timed out.") from error
+        except OSError as error:
+            raise RuntimeError(f"Could not run Copilot CLI: {error}") from error
 
-        review = (result.get("choices") or [{}])[0].get("message", {}).get("content", "").strip()
+        review = response.stdout.strip()
         if not review:
-            raise RuntimeError("AI review returned an empty response.")
+            raise RuntimeError("Copilot CLI returned an empty review.")
         if omitted:
             review += "\n\nSome changed files were omitted because the combined diff exceeded the review size limit: " + ", ".join(omitted) + "."
 

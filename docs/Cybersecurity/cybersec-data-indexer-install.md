@@ -5,6 +5,7 @@ author: pcartee
 topic: Reference
 date: 2016-01-20
 uid: cybersec-data-indexer-install
+sidebar_position: 2
 ---
 
 This guide explains how to install your Data Indexer appliance and

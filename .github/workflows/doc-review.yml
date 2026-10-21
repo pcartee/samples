@@ -66,7 +66,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-      models: read
     steps:
       - name: Check out pull request
         uses: actions/checkout@v4
@@ -79,6 +78,14 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install GitHub Copilot CLI
+        run: npm install --global @github/copilot@1.0.101
 
       - name: Find changed documentation
         id: changed
@@ -95,6 +102,8 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           RUNNER_TEMP: ${{ runner.temp }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Fine-grained PAT with the Copilot Requests permission.
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
         run: python .github/scripts/doc_review.py ai-review
 
       - name: Post or update AI review comment
@@ -108,10 +117,10 @@ jobs:
             const marker = '<!-- automated-doc-review -->';
             const review = fs.readFileSync(process.env.REVIEW_FILE, 'utf8').trim();
             if (!review) {
-              throw new Error('The local AI review returned an empty response.');
+              throw new Error('The Copilot CLI returned an empty review.');
             }
 
-            const body = `${marker}\n### AI Documentation Review (GitHub Models)\n\n${review}`;
+            const body = `${marker}\n### AI Documentation Review (GitHub Copilot)\n\n${review}`;
             const { owner, repo } = context.repo;
             const issue_number = context.issue.number;
             const comments = await github.paginate(github.rest.issues.listComments, {
