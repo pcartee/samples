@@ -5,6 +5,7 @@ author: pcartee
 topic: Reference
 date: 2017-01-22
 uid: cybersec.api.overview
+sidebar_position: 1
 ---
 
 The LogRhythm API lets you build or integrate applications that extend the LogRhythm solution. Common uses include:
