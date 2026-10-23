@@ -1,6 +1,6 @@
 ---
 title: TA CLI service management
-description: Reference for listing TA service offers, services, plans, and products with the TA CLI.
+description: Learn how to use the TA CLI to list service offers, services, plans, and products and to retrieve service and plan details.
 author: pcartee
 topic-type: Reference
 date: 08/16/2023
@@ -8,7 +8,7 @@ uid: cli-service-commands
 sidebar_position: 3
 ---
 
-Use these commands to view service offers, subscribed services, plans, and products.
+Use these commands to view service offers, services subscribed to by your tenant, plans, and products.
 
 :::note
 Have your API key available before running these commands. For instructions, see [Retrieve your API key](../Quickstart/tutorial-api-key.md).
@@ -18,7 +18,9 @@ Have your API key available before running these commands. For instructions, see
 
 This command lists the service offers available in your TA environment.
 
-`tactl list serviceOffer`
+```bash
+tactl list serviceOffer
+```
 
 ### Sample call
 
@@ -42,9 +44,11 @@ Service offers:
 
 ## List services
 
-This command lists all services subscribed to by the tenant associated with the API key.
+This command lists all services subscribed to by the tenant associated with your API key.
 
-`tactl list service`
+```bash
+tactl list service
+```
 
 ### Sample response
 
@@ -66,9 +70,11 @@ trace-id:  LOm7kE9WoAMEG_w=
 
 ## Get a service by ID
 
-This command retrieves details for the specified service ID associated with the tenant for the API key.
+This command retrieves details for the specified service ID associated with the tenant linked to your API key.
 
-`tactl list service -r < service Id >`
+```bash
+tactl list service -r < service ID >
+```
 
 ### Sample call
 
@@ -97,7 +103,9 @@ Services:
 
 This command lists the plans available for the specified service offer in your TA environment.
 
-`tactl list plan -r < service offer id >`
+```bash
+tactl list plan -r < service offer ID >
+```
 
 ### Sample call
 
@@ -139,7 +147,9 @@ Plans:
 
 This command retrieves details for the specified plan and service offer.
 
-`tactl list plan -r < service offer id > -p < plan id >`
+```bash
+tactl list plan -r < service offer ID > -p < plan ID >
+```
 
 ### Sample call
 
@@ -197,7 +207,9 @@ Plans:
 
 This command lists the products available for the specified service offer in your TA environment.
 
-`tactl list product -r < service offer id >`
+```bash
+tactl list product -r < service offer ID >
+```
 
 ### Sample call
 

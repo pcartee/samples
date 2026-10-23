@@ -1,6 +1,6 @@
 ---
 title: TA CLI user management
-description: Reference for creating, listing, updating, and deleting TA users and configuring tenant notification settings with the TA CLI.
+description: Learn how to use the TA CLI to create, list, update, and delete users, and to configure tenant notifications for attestation failures.
 author: pcartee
 topic-type: Reference
 date: 08/17/2023
@@ -14,7 +14,9 @@ Use these commands to manage users with the TA CLI. You can also manage users in
 
 This command creates a TA user.
 
-`tactl create user -e <email address> -r <role (Tenant Admin or User)>`
+```bash
+tactl create user -e <email address> -r <role (Tenant Admin or User)>
+```
 
 ### Sample call
 
@@ -45,7 +47,9 @@ User:
 
 This command lists the users in your TA environment.
 
-`tactl list user`
+```bash
+tactl list user
+```
 
 ### Sample call
 
@@ -185,7 +189,9 @@ Users:
 
 This command lists users in your TA environment by email address.
 
-`tactl list user -e <email address>`
+```bash
+tactl list user -e <email address>
+```
 
 ### Sample call
 
@@ -216,7 +222,9 @@ Users:
 
 This command updates a specific user's role.
 
-`tactl update user role -u <user ID> -r <role (Tenant Admin or User)>`
+```bash
+tactl update user role -u <user ID> -r <role (Tenant Admin or User)>
+```
 
 ### Sample call
 
@@ -252,7 +260,9 @@ Updated User:
 
 This command deletes a specific user.
 
-`tactl delete user -u <user ID>`
+```bash
+tactl delete user -u <user ID>
+```
 
 ### Sample call
 
@@ -269,9 +279,11 @@ User 4324598fs-0404-4f4r-9oii9-8f8flk893w21 deleted
 
 ## List tenant settings
 
-This command lists the email address used to send notifications when an attestation failure occurs.
+This command lists the email address configured to receive notifications when an attestation failure occurs.
 
-`tactl list tenant-settings`
+```bash
+tactl list tenant-settings
+```
 
 ### Sample response
 
@@ -285,9 +297,11 @@ Tenant Settings:
 
 ## Update tenant settings
 
-Enter an email address to receive notifications when an attestation failure occurs. Notifications are sent only for attestation failures, not policy mismatches. By default, notifications are disabled.
+This command sets the email address that receives notifications when an attestation failure occurs. Notifications are sent only for attestation failures, not policy mismatches. Notifications are disabled by default.
 
-`tactl update tenant-settings -e "<email address>"`
+```bash
+tactl update tenant-settings -e "<email address>"
+```
 
 ### Sample call
 
@@ -306,9 +320,11 @@ trace-id:  LOnTgGR2IAMEFAA=
 
 ## Disable tenant notifications
 
-This command disables notifications when an attestation failure occurs.
+This command disables notifications for attestation failures.
 
-`tactl update tenant-settings -d`
+```bash
+tactl update tenant-settings -d
+```
 
 ### Sample response
 

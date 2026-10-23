@@ -15,7 +15,7 @@ You generally don't need to understand TDX internals to use TA attestation and t
 
 The root of trust for TDs is the TDX Provisioning Certification Enclave (PCE), which is implemented as an SGX enclave. The PCE signs evidence reports (quotes) for attestation, provisions cryptographic keys, and certifies the platform TCB status. The PCE is remotely attested when the TD is instantiated and whenever an attesting party requests a TD quote.
 
-For background on host-level TDX remote attestation, see the Confidential Computing Documentation's TDX Enabling Guide, specifically its Infrastructure Setup section. If you're using cloud-based TDX CVMs with TA attestation, you don't need to know the infrastructure setup details. If you're setting up a TDX host on-premises, consult the TDX Enabling Guide and Canonical's [Trust Domain Extensions (TDX) on Ubuntu][canonical-tdx].
+For background on host-level TDX remote attestation, see the Confidential Computing Documentation's TDX Enabling Guide, specifically its Infrastructure Setup section. If you're using cloud-based TDX CVMs with TA attestation, you don't need to know the infrastructure setup details. If you're setting up a TDX host on-premises, consult the TDX Enabling Guide and Canonical's Trust Domain Extensions (TDX) on Ubuntu [canonical-tdx].
 
 ## Supported platforms and tools
 
@@ -34,4 +34,4 @@ Some platform and image reference values required for TD Integrity come from clo
 **\*** Other names and brands may be claimed as the property of others.
 
 {/* external links */}
-[canonical-tdx]: https://github.com/canonical/tdx
+[canonical-tdx](https://github.com/canonical/tdx)

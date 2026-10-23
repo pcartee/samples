@@ -1,6 +1,6 @@
 ---
 title: Faithful Verifier Tool
-description: Learn how to install, configure, and use TA's Faithful Verifier tool to independently verify attestation tokens.
+description: Install, configure, and use the Faithful Verifier command-line tool to independently verify TA attestation tokens and review verification reports.
 author: "[redacted]"
 topic: conceptual
 date: 06/12/2024
@@ -9,39 +9,39 @@ uid: faithful.verifier
 
 import Binaries from '../../Include/_verify-signed-binaries.md';
 
-The Faithful Verification (FV) tool is a Linux command-line utility for verifying the fidelity of a TA token. Attesters and relying parties can use this optional tool to verify the integrity of the TA environment.
+The Faithful Verifier (FV) tool is a Linux command-line utility for verifying the fidelity of a TA attestation token. Attesters and relying parties can use this optional tool to verify the integrity of the TA environment.
 
-## Faithful Verification
+## How faithful verification works
 
 A token is "faithful" when authentic TA services generate it in an attested trusted execution environment (TEE). TA includes a self-monitoring feature called Faithful Verification. All TA microservices involved in generating an attestation token run in a TEE. When a TEE-protected microservice starts, TA collects attestation-related artifacts, such as TEE quotes, TCB collaterals, current policy requirements, and service IDs, and saves them in a ledger-backed database.
 
-All token-generation processing occurs in these TEEs, and TA releases protected assets only to microservice instances that meet the TEE policy requirements. Every TA token references the attestation information for each microservice in the `verifier_instance_ids` section.
+All token-generation processing occurs in these TEEs, and TA releases protected assets only to microservice instances that meet the TEE policy requirements. Every TA token references each microservice's attestation information in the `verifier_instance_ids` section.
 
-Use these ledger references in a TA attestation token to validate the microservice instances that produced the token and retrieve their TEE attestation information. When TA receives a valid token audit request, such as POST **TokenAuditReport**, it generates a token audit report from the validation ledger. The Faithful Verification tool retrieves the report for the specified token and independently validates the TEE quotes. This lets TA users audit the secure processing of attestation tokens and verify the TA microservices and TEEs. The Faithful Verification tool can audit tokens for up to two years after their issuance.
+Use these ledger references in a TA attestation token to validate the microservice instances that produced the token and retrieve their TEE attestation information. When TA receives a valid token audit request, such as POST **TokenAuditReport**, it generates a token audit report from the validation ledger. The Faithful Verifier retrieves the report for the specified token and independently validates the TEE quotes. This lets TA users audit the secure processing of attestation tokens and verify the TA microservices and TEEs. The tool can audit tokens for up to two years after issuance.
 
-## Downloading the Faithful Verification tool
+## Download the Faithful Verifier tool
 
-Download the Faithful Verification executable from the Downloads page of the TA portal.
+Download the Faithful Verifier executable from the Downloads page in the TA portal.
 
-## Signature Verification
+## Verify the tool's signature
 
-To verify the signature of the Faithful Verification tool, follow these steps.
+To verify the Faithful Verifier tool's signature, follow these steps.
 
 <Binaries />
 
 ## Prerequisites
 
 - Ubuntu 20.04 LTS (Focal) or Ubuntu 22.04 LTS (Jammy)
-- Intel® SGX DCAP (Data Center Attestation Primitives) is required for quote verification. Intel SGX DCAP must be installed on the host system where the FV tool will run.
+- Intel® SGX DCAP (Data Center Attestation Primitives) is required for quote verification. Install Intel SGX DCAP on the host system where the FV tool will run.
 - The host system must have access to Intel® SGX PCCS (Provisioning Certificate Caching Service) for SGX collaterals.
 
 :::note
-The supported characters are the digits 0 through 9; uppercase and lowercase English letters; underscore (_); colon (:); period (.); slash (/); dash (-); and space.
+Supported characters are the digits 0 through 9; uppercase and lowercase English letters; the underscore (_), colon (:), period (.), slash (/), and dash (-); and the space character.
 :::
 
-### Installing Intel SGX DCAP libraries
+### Install Intel SGX DCAP libraries
 
-To add the Intel SGX repository and install the Intel SGX DCAP library packages on Ubuntu 20.04, run the following commands. On Ubuntu 22.04, change `focal` to `jammy` in the first line.
+To add the Intel SGX repository and install the Intel SGX DCAP library packages on Ubuntu 20.04, run the following commands. For Ubuntu 22.04, change `focal` to `jammy` in the first line.
 
 ```bash
 echo 'deb [arch=amd64] https://download.01.org/intel-sgx/sgx_repo/ubuntu focal main' > /etc/apt/sources.list.d/intel-sgx.list
@@ -50,7 +50,7 @@ apt-get update
 apt-get install -y libsgx-urts libsgx-dcap-quote-verify-dev libsgx-dcap-default-qpl
 ```
 
-After installation, edit `/etc/sgx_default_qcnl.conf` as follows to configure Intel SGX DCAP to use PCCS at `https://api.trustedservices.intel.com/sgx/certification/v3/`.
+After installation, edit `/etc/sgx_default_qcnl.conf` as follows to configure Intel SGX DCAP to use the PCCS endpoint at `https://api.trustedservices.intel.com/sgx/certification/v3/`.
 
 ```jsonc
 {
@@ -72,11 +72,11 @@ curl -v -X GET "https://api.trustedservices.intel.com/sgx/certification/v3/qe/id
 
 If this command returns `200 OK` with PCS attestation identity content, DCAP should be able to connect.
 
-## Verifying an attestation token
+## Verify an attestation token
 
-The Faithful Verification tool requires a TA attestation token. Save the token to a file, such as `token.jwt`, on the system where you will run the tool.
+The Faithful Verifier requires a TA attestation token. Save the token to a file, such as `token.jwt`, on the system where you will run the tool.
 
-Create an environment file (named `fv.env` in this example) to configure FV. Replace the `API_KEY` placeholder with an attestation API key:
+Create an environment file to configure FV. In this example, the file is named `fv.env`. Replace the `API_KEY` placeholder with an attestation API key:
 
 ```bash
 # fv.env
@@ -90,7 +90,7 @@ If you are in the European Union (EU) region, set the TA URL as follows:
 `TRUSTAUTHORITY_BASE_URL=https://api.eu.ta.intel.com`
 :::
 
-Configure the Faithful Verification tool with the `config` command.
+Configure the Faithful Verifier with the `config` command.
 
 ```bash
 ./faithful-verifier config -v fv.env
@@ -102,10 +102,10 @@ Run the `verify` command and provide the attestation token:
 ./faithful-verifier verify -t token.jwt
 ```
 
-The Faithful Verification tool independently validates the Intel SGX quotes for each service by using the Intel SGX DCAP libraries and TCB requirements from the Intel SGX PCS server. It validates quotes without using TA attestation resources, so users can verify a token's "faithfulness" without relying only on TA's assertion.
+The Faithful Verifier independently validates the Intel SGX quotes for each service by using the Intel SGX DCAP libraries and TCB requirements from the Intel SGX PCS server. It validates quotes without using TA attestation resources, so users can verify a token's "faithfulness" without relying only on TA's assertion.
 
 :::note
-Verification depends on the Intel SGX DCAP libraries communicating to the public Intel PCS server to attest the Intel SGX quotes from the faithfulness report. If this communication is blocked, such as by a proxy configuration, the Faithful Verification tool may appear to "hang" until manually stopped.
+Verification depends on the Intel SGX DCAP libraries communicating with the public Intel PCS server to attest the Intel SGX quotes in the faithfulness report. If a proxy configuration or another network restriction blocks this communication, the Faithful Verifier may appear to hang until you stop it manually.
 :::
 
 ### Sample output
@@ -134,7 +134,7 @@ The following sample command-line output shows a token that passed verification 
 
 This output shows each service's result against the permit list and the independent verification result for its Intel SGX quote. If both checks pass, the service is reported as "faithful." For an example of a failed verification, see [Failed verification](#failed-verification).
 
-You can save the Faithful Verification report retrieved from TA by using the `-r` flag. The report contains the full Intel SGX quotes for each microservice and references the "permitlist" policy requirements that were valid when each microservice registered:
+Use the `-r` flag to save the Faithful Verifier report retrieved from TA. The report contains the full Intel SGX quotes for each microservice and references the "permitlist" policy requirements that were valid when each microservice registered:
 
 ```bash
 ./faithful-verifier verify -t token.jwt -r report.json
@@ -272,7 +272,7 @@ Failed to verify service record quote for tee-caching-service with id: 740da594-
 }
 ```
 
-## FV CLI commands
+## Faithful Verifier CLI commands
 
 ```bash
 Faithful Verifier CLI is used for getting and verifying TrustAuthority faithful services

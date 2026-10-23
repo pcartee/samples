@@ -7,7 +7,7 @@ date: 05/20/2025
 uid: tee.sev.snp
 ---
 
-AMD* Secure Encrypted Virtualization–Secure Nested Paging (AMD* SEV-SNP) provides a secure computing environment for virtual machines by isolating them from the hypervisor and other virtual machines on the host. This enables hardware-isolated virtual machines.
+*AMD Secure Encrypted Virtualization–Secure Nested Paging (AMD* SEV-SNP) provides a secure computing environment for virtual machines by isolating them from the hypervisor and other virtual machines on the host. This enables hardware-isolated virtual machines.
 
 Read more about [AMD* SEV-SNP](https://www.amd.com/en/developer/sev.html).
 

@@ -1,27 +1,28 @@
 ---
 title: GPU remote attestation with TA
-description: Explains NVIDIA GPU attestation with TA, including Intel TDX composite and GPU-only workflows, client and REST API support, JWT claims, and sample appraisal policies.
+description: Learn how TA supports NVIDIA H100 GPU attestation, including Intel TDX and GPU composite workflows, GPU-only attestation, Python client and CLI usage, REST API support, JWT claims, and sample appraisal policies.
 author: pcartee
 topic: conceptual, attestation, gpu
 date: 09/17/2024
 uid: gpu.attestation
 ---
+
 import BasicToken from '../Include/eat/_nv-basic-token.md';
 import NVIDIA from '../Include/eat/_nvidia-policy-claims.md';
 
-TA supports remote attestation for NVIDIA H100 GPU TEEs. You can attest a confidential virtual machine (CVM) TEE and an NVIDIA H100 GPU in a single composite workflow. This article describes the GPU attestation architecture, TA Python client, CLI and REST API support, and examples of GPU and composite attestation JWTs.
+TA supports remote attestation for NVIDIA H100 GPU TEEs. You can attest a confidential virtual machine (CVM) TEE and an NVIDIA H100 GPU in a single composite workflow. This article describes the GPU attestation architecture, support in the TA Python client, CLI, and REST API, and examples of GPU and composite attestation JWTs.
 
 :::note
 The implementation described here supports on-premises hardware. Cloud-based GPU attestation is outside the scope of this article.
 :::
 
-Using a GPU as a TEE extends the capabilities of a CPU TEE. Generative artificial intelligence (GAI) and other demanding workloads use GPU acceleration to achieve acceptable performance. GAI models and parameters can be valuable intellectual property, and these workloads often process sensitive data. A GPU TEE provides a protected execution environment and helps protect workloads and data from unauthorized access or tampering.
+Using a GPU as a TEE extends the capabilities of a CPU TEE. Generative artificial intelligence (GAI) and other demanding workloads use GPU acceleration to achieve acceptable performance. GAI models and parameters can be valuable intellectual property, and these workloads often process sensitive data. A GPU TEE provides a protected execution environment and helps protect workloads and data from unauthorized access and tampering.
 
 However, a GPU alone does not provide a complete confidential computing solution. GPU confidential computing relies on a CPU TEE in a confidential VM enabled by Intel® Trust Domain Extensions (Intel® TDX) 1.x on Intel CPUs. The CPU TEE provides measurements and attestation evidence that help establish trust in the GPU. It also orchestrates secure information transfer to the GPU. The GPU and confidential VM exchange keys to establish an encrypted communications channel.
 
-The TA Python client, CLI for Intel TDX and NVIDIA GPUs, and TA REST API support two GPU attestation options:
+The TA Python client, the CLI for Intel TDX and NVIDIA GPUs, and the TA REST API support two GPU attestation options:
 
-1. **Composite attestation for CPU and GPU TEEs:** The TA client collects separate evidence from the confidential VM TEE and GPU driver, combines it, and sends it to TA for verification. TA verifies the CPU evidence and sends the GPU quote to NVIDIA Remote Attestation Service (NRAS) for verification. The attestation JWT issued by TA contains CPU TEE claims, GPU claims, and other claims from the TA service. Composite attestation is the preferred method for confidential computing solutions that include a GPU TEE.
+1. **Composite attestation for CPU and GPU TEEs:** The TA client collects separate evidence from the confidential VM TEE and GPU driver, combines it, and sends it to TA for verification. TA verifies the CPU evidence and sends the GPU quote to NVIDIA Remote Attestation Service (NRAS) for verification. The attestation JWT issued by TA contains CPU TEE claims, GPU claims, and other claims from TA. Composite attestation is the preferred method for confidential computing solutions that include a GPU TEE.
 2. **GPU-only attestation:** The TA client collects GPU evidence and requests verification. As described above, GPU-only attestation does not provide a complete confidential computing solution.
 
 ## GPU attestation architecture
@@ -36,9 +37,9 @@ Two independent verifiers are involved: the TA service and NVIDIA Remote Attesta
 
 GPU attestation begins when the TA client GPU TEE adapter calls the NVIDIA SDK API to request evidence. The NVIDIA GPU driver on the server where the GPU is installed provides the evidence. The GPU server can be local or remote, but the GPU driver must run on the same server as the GPU.
 
-For composite attestation (options 1 and 1a in the diagram), independent evidence is collected for the Intel TDX TD and NVIDIA H100 GPU. TA verifies the Intel TDX quote and forwards the GPU evidence to the NRAS GPU verification service.
+For composite attestation (options 1 and 1a in the diagram), TA collects separate evidence for the Intel TDX TD and NVIDIA H100 GPU. TA verifies the Intel TDX quote and forwards the GPU evidence to the NRAS GPU verification service.
 
-TA extracts the NRAS JWT from the NRAS API response body, verifies its certificate, and embeds the NRAS JWT as a JSON subobject in the TA-issued JWT. This is called _composite_ attestation because it relies on multiple verifiers and the result includes claims from more than one TEE or device.
+TA extracts the NRAS JWT from the NRAS API response body, verifies its certificate, and embeds the NRAS JWT as a JSON subobject in the TA-issued JWT. This is called _composite_ attestation because it relies on multiple verifiers and includes claims from more than one TEE or device.
 
 :::note
 For composite attestation with an NVIDIA GPU, TA relies on NRAS to verify the GPU quote and return a JWT. If NRAS is slow or unavailable, TA returns an error instead of an attestation token. A delay can also cause the verifier nonce to expire before the request completes. Add retry logic to the client application to handle these conditions.
@@ -56,7 +57,7 @@ The TA Python client supports NVIDIA GPU attestation. Its GPU adapter collects e
 Intel TDX and NVIDIA GPU attestation require Ubuntu 24.04 LTS with Linux kernel 6.8 or later.
 :::
 
-The **ITAConnector.get_token_v2** method supports both single-device (Intel TDX or GPU) and composite (Intel TDX and NVIDIA H100) attestation.
+The **ITAConnector.get_token_v2** method supports both single-device attestation (Intel TDX or GPU) and composite attestation (Intel TDX and NVIDIA H100).
 
 ```python
 def get_token_v2(self, tdx_args: GetTokenArgs, gpu_args: GetTokenArgs) -> GetTokenResponse:
@@ -70,7 +71,7 @@ The **ITAConnector.get_token** method supports single-device attestation for Int
 
 The TA Python CLI for Intel® Trust Domain Extensions (Intel® TDX) and NVIDIA GPUs, **ta-pycli**, attests an Intel TDX trust domain (TD) and NVIDIA GPU with TA.
 
-**ta-pycli** requires **`python-connector`**, **`python-intel-tdx`**, **`python-nvgpu`**, and the NVIDIA Attestation SDK. You must have a configuration file in the **ta-pycli** directory. See the README for details about these commands.
+**ta-pycli** requires **`python-connector`**, **`python-intel-tdx`**, **`python-nvgpu`**, and the NVIDIA Attestation SDK. Create a configuration file in the **ta-pycli** directory. See the README for details about these commands.
 
 **ta-pycli** has three commands: **attest**, **evidence**, and **verify**.
 
@@ -84,13 +85,13 @@ The **evidence** command collects evidence from Intel TDX, the GPU driver, or bo
 
 The **verify** command verifies a TA attestation token. It takes a JWT as input and checks the issuer's signing certificates, certificate revocation list (CRL), and expiration date.
 
-## REST API updates
+## REST API support
 
 GPU-only attestation and composite attestation for Intel TDX and a GPU use the `/appraisal/v2/attest` endpoint of the TA REST API.
 
 ## GPU JWT example
 
-The following sample shows a basic NVIDIA GPU attestation token as returned from NRAS.
+The following sample shows a basic NVIDIA GPU attestation token returned by NRAS.
 
 <BasicToken />
 
@@ -100,13 +101,13 @@ The following sample JWT is the result of composite attestation with an Intel TD
 
 <NVIDIA />
 
-## Claims usable in policy
+## Claims available for policies
 
-Not all JWT claims can be used in an appraisal policy. The following sample shows an NVIDIA GPU attestation token with claims that can be used in a policy. Claims not shown are informational or not intended for policy use.
+Not all JWT claims can be used in an appraisal policy. The following sample shows an NVIDIA GPU attestation token with claims that you can use in a policy. Claims not shown are informational or are not intended for policy use.
 
 <NVIDIA />
 
-This token shows a mixed result: the attestation report is valid, but the GPU measurements do not match. The `x-nvidia-mismatch-measurement-records` and `x-nvidia-mismatch-indexes` claims identify the mismatched measurements. A relying party can use these claims to determine whether the GPU meets its requirements or should be quarantined or taken offline.
+This token shows a mixed result: the attestation report is valid, but the GPU measurements do not match. The `x-nvidia-mismatch-measurement-records` and `x-nvidia-mismatch-indexes` claims identify the mismatched measurements. A relying party can use these claims to determine whether the GPU meets its requirements or needs to be quarantined or taken offline.
 
 ## Example appraisals
 
@@ -174,11 +175,9 @@ match {
 }
 ```
 
-### GPU hardware info
+### GPU hardware information
 
-This policy checks GPU hardware information, such as the driver and VBIOS versions. Replace the example values with the values for your GPU.
-
-This example uses policy V2 syntax. Replace the example values with the values for your GPU.
+This policy checks GPU hardware information, such as the driver and VBIOS versions. This example uses Policy V2 syntax. Replace the example values with those for your GPU.
 
 ```rego
 

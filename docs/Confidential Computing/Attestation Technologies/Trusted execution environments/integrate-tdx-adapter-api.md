@@ -74,8 +74,8 @@ The following snippet shows how to decrypt an encrypted blob.
 
 ```go
 em := &tdx.EncryptionMetadata{
-	PrivateKeyLocation: privateKeyPath,
-	HashAlgorithm:      "SHA256",
+    PrivateKeyLocation: privateKeyPath,
+    HashAlgorithm:      "SHA256",
 }
 decryptedData, err := tdx.Decrypt(encryptedData, em)
 if err != nil {
@@ -96,7 +96,7 @@ func GenerateKeyPair(km *KeyMetadata) ([]byte, []byte, error)
 
 ```go
 km := &tdx.KeyMetadata{
-	KeyLength: 3072,
+    KeyLength: 3072,
 }
 privateKeyPem, publicKeyPem, err := tdx.GenerateKeyPair(km)
 if err != nil {
@@ -161,4 +161,3 @@ func NewEventLogParser() EventLogParser
 For an example, see [GetEventLogs](#func-geteventlogs).
 
 [Back to top](#api-reference)
-

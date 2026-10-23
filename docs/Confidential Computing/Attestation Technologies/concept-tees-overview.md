@@ -38,5 +38,4 @@ TA provides several ways to integrate TEE workloads with its services:
 - TDX CLI (for TDX trust domains)
 - Gramine client
 
-
 **\*** Other names and brands may be claimed as the property of others.

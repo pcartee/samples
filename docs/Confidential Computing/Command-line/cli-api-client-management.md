@@ -1,6 +1,6 @@
 ---
 title: API client management
-description: Reference for creating, updating, listing, and deleting TA API clients and tags, and managing API client policies.
+description: Learn how to use tactl to create, update, list, and delete TA API clients and tags, and to list API client policies.
 author: pcartee
 topic-type: Reference
 date: 01/03/2024
@@ -8,7 +8,7 @@ uid: api-client-management
 sidebar_position: 4
 ---
 
-Use these commands to manage API clients and tags.
+Use these commands to manage TA API clients, their policies, and tags.
 
 :::note
 You need an admin API key to run these commands. For more information, see [Copy an admin API key](../Quickstart/tutorial-api-key.md#admin-keys).
@@ -16,9 +16,11 @@ You need an admin API key to run these commands. For more information, see [Copy
 
 ## Create an API client
 
-This command creates an attestation API key and its associated metadata, including policies and tags. To get the API key value, use the portal. For instructions, see [Getting started](../Quickstart/tutorial-api-key.md).
+This command creates an attestation API key and its associated metadata, including policies and tags. To retrieve the API key, use the portal. For instructions, see [Getting started](../Quickstart/tutorial-api-key.md).
 
-`tactl create apiClient -r < service id > -p < product id > -n < api client name > -i "comma separated policy Ids" -v "tag-id1:tag-name1,tag-id2:tag-name2"`
+```bash
+tactl create apiClient -r < service id > -p < product id > -n < api client name > -i "comma separated policy Ids" -v "tag-id1:tag-name1,tag-id2:tag-name2"
+```
 
 ### Sample call
 
@@ -63,7 +65,9 @@ ApiClient:
 
 This command updates an API client's policies and tags.
 
-`tactl update apiClient -r < service id > -p < product id > -c < api client id > -i "comma separated policy Ids" -v "tag-key1:tag-value1,tag-key2:tag-value2"`
+```bash
+tactl update apiClient -r < service id > -p < product id > -c < api client id > -i "comma separated policy Ids" -v "tag-key1:tag-value1,tag-key2:tag-value2"
+```
 
 ### Sample call
 
@@ -91,9 +95,11 @@ ApiClient:
 
 ## List API clients
 
-This command lists your API clients.
+This command lists API clients.
 
-`tactl list apiClient -r < service id >`
+```bash
+tactl list apiClient -r < service id >
+```
 
 ### Sample call
 
@@ -124,7 +130,9 @@ ApiClient:
 
 This command displays a specific TA API client.
 
-`tactl list apiClient -r < service id > -c < api client id >`
+```bash
+tactl list apiClient -r < service id > -c < api client id >
+```
 
 ### Sample call
 
@@ -160,7 +168,9 @@ ApiClients:
 
 This command deletes a TA API client.
 
-`tactl delete apiClient -r < service id > -c < api client id >`
+```bash
+tactl delete apiClient -r < service id > -c < api client id >
+```
 
 ### Sample call
 
@@ -177,7 +187,11 @@ Deleted api client with Id: 36ffa32c-e1df-46a2-9d57-f2be51c07d9f
 
 ## List API client policies
 
-`tactl list apiClient policy -r < service id > -c < api client id >`
+This command lists the policies associated with an API client.
+
+```bash
+tactl list apiClient policy -r < service id > -c < api client id >
+```
 
 ### Sample call
 
@@ -203,7 +217,9 @@ Policy IDs:
 
 This command creates a tag for TA.
 
-`tactl create tag -n < tag name >`
+```bash
+tactl create tag -n < tag name >
+```
 
 ### Sample call
 
@@ -226,7 +242,9 @@ trace-id:  LOnIBH5yIAMEJ5Q=
 
 This command lists the tags associated with your TA system.
 
-`tactl list tag`
+```bash
+tactl list tag
+```
 
 ### Sample call
 
@@ -270,7 +288,9 @@ Tags:
 
 This command deletes a tag.
 
-`tactl delete tag -t < tag id >`
+```bash
+tactl delete tag -t < tag id >
+```
 
 ### Sample call
 
@@ -284,12 +304,13 @@ tactl delete tag -t 47yukjsv-29op-38sq-v3g8-xcqd456hju7i
 tag 47yukjsv-29op-38sq-v3g8-xcqd456hju7i deleted
 ```
 
-
 ## List API client tags
 
 This command lists the tags associated with an API client.
 
-`tactl list apiClient tag -r < service id > -c < api client id >`
+```bash
+tactl list apiClient tag -r < service id > -c < api client id >
+```
 
 ### Sample call
 
@@ -318,7 +339,9 @@ Tags:
 
 This command lists the policies associated with an API client.
 
-`tactl list apiClient policy -r < service id > -c < api client id >`
+```bash
+tactl list apiClient policy -r < service id > -c < api client id >
+```
 
 ### Sample call
 
@@ -338,5 +361,3 @@ Policy IDs:
   ]
 }
 ```
-
-
