@@ -99,9 +99,8 @@ The following example shows an Intel SGX policy in JSON format, before conversio
 }   
 ```
 
-    </TabItem>
-
-    <TabItem value="sgx-rego" label="SGX Rego">
+</TabItem>
+<TabItem value="sgx-rego" label="SGX Rego">
 
 ### SGX Rego
 
