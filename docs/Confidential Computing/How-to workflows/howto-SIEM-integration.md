@@ -8,10 +8,10 @@ uid: siem-integration
 sidebar_position: 2
 ---
 
-This article explains how to integrate TA with third-party Security Information and Event Management (SIEM) services, such as Splunk* or Datadog*, to receive real-time notifications about attestation events.
+This article explains how to integrate TA with third-party Security Information and Event Management (SIEM) services, such as Splunk\* or Datadog\*, to receive real-time notifications about attestation events.
 
 :::note
-TA SIEM events are approximately 12 KB. By default, Splunk* limits event sizes to 10 KB and truncates larger messages. Splunk* administrators can increase the character limit to more than 10,000 to prevent truncation.
+TA SIEM events are approximately 12 KB. By default, Splunk\* limits event sizes to 10 KB and truncates larger messages. Splunk\* administrators can increase the character limit to more than 10,000 to prevent truncation.
 :::
 
 - **Successful attestation:** TA sends the attestation token to the SIEM platform when attestation succeeds. By default, this doesn't indicate that all policies matched. To enforce policy matching and return an error instead of a token when a policy doesn't match, set the optional `policy_must_match` value to `true` in the attestation request.

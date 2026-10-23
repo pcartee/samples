@@ -111,7 +111,7 @@ A user's policy, tags, and API keys are **not** deleted when the user is deleted
 
 <TabItem value="cli" label="CLI">
 
-### View tenant admins and users
+### View tenant admins and users (CLI)
 
 This command lists the current users in your environment.
 
@@ -253,7 +253,7 @@ Users:
 ]
 ```
 
-### Create a user
+### Create a user (CLI)
 
 Use the following command to create a new user for your environment.
 
@@ -286,7 +286,7 @@ User:
 }
 ```
 
-### Update user roles
+### Update user roles (CLI)
 
 Use the following command to update a specified user's role.
 
@@ -324,7 +324,7 @@ Updated User:
 }
 ```
 
-### Delete a user
+### Delete a user (CLI)
 
 This command deletes the specified user from the tenant associated with the logged-in account.
 

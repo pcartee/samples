@@ -879,7 +879,7 @@ export := {
 | Claim  | Datatype | Description                                              |
 | ------ | -------- | -------------------------------------------------------- |
 | alg    | String   | The PCR measurements that were included in TPM evidence. |
-| index  | Number   | The index of the PCR (0 through 23).                      |
+| index  | Number   | The index of the PCR (0 through 23).                     |
 | digest | String   | The PCR's digest/measurement.                            |
 
 #### V2 TPM policy

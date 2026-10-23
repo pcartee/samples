@@ -116,7 +116,7 @@ Before beginning these instructions, have access to the hash for the **mrenclave
 This feature is in pre-release status. For preview access, please contact your Intel sales representative. Details of implementation and usage may change before general availability.
 :::
 
-This sample policy verifies that an Azure* confidential VM with Intel® TDX is authenticated and uses an Azure* hypervisor and VM image. The `match` keyword and variable let you specify which rules must match for the entire policy to match. This sample uses a `match` rule that references other rules in the policy. The Intel® TDX **mrseam** and **mrtd** measurements check the integrity and authenticity of the trust domain and image. The PCR 0 measurement verifies the integrity of the virtual UEFI firmware.
+This sample policy verifies that an Azure\* confidential VM with Intel® TDX is authenticated and uses an Azure\* hypervisor and VM image. The `match` keyword and variable let you specify which rules must match for the entire policy to match. This sample uses a `match` rule that references other rules in the policy. The Intel® TDX **mrseam** and **mrtd** measurements check the integrity and authenticity of the trust domain and image. The PCR 0 measurement verifies the integrity of the virtual UEFI firmware.
 
 This policy imports the `rego.v1` package. The `if` keyword is required before a rule block. The `rego.v1` package enables future keywords and related features.
 
