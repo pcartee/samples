@@ -33,7 +33,7 @@ The _relying party_ uses the attestation token to decide if it trusts the attest
 
 ## Faithful verification
 
-An attestation token is only as good as the verifier and services in the chain of trust. TA attestation tokens are signed with a certificate that is traceable to the CA.  TA microservices run in TEEs and a record is kept of TEE quotes and the services used during quote verification and attestation. This feature, known as _Faithful Verification_, generates a token audit report that can be used to verify the TA services involved in attestation and the TA environment. For more information, see the [Faithful Verifier](../Attestation%20Technologies/Utilites/utility-faithful-verifier.md) tool.
+An attestation token is only as good as the verifier and services in the chain of trust. TA attestation tokens are signed with a certificate that is traceable to the CA.  TA microservices run in TEEs and a record is kept of TEE quotes and the services used during quote verification and attestation. This feature, known as _Faithful Verification_, generates a token audit report that can be used to verify the TA services involved in attestation and the TA environment. For more information, see the [Faithful Verifier](../Attestation%20Technologies/Utilities/utility-faithful-verifier.md) tool.
 
 ## Attestation policies
 

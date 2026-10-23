@@ -1,6 +1,6 @@
 ---
 title: TA CLI service management
-description: TA CLI service management commands.
+description: Reference for listing TA service offers, services, plans, and products with the TA CLI.
 author: pcartee
 topic-type: Reference
 date: 08/16/2023
@@ -8,15 +8,15 @@ uid: cli-service-commands
 sidebar_position: 3
 ---
 
-Use the commands listed below to manage your services.
+Use these commands to view service offers, subscribed services, plans, and products.
 
 :::note
-Have your API key available before attempting these commands. To obtain your API key, follow the retrieve API key instructions.
+Have your API key available before running these commands. For instructions, see [Retrieve your API key](../Quickstart/tutorial-api-key.md).
 :::
 
-## Get service offers
+## List service offers
 
-The following command list your TA service offer.
+This command lists the service offers available in your TA environment.
 
 `tactl list serviceOffer`
 
@@ -28,7 +28,7 @@ tactl list serviceOffer
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOm53EuHoAMEIhA=
 Service offers: 
 
@@ -40,15 +40,15 @@ Service offers:
 ]
 ```
 
-## Get services
+## List services
 
-Returns all the subscribed services for the tenant associated with the API key.
+This command lists all services subscribed to by the tenant associated with the API key.
 
 `tactl list service`
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOm7kE9WoAMEG_w=
  [
   {
@@ -64,21 +64,21 @@ trace-id:  LOm7kE9WoAMEG_w=
 ]
 ```
 
-## Get service by id
+## Get a service by ID
 
-Retrieves subscribed service details for the specified serviceId for tenant associated with the API key.
+This command retrieves details for the specified service ID associated with the tenant for the API key.
 
 `tactl list service -r < service Id >`
 
 ### Sample call
 
 ```bash
-	tactl list service -r 1dceedae-0f71-4bb7-a076-52b229f751fbd
+tactl list service -r 1dceedae-0f71-4bb7-a076-52b229f751fbd
 ```
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOm7qHi1oAMEtkg=
 Services:
 {
@@ -93,9 +93,9 @@ Services:
 }
 ```
 
-## Get plans
+## List plans
 
-This command retrieves the plans in your TA environment.
+This command lists the plans available for the specified service offer in your TA environment.
 
 `tactl list plan -r < service offer id >`
 
@@ -107,7 +107,7 @@ tactl list plan -r 8fe770d6-aec0-4eca-bc9d-893ae1998fab7
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOm5_EPjoAMEN4Q=
 Plans: 
 
@@ -135,9 +135,9 @@ Plans:
 ]
 ```
 
-## Get plan by id
+## Get a plan by ID
 
-Retrieves details of a plan associated with the serviceOfferId for the specified planId.
+This command retrieves details for the specified plan and service offer.
 
 `tactl list plan -r < service offer id > -p < plan id >`
 
@@ -149,7 +149,7 @@ tactl list plan -r 8fe770d6-aec0-4eca-bc9d-893ae1998fab7 -p b5fae544-5894-4305-8
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOm6XED-oAMEoFQ=
 Plans: 
 
@@ -193,9 +193,9 @@ Plans:
 }
 ```
 
-## Get products
+## List products
 
-The following command list the products in your TA environment.
+This command lists the products available for the specified service offer in your TA environment.
 
 `tactl list product -r < service offer id >`
 
@@ -205,9 +205,9 @@ The following command list the products in your TA environment.
 tactl list product -r ea6ad8d3-fd3f-4ccb-82c7-ac021899a199
 ```
 
-### Sample Response
+### Sample response
 
-```bash
+```text
 trace-id:  LOm7LHeVIAMEttg=
 Products: 
 
@@ -237,6 +237,6 @@ Products:
     },
     "plan_id": "e66ae43b-3150-44a2-b54f-5d31e7f72361",
     "product_type": "attestation"
-  },
+  }
 ]
 ```

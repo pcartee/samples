@@ -1,6 +1,6 @@
 ---
 title: API client management
-description: TA CLI API client management commands.
+description: Reference for creating, updating, listing, and deleting TA API clients and tags, and managing API client policies.
 author: pcartee
 topic-type: Reference
 date: 01/03/2024
@@ -8,19 +8,19 @@ uid: api-client-management
 sidebar_position: 4
 ---
 
-These commands are used to manage API clients.
+Use these commands to manage API clients and tags.
 
 :::note
-You need your admin API key to perform these commands. See the [Copy Admin API key](../Quickstart/tutorial-api-key.md#admin-keys) instructions for more information.
+You need an admin API key to run these commands. For more information, see [Copy an admin API key](../Quickstart/tutorial-api-key.md#admin-keys).
 :::
 
-## Create apiClient
+## Create an API client
 
-This command creates a new attestation API key and its associated metadata (associating the key with policies, tags, etc.). However, you need to access the portal to get the API key's value. See the [Getting Started](../Quickstart/tutorial-api-key.md) article for instructions on how to view and copy the attestation API key's.
+This command creates an attestation API key and its associated metadata, including policies and tags. To get the API key value, use the portal. For instructions, see [Getting started](../Quickstart/tutorial-api-key.md).
 
 `tactl create apiClient -r < service id > -p < product id > -n < api client name > -i "comma separated policy Ids" -v "tag-id1:tag-name1,tag-id2:tag-name2"`
 
-### Sample Call
+### Sample call
 
 ```bash
 tactl create apiClient -n "TestApiClientKeyDefaultTag" -p 095e2a13-b913-4d66-9c4d-f6e8a40f5915 -r 382d4141-103b-47f3-a001-13490db89d1d -v Workload:testworkload
@@ -28,20 +28,20 @@ tactl create apiClient -n "TestApiClientKeyDefaultTag" -p 095e2a13-b913-4d66-9c4
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOnu-EK3IAMEHdA=
-ApiClient: 
+ApiClient:
 
- {
+{
   "id": "60e94c91-e181-4bbe-9325-df6d8ac52866",
   "service_id": "382d4141-103b-47f3-a001-13490db89d1d",
   "service_offer_name": "",
   "product_id": "095e2a13-b913-4d66-9c4d-f6e8a40f5915",
   "product_name": "Enterprise",
   "status": "Active",
-  "name": "AmberApiClientKeyDefaultTag",
+  "name": "TestApiClientKeyDefaultTag",
   "keys": [
-    "7SgAk9i80NaqzR1kWX6RT2jfDS15p7uK2fezZ6EG"
+    "<redacted>"
   ],
   "policy_ids": null,
   "tags": [
@@ -59,9 +59,9 @@ ApiClient:
 
 ```
 
-## Update apiClient
+## Update an API client
 
- This command updates your current apiClient.
+This command updates an API client's policies and tags.
 
 `tactl update apiClient -r < service id > -p < product id > -c < api client id > -i "comma separated policy Ids" -v "tag-key1:tag-value1,tag-key2:tag-value2"`
 
@@ -73,7 +73,7 @@ tactl update apiClient -r 382d4141-103b-47f3-a001-13490db89d1d -p 095e2a13-b913-
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOnw6Fv6oAMEstQ=
 ApiClient: 
 
@@ -89,21 +89,21 @@ ApiClient:
 }
 ```
 
-## Get apiClient
+## List API clients
 
-This command lists your apiClient.
+This command lists your API clients.
 
 `tactl list apiClient -r < service id >`
 
 ### Sample call
 
 ```bash
-tactl list apiClient -r 382d4141-103b-47f33-a001-13490db89d1d
+tactl list apiClient -r 382d4141-103b-47f3-a001-13490db89d1d
 ```
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOnw6Fv6oAMEstQ=
 ApiClient: 
 
@@ -113,29 +113,28 @@ ApiClient:
     "product_id": "pldo9ide3e-09id-0odc-p0od-podo85mn324d",
     "product_name": "Enterprise",
     "status": "Inactive",
-    "description": "TenantCliKeyUser2",
+    "description": "Sample tenant API client",
     "expired_at": "2022-11-14T11:08:40.804604Z",
     "created_at": "2022-10-14T10:15:24.376065Z"
   }
 
 ```
 
-## Get apiClient by id
+## Get an API client by ID
 
-This command lists a specific TA apiClient.
+This command displays a specific TA API client.
 
-`tactl list apiClient -r < service id > -c < api Client id >`
+`tactl list apiClient -r < service id > -c < api client id >`
 
 ### Sample call
 
 ```bash
-
-tactl list apiClient -r 382d4141-103b-47f33-a001-13490db89d1d -c 0c5be66c-fac0-4c27-825b-22ee5abbbf71
+tactl list apiClient -r 382d4141-103b-47f3-a001-13490db89d1d -c 0c5be66c-fac0-4c27-825b-22ee5abbbf71
 ```
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOny2GU8IAMEgZw=
 ApiClients: 
 
@@ -148,7 +147,7 @@ ApiClients:
   "status": "Active",
   "name": "Amber-ApiClient_Key123",
   "keys": [
-    "zALiUm06Xf7aGKIWsLUUW2B4wGBRBORm9EvfRZyo"
+    "<redacted>"
   ],
   "policy_ids": [],
   "tags": [],
@@ -157,26 +156,26 @@ ApiClients:
 }
 ```
 
-## Delete apiClient
+## Delete an API client
 
-This command deletes a TA apiClient.
+This command deletes a TA API client.
 
 `tactl delete apiClient -r < service id > -c < api client id >`
 
-### Sample Call
+### Sample call
 
 ```bash
-tactl delete apiClient -r 382d4141-103b-477f3-a001-13490db89d1d -c 0c5be66c-fac0-4c27-825b-22ee5abbbf71
+tactl delete apiClient -r 382d4141-103b-47f3-a001-13490db89d1d -c 0c5be66c-fac0-4c27-825b-22ee5abbbf71
 ```
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOn0YHigIAMEX7g=
 Deleted api client with Id: 36ffa32c-e1df-46a2-9d57-f2be51c07d9f
 ```
 
-## List apiClient policies
+## List API client policies
 
 `tactl list apiClient policy -r < service id > -c < api client id >`
 
@@ -189,7 +188,7 @@ tactl list apiClient policy -r 382d4141-103b-47f3-a001-13490db89d1d -c 3a7e48bc-
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOnzYH4uoAMEdiQ=
 Policy IDs: 
 
@@ -200,7 +199,7 @@ Policy IDs:
 }
 ```
 
-## Create tag
+## Create a tag
 
 This command creates a tag for TA.
 
@@ -209,23 +208,23 @@ This command creates a tag for TA.
 ### Sample call
 
 ```bash
-tactl create tag -n "TestTagUsername"
+tactl create tag -n "SampleTag"
 ```
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOnIBH5yIAMEJ5Q=
 {
   "id": "60f29395-2ffc-4e65-8e60-5abbd2e97d1c",
-  "name": "TestTagUsername",
+  "name": "SampleTag",
   "predefined": false
 }
 ```
 
 ## List tags
 
-This command list the tags associated to your TA system.
+This command lists the tags associated with your TA system.
 
 `tactl list tag`
 
@@ -235,9 +234,9 @@ This command list the tags associated to your TA system.
 tactl list tag
 ```
 
-### Sample Response
+### Sample response
 
-```bash
+```text
 trace-id:  LOnI6FFjIAMEYaQ=
 Tags: 
 
@@ -267,31 +266,30 @@ Tags:
 }
 ```
 
-## Delete tag
+## Delete a tag
 
 This command deletes a tag.
 
 `tactl delete tag -t < tag id >`
 
 ### Sample call
+
 ```bash
 tactl delete tag -t 47yukjsv-29op-38sq-v3g8-xcqd456hju7i
 ```
 
 ### Sample response
 
-```bash
-{
- tag 47yukjsv-29op-38sq-v3g8-xcqd456hju7i deleted
- }
+```text
+tag 47yukjsv-29op-38sq-v3g8-xcqd456hju7i deleted
 ```
 
 
-## List apiClient tags
+## List API client tags
 
-This command lists all your TA tags.
+This command lists the tags associated with an API client.
 
-`tactl list apiClient tag -r < service id > -c <  api client id >`
+`tactl list apiClient tag -r < service id > -c < api client id >`
 
 ### Sample call
 
@@ -301,7 +299,7 @@ tactl list apiClient tag -r 382d4141-103b-47f3-a001-13490db89d1d -c 30686bc0-0a7
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOnz5H8OoAMEVtQ=
 Tags: 
 
@@ -318,20 +316,19 @@ Tags:
 
 ## Get API client policies
 
-This command lists your subscriptions and policies.
+This command lists the policies associated with an API client.
 
 `tactl list apiClient policy -r < service id > -c < api client id >`
 
 ### Sample call
 
 ```bash
-tactl list apiClient policy -r 382d4141-10
-03b-47f3-a001-13490db89d1d -c 3a7e48bc-0d7a-4078-b830-8d4da2b5b704
+tactl list apiClient policy -r 382d4141-103b-47f3-a001-13490db89d1d -c 3a7e48bc-0d7a-4078-b830-8d4da2b5b704
 ```
 
 ### Sample response
 
-```bash
+```text
 trace-id:  LOnzYH4uoAMEdiQ=
 Policy IDs: 
 

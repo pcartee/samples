@@ -1,13 +1,13 @@
 ---
-title: Trusted Execution Environments (TEE)
-description: Overview of trusted execution environments (TEEs), attestation and trusted computing base verification, and options for integrating SGX and TDX workloads with TA services.
+title: Trusted Execution Environments (TEEs)
+description: Overview of trusted execution environments, trusted computing base verification through attestation, and TA integration options for SGX, TDX, and MAA workloads.
 author: pcartee
 topic: conceptual
 date: 02/07/2025
 uid: tees.overview
 ---
 
-A trusted execution environment (TEE) helps protect code and data from modification by untrusted software, hardware, and system components outside the TEE boundary. TEEs can help defend against many software-based and some hardware-based attacks, and provide assurance that the software and hardware within the TEE have not been tampered with.
+A trusted execution environment (TEE) helps protect code and data from modification by untrusted software, hardware, and system components outside the TEE boundary. TEEs can help defend against many software-based and some hardware-based attacks and provide assurance that the software and hardware within the TEE have not been tampered with.
 
 TA supports Software Guard Extensions (SGX) and Trust Domain Extensions (TDX) TEEs. To use TA services, you need a working knowledge of the underlying TEE technology. To learn more about SGX and TDX, see [Next steps](#next-steps).
 
@@ -27,12 +27,12 @@ TA provides several ways to integrate TEE workloads with its services:
 
 ## Next steps
 
-SGX and TDX resources:
+### SGX and TDX resources
 
-- [SGX main page](https://www.company.com/content/www/us/en/developer/tools/software-guard-extensions/overview.html)
-- [TDX main page](https://www.company.com/content/www/us/en/developer/articles/technical/trust-domain-extensions.html)
+- [Intel SGX overview](https://www.intel.com/content/www/us/en/developer/tools/software-guard-extensions/overview.html)
+- [Intel TDX documentation](https://www.intel.com/content/www/us/en/developer/tools/trust-domain-extensions/documentation.html)
 
-TA TEE integrations:
+### TA TEE integrations
 
 - [TA Go Client](../Integration/integrate-go-client.md)
 - TDX CLI (for TDX trust domains)

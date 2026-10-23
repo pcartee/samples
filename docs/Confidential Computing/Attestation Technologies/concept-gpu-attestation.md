@@ -1,6 +1,6 @@
 ---
 title: GPU remote attestation with TA
-description: Learn how TA supports NVIDIA GPU attestation with Intel TDX, including composite and GPU-only workflows, the attestation architecture, Python client and CLI usage, REST API endpoint, JWT claims, and sample appraisal policies.
+description: Explains NVIDIA GPU attestation with TA, including Intel TDX composite and GPU-only workflows, client and REST API support, JWT claims, and sample appraisal policies.
 author: pcartee
 topic: conceptual, attestation, gpu
 date: 09/17/2024
@@ -9,26 +9,26 @@ uid: gpu.attestation
 import BasicToken from '../Include/eat/_nv-basic-token.md';
 import NVIDIA from '../Include/eat/_nvidia-policy-claims.md';
 
-TA supports remote attestation for NVIDIA H100 GPU TEEs. You can attest a confidential virtual machine (VM) TEE and an NVIDIA H100 GPU in a single composite attestation workflow. This article describes the GPU attestation architecture, the TA Python client, CLI, and REST API support, and examples of GPU and composite attestation JWTs.
+TA supports remote attestation for NVIDIA H100 GPU TEEs. You can attest a confidential virtual machine (CVM) TEE and an NVIDIA H100 GPU in a single composite workflow. This article describes the GPU attestation architecture, TA Python client, CLI and REST API support, and examples of GPU and composite attestation JWTs.
 
 :::note
 The implementation described here supports on-premises hardware. Cloud-based GPU attestation is outside the scope of this article.
 :::
 
-Using a GPU as a TEE extends the capabilities of a CPU TEE. Generative artificial intelligence (GAI) and other demanding workloads use GPU acceleration to achieve acceptable performance. GAI models and parameters can be valuable intellectual property, and these workloads often process sensitive data. A GPU TEE provides a protected execution environment for these workloads and helps protect data from unauthorized access or tampering.
+Using a GPU as a TEE extends the capabilities of a CPU TEE. Generative artificial intelligence (GAI) and other demanding workloads use GPU acceleration to achieve acceptable performance. GAI models and parameters can be valuable intellectual property, and these workloads often process sensitive data. A GPU TEE provides a protected execution environment and helps protect workloads and data from unauthorized access or tampering.
 
-However, a GPU alone does not provide a complete confidential computing solution. The GPU confidential computing solution relies on a CPU TEE in a confidential VM, enabled by Intel® Trust Domain Extensions (Intel® TDX) 1.x on Intel CPUs. The CPU TEE provides measurements and attestation evidence that help establish trust in the GPU. It also orchestrates secure information transfer to the GPU. The GPU and confidential VM exchange keys to establish an encrypted communications channel.
+However, a GPU alone does not provide a complete confidential computing solution. GPU confidential computing relies on a CPU TEE in a confidential VM enabled by Intel® Trust Domain Extensions (Intel® TDX) 1.x on Intel CPUs. The CPU TEE provides measurements and attestation evidence that help establish trust in the GPU. It also orchestrates secure information transfer to the GPU. The GPU and confidential VM exchange keys to establish an encrypted communications channel.
 
 The TA Python client, CLI for Intel TDX and NVIDIA GPUs, and TA REST API support two GPU attestation options:
 
-1. **Composite CPU TEE and GPU TEE attestation:** The TA client collects separate evidence from the confidential VM TEE and GPU driver, combines it, and sends it to TA for verification. TA verifies the CPU evidence and sends the GPU quote to NVIDIA Remote Attestation Service (NRAS) for verification. The attestation JWT issued by TA contains CPU TEE claims, GPU claims, and other claims from the TA service. Composite attestation is the preferred method for confidential computing solutions that include a GPU TEE.
+1. **Composite attestation for CPU and GPU TEEs:** The TA client collects separate evidence from the confidential VM TEE and GPU driver, combines it, and sends it to TA for verification. TA verifies the CPU evidence and sends the GPU quote to NVIDIA Remote Attestation Service (NRAS) for verification. The attestation JWT issued by TA contains CPU TEE claims, GPU claims, and other claims from the TA service. Composite attestation is the preferred method for confidential computing solutions that include a GPU TEE.
 2. **GPU-only attestation:** The TA client collects GPU evidence and requests verification. As described above, GPU-only attestation does not provide a complete confidential computing solution.
 
 ## GPU attestation architecture
 
 The following diagram provides a high-level view of the GPU attestation architecture and the relationships among the attester, verifiers, and relying party.
 
-![Intel TDX and NVIDIA GPU attestation architecture diagram](/img/gpu-attestation/gpu_attestation_arch.png)
+![Diagram showing an attester with an Intel TDX trust domain, confidential computing application, TA client, TDX guest, NVIDIA driver, host CPU, and H100 GPU; a relying party; and Intel Trust Authority and NVIDIA Remote Attestation Service as verifiers connected for composite and GPU-only attestation.](/img/gpu-attestation/gpu_attestation_arch.png)
 
 The attester comprises the confidential computing (CC) application and related software running in the trust domain (TD), the Intel TDX-enabled host server, and a local or remote NVIDIA GPU.
 
@@ -46,11 +46,11 @@ For composite attestation with an NVIDIA GPU, TA relies on NRAS to verify the GP
 
 For GPU-only attestation (option 2 in the diagram), the TA Python client GPU adapter collects GPU evidence, generates a nonce in NVIDIA's 32-byte hexadecimal format, and sends an attestation request to TA. TA sends the GPU evidence to NRAS for verification, verifies the NRAS JWT certificate, and copies the NRAS JWT claims to the `"nvgpu": {}` section of the TA-issued JWT.
 
-Composite attestation of the CPU TEE and GPU TEE provides a more complete confidential computing solution than GPU-only attestation. The GPU TEE trust model relies on the CPU TEE to establish trust in the GPU and manage data flow and computation over the secure channel between them.
+Composite attestation of the CPU and GPU TEEs provides a more complete confidential computing solution than GPU-only attestation. The GPU TEE trust model relies on the CPU TEE to establish trust in the GPU and manage data flow and computation over the secure channel between them.
 
 ## Python client
 
-The TA Python client supports NVIDIA GPU attestation. Its GPU adapter collects evidence from the NVIDIA GPU driver running on the server where the GPU is installed and sends it to TA for verification.
+The TA Python client supports NVIDIA GPU attestation. Its GPU adapter collects evidence from the NVIDIA GPU driver on the server where the GPU is installed and sends it to TA for verification.
 
 :::note
 Intel TDX and NVIDIA GPU attestation require Ubuntu 24.04 LTS with Linux kernel 6.8 or later.
@@ -62,7 +62,7 @@ The **ITAConnector.get_token_v2** method supports both single-device (Intel TDX 
 def get_token_v2(self, tdx_args: GetTokenArgs, gpu_args: GetTokenArgs) -> GetTokenResponse:
 ```
 
-You must supply either `tdx_args` or `gpu_args`, or both, to **get_token_v2**. If you supply both, the client requests composite attestation.
+Supply `tdx_args`, `gpu_args`, or both to **get_token_v2**. If you supply both, the client requests composite attestation.
 
 The **ITAConnector.get_token** method supports single-device attestation for Intel TDX and Intel SGX. It does not support GPU or composite attestation.
 
@@ -70,7 +70,7 @@ The **ITAConnector.get_token** method supports single-device attestation for Int
 
 The TA Python CLI for Intel® Trust Domain Extensions (Intel® TDX) and NVIDIA GPUs, **ta-pycli**, attests an Intel TDX trust domain (TD) and NVIDIA GPU with TA.
 
-**ta-pycli** requires **`python-connector`**, **`python-intel-tdx`**, **`python-nvgpu`**, and the NVIDIA Attestation SDK. You must have a configuration file in the **ta-pycli** directory. See the README for details and documentation of the following commands.
+**ta-pycli** requires **`python-connector`**, **`python-intel-tdx`**, **`python-nvgpu`**, and the NVIDIA Attestation SDK. You must have a configuration file in the **ta-pycli** directory. See the README for details about these commands.
 
 **ta-pycli** has three commands: **attest**, **evidence**, and **verify**.
 
@@ -78,15 +78,15 @@ The TA Python CLI for Intel® Trust Domain Extensions (Intel® TDX) and NVIDIA G
 Root permissions are required to access the configfs-tsm device to collect evidence for Intel TDX attestation. Run the **attest** and **evidence** commands as root. For example: `sudo python3 ta-pycli attest --attest_type tdx+nvgpu`. GPU-only attestation does not require `sudo`.
 :::
 
-The **attest** command collects evidence from the attester and sends an attestation request to TA. It requires an `--attest_type` parameter: `tdx`, `nvgpu`, or `tdx+nvgpu`. Use `tdx+nvgpu` for composite attestation of an Intel TDX TD and NVIDIA H100 GPU.
+The **attest** command collects evidence from the attester and sends an attestation request to TA. It requires an `--attest_type` parameter with one of these values: `tdx`, `nvgpu`, or `tdx+nvgpu`. Use `tdx+nvgpu` for composite attestation of an Intel TDX TD and NVIDIA H100 GPU.
 
-The **evidence** command collects evidence from Intel TDX, the GPU driver, or both, and can save the evidence to a file. It supports the background-check attestation model and is useful for development and testing.
+The **evidence** command collects evidence from Intel TDX, the GPU driver, or both, and can save it to a file. It supports the background-check attestation model and is useful for development and testing.
 
 The **verify** command verifies a TA attestation token. It takes a JWT as input and checks the issuer's signing certificates, certificate revocation list (CRL), and expiration date.
 
 ## REST API updates
 
-GPU-only and composite Intel TDX and GPU attestation use the `/appraisal/v2/attest` endpoint of the TA REST API.
+GPU-only attestation and composite attestation for Intel TDX and a GPU use the `/appraisal/v2/attest` endpoint of the TA REST API.
 
 ## GPU JWT example
 
@@ -110,7 +110,7 @@ This token shows a mixed result: the attestation report is valid, but the GPU me
 
 ## Example appraisals
 
-This section includes sample appraisal policies for GPU attestation results. Most examples are fragments that must be combined to create a complete GPU or composite policy. For more information about appraisal policies, see the Appraisal Policy V2 documentation.
+This section includes sample appraisal policies for GPU attestation results. Most examples are fragments that you must combine to create a complete GPU or composite policy. For more information, see the Appraisal Policy V2 documentation.
 
 ### Secure boot
 
@@ -148,7 +148,7 @@ This policy checks whether the GPU driver RIM is available and valid.
 ```rego
 default match := false
 
-match {    
+match {
     input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-validated"] == true
     input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-fetched"] == true
     input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-signature-verified"] == true
@@ -165,7 +165,7 @@ This policy checks whether the VBIOS RIM is available and valid.
 ```rego
 default match := false
 
-match {    
+match {
     input.nvgpu["x-nvidia-attestation-detailed-result"]['x-nvidia-gpu-vbios-rim-measurements-available'] == true
     input.nvgpu["x-nvidia-attestation-detailed-result"]['x-nvidia-gpu-vbios-rim-schema-fetched'] == true
     input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-cert-validated"] == true
@@ -178,7 +178,7 @@ match {
 
 This policy checks GPU hardware information, such as the driver and VBIOS versions. Replace the example values with the values for your GPU.
 
-This example uses policy v2 syntax. Replace the example values with the values for your GPU.
+This example uses policy V2 syntax. Replace the example values with the values for your GPU.
 
 ```rego
 
@@ -186,7 +186,7 @@ import rego.v1
 
 default match := false
 
-match if {    
+match if {
     input.nvgpu["x-nvidia-gpu-driver-version"] == "535.104.05"
     input.nvgpu.hwmodel == "GH100 A01 GSP BROM"
     input.nvgpu["x-nvidia-gpu-vbios-version"] == "96.00.5E.00.01"

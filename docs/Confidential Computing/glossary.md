@@ -76,7 +76,7 @@ An _endorser_ is an entity that endorses or substantiates evidence provided by t
 An _entity_ is any component or actor with a role in the attestation process. Entities are usually logical, e.g. a service, complex logic, or human component, as opposed to a device such as a disk controller or router card.
 
 #### Faithful Verification
-The [TA Faithful Verifier (FV) tool](./Attestation%20Technologies/Utilites/utility-faithful-verifier.md) is a Linux command-line utility that is used to verify the fidelity of a TA token. The Faithful Verifier tool can be downloaded from the TA web interface downloads page.
+The [TA Faithful Verifier (FV) tool](./Attestation%20Technologies/Utilities/utility-faithful-verifier.md) is a Linux command-line utility that is used to verify the fidelity of a TA token. The Faithful Verifier tool can be downloaded from the TA web interface downloads page.
 
 #### GSC
 _Gramine Shielded Containers (GSC)_* provide the infrastructure to deploy Docker* containers protected by Intel SGX enclaves using the Gramine Library OS*. For more information, see TA Gramine integration.

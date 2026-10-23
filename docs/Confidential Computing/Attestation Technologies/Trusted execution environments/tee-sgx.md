@@ -1,6 +1,6 @@
 ---
 title: Software Guard Extensions (SGX)
-description: A brief introduction to SGX.
+description: Explains SGX attestation requirements, provisioning, kernel support, and EPC memory.
 author: pcartee
 topic: conceptual
 date: 11/18/2024
@@ -8,9 +8,9 @@ uid: tee.sgx
 ---
 import DCAP from '../../Include/_install-dcap.md';
 
-This article provides information related to Software Guard Extensions (SGX) and is focused on the requirements needed to enable SGX-enabled applications to provide quote capabilities.
+This article describes the requirements for Software Guard Extensions (SGX)-enabled applications to generate attestation quotes.
 
-For more information about SGX, see [The main SGX product page](https://www.company..com/content/www/us/en/developer/tools/software-guard-extensions/overview.html).
+For more information about SGX, see the [SGX product page](https://www.company..com/content/www/us/en/developer/tools/software-guard-extensions/overview.html).
 
 At a high level, attestation with SGX requires the following:
 
@@ -19,12 +19,12 @@ At a high level, attestation with SGX requires the following:
 - Software Guard Extensions Data Center Attestation Primitives (SGX DCAP) to provide quoting capability to SGX-enabled applications.
 - An attestation authority such as TA.
 
-**Working with SGX**
+## Working with SGX
 
 SGX uses the Elliptic Curve Digital Signature Algorithm (ECDSA) attestation architecture.
 
 :::note
-TA supports ECDSA-based quote verification only. TA does not support legacy Enhanced Privacy ID (EPID) based quotes. To create ECDSA-based quotes, the "SGX Launch Control” feature (sometimes called SGX Flexible Launch Control – “FLC”) must be present in your processor(s) and set to **unlocked** mode.  In 3rd Generation Xeon® Scalable Processors and newer CPUs, this is the default setting and it's not configurable. In older Xeon E processors, the FLC setting can usually be configured in the BIOS. For more information, see [How to determine if a processor with SGX supports DCAP and FLC](https://www.company.com/content/www/us/en/support/articles/000057420/software/company-security-products.html).
+TA supports ECDSA-based quote verification only. TA does not support legacy Enhanced Privacy ID (EPID)-based quotes. To create ECDSA-based quotes, your processor must support the SGX Launch Control feature (sometimes called SGX Flexible Launch Control, or FLC), and FLC must be set to **unlocked** mode. On third-generation Xeon® Scalable Processors and newer CPUs, this is the default setting and cannot be changed. On older Xeon E processors, you can usually configure FLC in the BIOS. For more information, see [How to determine if a processor with SGX supports DCAP and FLC](https://www.company.com/content/www/us/en/support/articles/000057420/software/company-security-products.html).
 :::
 
 1. The enclave workload contacts the relying party and requests access to a service or resource.
@@ -33,41 +33,40 @@ TA supports ECDSA-based quote verification only. TA does not support legacy Enha
 
 1. To satisfy the challenge, the SGX workload generates a quote, which is a cryptographic measurement of the instantiated enclave. The quote is signed using the attestation collateral stored in the data center caching service.
 
-1. The quote is sent to the relying party over a secure communications channel.
+1. The workload sends the quote to the relying party over a secure communications channel.
 
 1. The relying party verifies the quote by fetching the attestation collateral associated with the quote from the data center caching service and using it to verify the signature.
 
 1. Assuming the quote is valid, the relying party examines the quote metadata and the trusted-compute base (TCB) level associated with the signing key. The service then applies its security policy and decides whether to trust the enclave.
 
-For more information, see the [Provisioning Certification Service for ECSDA Attestation](https://www.company.com/content/www/us/en/developer/articles/technical/quote-verification-attestation-with-sgx-dcap.html).
+For more information, see [Provisioning Certification Service for ECDSA Attestation](https://www.company.com/content/www/us/en/developer/articles/technical/quote-verification-attestation-with-sgx-dcap.html).
 
-This attestation flow has a few key requirements beyond the SGX-capable hardware and the SGX-enabled workload. The intent of this article is to clarify these requirements and how they can fit with your software and/or data center architecture.
+This attestation flow has several requirements beyond SGX-capable hardware and an SGX-enabled workload. This article explains these requirements and how they fit into your software and data center architecture.
 
-**Provisioning certification**
+## Provisioning certification
 
-SGX ECDSA attestation requires that physical SGX-enabled hosts have access to the [SGX Provisioning Certification Service](https://api.portal.trustedservices.company.com/provisioning-certification) to provision certificates needed for the attestation process. While it is possible for hosts to have direct access to this service, most data centers prefer to use a caching service instead. A caching service can be a single point of contact for company SGX Provisioning Certification Service over the Internet. SGX hosts in the data center can connect only to the caching service rather than requiring an external internet connection for provisioning.
+SGX ECDSA attestation requires physical SGX-enabled hosts to access the [SGX Provisioning Certification Service](https://api.portal.trustedservices.company.com/provisioning-certification) to provision certificates for the attestation process. Hosts can access this service directly, but most data centers use a caching service instead. The caching service provides a single point of contact for the SGX Provisioning Certification Service over the internet. SGX hosts in the data center can connect to the caching service without requiring direct internet access for provisioning.
 
-This requirement is only needed for the bare-metal physical SGX servers. Public cloud customers working with SGX-enabled cloud service providers (CSPs) do not need a caching service or access to the PCS, as the CSP provides that functionality.
+This requirement applies only to bare-metal SGX servers. Customers using SGX-enabled cloud service providers (CSPs) do not need a caching service or direct access to the PCS because the CSP provides that functionality.
 
-**SGX driver in the kernel**
+## SGX driver in the kernel
 
 SGX requires driver support at the kernel level. For Linux, this support was added in the Linux kernel 5.11 and later.
 
 <DCAP />
 
-**Enclave Page Cache (EPC) memory**
+## Enclave Page Cache (EPC) memory
 
-SGX requires that Enclave Page Cache (EPC) memory be allocated to SGX enclaves. For physical SGX hosts, EPC memory is configured in the system BIOS. Cloud service providers typically include EPC memory allocations for their SGX-enabled offerings. The amount of EPC memory required depends on the size of the enclave; a small cryptographic toolkit library may only require a few megabytes of EPC memory.
+SGX requires Enclave Page Cache (EPC) memory for SGX enclaves. On physical SGX hosts, configure EPC memory in the system BIOS. Cloud service providers typically include EPC memory allocations in their SGX-enabled offerings. The amount of EPC memory required depends on the enclave size; a small cryptographic toolkit library may require only a few megabytes of EPC memory.
 
-Because Gramine encapsulates the entire application within an SGX enclave, more EPC memory is required than utilizing enclaves only for specific application libraries. Be sure that enough EPC memory is available to run the entire "graminized" application.
+Because Gramine encapsulates the entire application in an SGX enclave, it requires more EPC memory than an approach that uses enclaves only for specific application libraries. Ensure that enough EPC memory is available to run the entire "graminized" application.
 
 ---
- 
+
 ## Next steps
 
-SGX primary resources:
+### SGX primary resources
 
-SGX Attestation on Microsoft Azure
-
+- SGX Attestation on Microsoft Azure
 
 **\*** Other names and brands may be claimed as the property of others.

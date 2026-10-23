@@ -118,7 +118,8 @@ input.sgx_mrsigner == "83d719e77deaca1470f6baf62a4d774303c899db69020f9c70ee1dfc0
 input.sgx_is_debuggable == false
 }
 ```
-    </TabItem>
+
+</TabItem>
 </Tabs>
 
 ### Intel TDX incoming claims
@@ -134,12 +135,12 @@ The following claims can be used in the JSON policy input file. For a complete d
 |**tdx_rtmr3**              |String or list of strings.  |
 |**tdx_mrtd**               |String or list of strings. |
 |**tdx_mrsignerseam**       |String or list of strings.  |
-|**tdx_tee_is_debuggable**      |Boolean                     |
+|**tdx_is_debuggable**      |Boolean                     |
 
 #### JSON Intel TDX attestation policy
 
 <Tabs>
-    <TabItem value="tdx-json" label="TDX JSON" default>
+<TabItem value="tdx-json" label="TDX JSON" default>
 
 ### TDX JSON
 
@@ -159,10 +160,11 @@ The following example shows an Intel TDX policy in JSON format, before conversio
             "tdx_is_debuggable": true
         }
     }
-}  
+}
+```
 
- </TabItem>
- <TabItem value="tdx-rego" label="TDX Rego">
+</TabItem>
+<TabItem value="tdx-rego" label="TDX Rego">
 
 ### TDX Rego
 
@@ -187,7 +189,6 @@ input.tdx_is_debuggable == true
 
 </TabItem>
 </Tabs>
----
 
 ## Custom TCB policy incoming claims
 
@@ -280,7 +281,7 @@ The following claims can be used in the JSON policy input file. For a complete d
 <Tabs>
 <TabItem value="sgx-custom-json" label="SGX token custimization JSON">
 
-### SGX token custimization JSON
+### SGX token customization JSON
 
 The following example shows an Intel SGX TCB custom policy in JSON format, before conversion to Rego. The first object literal in the policy is `"sgx_customization":{}`. That tells Policy Builder that this is an Intel SGX claim set customization policy. This is the input file that is specified for conversion.
 
@@ -373,6 +374,7 @@ The following example shows a Intel TDX custom TCB policy in JSON format, before
     }
 }
 ```
+
 </TabItem>
 <TabItem value="tdx-custom-rego" label="TDX token custimization Rego">
 
@@ -1073,6 +1075,7 @@ acceptable_values_for_tdx_rtmr3 := {"ca6acd5094d9319bb2d04b1859931a88124c81e4818
 acceptable_values_for_tdx_rtmr3[input.tdx.tdx_rtmr3]
 input.tdx.tdx_mrtd == "3dfeeb7cf01210c0df8f5adffc65c7ad8a1741119ec873c8a3cf81adefb21fcd1b828b776ead31369cfe7470ac322d54"
 input.tdx.tdx_mrsignerseam == "03f7b0e40e9ebd4bb4b346048bdc0879d0084d534f7848dd8d4f1be4b0e9610d22f72e45ce4d941c056d4db74eb0028c"
+input.tdx.tdx_is_debuggable == true
 }
 match_nvgpu {
 input.nvgpu.secboot == true
@@ -1695,34 +1698,25 @@ The following example shows a V2 TDX + NVGPU + TPM policy in JSON format, before
 
 #### V2 TDX + NVGPU + TPM Rego
 
-The following example shows the JSON input file, above, after conversion to a V2 TDX + NVGPU + TPM policy. This is what you'll use to create your policy in TA.
+The following example shows the JSON input above after conversion to a V2 TDX + NVGPU + TPM policy. Use this output to create your policy in TA.
 
 ```rego
 default match = false
 match {
-match_sevsnp
+match_tdx
 match_tpm
 match_nvgpu
 }
- 
-match_sevsnp {
-input.sevsnp.sevsnp_authorkeydigest == "55795dcfb1e789925f193b414765dcdea9a5a2374c787c26bba2b070882ddd2fd08741da94d21dd1ec5091bfc0e715d7"
-input.sevsnp.sevsnp_guestsvn == 0
-input.sevsnp.sevsnp_bootloader_svn == 2
-acceptable_values_for_sevsnp_familyId := {"00000000000000000000000000000000", "00000000000000000000000000000030"}
-acceptable_values_for_sevsnp_familyId[input.sevsnp.sevsnp_familyId]
-input.sevsnp.sevsnp_imageId == "00000000000000000000000000000000"
-input.sevsnp.sevsnp_reportdata == "a7ddd44a965d012ba26788283c4123a68c0f9139e2297ef87736032a175544908d507f8481cb3a0191d426220c40e32c5d41b8b066fbef67ef426e5fa4193b93"
-input.sevsnp.sevsnp_launchmeasurement == "dfa2b37b1d75eab67026b3bf207690df50b3530ec77f60c488ef73b270247f2908f6de85d799d362cf00fec551c7a5be"
-input.sevsnp.sevsnp_hostdata == "a000000000000000000000000000000000000000000000000000000000000002"
-input.sevsnp.sevsnp_idkeydigest == "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-input.sevsnp.sevsnp_is_debuggable == false
-input.sevsnp.sevsnp_microcode_svn == 41
-input.sevsnp.sevsnp_migration_allowed == false
-input.sevsnp.sevsnp_smt_allowed == true
-input.sevsnp.sevsnp_snpfw_svn == 18
-input.sevsnp.sevsnp_tee_svn == 0
-input.sevsnp.sevsnp_vmpl == 0
+match_tdx {
+input.tdx.tdx_seamsvn == 2
+input.tdx.tdx_rtmr0 == "0b787fd971c0518f82ba4ec05109122093958517b2e19f918efa103c3f07017c8bc0ac63f97ecccfb081362fdc4bd983"
+input.tdx.tdx_rtmr1 == "ca6acd5094d9319bb2d04b1859931a88124c81e4818d43cf582d98d8b2d334bba3eada276ae93a352ede1f1a5e7f2f5c"
+input.tdx.tdx_rtmr2 == "0b787fd971c0518f82ba4ec05109122093958517b2e19f918efa103c3f07017c8bc0ac63f97ecccfb081362fdc4bd983"
+acceptable_values_for_tdx_rtmr3 := {"ca6acd5094d9319bb2d04b1859931a88124c81e4818d43cf582d98d8b2d334bba3eada276ae93a352ede1f1a5e7f2f5c", "ca6acd5094d9319bb2d04b1859931a88124c81e4818d43cf582d98d8b2d334bba3eada276ae93a352ede1f1a5e7f2f5c", "ca6acd5094d9319bb2d04b1859931a88124c81e4818d43cf582d98d8b2d334bba3eada276ae93a352ede1f1a5e7f2f5c", "ca6acd5094d9319bb2d04b1859931a88124c81e4818d43cf582d98d8b2d334bba3eada276ae93a352ede1f1a5e7f2f5c", "ca6acd5094d9319bb2d04b1859931a88124c81e4818d43cf582d98d8b2d334bba3eada276ae93a352ede1f1a5e7f2f5c", "0b787fd971c0518f82ba4ec05109122093958517b2e19f918efa103c3f07017c8bc0ac63f97ecccfb081362fdc4bd983"}
+acceptable_values_for_tdx_rtmr3[input.tdx.tdx_rtmr3]
+input.tdx.tdx_mrtd == "3dfeeb7cf01210c0df8f5adffc65c7ad8a1741119ec873c8a3cf81adefb21fcd1b828b776ead31369cfe7470ac322d54"
+input.tdx.tdx_mrsignerseam == "03f7b0e40e9ebd4bb4b346048bdc0879d0084d534f7848dd8d4f1be4b0e9610d22f72e45ce4d941c056d4db74eb0028c"
+input.tdx.tdx_is_debuggable == true
 }
 match_tpm {
 pcr0 := input.tpm.pcrs[_]
@@ -1751,9 +1745,11 @@ input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-attestation-re
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-driver-measurements-available"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-fetched"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-validated"] == true
+input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-signature-verified"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-measurements-match"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-nonce-match"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-measurements-available"] == true
+input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-schema-fetched'"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-cert-validated"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-schema-validated"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-signature-verified"] == true
@@ -1761,39 +1757,37 @@ input.nvgpu["x-nvidia-gpu-driver-version"] == "535.104.05"
 input.nvgpu["x-nvidia-gpu-vbios-version"] == "96.00.5E.00.015"
 }
 export := {
-"my_sevsnp_isvprodid" : input.sevsnp.sevsnp_authorkeydigest,
-"my_sevsnp_isvsvn" : input.sevsnp.sevsnp_guestsvn,
-"my_sevsnp_mrenclave" : input.sevsnp.sevsnp_bootloader_svn,
-"my_sevsnp_mrsigner" : input.sevsnp.sevsnp_familyId,
-"my_debuggable" : input.sevsnp.sevsnp_reportdata,
-"my_attester_tcb_date" : input.sevsnp.sevsnp_launchmeasurement,
-"my_sevsnp_hostdata" : input.sevsnp.sevsnp_hostdata,
-"my_sevsnp_idkeydigest" : input.sevsnp.sevsnp_idkeydigest,
-"my_sevsnp_is_debuggable" : input.sevsnp.sevsnp_is_debuggable,
-"my_sevsnp_microcode_svn" : input.sevsnp.sevsnp_microcode_svn,
-"mysevsnp_migration_allowed" : input.sevsnp.sevsnp_migration_allowed,
-"my_sevsnp_smt_allowed" : input.sevsnp.sevsnp_smt_allowed,
-"my_sevsnp_snpfw_svn" : input.sevsnp.sevsnp_snpfw_svn,
-"my_sevsnp_tee_svn" : input.sevsnp.sevsnp_tee_svn,
-"mysevsnp_vmpl" : input.sevsnp.sevsnp_vmpl,
+"my_tdx_seamsvn" : input.tdx.tdx_seamsvn,
+"my_tdx_rtmr0" : input.tdx.tdx_rtmr0,
+"my_tdx_rtmr1" : input.tdx.tdx_rtmr1,
+"my_tdx_rtmr2" : input.tdx.tdx_rtmr2,
+"my_tdx_rtmr3" : input.tdx.tdx_rtmr3,
+"my_tdx_mrtd" : input.tdx.tdx_mrtd,
+"my_tdx_mrsignerseam" : input.tdx.tdx_mrsignerseam,
+"my_debuggable" : input.tdx.tdx_is_debuggable,
+"my_attester_tcb_date" : input.tdx.attester_tcb_date,
+"my_attester_advisory_id" : input.tdx.attester_advisory_ids,
+"my_attester_tcb_status" : input.tdx.attester_tcb_status,
 "my_pcrs" : input.tpm.pcrs,
-"my_secboot" : input.nvgpu.secboot,
-"my_hwmodel" : input.nvgpu.hwmodel,
+"mysecboot" : input.nvgpu.secboot,
+"myhwmodel" : input.nvgpu.hwmodel,
 "my_x-nvidia-gpu-arch-check" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-arch-check"],
-"my_report-cert-chain-validated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-attestation-report-cert-chain-validated"],
-"my_parsed" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-attestation-report-parsed"],
-"my_verified" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-signature-verified"],
-"my_measurements_available" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-driver-measurements-available"],
-"my_schema-fetched" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-fetched"],
-"my_schema-validated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-validated"],
-"my_measurements-match" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-measurements-match"],
+"myreport-cert-chain-validated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-attestation-report-cert-chain-validated"],
+"myparsed" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-attestation-report-parsed"],
+"myverified" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-attestation-report-signature-verified"],
+"measurements" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-driver-measurements-available"],
+"mysefetched" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-fetched"],
+"myvalidated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-validated"],
+"mysecboot" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-signature-verified"],
+"mysecbootmatch" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-measurements-match"],
 "my_x-nvidia-gpu-nonce-match" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-nonce-match"],
-"my_x-nvidia-gpu-vbios-rim-measurements-available" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-measurements-available"],
-"my_x-nvidia-gpu-vbios-rim-cert-validated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-cert-validated"],
-"my_x-nvidia-gpu-vbios-rim-schema-validated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-schema-validated"],
-"my_x-nvidia-gpu-vbios-rim-signature-verified" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-signature-verified"],
-"my-nvidia-gpu-driver-version" : input.nvgpu["x-nvidia-gpu-driver-version"],
-"my-nvidia-gpu-vbios-version" : input.nvgpu["x-nvidia-gpu-vbios-version"],
+"myx-nvidia-gpu-vbios-rim-measurements-available" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-measurements-available"],
+"mysx-nvidia-gpu-vbios-rim-schema-fetched" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-schema-fetched'"],
+"mysex-nvidia-gpu-vbios-rim-schema-fetchedt" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-cert-validated"],
+"mysx-nvidia-gpu-vbios-rim-schema-validated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-schema-validated"],
+"mysx-nvidia-gpu-vbios-rim-signature-verified" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-signature-verified"],
+"myx-nvidia-gpu-driver-version" : input.nvgpu["x-nvidia-gpu-driver-version"],
+"mys-nvidia-gpu-vbios-version" : input.nvgpu["x-nvidia-gpu-vbios-version"],
 }
 ```
 

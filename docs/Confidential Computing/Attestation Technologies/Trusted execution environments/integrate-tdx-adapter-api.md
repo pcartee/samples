@@ -1,21 +1,21 @@
 ---
 title: "`go-tdx` adapter API reference"
-description: Provides an overview of the TA Go client
-author: pcartee
+description: Reference for the TA Go TDX attestation client APIs, including evidence collection, decryption, key generation, and event-log access.
+author: "[redacted]"
 topic: integration
 date: 12/22/2023
 uid: integrate.tdx.api
 ---
 
-The TA Intel® TDX Attestation client includes a Go client and a CLI for use on the command line or by languages other than Go, enabling you to use TDX remote attestation in your application.
+The TA Intel® TDX Attestation client includes a Go client and a command-line interface (CLI). Use the Go client in Go applications. Use the CLI from the command line or from applications written in other languages to add TDX remote attestation.
 
 :::note
-TA uses the tdx_report_data claim to verify certain data provided with the quote. The TDX quote's `REPORTMACSTRUCT.REPORTDATA` must contain a SHA512 hash that is the cumulative value of of the nonce supplied with the evidence, runtime_data supplied during quote generation, optional user data (supplied via the `user_data` parameter in client APIs), and attester held data supplied by the TEE during quote generation. The TA clients take care of hashing the data for you, however, independently developed clients must contain the logic to add the hash to REPORTDATA. For more information, see the Go TDX adapter's [CollectEvidence](https://github.com/intel/ta-client-for-go/blob/14b89ef3b58dac84feb125857f6837c1e1b166f0/go-tdx/collect_evidence.go#L26) function as an example.
+TA uses the `tdx_report_data` claim to verify certain data provided with the quote. The TDX quote's `REPORTMACSTRUCT.REPORTDATA` must contain a SHA-512 hash of the cumulative value of the nonce supplied with the evidence, `runtime_data` supplied during quote generation, optional user data (provided through the `user_data` parameter in client APIs), and attester-held data supplied by the TEE during quote generation. TA clients hash the data for you. Independently developed clients must include the logic to add the hash to `REPORTDATA`. For an example, see the Go TDX adapter's [CollectEvidence](https://github.com/intel/ta-client-for-go/blob/14b89ef3b58dac84feb125857f6837c1e1b166f0/go-tdx/collect_evidence.go#L26) function.
 
-Microsoft Azure TDX Preview users should use the [azure-tdx-preview](https://github.com/intel/ta-client-for-go/tree/azure-tdx-preview/go-tdx) branch.  There are some key differences in the prerequisites, build process, and commands that are specific to the Microsoft Azure implementation.  See the README.md file for details.
+Microsoft Azure TDX Preview users should use the [azure-tdx-preview](https://github.com/intel/ta-client-for-go/tree/azure-tdx-preview/go-tdx) branch. The Microsoft Azure implementation has different prerequisites, build steps, and commands. See the `README.md` file for details.
 :::
 
-The following APIs are exposed by **go-tdx**.
+The `go-tdx` package exposes the following APIs.
 
 ## API reference
 
@@ -35,7 +35,7 @@ import "github.com/intel/ta-client-for-go/go-tdx"
 
 [**func NewEventLogParser**](#func-neweventlogparser)
 
-The following code fragment creates a new TDX adapter and then collects evidence for a quote. 
+The following code example creates a TDX adapter and collects evidence for a quote.
 
 ```go
 import "github.com/intel/ta-client-for-go/go-tdx"
@@ -57,7 +57,8 @@ if err != nil {
 ```go
 func (adapter *tdxAdapter) CollectEvidence(nonce []byte) (*connector.Evidence, error)
 ```
-**CollectEvidence**  Collects evidence for a quote from the TDX trust domain. It takes a nonce as input, which is hashed during trust domain report creation. If successful, **CollectEvidence** returns an **Evidence** structure; otherwise it returns an error.
+
+`CollectEvidence` collects evidence for a quote from the TDX trust domain. It takes a nonce as input, which is hashed when the trust domain report is created. On success, `CollectEvidence` returns an `Evidence` structure. Otherwise, it returns an error.
 
 [Back to top](#api-reference)
 
@@ -67,7 +68,7 @@ func (adapter *tdxAdapter) CollectEvidence(nonce []byte) (*connector.Evidence, e
 func Decrypt(encryptedData []byte, em *EncryptionMetadata) ([]byte, error)
 ```
 
-**Decrypt** takes encrypted data as input and decrypts the data using the private key that is passed in the **EncryptionMetadata**. The Decrypt API returns a byte array containing decrypted data in case of success, else error in case of failure.
+`Decrypt` takes encrypted data as input and decrypts it with the private key specified in `EncryptionMetadata`. On success, the API returns the decrypted data as a byte array. Otherwise, it returns an error.
 
 The following snippet shows how to decrypt an encrypted blob.
 
@@ -90,7 +91,8 @@ if err != nil {
 ```go
 func GenerateKeyPair(km *KeyMetadata) ([]byte, []byte, error)
 ```
-**GenerateKeyPair** is used to create a private key based on key metadata.
+
+`GenerateKeyPair` generates a private and public key pair based on the specified key metadata.
 
 ```go
 km := &tdx.KeyMetadata{
@@ -102,6 +104,7 @@ if err != nil {
     return err
 }
 ```
+
 [Back to top](#api-reference)
 
 ### `func GetEventLogs`
@@ -110,9 +113,9 @@ if err != nil {
 func (parser *fileEventLogParser) GetEventLogs() ([]RtmrEventLog, error)
 ```
 
-The **GetEventLogs** API returns a trust domain event log in the form of JSON. The trust domain event log consists of all the events that get measured to all the four RTMRs in order. The TD event log can be used to verify the integrity of RTMRs (Real-Time Monitoring and Response) by replaying all the event measurements in order.
+The `GetEventLogs` API returns a trust domain event log in JSON format. The log contains the events measured into all four RTMRs, in order. Replay the event measurements in order to verify the integrity of the RTMRs (runtime measurement registers).
 
-The following snippet collects the event log from a TD.
+The following code example collects the event log from a TD.
 
 ```go
 evLogParser := tdx.NewEventLogParser()
@@ -126,13 +129,13 @@ if err != nil {
 
 ### `func NewEvidenceAdapter`
 
-```Go
+```go
 func NewEvidenceAdapter(udata []byte, evLogParser EventLogParser) (connector.EvidenceAdapter, error)
 ```
 
-**NewEvidenceAdapter** initializes an instance of **TdxAdapter**, which manages the quote collection from a trust domain (TD). **TdxAdapter** is also responsible for collecting the event log for a TD.
+`NewEvidenceAdapter` initializes a `TdxAdapter`, which manages quote collection from a trust domain (TD). `TdxAdapter` also collects the event log for a TD.
 
-The following code snippet shows how to create a new Go TDX adapter, and then use the adapter to collect a quote from the TDX-enabled platform.
+The following code example shows how to create a Go TDX adapter. For an example of collecting evidence with the adapter, see [CollectEvidence](#func-collectevidence).
 
 ```go
 import "github.com/intel/ta-client-for-go/go-tdx"
@@ -153,9 +156,9 @@ if err != nil {
 func NewEventLogParser() EventLogParser
 ```
 
-**NewEventLogParser** initializes an instance of EventLogParser which manages the event log collection from a trust domain by reading either the ACPI (Advanced Configuration and Power Interface) tables or an EFI (Extensible Firmware Interface) file containing event log data. The event log for a trust domain is stored in ACPI tables.
+`NewEventLogParser` initializes an `EventLogParser`, which reads a trust domain's event log from either the ACPI (Advanced Configuration and Power Interface) tables or an EFI (Extensible Firmware Interface) file. The event log for a trust domain is stored in ACPI tables.
 
-See the code snippet in [**GetEventLogs**](#func-geteventlogs) for sample usage. 
+For an example, see [GetEventLogs](#func-geteventlogs).
 
 [Back to top](#api-reference)
 
