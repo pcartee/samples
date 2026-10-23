@@ -33,5 +33,5 @@ Some platform and image reference values required for TD Integrity come from clo
 
 **\*** Other names and brands may be claimed as the property of others.
 
-{/* external links */}
+{/*external links*/}
 [canonical-tdx](https://github.com/canonical/tdx)

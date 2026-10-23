@@ -45,13 +45,13 @@ policy-builder-windows.exe version
 
 The following syntax is used to convert a JSON policy to a Rego policy.
 
-**Linux**
+### Linux
 
 ```bash
 ./policy-builder-linux jsontorego -i <input file>
 ```
 
-**Windows**
+### Windows
 
 ```powershell
 policy-builder-windows.exe jsontorego -i <input file>
@@ -592,25 +592,24 @@ export := {
 
 ### V2 SEVSNP incoming claims
 
-
-| Claim                    | Datatype                 | Description                                                                                                                                                                                |
-| ------------------------ | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| sevsnp_authorkeydigest   | String or list of strings | This is the SHA-384 digest of the author public key that certified the ID keys, if provided in SNP_LAUNCH_FINISH. If AUTHOR_KEY_EN is 1, zeros are provided.                               |
-| sevsnp_guestsvn          | Number                   | The software version number of the SEV-SNP guest.                                                                                                                                          |
-| sevsnp_bootloader_svn    | Number                   | Secure software version of the bootloader in the SEV-SNP TCB definition.                                                                                                                   |
-| sevsnp_familyId          | String or list of strings | The image ID provided at launch.                                                                                                                                                           |
-| sevsnp_imageId           | String or list of strings | Guest-provided data.                                                                                                                                                                       |
-| sevsnp_reportdata        | String or list of strings | Guest-provided data.                                                                                                                                                                       |
+| Claim | Data type | Description |
+| --- | --- | --- |
+| sevsnp_authorkeydigest | String or list of strings | This is the SHA-384 digest of the author public key that certified the ID keys, if provided in SNP_LAUNCH_FINISH. If AUTHOR_KEY_EN is 1, zeros are provided. |
+| sevsnp_guestsvn | Number | The software version number of the SEV-SNP guest. |
+| sevsnp_bootloader_svn | Number | Secure software version of the bootloader in the SEV-SNP TCB definition. |
+| sevsnp_familyId | String or list of strings | The image ID provided at launch. |
+| sevsnp_imageId | String or list of strings | Guest-provided data. |
+| sevsnp_reportdata | String or list of strings | Guest-provided data. |
 | sevsnp_launchmeasurement | String or list of strings | This measurement contains the initial state of the VM or workload, platform configuration registers (PCRs) values, BIOS code measurements, hardware configuration details, and other data. |
-| sevsnp_hostdata          | String or list of strings | Data provided by the hypervisor at launch.                                                                                                                                                 |
-| sevsnp_idkeydigest       | String or list of strings | SHA-384 digest of the ID public key that signed the ID block provided in SNP_LAUNCH_FINISH.                                                                                                |
-| sevsnp_is_debuggable     | Boolean                  | A debuggable TEE is not secure. Never trust a debuggable TEE with a confidential workload or secrets. 0: Debugging is disallowed. 1: Debugging is allowed.                                 |
-| sevsnp_microcode_svn     | Number                   | Secure software version of microcode in the SEV-SNP TCB definition.                                                                                                                        |
-| sevsnp_migration_allowed | Boolean                  | 0: Association with a migration agent is disallowed. 1: Association with a migration agent is allowed.                                                                                     |
-| sevsnp_smt_allowed       | Boolean                  | Simultaneous Multi-threading (SMT) 0: SMT is disallowed. 1: SMT is allowed.                                                                                                                |
-| sevsnp_snpfw_svn         | Number                   | Secure software version of the secure processor firmware in the SEV-SNP TCB definition.                                                                                                    |
-| sevsnp_tee_svn           | Number                   | Secure software version of the trusted execution environment in the SEV-SNP TCB definition.                                                                                                |
-| sevsnp_vmpl              | Number                   | The requested Virtual Machine Privilege Level (VMPL) for the attestation report.                                                                                                           |
+| sevsnp_hostdata | String or list of strings | Data provided by the hypervisor at launch. |
+| sevsnp_idkeydigest | String or list of strings | SHA-384 digest of the ID public key that signed the ID block provided in SNP_LAUNCH_FINISH. |
+| sevsnp_is_debuggable | Boolean | A debuggable TEE is not secure. Never trust a debuggable TEE with a confidential workload or secrets. 0: Debugging is disallowed. 1: Debugging is allowed. |
+| sevsnp_microcode_svn | Number | Secure software version of microcode in the SEV-SNP TCB definition. |
+| sevsnp_migration_allowed | Boolean | 0: Association with a migration agent is disallowed. 1: Association with a migration agent is allowed. |
+| sevsnp_smt_allowed | Boolean | Simultaneous Multi-threading (SMT) 0: SMT is disallowed. 1: SMT is allowed. |
+| sevsnp_snpfw_svn | Number | Secure software version of the secure processor firmware in the SEV-SNP TCB definition. |
+| sevsnp_tee_svn | Number | Secure software version of the trusted execution environment in the SEV-SNP TCB definition. |
+| sevsnp_vmpl | Number | The requested Virtual Machine Privilege Level (VMPL) for the attestation report. |
 
 #### SEVSNP policy
 

@@ -1,86 +1,89 @@
 ---
 title: SIEM integration
-description: An overview of SIEM integration with TA.
+description: Learn how to configure a SIEM integration in TA to receive real-time successful and failed attestation events.
 author: pcartee
 topic: how to
 date: 05/14/2024
-uid: siem-integration  # Do not change uid!
+uid: siem-integration
 sidebar_position: 2
 ---
 
-This article shows how to integrate TA with 3rd party Security Information and Event Management (SIEM) services such as Splunk* or Datadog* to provide real-time notification of critical events such as attestation success or failure directly from your preferred reporting solution.
+This article explains how to integrate TA with third-party Security Information and Event Management (SIEM) services, such as Splunk* or Datadog*, to receive real-time notifications about attestation events.
 
 :::note
-TA SIEM events are approximately 12kb in size. Default Splunk* event sizes are limited to 10KB. Event messages larger than 10kb are truncated. Splunk* administrators can increase the Splunk* character limit to above 10,000 to prevent messages from being truncated.
+TA SIEM events are approximately 12 KB. By default, Splunk* limits event sizes to 10 KB and truncates larger messages. Splunk* administrators can increase the character limit to more than 10,000 to prevent truncation.
 :::
 
-- Successful attestation
-    The attestation token is sent to the SIEM platform upon successful attestation. Note that by default, this does not indicate that all policies were matched in the attestation. To enforce policy matching (and throw an error on policy mismatch instead of returning a token), the attestation request must set the optional `policy_must_match` value to `true`.
-- Failed attestation
-    If the attestation request returns an error response, the error will be sent to the SIEM platform. By default an error indicates a malformed API request or a failed attestation against the default policy. If policy enforcement is enabled in the attestation request, any policies that evaluate to unmatched will also throw an error and be included in the "failed attestation" event type.
+- **Successful attestation:** TA sends the attestation token to the SIEM platform when attestation succeeds. By default, this doesn't indicate that all policies matched. To enforce policy matching and return an error instead of a token when a policy doesn't match, set the optional `policy_must_match` value to `true` in the attestation request.
+- **Failed attestation:** If the attestation request returns an error, TA sends the error to the SIEM platform. By default, an error indicates a malformed API request or a failure to attest against the default policy. If the request enables policy enforcement, any unmatched policies also cause an error and are included in the “failed attestation” event.
 
-The data pushed to SIEM is the same data recorded in the Reports and Metrics date-range reports. For more details about reports and metrics, see the Reports and Metrics article.
+TA sends the same data to the SIEM platform that it records in the Reports and Metrics date-range reports. For more information, see the Reports and Metrics article.
 
 :::note
-By default, TA always provides an attestation token regardless of policy evaluation unless the attestation request forces policy compliance.
+By default, TA returns an attestation token regardless of policy evaluation unless the request requires policy compliance.
 :::
 
-## TA Configurations and SIEM integration
-Only a tenant admin is authorized to manage, add, update and delete the system details of SIEM services.
+## Configure SIEM integration
 
-![SIEM service](/img/howto-SIEM-integration/siem-config.png)
+Only a tenant admin can manage SIEM service details, including adding, updating, and deleting them.
 
-1. The tenant admin logs into the TA.
-2. Go to **Configurations**.
-3. Select **Reporting (SIEM) applications**.
+![TA Configurations page showing the Reporting (SIEM) Applications tab, SIEM service selector, security event options, authentication type, and Save button.](/img/howto-SIEM-integration/siem-config.png)
+
+1. Sign in to TA as a tenant admin.
+1. Go to **Configurations**.
+1. Select **Reporting (SIEM) applications**.
 
 ### Reporting (SIEM) applications
 
-Complete the following sections to turn SIEM service on. 
+Complete the following sections to turn on the SIEM service:
+
 1. Select a SIEM service.
-1. Select the type of security event(s).
+1. Select the security event types.
 1. Choose the authentication type.
 1. Enter the endpoint URL and API key.
 
 #### SIEM service
 
-Select an available SIEM service from the drop-down list.
-In **SIEM service (required)**, select one service from the list. 
-    - Datadog*
-    - Splunk*
+In **SIEM service (required)**, select an available service from the list:
+
+- Datadog*
+- Splunk*
 
 #### Security event type
 
-Select option(s) for the security event type for real-time notification of critical events.
+Select the security event types for which you want real-time notifications.
 
-![Security event](/img/howto-SIEM-integration/siem-event.png)
+![Reporting (SIEM) Applications settings with Splunk selected and checkboxes for successful and failed attestation events.](/img/howto-SIEM-integration/siem-event.png)
 
 1. Go to **Security event type (required)**.
-1. Select from the checkbox options.
-    - Successful attestation
-    - Failed attestation
+1. Select one or both checkboxes:
+   - Successful attestation
+   - Failed attestation
 
 #### Authentication type
 
-Select the authentication type.
+Choose an authentication type:
+
 1. Go to **Authentication Type**.
 1. Select **Auth key (default)**.
 
-![Configuration Data](/img/howto-SIEM-integration/siem-data.png)
+![Configuration Data section with fields for the endpoint URL and authentication key.](/img/howto-SIEM-integration/siem-data.png)
 
 #### Configuration data
 
-Enter the endpoint URL and API key.
-In  **Configuration Data** there are two entry fields. 
-Endpoint URL - enter a valid URL.
-Auth Key - enter the API key.
-    A textual hint for user is provided that points to a location to find this data.
+Enter the endpoint URL and API key in **Configuration Data**:
+
+- **Endpoint URL**: Enter a valid URL.
+- **Auth Key**: Enter the API key.
+
+The page includes a hint that explains where to find this information.
 
 ### Save
 
-Click the **SAVE** button.
-Upon successful validation, a green notification will display and the attestation token is sent to the SIEM platform
+Select **SAVE**.
 
-Upon failed validation, a red notification will display with information about the errors. Errors are sent to the SIEM platform.
+If validation succeeds, TA displays a green notification and sends the attestation token to the SIEM platform.
+
+If validation fails, TA displays a red notification with information about the errors and sends the errors to the SIEM platform.
 
 **\*** Other names and brands may be claimed as the property of others.

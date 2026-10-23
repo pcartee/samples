@@ -27,15 +27,15 @@ Intel recommends enabling more than one tenant administrator account for redunda
 
 The following table lists the resources for each user role.
 
-| Resource | User | Tenant admin |
-| --- | :---: | :---: |
-| Attestation API keys | X | X |
-| Policies | X | X |
-| Tags | X | X |
-| Users |  | X |
-| Admin API keys |  | X |
-| Reports | X | X |
-| Web UI | X | X |
+| Resource             | User | Tenant admin |
+| ---                  | :---:| :---:        |
+| Attestation API keys | X    | X            |
+| Policies             | X    | X            |
+| Tags                 | X    | X            |
+| Users                |      | X            |
+| Admin API keys       |      | X            |
+| Reports              | X    | X            |
+| Web UI               | X    | X            |
 
 ## API keys
 
@@ -57,15 +57,15 @@ Both tenant admins and users can access Attestation API keys through the portal.
 
 The following table lists the resources each API can manage.
 
-| Resource | Admin API | Attestation API |
-| --- | :---: | :---: |
-| Attestation |  | X |
-| Nonce |  | X |
-| Policies | X |  |
-| Tags | X |  |
-| Users | X |  |
-| Admin API keys | X |  |
-| Reports - Faithful Verifications |  | X |
+| Resource                         | Admin API | Attestation API |
+| ---                              | :---:     | :---:           |
+| Attestation                      |           | X               |
+| Nonce                            |           | X               |
+| Policies                         | X         |                 |
+| Tags                             | X         |                 |
+| Users                            | X         |                 |
+| Admin API keys                   | X         |                 |
+| Reports - Faithful Verifications |           | X               |
 
 ## Rotating admin and attestation API keys
 

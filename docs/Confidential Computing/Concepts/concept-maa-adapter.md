@@ -84,7 +84,7 @@ c:[type=="x-ms-sgx-svn"] => issue(type="svn", value=c.value);
 
 The Azure policy can be mapped to the following TA attestation policies.
 
-**TA appraisal policy**
+##### TA appraisal policy
 
 ```rego
 default matches_sgx_policy = false
@@ -94,7 +94,7 @@ matches_sgx_policy = true {
 }
 ```
 
-**TA token customization policy**
+##### TA token customization policy
 
 ```rego
 get_token_fields[token_fields] {
