@@ -1,8 +1,8 @@
 # Paul Cartee
 
-Broomfield, CO \| 303.819.1583 \| <paulcartee@yahoo.com> \|
+Broomfield, CO \| 303.819.1583 \| [paulcartee@yahoo.com](mailto:paulcartee@yahoo.com) \|
 [LinkedIn](https://www.linkedin.com/in/paul-cartee/) \|
-[GitHub](https://pcartee.github.io/writing-samples/)
+[GitHub](https://pcartee.github.io/samples/)
 
 ## PROFESSIONAL SUMMARY
 
@@ -131,7 +131,7 @@ to make onboarding and project tracking easier.
   ensured consistent formatting and reduced confusion by marking
   outdated pages with links to updated information upon site launch.
 
-### EARLY CAREER EXPERIENCE
+## EARLY CAREER EXPERIENCE
 
 **Medecision -- Technical Writer (Oct 2016 -- Aug 2020):** Wrote online
 help, user guides, and training materials in an Agile environment using
@@ -149,7 +149,7 @@ email-based process. Mentored junior technical writers and interns in
 Agile methodologies, topic-based architecture, and best practices for
 MadCap Flare authoring.
 
-**Digitech Systems, Inc. -- Senior Technical Writer (Nov 2012 -- Feb
+**Digitech Systems, Inc**. -- Senior Technical Writer (Nov 2012 -- Feb
 2014):** Wrote user guides and API documentation for enterprise
 applications using MadCap Flare, RoboHelp, and Word. Consolidated
 multiple legacy projects into a single MadCap Flare system, cutting
@@ -160,6 +160,6 @@ technical documentation for a portfolio of nine healthcare applications,
 collaborating with QC to ensure clinical accuracy in all patient-facing
 materials.
 
-### EDUCATION
+## EDUCATION
 
 BA English Literature \| Lewis University \| Romeoville, IL

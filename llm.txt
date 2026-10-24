@@ -9,7 +9,7 @@ The canonical site is https://pcartee.github.io/samples/.
 
 - [Portfolio overview](https://pcartee.github.io/samples/): Introduction to Paul Cartee's professional background and the scope of this portfolio.
 - [Writing samples from various jobs](https://pcartee.github.io/samples/markdown-page/): Curated samples of technical documentation produced across different professional roles.
-- [Resume](https://github.com/pcartee/samples/blob/main/paul-cartee-technical-writer.md): Comprehensive professional resume detailing experience and skills.
+- [Resume](https://pcartee.github.io/samples/paul-cartee-technical-writer/): Comprehensive professional resume detailing experience and skills.
 
 ## TA documentation samples
 
