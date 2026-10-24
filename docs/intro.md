@@ -55,7 +55,7 @@ Browse the sidebar to explore the complete documentation library.
 
 I'm open to senior technical writing roles, especially ones with docs-as-code pipelines, GitHub-based workflows, and complex technical subject matter.
 
-- 📄 [Full resume](https://github.com/pcartee/writing-samples/blob/main/paul-cartee-technical-writer.md)
+- 📄 [Full resume](./paul-cartee-technical-writer.md)
 - ✉️ [paulcartee@yahoo.com](mailto:paulcartee@yahoo.com)
 - 📞 303.819.1583
 - 💼 [LinkedIn](https://www.linkedin.com/in/paul-cartee/)
