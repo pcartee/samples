@@ -1,6 +1,6 @@
 ---
-title: Policy builder tool
-description: An overview of the policy builder tool and how to use it to create simplified policies.
+title: Policy Builder tool
+description: Guidance for creating JSON appraisal, token customization, and composite attestation policies with Policy Builder and converting them to Rego.
 author: pcartee
 topic: conceptual
 date: 07/18/2024
@@ -10,80 +10,86 @@ uid: policy.builder.tool
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The Policy Builder tool is a command line interface tool used to author simplified policies written in JSON format and convert them to Rego policies readable by TA. The Policy Builder currently supports Intel® Software Guard Extensions (Intel® SGX) and Intel® Trust Domain Extensions (Intel® TDX) TEEs.
+Policy Builder is a command-line tool for authoring simplified policies in JSON and converting them to Rego policies that TA can read. It supports Intel® Software Guard Extensions (Intel® SGX) and Intel® Trust Domain Extensions (Intel® TDX) TEEs.
 
-To use the Policy Builder, you must first create a JSON file as shown in the examples below. This JSON file is a list of claims and allowable values. The claim:value pairs are converted to equality tests (`==`) in Rego. Certain "claims" are not really EAT ([Entity Attestation Token](https://datatracker.ietf.org/doc/draft-ietf-rats-eat/11/)) claims at all; they are keywords that Policy Builder expands to Rego code blocks. For example, **min_tcb_date** and **ttl_period** are not TEE claims, they are Policy Builder keywords. This is discussed in more detail below.
+To use Policy Builder, first create a JSON file like the examples below. The file contains a list of claims and their allowed values. Policy Builder converts claim-value pairs to equality tests (`==`) in Rego, with exceptions such as lists and special keywords described below. Some "claims" are not EAT ([Entity Attestation Token](https://datatracker.ietf.org/doc/draft-ietf-rats-eat/11/)) claims; they are keywords that Policy Builder expands into Rego code blocks. For example, `min_tcb_date` and `ttl_period` are Policy Builder keywords, not TEE claims.
 
-It's important to understand that JSON and Rego are completely different things, despite having superficial similarity in the examples that follow. JSON is an object notation language. Rego is a full-featured programming language that is optimized for querying documents and evaluating rules applied to the document content.  TA currently exposes a subset of the full Rego feature set, though more functions may be exposed in the future.  Policies written in Rego have more options for built-in functions and syntax than the simplified JSON policy representation allows. For more information about Rego, see the [OPA Policy Language Reference](https://www.openpolicyagent.org/docs/latest/policy-language/) "The Basics". 
+JSON and Rego are different languages, despite their superficial similarities in the examples below. JSON is an object notation language. Rego is a full-featured programming language optimized for querying documents and evaluating rules against their contents. TA currently exposes a subset of Rego features, although more functions may be available in the future. Rego policies support more built-in functions and syntax than the simplified JSON policy representation. For more information about Rego, see "The Basics" in the [OPA Policy Language Reference](https://www.openpolicyagent.org/docs/latest/policy-language/).
 
-The purpose of the Policy Builder is to simplify the creation of basic/common policies so that policy authors do not need to learn Rego.
+Policy Builder simplifies the creation of basic, common policies so that policy authors do not need to learn Rego.
 
 :::note
- JSON policies are simplified and have reduced capability from Rego policies. This utility exists to help users who do not want/need the complexity and power available through Rego but who still want to use a simple policy for attestation. The "default" policies only check whether the TEE is genuine and has an up-to-date TCB, but do not check any workload specific attributes of the TEE. Policies are needed to check those attributes, or to customize the attribute names, or to customize the acceptable TCB based on the capabilities and update schedule of the TEE provider. The Policy Builder can help create simplified policies for the most commonly used attributes.
+JSON policies are simpler and less capable than Rego policies. Policy Builder is intended for users who want a simple policy for attestation without using Rego's full complexity and capabilities. The default policies check only whether the TEE is genuine and has an up-to-date TCB; they do not check workload-specific TEE attributes. You need policies to check those attributes, customize attribute names, or set the acceptable TCB based on the TEE provider's capabilities and update schedule. Policy Builder can help you create simplified policies for commonly used attributes.
 
-When you run the Policy Builder with a JSON input file, it will generate Rego output that you can copy to the TA Portal to create a policy, or you can use the Policy Management REST API or the TA CLI (`tactl`).
+When you run Policy Builder with a JSON input file, it generates Rego output. You can copy the output to the TA Portal to create a policy, or use the Policy Management REST API or the TA CLI (`tactl`).
 
-Creating policies is discussed in Attestation Policies and How To Author A Custom Policy.
+For more information about creating policies, see Attestation Policies and How to Author a Custom Policy.
 :::
 
-If you need to create appraisal policies that involve comparisons, AND logic, and other Rego features, the policies must be created in native Rego format. 
+If you need appraisal policies that use comparisons, AND logic, or other Rego features, create them in native Rego format.
 
 ## Available commands
 
-- `help` -  Provides help about any Policy Builder command
-- `jsontorego` - jsontorego -i [input file] converts the JSON file to Rego
-- `version` - Prints the policy builder version currently installed
+- `help` — Provides help for Policy Builder commands.
+- `jsontorego` — Converts a JSON file to Rego. Use `jsontorego -i <input file>`.
+- `version` — Prints the installed Policy Builder version.
 
 Examples:
 
-`./policy-builder-linux help`
-`policy-builder-windows.exe version`
+```bash
+./policy-builder-linux help
+policy-builder-windows.exe version
+```
 
-**Syntax**
+### Syntax
 
 The following syntax is used to convert a JSON policy to a Rego policy.
 
-Linux
-`./policy-builder-linux jsontorego -i <input file>`
+### Linux
 
-Windows
-`policy-builder-windows.exe jsontorego -i <input file>`
+```bash
+./policy-builder-linux jsontorego -i <input file>
+```
 
-**Output**
+### Windows
 
-The output is displayed in the terminal in Rego with two format options. 
+```powershell
+policy-builder-windows.exe jsontorego -i <input file>
+```
 
-The **original** format is used with the Manage Policies page of the web portal. 
+### Output
 
-The **escaped** format is used with the Policy Management REST API or with the TA CLI (`tactl`). 
+The output is displayed in the terminal in Rego in one of two formats.
+
+Use the **original** format with the Manage Policies page in the web portal.
+
+Use the **escaped** format with the Policy Management REST API or the TA CLI (`tactl`).
 
 ## Appraisal policy
 
 ### Intel SGX incoming claims
 
-The following claims can be used in the JSON policy input file. For a complete description of the claims, see Attestation Tokens. 
+The following claims can be used in the JSON policy input file. For a complete description, see Attestation Tokens.
 
-|Claim                  | Datatype                | 
-|-----------------------|--------------------------|
-|**sgx_mrsigner**           |String or list of strings. |
-|**sgx_mrenclave**          |String or list of strings. |
-|**sgx_isvprodid**          |Number                    |
-|**sgx_isvsvn**             |Number                    |
-|**sgx_isvsvn_min**         |Number                    |
-|**sgx_is_debuggable**      |Boolean                   |
+| Claim                 | Datatype                   |
+| --------------------- | -------------------------- |
+| **sgx_mrsigner**      | String or list of strings. |
+| **sgx_mrenclave**     | String or list of strings. |
+| **sgx_isvprodid**     | Number                     |
+| **sgx_isvsvn**        | Number                     |
+| **sgx_isvsvn_min**    | Number                     |
+| **sgx_is_debuggable** | Boolean                    |
 
 :::note
-`sgx_isvsvn_min` is a keyword and this specifies the minimum acceptable `sgx_isvsvn` value. Both `sgx_isvsvn_min` and `sgx_isvsvn` cannot be specified in the same policy, as they will conflict. `sgx_isvsvn` defines a specific value (an `==` operation), where `sgx_isvsvn_min` specifies a minimum value (actual value `>=` `sgx_isvsvn_min` ).
+`sgx_isvsvn_min` is a keyword that specifies the minimum acceptable `sgx_isvsvn` value. You cannot specify both `sgx_isvsvn_min` and `sgx_isvsvn` in the same policy because they conflict. `sgx_isvsvn` specifies an exact value (an `==` operation), whereas `sgx_isvsvn_min` specifies a minimum value (actual value `>=` `sgx_isvsvn_min`).
 :::
 
-#### JSON Intel SGX appraisal policy
-
 <Tabs>
-    <TabItem value ="sgx-json" label="SGX JSON" default>
+<TabItem value="sgx-json" label="SGX JSON" default>
 
-### SGX JSON
+#### SGX JSON
 
-The following example shows an Intel SGX policy in JSON format, before conversion to Rego. This is the input file that is specified for conversion. Each JSON claim corresponds to a claim in the Rego appraisal policy and in the attestation token.
+The following example shows an Intel SGX policy in JSON format before conversion to Rego. This is the input file specified for conversion. Each JSON claim corresponds to a claim in the Rego appraisal policy and in the attestation token.
 
 ```JSON
 {
@@ -99,15 +105,14 @@ The following example shows an Intel SGX policy in JSON format, before conversio
 }   
 ```
 
-    </TabItem>
+</TabItem>
+<TabItem value="sgx-rego" label="SGX Rego">
 
-    <TabItem value="sgx-rego" label="SGX Rego">
+#### SGX Rego
 
-### SGX Rego
+The following example shows the JSON input file above after conversion to an Intel SGX appraisal policy. Use this output to create your policy in TA.
 
-The following example shows the JSON input file, above, after conversion to an Intel SGX appraisal policy. This is what you'll use to create your policy in TA. 
-
-The five `sgx_` claims in JSON are converted to equality tests. Notice how the `sgx_isvsvn_min` claim is translated to a `>=` operation instead of `==` in Rego.
+The `sgx_` claims in JSON are translated to Rego tests. The `sgx_isvsvn_min` claim uses a `>=` operation instead of `==`.
 
 ```rego
 default matches_sgx_policy = false
@@ -119,32 +124,31 @@ input.sgx_mrsigner == "83d719e77deaca1470f6baf62a4d774303c899db69020f9c70ee1dfc0
 input.sgx_is_debuggable == false
 }
 ```
-    </TabItem>
+
+</TabItem>
 </Tabs>
 
 ### Intel TDX incoming claims
 
-The following claims can be used in the JSON policy input file. For a complete description of the claims, see Attestation Tokens. 
+The following claims can be used in the JSON policy input file. For a complete description, see Attestation Tokens.
 
-|Claim                  | Datatype                 |
-|-----------------------|----------------------------|
-|**tdx_seamsvn**            |Number                      |
-|**tdx_rtmr0**              |String or list of strings.  |
-|**tdx_rtmr1**              |String or list of strings.  |
-|**tdx_rtmr2**              |String or list of strings.  |
-|**tdx_rtmr3**              |String or list of strings.  |
-|**tdx_mrtd**               |String or list of strings. |
-|**tdx_mrsignerseam**       |String or list of strings.  |
-|**tdx_tee_is_debuggable**      |Boolean                     |
-
-#### JSON Intel TDX attestation policy
+| Claim                 | Datatype                   |
+| --------------------- | -------------------------- |
+| **tdx_seamsvn**       | Number                     |
+| **tdx_rtmr0**         | String or list of strings. |
+| **tdx_rtmr1**         | String or list of strings. |
+| **tdx_rtmr2**         | String or list of strings. |
+| **tdx_rtmr3**         | String or list of strings. |
+| **tdx_mrtd**          | String or list of strings. |
+| **tdx_mrsignerseam**  | String or list of strings. |
+| **tdx_is_debuggable** | Boolean                    |
 
 <Tabs>
-    <TabItem value="tdx-json" label="TDX JSON" default>
+<TabItem value="tdx-json" label="TDX JSON" default>
 
-### TDX JSON
+#### TDX JSON
 
-The following example shows an Intel TDX policy in JSON format, before conversion to Rego. This is the input file that is specified for conversion. The first object literal in the policy is `"tdx_appraisal":{}`. That tells Policy Builder that this is an Intel TDX appraisal policy. Notice that the **tdx_rmtr3** claim accepts a "list of strings" value, and in this example includes two values. By providing two values as a list of strings in the policy, you are saying "This claim evaluates to true if input.tdx_rmtr3 value is IN [a, b, ...]."
+The following example shows an Intel TDX policy in JSON format before conversion to Rego. This is the input file specified for conversion. The first object literal in the policy is `"tdx_appraisal":{}`, which tells Policy Builder that this is an Intel TDX appraisal policy. Notice that the `tdx_rtmr3` claim accepts a list of strings and includes two values in this example. When you provide a list, the claim evaluates to true if the `input.tdx_rtmr3` value is in the list.
 
 ```JSON
 {
@@ -160,16 +164,17 @@ The following example shows an Intel TDX policy in JSON format, before conversio
             "tdx_is_debuggable": true
         }
     }
-}  
+}
+```
 
- </TabItem>
- <TabItem value="tdx-rego" label="TDX Rego">
+</TabItem>
+<TabItem value="tdx-rego" label="TDX Rego">
 
-### TDX Rego
+#### TDX Rego
 
-The following example shows output after conversion to a Rego Intel TDX appraisal policy. This is what you'll use to create your policy in TA. 
+The following example shows the output after converting the JSON input to an Intel TDX appraisal policy in Rego. Use this output to create your policy in TA.
 
-The `tdx_` claims in JSON are converted to equality tests. Notice how the `tdx_rmtr3` values in the JSON input file were changed to a Rego set. First, the JSON notation is converted to Rego set notation `{...}` and assigned to a variable. The statement `acceptable_values_for_tdx_rtmr3[input.tdx_rtmr3]` evaluates to **true** if **input.tdx_rmtr3** (from the attestation token — `input` is the attestation token document) is IN the set assigned to `acceptable_values_for_tdx_rmtr3`.
+The `tdx_` claims in JSON are converted to equality tests. The `tdx_rtmr3` values in the input file become a Rego set, `{...}`, assigned to a variable. The statement `acceptable_values_for_tdx_rtmr3[input.tdx_rtmr3]` evaluates to **true** when `input.tdx_rtmr3` (from the attestation token; `input` is the attestation token document) is in that set.
 
 ```rego
 default matches_tdx_policy = false
@@ -188,31 +193,28 @@ input.tdx_is_debuggable == true
 
 </TabItem>
 </Tabs>
----
 
 ## Custom TCB policy incoming claims
 
-Custom TCB policies are used to adjust the default policy evaluation of the attester TEE's TCB update status. This is needed to account for the TEE provider's update schedule. TCB updates can be complex for datacenter and cloud providers and may take more time than allotted in the default policy.
+Custom TCB policies adjust the default policy evaluation of the attester TEE's TCB update status to account for the TEE provider's update schedule. TCB updates can be complex for data center and cloud providers and may take longer than the default policy allows.
 
-The following attester TCB pseudo-claims can be used in the JSON policy input file. These are not claims in the usual sense because they're not in the TA EAT profile and they don't appear in an attestation token. These are keywords that expand to Rego code blocks to implement custom attester TCB policies. For more information, see Platform TCB Policies. 
+The following attester TCB pseudo-claims can be used in the JSON policy input file. These are not claims in the usual sense because they're not in the TA EAT profile and they don't appear in an attestation token. These are keywords that expand to Rego code blocks to implement custom attester TCB policies. For more information, see Platform TCB Policies.
 
-|Field Name            |Type       |Field Description             |
-|---------------------|---------------------|-----------------------------------|
-|**min_tcb_date**     |Date(with time zoom)     |Minimum tcb date indicates the oldest TCB level that RP can tolerate.     |
-|**tcb_status_allowed** |List of Strings     |Acceptable platform TCB status.     |
-|**ttl_period**   |Number     |Time-To-Live (TTL). Policy provides a platform grace period which is a measurement in months. The Policy fails if the current date time > platform tcbDate + ttl_period     |
-|**allowed_advisory_ids**	|List of Strings	|The policy fails if the platform TCB advisory_ids(attester_advisory_ids) array (if any) includes any advisory ID NOT in the allowed list.	|
-
-### JSON custom TCB policy
+| Field Name               | Type                  | Field Description                                                                                                                                                        |
+| ------------------------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **min_tcb_date**         | Date (with time zone) | The minimum TCB date is the oldest TCB level that the relying party (RP) can tolerate.                                                                                   |
+| **tcb_status_allowed**   | List of strings       | Acceptable platform TCB status.                                                                                                                                          |
+| **ttl_period**           | Number                | Time to live (TTL). The policy provides a platform grace period measured in months. It fails if the current date and time is greater than platform tcbDate + ttl_period. |
+| **allowed_advisory_ids** | List of strings       | The policy fails if the platform TCB advisory_ids (attester_advisory_ids) array, if present, includes an advisory ID that is not in the allowed list.                    |
 
 <Tabs>
 <TabItem value="tcb-json" label="TCB JSON">
 
 ### TCB JSON
 
-The following example shows a custom TCB policy in JSON format, before conversion to Rego. The first object literal in the policy is ``. That tells Policy Builder that this is a TCB customization policy. This is the input file that is specified for conversion.
+The following example shows a custom TCB policy in JSON format before conversion to Rego. An object literal in the policy identifies it as a TCB customization policy. Use the example as the input file for conversion.
 
-Note that the custom TCB policy needs to be embedded in an appraisal policy for a specific TEE. The example below uses a `sgx_appraisal` policy type, but the exact same policy would word for a `tdx_appraisal` policy type.
+Note that the custom TCB policy must be embedded in an appraisal policy for a specific TEE. The example below uses the `sgx_appraisal` policy type, but the same policy also works with the `tdx_appraisal` policy type.
 
 ```JSON
 {
@@ -232,7 +234,7 @@ Note that the custom TCB policy needs to be embedded in an appraisal policy for 
 
 ### TCB Rego
 
-The following example shows the output after conversion to a custom TCB policy. This is what you'll use to create your policy in TA. 
+The following example shows the output after conversion to a custom TCB policy. Use this output to create your policy in TA.
 
 ```rego
 default matches_sgx_policy = false
@@ -258,32 +260,30 @@ object.subset(allowed_advisory_ids,  attester_advisory_ids)
 
 ## Token customization policies
 
-A token customization policy allows you to create a new claim name, that you can map to a default claim. The new claim gets the value of the default claim. This allows for easier integration with relying parties that are looking for a specific claim name. For more information on token customization policies, see Attestation Policies
+A token customization policy lets you create a new claim name and map it to a default claim. The new claim gets the value of the default claim, which can simplify integration with relying parties that expect a specific claim name. For more information about token customization policies, see Attestation Policies.
 
 ### Intel SGX incoming claims
 
-The following claims can be used in the JSON policy input file. For a complete description of the claims, see Attestation Tokens. 
+The following claims can be used in the JSON policy input file. For a complete description, see Attestation Tokens.
 
-|Field Name            |Type       |Field Description             |
-|---------------------|---------------------|-----------------------------------|
-|**sgx_mrsigner**          |String     |Customization claim name.     |
-|**sgx_mrenclave**		   |String     |Customization claim name.     |
-|**sgx_isvprodid**         |String     |Customization claim name.     |
-|**sgx_isvsvn**            |String     |Customization claim name.     |
-|**sgx_isvsvn_min**        |String     |Customization claim name.     |
-|**sgx_is_debuggable**     |String     |Customization claim name.     |
-|**attester_tcb_date**     |String     |Customization claim name.     |
-|**attester_advisory_ids** |String     |Customization claim name.     |
-|**attester_tcb_status**   |String     |Customization claim name.     |
-
-#### JSON Intel SGX token customization policy
+| Field Name                | Type   | Field Description         |
+| ------------------------- | ------ | ------------------------- |
+| **sgx_mrsigner**          | String | Customization claim name. |
+| **sgx_mrenclave**         | String | Customization claim name. |
+| **sgx_isvprodid**         | String | Customization claim name. |
+| **sgx_isvsvn**            | String | Customization claim name. |
+| **sgx_isvsvn_min**        | String | Customization claim name. |
+| **sgx_is_debuggable**     | String | Customization claim name. |
+| **attester_tcb_date**     | String | Customization claim name. |
+| **attester_advisory_ids** | String | Customization claim name. |
+| **attester_tcb_status**   | String | Customization claim name. |
 
 <Tabs>
-<TabItem value="sgx-custom-json" label="SGX token custimization JSON">
+<TabItem value="sgx-custom-json" label="SGX token customization JSON">
 
-### SGX token custimization JSON
+#### SGX token customization JSON
 
-The following example shows an Intel SGX TCB custom policy in JSON format, before conversion to Rego. The first object literal in the policy is `"sgx_customization":{}`. That tells Policy Builder that this is an Intel SGX claim set customization policy. This is the input file that is specified for conversion.
+The following example shows an Intel SGX TCB custom policy in JSON format before conversion to Rego. The first object literal in the policy is `"sgx_customization":{}`. That tells Policy Builder that this is an Intel SGX claim set customization policy. This is the input file specified for conversion.
 
 ```JSON
 {
@@ -303,11 +303,11 @@ The following example shows an Intel SGX TCB custom policy in JSON format, befor
 ```
 
 </TabItem>
-<TabItem value="sgx-custom-rego" label="[SGX token custimization Rego">
+<TabItem value="sgx-custom-rego" label="SGX token customization Rego">
 
-### SGX token custimization Rego
+#### SGX token customization Rego
 
-The following example shows the JSON input file, above, after conversion to an Intel SGX TCB custom policy. This is what you'll use to create your policy in TA. 
+The following example shows the JSON input file above after conversion to an Intel SGX TCB custom policy. Use this output to create your policy in TA.
 
 ```rego
 get_token_fields[token_fields] {
@@ -328,32 +328,30 @@ token_fields := {
 
 ### Intel TDX incoming claims
 
-The following claims can be used in the JSON policy input file. For a complete description of the claims, see Attestation Tokens. 
+The following claims can be used in the JSON policy input file. For a complete description, see Attestation Tokens.
 
-The following claims can be used in the JSON custom policy input file. That is, this is the list of input claims you can _rename_ in the output attestation token by using a custom policy. Any claim not on this list can't be renamed.
+The following claims can be used in the JSON custom policy input file. This is the list of input claims that you can rename in the output attestation token by using a custom policy. You cannot rename a claim that is not on this list.
 
-|Field Name           |Type       |Field Description           |
-|---------------------|---------------------|-----------------------------------|
-|**tdx_rtmr0**             |String     |Customization claim name.     |
-|**tdx_rtmr1**             |String     |Customization claim name.     |
-|**tdx_rtmr2**             |String     |Customization claim name.     |
-|**tdx_rtmr3**             |String     |Customization claim name.     |
-|**tdx_mrtd**              |String     |Customization claim name.     |
-|**tdx_mrsignerseam**      |String     |Customization claim name.     |
-|**tdx_seamsvn**           |String     |Customization claim name.     |
-|**tdx_is_debuggable**     |String     |Customization claim name.     |
-|**attester_tcb_date**     |String     |Customization claim name.     |
-|**attester_advisory_ids** |String     |Customization claim name.     |
-|**attester_tcb_status**   |String     |Customization claim name.     |
-
-#### JSON Intel TDX token customization policy
+| Field Name                | Type   | Field Description         |
+| ------------------------- | ------ | ------------------------- |
+| **tdx_rtmr0**             | String | Customization claim name. |
+| **tdx_rtmr1**             | String | Customization claim name. |
+| **tdx_rtmr2**             | String | Customization claim name. |
+| **tdx_rtmr3**             | String | Customization claim name. |
+| **tdx_mrtd**              | String | Customization claim name. |
+| **tdx_mrsignerseam**      | String | Customization claim name. |
+| **tdx_seamsvn**           | String | Customization claim name. |
+| **tdx_is_debuggable**     | String | Customization claim name. |
+| **attester_tcb_date**     | String | Customization claim name. |
+| **attester_advisory_ids** | String | Customization claim name. |
+| **attester_tcb_status**   | String | Customization claim name. |
 
 <Tabs>
-<TabItem value="tdx-custom-json" label="TDX token custimization JSON">
+<TabItem value="tdx-custom-json" label="TDX token customization JSON">
 
-### TDX token custimization JSON
+#### TDX token customization JSON
 
-The following example shows a Intel TDX custom TCB policy in JSON format, before conversion to Rego. This is the input file that is specified for conversion.
+The following example shows an Intel TDX custom TCB policy in JSON format before conversion to Rego. This is the input file specified for conversion.
 
 ```json
 {
@@ -374,12 +372,13 @@ The following example shows a Intel TDX custom TCB policy in JSON format, before
     }
 }
 ```
+
 </TabItem>
-<TabItem value="tdx-custom-rego" label="TDX token custimization Rego">
+<TabItem value="tdx-custom-rego" label="TDX token customization Rego">
 
-### TDX token custimization Rego
+#### TDX token customization Rego
 
-The following example shows the JSON input file, above, after conversion to an Intel TDX TCB custom policy. This is what you'll use to create your policy in TA. 
+The following example shows the JSON input file above after conversion to an Intel TDX TCB custom policy. Use this output to create your policy in TA.
 
 ```rego
 get_token_fields[token_fields] {
@@ -405,9 +404,9 @@ token_fields := {
 
 :::note
 This feature is in limited preview status. Details of implementation and usage may change before general availability. Preview features are only available on the TA Pilot environment. Contact your Intel representative for access.
-::::
+:::
 
-In the latest release of the Policy Builder, TA will use one policy (composite policy) for all attestations instead of creating an individual policy based on the attestation type. The composite policy supports multiple attestation types in a single policy file.
+With the latest release of Policy Builder, TA uses one composite policy for all attestations instead of creating a separate policy for each attestation type. A composite policy supports multiple attestation types in a single policy file.
 
 The composite policy supports the following attestation types:
 
@@ -420,17 +419,15 @@ The composite policy supports the following attestation types:
 - [V2 TPM](#v2-tpm-policy)
 - [V2 SEVSNP + NVGPU](#v2-sevsnp--nvgpu-policy)
 - [V2 SEVSNP + TPM](#v2-sevsnp--tpm-policy)
-- [TDX + NVGPU](#v2-tdx--nvgpu-policy)
-- [V2 SEVSNP + NVGPU](#v2-sevsnp--nvgpu-policy)
 
 ### V2 SGX policy
 
 <Tabs>
 <TabItem value="v2-sgx-json" label="V2 SGX JSON">
 
-### V2 SGX JSON
+#### V2 SGX JSON
 
-The following example shows a Intel SGX policy in JSON format, before conversion to Rego. This is the input file that is specified for conversion.
+The following example shows an Intel SGX policy in JSON format before conversion to Rego. This is the input file specified for conversion.
 
 ```json
 {
@@ -466,9 +463,9 @@ The following example shows a Intel SGX policy in JSON format, before conversion
 </TabItem>
 <TabItem value="v2-sgx-rego" label="V2 SGX Rego">
 
-### V2 SGX Rego
+#### V2 SGX Rego
 
-The following example shows the JSON input file, above, after conversion to an Intel SGX policy. This is what you'll use to create your policy in TA.
+The following example shows the JSON input file above after conversion to an Intel SGX policy. Use this output to create your policy in TA.
 
 ```rego
 default match = false
@@ -514,9 +511,9 @@ export := {
 <Tabs>
 <TabItem value="v2-tdx-json" label="V2 TDX JSON">
 
-### V2 TDX JSON
+#### V2 TDX JSON
 
-The following example shows a Intel TDX policy in JSON format, before conversion to Rego. This is the input file that is specified for conversion.
+The following example shows an Intel TDX policy in JSON format before conversion to Rego. This is the input file specified for conversion.
 
 ```json
 {
@@ -554,9 +551,9 @@ The following example shows a Intel TDX policy in JSON format, before conversion
 </TabItem>
 <TabItem value="v2-tdx-reg" label="V2 TDX Rego">
 
-### V2 TDX Rego
+#### V2 TDX Rego
 
-The following example shows the JSON input file, above, after conversion to an Intel TDX policy. This is what you'll use to create your policy in TA.
+The following example shows the JSON input file above after conversion to an Intel TDX policy. Use this output to create your policy in TA.
 
 ```rego
 default match = false
@@ -595,34 +592,33 @@ export := {
 
 ### V2 SEVSNP incoming claims
 
-
-|Claim                    | Datatype                |Description               |
-|-------------------------|-------------------------|-----------------------------|
-|sevsnp_authorkeydigest   |String or List of String |This is the SHA-384 digest of the Author public key that certified the ID keys if provided in SNP_LAUNCH_FINISH. If the AUTHOR_KEY_EN is 1, zeros are privided.|
-|sevsnp_guestsvn          |Number                   |The Software Version Number of the SEV-SNP guest..|
-|sevsnp_bootloader_svn    |Number                   |Secure software version of bootloader in SEV-SNP TCB definition.|
-|sevsnp_familyId          |String or List of String |The image ID provided at launch.|
-|sevsnp_imageId           |String or List of String |Guest-provided data. |
-|sevsnp_reportdata        |String or List of String |Guest-provided data. |
-|sevsnp_launchmeasurement |String or List of String |This measurement contains the initial state of the VM or workload, platform configuration registers (PCRs) values, BIOS code measurements, hardware configuration details, and other data. |
-|sevsnp_hostdata          |String or List of String |Data provided by the hypervisor at launch. |
-|sevsnp_idkeydigest       |String or List of String |SHA-384 digest of the ID public key that signed the ID block provided in SNP_LAUNCH_FINISH.|
-|sevsnp_is_debuggable     |Boolean                  |A debuggable TEE is not secure. Never trust a debuggable TEE with a confidential workload or secrets. 0: Debugging is disallowed. 1: Debugging is allowed.|
-|sevsnp_microcode_svn     |Number                   |Secure software version of microcode in SEV-SNP TCB definition.|
-|sevsnp_migration_allowed |Boolean                  |0: Association with a migration agent is disallowed. 1: Association with a migration agent is allowed.|
-|sevsnp_smt_allowed       |Boolean                  |Simultaneous Multi-threading (SMT) 0: SMT is disallowed. 1: SMT is allowed.|
-|sevsnp_snpfw_svn         |Number                   |Secure software version of secure processor firmware in SEV-SNP TCB definition. |
-|sevsnp_tee_svn           |Number                   |Secure software version of trust execution environment in SEV-SNP TCB definition. |
-|sevsnp_vmpl              |Number                   |The requested Virtual Machine Privilege Level (VMPL) for the attestation report.|
+| Claim | Data type | Description |
+| --- | --- | --- |
+| sevsnp_authorkeydigest | String or list of strings | This is the SHA-384 digest of the author public key that certified the ID keys, if provided in SNP_LAUNCH_FINISH. If AUTHOR_KEY_EN is 1, zeros are provided. |
+| sevsnp_guestsvn | Number | The software version number of the SEV-SNP guest. |
+| sevsnp_bootloader_svn | Number | Secure software version of the bootloader in the SEV-SNP TCB definition. |
+| sevsnp_familyId | String or list of strings | The image ID provided at launch. |
+| sevsnp_imageId | String or list of strings | Guest-provided data. |
+| sevsnp_reportdata | String or list of strings | Guest-provided data. |
+| sevsnp_launchmeasurement | String or list of strings | This measurement contains the initial state of the VM or workload, platform configuration registers (PCRs) values, BIOS code measurements, hardware configuration details, and other data. |
+| sevsnp_hostdata | String or list of strings | Data provided by the hypervisor at launch. |
+| sevsnp_idkeydigest | String or list of strings | SHA-384 digest of the ID public key that signed the ID block provided in SNP_LAUNCH_FINISH. |
+| sevsnp_is_debuggable | Boolean | A debuggable TEE is not secure. Never trust a debuggable TEE with a confidential workload or secrets. 0: Debugging is disallowed. 1: Debugging is allowed. |
+| sevsnp_microcode_svn | Number | Secure software version of microcode in the SEV-SNP TCB definition. |
+| sevsnp_migration_allowed | Boolean | 0: Association with a migration agent is disallowed. 1: Association with a migration agent is allowed. |
+| sevsnp_smt_allowed | Boolean | Simultaneous Multi-threading (SMT) 0: SMT is disallowed. 1: SMT is allowed. |
+| sevsnp_snpfw_svn | Number | Secure software version of the secure processor firmware in the SEV-SNP TCB definition. |
+| sevsnp_tee_svn | Number | Secure software version of the trusted execution environment in the SEV-SNP TCB definition. |
+| sevsnp_vmpl | Number | The requested Virtual Machine Privilege Level (VMPL) for the attestation report. |
 
 #### SEVSNP policy
 
 <Tabs>
-<TabItem value="v2-sevsp-json" label="V2 SEVSNP JASION">
+<TabItem value="v2-sevsp-json" label="V2 SEVSNP JSON">
 
 #### V2 SEVSNP JSON
 
-The following example shows an Intel SEVSNP policy in JSON format, before conversion to Rego. This is the input file that is specified for conversion.
+The following example shows an Intel SEVSNP policy in JSON format before conversion to Rego. This is the input file specified for conversion.
 
 ```json
  {
@@ -683,7 +679,7 @@ The following example shows an Intel SEVSNP policy in JSON format, before conver
 
 #### V2 SEVSNP Rego
 
-The following example shows the JSON input file, above, after conversion to an Intel SEVSNP policy. This is what you'll use to create your policy in TA.
+The following example shows the JSON input file above after conversion to an Intel SEVSNP policy. Use this output to create your policy in TA.
 
 ```rego
 default match = false
@@ -733,26 +729,26 @@ export := {
 
 #### V2 NVGPU incoming claims
 
-|Claim                                                | Datatype |Description               |
-|-----------------------------------------------------|--------|-----------------------------|
-|secboot                                              |Boolean |Checks whether Secure Boot is enabled, which ensures that the firmware and operating system were authenticated during the VM boot process.|
-|hwmodel                                              |String  |The unique identifier for the hardware token. |
-|x-nvidia-gpu-arch-check                              |Boolean |Determines whether the current GPU architecture is checked.|
-|x-nvidia-gpu-attestation-report-cert-chain-validated |Boolean |Determines if the certificate chain of the GPU attestation report verification is successful.|
-|x-nvidia-gpu-attestation-report-parsed               |Boolean |Determines if the GPU attestation report is parsed successfully. |
-|x-nvidia-gpu-attestation-report-signature-verified   |Boolean |Checks to see if the comparison between the GPU attestation report and the attestation key in the GPU leaf certificate was done.|
-|x-nvidia-gpu-driver-rim-driver-measurements-available|Boolean |Check if the Reference Integrity Manifest (RIM) corresponding to the driver version was retrieved from the GPU.|
-|x-nvidia-gpu-driver-rim-schema-fetched               |Boolean |Checks if the Driver RIM schema validation is passed.|
-|x-nvidia-gpu-driver-rim-schema-validated             |Boolean |Checks whether all GPU measurements are matched. If all measurements are matched, the determinhation is true.|
-|x-nvidia-gpu-measurements-match                      |Boolean |Checks whether all GPU measurements are matched. If all measurements are matched, the determinhation is true.|
-|x-nvidia-gpu-nonce-match                             |Boolean |Checks whether the nonce in the SPDM GET MEASUREMENT request message matches the generated nonce.|
-|x-nvidia-gpu-vbios-rim-measurements-available        |Boolean |Checks if the VBIOS RIM measurements are available. |
-|x-nvidia-gpu-vbios-rim-schema-fetched                |Boolean |Checks if the Reference Integrity Manifest (RIM) corresponding to the driver version was retrieved from the GPU. |
-|x-nvidia-gpu-vbios-rim-cert-validated                |Boolean |Checks if the VBIOS certificate chain validation passed. |
-|x-nvidia-gpu-vbios-rim-schema-validated              |Boolean |Checks if the BIOS RIM Schema validation passed. |
-|x-nvidia-gpu-vbios-rim-signature-verified            |Boolean |Checks if the VBIOS RIM signature verification is successful. |
-|x-nvidia-gpu-driver-version                          |String  |Driver version fetched from the attestation report. |
-|x-nvidia-gpu-vbios-version                           |String  |VBIOS version fetched from the attestation report. |
+| Claim                                                 | Datatype | Description                                                                                                                                |
+| ----------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| secboot                                               | Boolean  | Checks whether Secure Boot is enabled, which ensures that the firmware and operating system were authenticated during the VM boot process. |
+| hwmodel                                               | String   | The unique identifier for the hardware token.                                                                                              |
+| x-nvidia-gpu-arch-check                               | Boolean  | Indicates whether the GPU architecture check is performed.                                                                                 |
+| x-nvidia-gpu-attestation-report-cert-chain-validated  | Boolean  | Indicates whether certificate-chain validation for the GPU attestation report succeeds.                                                    |
+| x-nvidia-gpu-attestation-report-parsed                | Boolean  | Indicates whether the GPU attestation report is parsed successfully.                                                                       |
+| x-nvidia-gpu-attestation-report-signature-verified    | Boolean  | Indicates whether the GPU attestation report was compared with the attestation key in the GPU leaf certificate.                            |
+| x-nvidia-gpu-driver-rim-driver-measurements-available | Boolean  | Indicates whether the Reference Integrity Manifest (RIM) for the driver version was retrieved from the GPU.                                |
+| x-nvidia-gpu-driver-rim-schema-fetched                | Boolean  | Indicates whether Driver RIM schema validation succeeds.                                                                                   |
+| x-nvidia-gpu-driver-rim-schema-validated              | Boolean  | Checks whether all GPU measurements match. If they all match, the determination is true.                                                   |
+| x-nvidia-gpu-measurements-match                       | Boolean  | Checks whether all GPU measurements match. If they all match, the determination is true.                                                   |
+| x-nvidia-gpu-nonce-match                              | Boolean  | Indicates whether the nonce in the SPDM GET MEASUREMENT request message matches the generated nonce.                                       |
+| x-nvidia-gpu-vbios-rim-measurements-available         | Boolean  | Indicates whether VBIOS RIM measurements are available.                                                                                    |
+| x-nvidia-gpu-vbios-rim-schema-fetched                 | Boolean  | Indicates whether the Reference Integrity Manifest (RIM) for the driver version was retrieved from the GPU.                                |
+| x-nvidia-gpu-vbios-rim-cert-validated                 | Boolean  | Indicates whether VBIOS certificate-chain validation succeeds.                                                                             |
+| x-nvidia-gpu-vbios-rim-schema-validated               | Boolean  | Indicates whether BIOS RIM schema validation succeeds.                                                                                     |
+| x-nvidia-gpu-vbios-rim-signature-verified             | Boolean  | Indicates whether VBIOS RIM signature verification succeeds.                                                                               |
+| x-nvidia-gpu-driver-version                           | String   | Driver version fetched from the attestation report.                                                                                        |
+| x-nvidia-gpu-vbios-version                            | String   | VBIOS version fetched from the attestation report.                                                                                         |
 
 #### NVGPU policy
 
@@ -761,7 +757,7 @@ export := {
 
 #### V2 NVGPU JSON
 
-The following example shows a V2 NVGPU policy in JSON format, before conversion to Rego. This is the input file that is specified for conversion.
+The following example shows a V2 NVGPU policy in JSON format before conversion to Rego. This is the input file specified for conversion.
 
 ```json
 {
@@ -821,7 +817,7 @@ The following example shows a V2 NVGPU policy in JSON format, before conversion 
 
 #### V2 NVGPU Rego
 
-The following example shows the JSON input file, above, after conversion to an NVGPU policy. This is what you'll use to create your policy in TA.
+The following example shows the JSON input file above after conversion to an NVGPU policy. Use this output to create your policy in TA.
 
 ```rego
 default match = false
@@ -874,17 +870,17 @@ export := {
 
 ### V2 TPM incoming claims
 
-|Claim                    | Datatype                |Description               |
-|-------------------------|-------------------------|-----------------------------|
-|pcrs |List | The PCR measurements that were included in TPM evidence.|
+| Claim | Datatype | Description                                              |
+| ----- | -------- | -------------------------------------------------------- |
+| pcrs  | List     | The PCR measurements that were included in TPM evidence. |
 
 #### PCR Object
 
-|Claim                    | Datatype                |Description               |
-|-------------------------|-------------------------|-----------------------------|
-|alg |String |  The PCR measurements that were included in TPM evidence.|
-|index |Number|The index of the PCR (0 thru 23).|
-|digest |String|The PCR's digest/measurement.  |
+| Claim  | Datatype | Description                                              |
+| ------ | -------- | -------------------------------------------------------- |
+| alg    | String   | The PCR measurements that were included in TPM evidence. |
+| index  | Number   | The index of the PCR (0 through 23).                     |
+| digest | String   | The PCR's digest/measurement.                            |
 
 #### V2 TPM policy
 
@@ -893,7 +889,7 @@ export := {
 
 #### V2 TPM JSON
 
-The following example shows a Intel TPM policy in JSON format, before conversion to Rego. This is the input file that is specified for conversion.
+The following example shows an Intel TPM policy in JSON format before conversion to Rego. This is the input file specified for conversion.
 
 ```json
 {
@@ -933,7 +929,7 @@ The following example shows a Intel TPM policy in JSON format, before conversion
 
 #### V2 TPM Rego
 
-The following example shows the JSON input file, above, after conversion to an Intel TPM policy. This is what you'll use to create your policy in TA.
+The following example shows the JSON input file above after conversion to an Intel TPM policy. Use this output to create your policy in TA.
 
 ```rego
 default match = false
@@ -973,7 +969,7 @@ export := {
 
 #### V2 TDX + NVGPU JSON
 
-The following example shows a V2 TDX + NVGPU policy in JSON format, before conversion to Rego. This is the input file that is specified for conversion.
+The following example shows a V2 TDX + NVGPU policy in JSON format before conversion to Rego. This is the input file specified for conversion.
 
 ```json
 {
@@ -1052,11 +1048,11 @@ The following example shows a V2 TDX + NVGPU policy in JSON format, before conve
 ```
 
 </TabItem>
-<TabItem value="tdx-nvgpu" label="V2 TDX = NVGPU Rego">
+<TabItem value="tdx-nvgpu" label="V2 TDX + NVGPU Rego">
 
 #### V2 TDX + NVGPU Rego
 
-The following example shows the JSON input file, above, after conversion to an Intel V2 TDX + NVGPU policy. This is what you'll use to create your policy in TA.
+The following example shows the JSON input file above after conversion to an Intel V2 TDX + NVGPU policy. Use this output to create your policy in TA.
 
 ```rego
 default match = false
@@ -1074,6 +1070,7 @@ acceptable_values_for_tdx_rtmr3 := {"ca6acd5094d9319bb2d04b1859931a88124c81e4818
 acceptable_values_for_tdx_rtmr3[input.tdx.tdx_rtmr3]
 input.tdx.tdx_mrtd == "3dfeeb7cf01210c0df8f5adffc65c7ad8a1741119ec873c8a3cf81adefb21fcd1b828b776ead31369cfe7470ac322d54"
 input.tdx.tdx_mrsignerseam == "03f7b0e40e9ebd4bb4b346048bdc0879d0084d534f7848dd8d4f1be4b0e9610d22f72e45ce4d941c056d4db74eb0028c"
+input.tdx.tdx_is_debuggable == true
 }
 match_nvgpu {
 input.nvgpu.secboot == true
@@ -1136,7 +1133,7 @@ export := {
 
 #### V2 TDX + TPM JSON
 
-The following example shows a V2 TDX + TPM policy in JSON format, before conversion to Rego. This is the input file that is specified for conversion.
+The following example shows a V2 TDX + TPM policy in JSON format before conversion to Rego. This is the input file specified for conversion.
 
 ```Json
 {
@@ -1195,11 +1192,11 @@ The following example shows a V2 TDX + TPM policy in JSON format, before convers
 ```
 
 </TabItem>
-<TabItem value="tdx-tpm-rego" label="V2 TDX - TPM Rego">
+<TabItem value="tdx-tpm-rego" label="V2 TDX + TPM Rego">
 
 #### V2 TDX + TPM Rego
 
-The following example shows the JSON input file, above, after conversion to an V2 TDX + TPM policy. This is what you'll use to create your policy in TA. 
+The following example shows the JSON input file above after conversion to a V2 TDX + TPM policy. Use this output to create your policy in TA.
 
 ```rego
 default match = false
@@ -1262,7 +1259,7 @@ export := {
 
 #### V2 SEVSNP + NVGPU JSON
 
-The following example shows a V2 SEVSNP + NVGPU in JSON format, before conversion to Rego. This is the input file that is specified for conversion.
+The following example shows a V2 SEVSNP + NVGPU policy in JSON format before conversion to Rego. This is the input file specified for conversion.
 
 ```json
 {
@@ -1347,7 +1344,7 @@ The following example shows a V2 SEVSNP + NVGPU in JSON format, before conversio
 
 #### V2 SEVSNP + NVGPU Rego
 
-The following example shows the JSON input file, above, after conversion to an SEVSNP + NVGPU policy. This is what you'll use to create your policy in TA. 
+The following example shows the JSON input file above after conversion to an SEVSNP + NVGPU policy. Use this output to create your policy in TA.
 
 ```rego
 default match = false
@@ -1441,7 +1438,7 @@ export := {
 
 #### V2 SEVSNP + TPM JSON
 
-The following example shows a V2 SEVSNP + TPM policy in JSON format, before conversion to Rego. This is the input file that is specified for conversion.
+The following example shows a V2 SEVSNP + TPM policy in JSON format before conversion to Rego. This is the input file specified for conversion.
 
 ```json
 {
@@ -1516,7 +1513,7 @@ The following example shows a V2 SEVSNP + TPM policy in JSON format, before conv
 
 #### V2 SEVSNP + TPM Rego
 
-The following example shows the JSON input file, above, after conversion to an Intel TDX TCB custom policy. This is what you'll use to create your policy in TA.
+The following example shows the JSON input file above after conversion to an Intel TDX TCB custom policy. Use this output to create your policy in TA.
 
 ```rego
 default match = false
@@ -1591,7 +1588,7 @@ export := {
 
 #### V2 TDX + NVGPU + TPM JSON
 
-The following example shows a V2 TDX + NVGPU + TPM policy in JSON format, before conversion to Rego. This is the input file that is specified for conversion.
+The following example shows a V2 TDX + NVGPU + TPM policy in JSON format before conversion to Rego. This is the input file specified for conversion.
 
 ```json
 {
@@ -1696,34 +1693,25 @@ The following example shows a V2 TDX + NVGPU + TPM policy in JSON format, before
 
 #### V2 TDX + NVGPU + TPM Rego
 
-The following example shows the JSON input file, above, after conversion to a V2 TDX + NVGPU + TPM policy. This is what you'll use to create your policy in TA.
+The following example shows the JSON input above after conversion to a V2 TDX + NVGPU + TPM policy. Use this output to create your policy in TA.
 
 ```rego
 default match = false
 match {
-match_sevsnp
+match_tdx
 match_tpm
 match_nvgpu
 }
- 
-match_sevsnp {
-input.sevsnp.sevsnp_authorkeydigest == "55795dcfb1e789925f193b414765dcdea9a5a2374c787c26bba2b070882ddd2fd08741da94d21dd1ec5091bfc0e715d7"
-input.sevsnp.sevsnp_guestsvn == 0
-input.sevsnp.sevsnp_bootloader_svn == 2
-acceptable_values_for_sevsnp_familyId := {"00000000000000000000000000000000", "00000000000000000000000000000030"}
-acceptable_values_for_sevsnp_familyId[input.sevsnp.sevsnp_familyId]
-input.sevsnp.sevsnp_imageId == "00000000000000000000000000000000"
-input.sevsnp.sevsnp_reportdata == "a7ddd44a965d012ba26788283c4123a68c0f9139e2297ef87736032a175544908d507f8481cb3a0191d426220c40e32c5d41b8b066fbef67ef426e5fa4193b93"
-input.sevsnp.sevsnp_launchmeasurement == "dfa2b37b1d75eab67026b3bf207690df50b3530ec77f60c488ef73b270247f2908f6de85d799d362cf00fec551c7a5be"
-input.sevsnp.sevsnp_hostdata == "a000000000000000000000000000000000000000000000000000000000000002"
-input.sevsnp.sevsnp_idkeydigest == "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-input.sevsnp.sevsnp_is_debuggable == false
-input.sevsnp.sevsnp_microcode_svn == 41
-input.sevsnp.sevsnp_migration_allowed == false
-input.sevsnp.sevsnp_smt_allowed == true
-input.sevsnp.sevsnp_snpfw_svn == 18
-input.sevsnp.sevsnp_tee_svn == 0
-input.sevsnp.sevsnp_vmpl == 0
+match_tdx {
+input.tdx.tdx_seamsvn == 2
+input.tdx.tdx_rtmr0 == "0b787fd971c0518f82ba4ec05109122093958517b2e19f918efa103c3f07017c8bc0ac63f97ecccfb081362fdc4bd983"
+input.tdx.tdx_rtmr1 == "ca6acd5094d9319bb2d04b1859931a88124c81e4818d43cf582d98d8b2d334bba3eada276ae93a352ede1f1a5e7f2f5c"
+input.tdx.tdx_rtmr2 == "0b787fd971c0518f82ba4ec05109122093958517b2e19f918efa103c3f07017c8bc0ac63f97ecccfb081362fdc4bd983"
+acceptable_values_for_tdx_rtmr3 := {"ca6acd5094d9319bb2d04b1859931a88124c81e4818d43cf582d98d8b2d334bba3eada276ae93a352ede1f1a5e7f2f5c", "ca6acd5094d9319bb2d04b1859931a88124c81e4818d43cf582d98d8b2d334bba3eada276ae93a352ede1f1a5e7f2f5c", "ca6acd5094d9319bb2d04b1859931a88124c81e4818d43cf582d98d8b2d334bba3eada276ae93a352ede1f1a5e7f2f5c", "ca6acd5094d9319bb2d04b1859931a88124c81e4818d43cf582d98d8b2d334bba3eada276ae93a352ede1f1a5e7f2f5c", "ca6acd5094d9319bb2d04b1859931a88124c81e4818d43cf582d98d8b2d334bba3eada276ae93a352ede1f1a5e7f2f5c", "0b787fd971c0518f82ba4ec05109122093958517b2e19f918efa103c3f07017c8bc0ac63f97ecccfb081362fdc4bd983"}
+acceptable_values_for_tdx_rtmr3[input.tdx.tdx_rtmr3]
+input.tdx.tdx_mrtd == "3dfeeb7cf01210c0df8f5adffc65c7ad8a1741119ec873c8a3cf81adefb21fcd1b828b776ead31369cfe7470ac322d54"
+input.tdx.tdx_mrsignerseam == "03f7b0e40e9ebd4bb4b346048bdc0879d0084d534f7848dd8d4f1be4b0e9610d22f72e45ce4d941c056d4db74eb0028c"
+input.tdx.tdx_is_debuggable == true
 }
 match_tpm {
 pcr0 := input.tpm.pcrs[_]
@@ -1752,9 +1740,11 @@ input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-attestation-re
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-driver-measurements-available"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-fetched"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-validated"] == true
+input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-signature-verified"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-measurements-match"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-nonce-match"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-measurements-available"] == true
+input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-schema-fetched'"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-cert-validated"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-schema-validated"] == true
 input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-signature-verified"] == true
@@ -1762,39 +1752,37 @@ input.nvgpu["x-nvidia-gpu-driver-version"] == "535.104.05"
 input.nvgpu["x-nvidia-gpu-vbios-version"] == "96.00.5E.00.015"
 }
 export := {
-"my_sevsnp_isvprodid" : input.sevsnp.sevsnp_authorkeydigest,
-"my_sevsnp_isvsvn" : input.sevsnp.sevsnp_guestsvn,
-"my_sevsnp_mrenclave" : input.sevsnp.sevsnp_bootloader_svn,
-"my_sevsnp_mrsigner" : input.sevsnp.sevsnp_familyId,
-"my_debuggable" : input.sevsnp.sevsnp_reportdata,
-"my_attester_tcb_date" : input.sevsnp.sevsnp_launchmeasurement,
-"my_sevsnp_hostdata" : input.sevsnp.sevsnp_hostdata,
-"my_sevsnp_idkeydigest" : input.sevsnp.sevsnp_idkeydigest,
-"my_sevsnp_is_debuggable" : input.sevsnp.sevsnp_is_debuggable,
-"my_sevsnp_microcode_svn" : input.sevsnp.sevsnp_microcode_svn,
-"mysevsnp_migration_allowed" : input.sevsnp.sevsnp_migration_allowed,
-"my_sevsnp_smt_allowed" : input.sevsnp.sevsnp_smt_allowed,
-"my_sevsnp_snpfw_svn" : input.sevsnp.sevsnp_snpfw_svn,
-"my_sevsnp_tee_svn" : input.sevsnp.sevsnp_tee_svn,
-"mysevsnp_vmpl" : input.sevsnp.sevsnp_vmpl,
+"my_tdx_seamsvn" : input.tdx.tdx_seamsvn,
+"my_tdx_rtmr0" : input.tdx.tdx_rtmr0,
+"my_tdx_rtmr1" : input.tdx.tdx_rtmr1,
+"my_tdx_rtmr2" : input.tdx.tdx_rtmr2,
+"my_tdx_rtmr3" : input.tdx.tdx_rtmr3,
+"my_tdx_mrtd" : input.tdx.tdx_mrtd,
+"my_tdx_mrsignerseam" : input.tdx.tdx_mrsignerseam,
+"my_debuggable" : input.tdx.tdx_is_debuggable,
+"my_attester_tcb_date" : input.tdx.attester_tcb_date,
+"my_attester_advisory_id" : input.tdx.attester_advisory_ids,
+"my_attester_tcb_status" : input.tdx.attester_tcb_status,
 "my_pcrs" : input.tpm.pcrs,
-"my_secboot" : input.nvgpu.secboot,
-"my_hwmodel" : input.nvgpu.hwmodel,
+"mysecboot" : input.nvgpu.secboot,
+"myhwmodel" : input.nvgpu.hwmodel,
 "my_x-nvidia-gpu-arch-check" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-arch-check"],
-"my_report-cert-chain-validated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-attestation-report-cert-chain-validated"],
-"my_parsed" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-attestation-report-parsed"],
-"my_verified" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-signature-verified"],
-"my_measurements_available" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-driver-measurements-available"],
-"my_schema-fetched" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-fetched"],
-"my_schema-validated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-validated"],
-"my_measurements-match" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-measurements-match"],
+"myreport-cert-chain-validated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-attestation-report-cert-chain-validated"],
+"myparsed" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-attestation-report-parsed"],
+"myverified" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-attestation-report-signature-verified"],
+"measurements" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-driver-measurements-available"],
+"mysefetched" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-fetched"],
+"myvalidated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-schema-validated"],
+"mysecboot" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-driver-rim-signature-verified"],
+"mysecbootmatch" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-measurements-match"],
 "my_x-nvidia-gpu-nonce-match" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-nonce-match"],
-"my_x-nvidia-gpu-vbios-rim-measurements-available" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-measurements-available"],
-"my_x-nvidia-gpu-vbios-rim-cert-validated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-cert-validated"],
-"my_x-nvidia-gpu-vbios-rim-schema-validated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-schema-validated"],
-"my_x-nvidia-gpu-vbios-rim-signature-verified" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-signature-verified"],
-"my-nvidia-gpu-driver-version" : input.nvgpu["x-nvidia-gpu-driver-version"],
-"my-nvidia-gpu-vbios-version" : input.nvgpu["x-nvidia-gpu-vbios-version"],
+"myx-nvidia-gpu-vbios-rim-measurements-available" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-measurements-available"],
+"mysx-nvidia-gpu-vbios-rim-schema-fetched" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-schema-fetched'"],
+"mysex-nvidia-gpu-vbios-rim-schema-fetchedt" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-cert-validated"],
+"mysx-nvidia-gpu-vbios-rim-schema-validated" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-schema-validated"],
+"mysx-nvidia-gpu-vbios-rim-signature-verified" : input.nvgpu["x-nvidia-attestation-detailed-result"]["x-nvidia-gpu-vbios-rim-signature-verified"],
+"myx-nvidia-gpu-driver-version" : input.nvgpu["x-nvidia-gpu-driver-version"],
+"mys-nvidia-gpu-vbios-version" : input.nvgpu["x-nvidia-gpu-vbios-version"],
 }
 ```
 

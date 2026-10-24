@@ -1,6 +1,6 @@
 ---
 title: TA CLI installation
-description: TA CLI prerequisites and installation guide.
+description: Learn how to build, install, configure, and use the TA CLI, including its prerequisites, supported operating system, directory structure, and commands.
 author: pcartee
 topic-type: Reference
 date: 06/12/2024
@@ -8,10 +8,10 @@ uid: cli-install
 sidebar_position: 1
 ---
 
-These instructions describe how to build and install the TA CLI. The TA CLI is an open-source tool tenants use to make API calls to their instance of TA. The source code for the TA CLI is available on [GitHub](https://github.com/company/ta-cli).
+This article explains how to build, install, and configure the TA CLI. Tenants use this open-source tool to make API calls to their TA instance. The source code is available on [GitHub](https://github.com/company/ta-cli).
 
 :::note
-Valid characters include: numbers 0 through 9, upper and lowercase English characters, underscore (_), colon (;), period (.), slash  (/), dash (-), and a space ( ).
+Valid characters include the numbers 0 through 9; uppercase and lowercase English letters; underscore (_); colon (;); period (.); slash (/); dash (-); and space ( ).
 :::
 
 ## Build the TA CLI
@@ -20,120 +20,143 @@ Follow these instructions to build the TA CLI.
 
 ### Prerequisite packages
 
-Install the following prerequisite packages before installing the TA CLI:
+Install the following prerequisite packages before you build the TA CLI:
 
-**Make and Makeself**
+#### Make and Makeself
 
-To instal the `make` and `makeself` packages, run the following command:
+To install the `make` and `makeself` packages, run the following command:
 
-```
+```bash
 apt -y install make makeself
 ```
 
-**Golang**
+#### Go
 
-The supported Golang version is 1.20.x
+The supported Go version is 1.20.x.
 
-1. To install Golang version 1.20.x, follow the install instructions on the golang website `https://go.dev/doc/install`.
+1. Install Go version 1.20.x by following the [Go installation instructions](https://go.dev/doc/install).
 
-1. Add the local binary path, namely $HOME/.local/bin/, to your PATH environment variable if not already present.
+1. If `$HOME/.local/bin/` isn't already in your `PATH` environment variable, add it.
 
 ### Supported operating system
 
 - Ubuntu LTS 20.04
 
 :::note
-You must be a Tenant Admin to install the CLI, however, both the admin and users can use the CLI.
+You must be a tenant admin to install the CLI. Both admins and users can use it.
 :::
 
 ### Build the CLI
 
-1. Create a directory on the build machine named `CLI`.
+1. Create a directory named `cli` on the build machine.
 
-    `mkdir cli`
+    ```bash
+    mkdir cli
+    ```
 
-1. Go to the CLI directory.
+1. Change to the `cli` directory.
 
-    `cd cli`
+    ```bash
+    cd cli
+    ```
 
-1. To clone the TA CLI code to the newly created CLI directory, run the following command.
+1. Clone the TA CLI source code into the `cli` directory.
 
-    `git clone https://github.com/company/ta-cli`
+    ```bash
+    git clone https://github.com/company/ta-cli
+    ```
 
 1. Create the CLI installer in the newly created CLI directory.
 
-    `cd trust-authority-cli and run "make installer"`
+    ```bash
+    cd ta-cli
+    make installer
+    ```
 
 ## Install the TA CLI
 
 Before beginning these instructions, have the following information available:
 
-- URL of API Gateway
-- API Key of the Tenant
+- API gateway URL
+- Tenant API key
 
-1. If you have not already navigated to the CLI directory in which the CLI was built, navigate to it.
+1. If you aren't already in the directory where you built the CLI, change to that directory.
 
-    `cd cli`
+    ```bash
+    cd cli
+    ```
 
-1. Copy the binary installer to the system on which it is being deployed.
+1. Copy the binary installer to the system where you want to install the CLI.
 
-     `tactl-{version}.bin`
+    The installer file is named `tactl-{version}.bin`.
 
-1. The `tactl.env` file enables the CLI to contact a specific TA instance so it can be used to make changes. Create the tactl.env file in your home directory and add the following contents:
+1. Create a `tactl.env` file in your home directory. This file enables the CLI to contact a specific TA instance. Add the following contents:
 
-    - `TRUSTAUTHORITY_URL=https://api.ta.intel.com`
-    - `TRUSTAUTHORITY_API_KEY="< Admin API Key >`
+    ```text
+    TRUSTAUTHORITY_URL=https://api.ta.intel.com
+    TRUSTAUTHORITY_API_KEY="<admin API key>"
+    ```
 
-       :::note
-       If you are in the European Union (EU) region, use the following TA URL: `TRUSTAUTHORITY_URL=https://api.eu.ta.intel.com`
-       :::
+    :::note
+    If you're in the European Union (EU), use this TA URL: `TRUSTAUTHORITY_URL=https://api.eu.ta.intel.com`.
+    :::
 
-1. To install the tenant CLI on your system, run following command:
+1. To install the tenant CLI, run the following command:
 
-    `./tactl-{version}.bin`
+    ```bash
+    ./tactl-{version}.bin
+    ```
 
 :::note
-If you're behind a proxy, add the TA FQDN to the NO_PROXY environment variable.
+If you're behind a proxy, add the TA fully qualified domain name (FQDN) to the `NO_PROXY` environment variable.
 :::
 
 ### Directory structure
 
-All files are stored in the user's home directory. The contents of the directories are listed below:
+The CLI stores its files in the user's home directory:
 
-- Configuration: $HOME/.config/tactl/config.yaml
-- Logs: $HOME/.config/tactl/logs/tactl.log
-- Bin: $HOME/.local/bin/tactl
-
-:::note
-If you cannot access the command, add the binary path to the PATH env variable
-:::
-
-## Commands
+- Configuration: `$HOME/.config/tactl/config.yaml`
+- Logs: `$HOME/.config/tactl/logs/tactl.log`
+- Binary: `$HOME/.local/bin/tactl`
 
 :::note
-Request ID could be a randomly generated string of at most 128 bytes, which can work as a unique identifier for each CRUD operation. This can be provided as an optional parameter to all the CRUD commands only.
+If you can't access the command, add the binary path to the `PATH` environment variable.
 :::
 
-## Tenant CLI configuration
+## CLI commands
 
-Use the command below to configure the tenant CLI. You need to know the file path to the `tactl.env` file created in the previous step.
+:::note
+You can optionally provide a request ID to CRUD commands. It can be a randomly generated string of up to 128 bytes and can serve as a unique identifier for each CRUD operation.
+:::
 
-`tactl config -v < env file path >`
+### Tenant CLI configuration
 
-## Install Bash completion
+Use the following command to configure the tenant CLI. You need the path to the `tactl.env` file that you created earlier.
 
-Use the following command to install bash completion for the TA CLI.
+```bash
+tactl config -v <env file path>
+```
 
-`tactl completion`
+### Install Bash completion
 
-## Retrieve the version
+Use the following command to install Bash completion for the TA CLI:
 
-To get the version number of the tenant CLI installed on your system, run the following command:
+```bash
+tactl completion
+```
 
-`tactl version`
+### Retrieve the version
 
-## Uninstall the CLI
+To display the version of the tenant CLI installed on your system, run the following command:
 
-To uninstall the tenant CLI, use the following command:
+```bash
+tactl version
+```
 
-`tactl uninstall`
+### Uninstall the CLI
+
+To uninstall the tenant CLI, run the following command:
+
+```bash
+tactl uninstall
+```
