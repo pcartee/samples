@@ -1,40 +1,63 @@
 ---
+<<<<<<< HEAD
+title: Trusted Execution Environments (TEE)
+description: Learn what a trusted execution environment (TEE) is, how Intel SGX enclaves and Intel TDX trust domains use a trusted computing base (TCB), quotes, and attestation, and the ways to integrate SGX and TDX workloads with Trust Authority (TA) services, including the Go, C, Java, and Python client libraries.
+=======
 title: Trusted Execution Environments (TEEs)
 description: Overview of trusted execution environments, trusted computing base verification through attestation, and TA integration options for SGX, TDX, and MAA workloads.
+>>>>>>> origin/main
 author: pcartee
 topic: conceptual
 date: 02/07/2025
 uid: tees.overview
 ---
 
+<<<<<<< HEAD
+A trusted execution environment (TEE) helps protect code and data from modification by untrusted software, hardware, and system components outside the TEE boundary. TEEs can help defend against many software-based and some hardware-based attacks, and they provide assurance that the software and hardware within the TEE haven't been tampered with.
+=======
 A trusted execution environment (TEE) helps protect code and data from modification by untrusted software, hardware, and system components outside the TEE boundary. TEEs can help defend against many software-based and some hardware-based attacks and provide assurance that the software and hardware within the TEE have not been tampered with.
+>>>>>>> origin/main
 
-TA supports Software Guard Extensions (SGX) and Trust Domain Extensions (TDX) TEEs. To use TA services, you need a working knowledge of the underlying TEE technology. To learn more about SGX and TDX, see [Next steps](#next-steps).
+Trust Authority (TA) supports Intel® Software Guard Extensions (Intel® SGX) and Intel® Trust Domain Extensions (Intel® TDX) TEEs. TA also supports AMD SEV-SNP confidential VMs and NVIDIA GPU TEEs. This article focuses on SGX and TDX. To use TA services, you need a working knowledge of the underlying TEE technology. To learn more about SGX, TDX, and SEV-SNP, see [Next steps](#next-steps).
 
-A TEE running directly on an SGX-enabled platform is called an _enclave_. A TDX virtual machine (VM) running on a TDX-enabled platform is called a _trust domain_.
+A TEE that runs directly on an SGX-enabled platform is called an _enclave_. A TDX virtual machine (VM) that runs on a TDX-enabled platform is called a _trust domain_.
 
-Every TEE has a trusted computing base (TCB), which includes the software, firmware, and hardware resources within the TEE's security boundary. When an enclave or trust domain is created, its TCB must be verified through attestation before it can be trusted with sensitive workloads and data. For more information, see [TA attestation](../Concepts/concept-attestation-overview.md).
+Every TEE has a trusted computing base (TCB), which includes the software, firmware, and hardware resources within the TEE's security boundary. When you create an enclave or trust domain, you must verify its TCB through attestation before you can trust it with sensitive workloads and data. For more information, see [TA attestation](../Concepts/concept-attestation-overview.md).
 
-A TEE generates a quote containing cryptographic evidence to support its claim of authenticity. Low-level, platform-specific attestation primitives collect the evidence.
+A TEE generates a quote that contains cryptographic evidence to support its claim of authenticity. Low-level, platform-specific attestation primitives collect the evidence.
 
 TA provides several ways to integrate TEE workloads with its services:
 
-- Your workload can create a quote using platform-specific code, then call the TA REST API or, for TDX trust domains, the TDX CLI. This option can help migrate existing applications to TA attestation.
-- You can use the TA Go client libraries to integrate SGX or TDX attestation into your application. The client library handles low-level calls to platform-specific attestation primitives, reducing the complexity of working with TEEs. Go is the currently supported language for this integration.
-- You can migrate existing Microsoft Azure Attestation (MAA) applications to use TA attestation. In this case, your Microsoft Azure TEE application creates a quote in a format compatible with MAA. The TA MAA adapter accepts MAA-format quotes for remote attestation. For more information, see the [MAA adapter service](../Concepts/concept-maa-adapter.md).
-
----
+- Create a quote by using platform-specific code in your workload, and then call the TA REST API or, for TDX trust domains, the TDX CLI. This option can help you migrate existing applications to TA attestation.
+- Use a TA client library to integrate SGX or TDX attestation into your application. TA provides client libraries for Go, C, Java, and Python. The client library handles low-level calls to platform-specific attestation primitives, which reduces the complexity of working with TEEs.
+- Migrate existing Microsoft Azure Attestation (MAA) applications to use TA attestation. In this case, your Microsoft Azure TEE application creates a quote in a format that's compatible with MAA. The TA MAA adapter accepts MAA-format quotes for remote attestation. For more information, see the [MAA adapter service](../Concepts/concept-maa-adapter.md).
 
 ## Next steps
 
+<<<<<<< HEAD
+TEE technology articles:
+
+- [Software Guard Extensions (SGX)](./Trusted%20execution%20environments/tee-sgx.md)
+- [Trust Domain Extensions (TDX)](./Trusted%20execution%20environments/tee-tdx.md)
+- [AMD SEV-SNP](./Trusted%20execution%20environments/tee-sev-snp.md)
+
+Intel resources:
+
+- [Intel SGX overview](https://www.intel.com/content/www/us/en/developer/tools/software-guard-extensions/overview.html)
+- [Intel TDX overview](https://www.intel.com/content/www/us/en/developer/tools/trust-domain-extensions/overview.html)
+=======
 ### SGX and TDX resources
 
 - [Intel SGX overview](https://www.intel.com/content/www/us/en/developer/tools/software-guard-extensions/overview.html)
 - [Intel TDX documentation](https://www.intel.com/content/www/us/en/developer/tools/trust-domain-extensions/documentation.html)
+>>>>>>> origin/main
 
 ### TA TEE integrations
 
-- [TA Go Client](../Integration/integrate-go-client.md)
+- [TA Go client](../Integration/integrate-go-client.md)
+- [TA C client](../Integration/integrate-c-client.md)
+- [TA Java client](../Integration/integrate-java-client.md)
+- [TA Python client](../Integration/integrate-python-client.md)
 - TDX CLI (for TDX trust domains)
 - Gramine client
 
