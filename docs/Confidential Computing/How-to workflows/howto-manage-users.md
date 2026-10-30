@@ -1,44 +1,44 @@
 ---
 title: User management
-description: An overview of user management in TA.
+description: Learn how tenant admins in Trust Authority (TA) view, invite, search, update, and delete users with the TA portal or the tactl CLI, including user roles (Tenant Admin and User) and related commands.
 author: pcartee
 topic: how to
 date: 12/09/2024
-uid: manage.users # Do not change uid!
+uid: manage.users
 sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-TA user permissions are divided into _tenant admins_ and _users_. Tenant admins can perform all regular user functions and manage other users through the Manage Users dashboard. At least one active tenant admin is required and is automatically assigned to the first TA subscriber from a tenant organization. Only tenant admins can invite, edit, and delete users.
+Trust Authority (TA) divides user permissions into _tenant admins_ and _users_. Tenant admins can perform all regular user functions and manage other users through the **Manage users** dashboard. Your tenant must have at least one active tenant admin. TA automatically assigns this role to the first TA subscriber from a tenant organization. Only tenant admins can invite, edit, and delete users.
 
 :::important
-Enable more than one tenant administrator account for redundancy purposes.
+Enable more than one tenant admin account for redundancy.
 :::
 
-Users can be managed using the TA portal, with the [CLI](../Command-line/cli-user-commands.md), or by REST API.
+You can manage users in the TA portal, with the [CLI](../Command-line/cli-user-commands.md), or by using the REST API. Select the tab for your preferred method.
 
 <Tabs>
-  <TabItem value="TA portal" Label="TA portal" default>
+  <TabItem value="portal" label="TA portal" default>
 
 ## Portal
 
 ### View tenant admins and users
 
-You can view the list of users using one of the following methods.
+To view the list of users:
 
 1. Sign in as a tenant admin.
 
 1. Select **Manage users**.
 
-     ![View Policies](/img/howto-manage-users/view-users.png)
+   ![The Manage Users page listing each user's email address, role, status, and actions, with an Invite a user button and search by email, role, and status controls.](/img/howto-manage-users/view-users.png)
 
-     The user, their roles, and their status are listed in the table.
+   The table lists each user, their role, and their status.
 
 ### Create a user
 
-You can create a new user by one of the following methods.
+To create a user:
 
 1. Sign in as a tenant admin.
 
@@ -46,32 +46,35 @@ You can create a new user by one of the following methods.
 
 1. Select **INVITE A USER**.
 
-    ![View Policies](/img/howto-manage-users/invite-user.png)
+   ![The Invite a user page with fields for email address, role, and language, and Go back and Save buttons.](/img/howto-manage-users/invite-user.png)
 
-1. Enter the user's email.
+1. Enter the user's email address.
 
 1. Select the role for the new user.
 
-1. Optionally select a language for the user.
+1. (Optional) Select a language for the user.
 
 1. Select **SAVE**.
 
-     The invitation is emailed to the user.
+   TA emails the invitation to the user.
 
 ### Search for users
 
-You can search for TA users within your tenant by filtering users by email, role, or status. Do the following to search for users in the TA portal.
+You can search for TA users within your tenant by filtering by email, role, or status. To search for users in the TA portal:
 
 1. Sign in as a tenant admin.
 
 1. Select **Manage users**.
 
-1. In the Manage users dashboard, users can be viewed based on the following categories.
-    * **Search by email**: In the **Search by email:** box, enter the user's email. This is an incremental search. The search starts when the first letter is entered. The users with email addresses matching the search results are displayed in the table.
-    * **Search by role**: Select the role option (**Select All, Tenant Admin, User**) from the menu. The users matching the selected role are displayed in the table.
-    * **Search by status**: Select the status option (**Show All, Active, Pending**) from the menu. The users matching the selected option are displayed in the table.
+1. In the **Manage users** dashboard, filter users by using any of the following options:
+
+   - **Search by email**: In the **Search by email** box, enter the user's email address. This is an incremental search that starts when you enter the first character. The table displays users whose email addresses match.
+   - **Search by role**: From the menu, select a role option (**Show All**, **Tenant Admin**, or **User**). The table displays users with the selected role.
+   - **Search by status**: From the menu, select a status option (**Show All**, **Active**, or **Pending**). The table displays users with the selected status.
 
 ### Update user roles
+
+To update a user's role:
 
 1. Sign in as a tenant admin.
 
@@ -79,41 +82,45 @@ You can search for TA users within your tenant by filtering users by email, role
 
 1. Identify the user to update.
 
-1. Select the **Edit** ![Edit icon](/img/common-graphics/edit-icon.png) icon.
+1. Select the **Edit** icon ![Pencil icon that represents Edit.](/img/common-graphics/edit-icon.png).
 
-1. Select **YES, EDIT**on the pop-up.
+1. In the pop-up window, select **YES, EDIT**.
 
-1. Select the updated role from the menu.
+1. From the menu, select the new role.
 
 1. Select **SAVE**.
 
-1. The user is updated, and the updated user info is displayed in the Active Users pane.
+   TA updates the user and displays the updated information in the **Active Users** pane.
 
 ### Delete a user
 
+To delete a user:
+
 1. Sign in as a tenant admin.
 
-1. Select **Manage Users**.
+1. Select **Manage users**.
 
 1. Identify the user to delete.
 
-1. Select the **Delete** ![Delete](/img/common-graphics/delete-icon.png) icon.
+1. Select the **Delete** icon ![Trash can icon that represents Delete.](/img/common-graphics/delete-icon.png).
 
-1. Select **YES, DELETE USER** on the pop-up.
+1. In the pop-up window, select **YES, DELETE USER**.
 
-1. The user is deleted, and the deleted user is removed from the Active Users pane.
+   TA deletes the user and removes them from the **Active Users** pane.
 
 :::note
-A user's policy, tags, and API keys are **not** deleted when the user is deleted.
+Deleting a user does **not** delete the user's policies, tags, or API keys.
 :::
 
 </TabItem>
 
 <TabItem value="cli" label="CLI">
 
+## CLI
+
 ### View tenant admins and users
 
-This command lists the current users in your environment.
+This command lists the current users in your environment:
 
 `tactl list user`
 
@@ -132,15 +139,17 @@ Users: [ { "id": "e3968eb8-e053-4646-98dd-7b61991a66d1", "email": user1@company.
 
 ### Create a user
 
-Use the following command to create a new user for your environment.
+Use the following command to create a user in your environment:
 
 `tactl create user -e < email Id> -r < Role (Tenant Admin/User) >`
 
 #### Sample call
 
 ```bash
-tactl create user -e regularuser0@gmail.com -r User
-**Sample response**
+tactl create user -e user@example.com -r User
+```
+
+#### Sample response
 
 ```bash
 trace-id:  LOnduFR-IAMEVqw=
@@ -148,7 +157,7 @@ User:
 
  {
   "id": "8f96ee5c-69a7-497d-9cf7-900ed2250470",
-  "email": "regularuser0@gmail.com",
+  "email": "user@example.com",
   "role": {
     "id": "885391bf-2a37-4dc7-9444-833c5a817cdf",
     "name": "User"
@@ -161,7 +170,7 @@ User:
 
 ### Update user roles
 
-Use the following command to Update the role of a specified user.
+Use the following command to update the role of a specified user:
 
 `tactl update user role -u < user id > -r < Role (Tenant Admin/User) >`
 
@@ -180,7 +189,7 @@ Updated User: { "id": "598db1fc-4340-4bbc-9e19-2d596c3b7bd8", "email": user1@com
 
 ### Delete a user
 
-Deletes the user from the logged in tenant for specified userId.
+This command deletes the specified user from the tenant you're signed in to:
 
 `tactl delete user -u < user id >`
 
@@ -190,7 +199,7 @@ Deletes the user from the logged in tenant for specified userId.
 tactl delete user -u "4324598fs-0404-4f4r-9oii9-8f8flk893w21"
 ```
 
-#### Sample Response
+#### Sample response
 
 ```bash
 trace-id:  LOnf6FS_oAMEXPw=

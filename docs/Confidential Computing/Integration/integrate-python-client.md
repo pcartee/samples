@@ -1,6 +1,6 @@
 ---
-title: TA Python connector 
-description: TA Python Connector API reference documentation.
+title: TA Python connector
+description: Reference for the Trust Authority (TA) Python client. Describes the ITAConnector class methods (attest, get_nonce, get_token, get_token_signing_certificates, verify_token), Config and RetryConfig setup, TEE adapters for Intel SGX and Intel TDX platforms, user data handling, and collect_evidence, with Python examples.
 author: pcartee
 topic: integration
 date: 05/16/2024
@@ -8,25 +8,30 @@ uid: integrate.python.client
 sidebar_position: 4
 ---
 
-TA Client provides a set of Python libraries for attesting TEEs. Users can import the Python libraries into their application and make REST calls to TA to get an attestation token containing information about the TEE attestation and verification. 
+The TA client provides a set of Python libraries for attesting trusted execution environments (TEEs). You can import the Python libraries into your application and make REST calls to TA to get an attestation token that contains information about the TEE attestation and verification.
 
-The TA Python client modules, build, and installation instructions are on GitHub at [**intel/ta-client-for-python**](https://github.com/intel/ta-client-for-python).
+The TA Python client modules, build instructions, and installation instructions are on GitHub at [**intel/ta-client-for-python**](https://github.com/intel/ta-client-for-python).
 
 ## ITAConnector class and evidence adapters
 
 The Python client ITAConnector class includes the following methods for attestation and verification:
 
-  [**`attest`**](#attest)<br /> Collects evidence and requests an attestation token from TA for clients using a Passport validation model.
+[**`attest`**](#attest)  
+Collects evidence and requests an attestation token from TA for clients that use a Passport validation model.
 
-  [**`get_nonce`**](#get_nonce)<br /> Gets a nonce and parses it to JSON.
+[**`get_nonce`**](#get_nonce)  
+Gets a nonce and parses it to JSON.
 
-  [**`get_token`**](#get_token)<br /> Requests an attestation token from TA. `get_token` Provides more control than `attest` by allowing a confidential app to include user data, provide a nonce, and modify evidence structures before requesting a token. `get_token` supports both Passport and Background-check attestation models.
+[**`get_token`**](#get_token)  
+Requests an attestation token from TA. `get_token` provides more control than `attest` by allowing a confidential app to include user data, provide a nonce, and modify evidence structures before requesting a token. `get_token` supports both Passport and Background-check attestation models.
 
-  [**`get_token_signing_certificates`**](#get_token_signing_certificates)<br /> Retrieves a JSON Web Key Set (JWKS) that contains the collection of signing certificates used by TA to sign attestation tokens.
+[**`get_token_signing_certificates`**](#get_token_signing_certificates)  
+Retrieves a JSON Web Key Set (JWKS) that contains the collection of signing certificates that TA uses to sign attestation tokens.
 
-  [**`verify_token`**](#verify_token)<br /> Verifies that a TA attestation token is properly formatted and signed.
+[**`verify_token`**](#verify_token)  
+Verifies that a TA attestation token is properly formatted and signed.
 
-A connector requires a TEE adapter (`adapter: EvidenceAdapter` in **AttestArgs**) to collect evidence from the attesting platform. For more information about which TEE adapters are currently supported by the Python connector, see [TEE Adapters](../Integration/integrate-overview.md#tee-adapters) in the Integration Overview article.
+A connector requires a TEE adapter (`adapter: EvidenceAdapter` in **AttestArgs**) to collect evidence from the attesting platform. For more information about which TEE adapters the Python connector currently supports, see [TEE adapters](../Integration/integrate-overview.md#tee-adapters) in the integration overview article.
 
 A relying party can use the Python connector without a TEE adapter. The only method that requires a TEE adapter is **attest**.
 
@@ -47,45 +52,45 @@ Before you can use the API methods, you must set attributes of the **Config** ob
     )
 ```
 
- :::note
+:::note
+If you are in the European Union (EU) region, use the following TA URLs:
 
- If you are in the European Union (EU) region, use the following TA URLs:
- <br /> Base URL — https://portal.eu.ta.intel.com
- <br /> API URL — https://api.eu.ta.intel.com
-
+- Base URL: `https://portal.eu.ta.intel.com`
+- API URL: `https://api.eu.ta.intel.com`
 :::
 
-**RetryConfig** is optional. If you don't set RetryConfig, the default values defined in `inteltrustauthorityclient/resources/constants.py` are used. 
+**RetryConfig** is optional. If you don't set RetryConfig, the client uses the default values defined in `inteltrustauthorityclient/resources/constants.py`.
 
-#### attest
+### attest
 
-**attest** is an all-in-one attestation method that supports the Passport attestation model.   
+**attest** is an all-in-one attestation method that supports the Passport attestation model.
 
-``` python
+```python
   def attest(self, args: AttestArgs) -> AttestResponse
 ```
 
-**attest** gets a nonce, collects evidence from the TEE, and (if validation is successful) returns an attestation token. Attest allows you to supply a list of appraisal policies and a request ID to track the request. If you need to supply user_data with your attestation request you should use **get_token** directly.
+**attest** gets a nonce, collects evidence from the TEE, and (if validation is successful) returns an attestation token. **attest** lets you supply a list of appraisal policies and a request ID to track the request. If you need to supply user_data with your attestation request, use **get_token** directly.
 
-| Parameter/return  | Comment |
-|:--- | --- |
-| AttestArgs.adapter |  Required. A reference to an **EvidenceAdapter** abstract base class, which represents the TEE adapter module. |
-|AttestArgs.request_id  | An optional request ID for tracking. The **request_id** is a maximum of 128 characters, including a-z, A-Z, 0-9, and - (hyphen). Special characters are not allowed.|
-|AttestArgs.policy_ids |  An optional array of one to ten attestation policy IDs.|
-|AttestResponse.headers  | An array of one or more HTTP response headers.|
-|AttestResponse.token  |  If the attestation request is successful, **token** contains a JWT in base-64 encoded format.|
+| Parameter/return | Comment |
+| :--- | :--- |
+| AttestArgs.adapter | Required. A reference to an **EvidenceAdapter** abstract base class, which represents the TEE adapter module. |
+| AttestArgs.request_id | An optional request ID for tracking. The **request_id** is a maximum of 128 characters, including a-z, A-Z, 0-9, and - (hyphen). Special characters aren't allowed. |
+| AttestArgs.policy_ids | An optional array of one to 10 attestation policy IDs. |
+| AttestResponse.headers | An array of one or more HTTP response headers. |
+| AttestResponse.token | If the attestation request is successful, **token** contains a JWT in base64-encoded format. |
 
-#### get_nonce
+### get_nonce
 
-Gets a nonce from TA. 
+**get_nonce** gets a nonce from TA.
 
-``` python
+```python
   def get_nonce(self, args: GetNonceArgs) -> GetNonceResponse
 ```
-| Parameter/return  | Comment |
-|:--- | --- |
-|GetNonceResponse.headers | HTTP response headers.|
-|GetNonceResponse.nonce | A signed nonce in JSON format. The nonce has three fields: "val", "iat", and "signature".|
+
+| Parameter/return | Comment |
+| :--- | :--- |
+| GetNonceResponse.headers | HTTP response headers. |
+| GetNonceResponse.nonce | A signed nonce in JSON format. The nonce has three fields: "val", "iat", and "signature". |
 
 Example GetNonceResponse.nonce:
 
@@ -93,37 +98,36 @@ Example GetNonceResponse.nonce:
  {
   "val": "g9QC7VxV0n8dID0zSJeVLSULqYCJuv4iMepby91xukrhXgKrKscGXB5lxmT2s3POjxVOG+fSPCYpOKYWRRWAyQ==",
   "iat": "MjAyMi0wOC0yNCAxMjozNjozMi45Mjk3MjIwNzUgKzAwMDAgVVRD",
-  "signature": "WswVG3rOPJIuVmMNG2GZ6IF4hD+QfuJ/PigIRaHtQitGAHRCRzgtW8+8UbXe9vJfjnapjw7RQyzpT+vPGVpxRSoiBaj54RsedI38K9ubFd3gPvsMlYltgFRSAtb1ViWZxMhL0yA9+xzgv0D+11mpNEz8nt3HK4oALV5EAxqJYCmKZRzi3/LJe842AY8DVcV9eUZQ8RBx7gNe72Ex1fU3+qF9A9MuOgKqJ41/7HFTY0rCpcBS8k6E1VBSatk4XTj5KNcluI3LoAOvBuiwObgmNKT8Nyc4JAEc+gmf9e9taIgt7QNFEtl3nwPQuiCLIh0FHdXPYumiQ0mclU8nfQL8ZUoe/GqgOd58+fZoHeGvFoeyjQ7Q0Ini1rWEzwOY5gik9yH57/JTEJTI8Evc0L8ggRO4M/sZ2ZTyIq5yRUISB2eDh6qTfbKgSr5LpxW8IRl0y9fp8CEuzhFxKcOeld9p61yb040P+QhemhP/O1E5tf4y4Pz/ISASiKUBFSTh4yYx",
+  "signature": "WswVG3rOPJIuVmMNG2GZ6IF4hD+QfuJ/PigIRaHtQitGAHRCRzgtW8+8UbXe9vJfjnapjw7RQyzpT+vPGVpxRSoiBaj54RsedI38K9ubFd3gPvsMlYltgFRSAtb1ViWZxMhL0yA9+xzgv0D+11mpNEz8nt3HK4oALV5EAxqJYCmKZRzi3/LJe842AY8DVcV9eUZQ8RBx7gNe72Ex1fU3+qF9A9MuOgKqJ41/7HFTY0rCpcBS8k6E1VBSatk4XTj5KNcluI3LoAOvBuiwObgmNKT8Nyc4JAEc+gmf9e9taIgt7QNFEtl3nwPQuiCLIh0FHdXPYumiQ0mclU8nfQL8ZUoe/GqgOd58+fZoHeGvFoeyjQ7Q0Ini1rWEzwOY5gik9yH57/JTEJTI8Evc0L8ggRO4M/sZ2ZTyIq5yRUISB2eDh6qTfbKgSr5LpxW8IRl0y9fp8CEuzhFxKcOeld9p61yb040P+QhemhP/O1E5tf4y4Pz/ISASiKUBFSTh4yYx"
   }
 ```
 
 ### get_token
 
-Gets an attestation token (JWT) from TA.
+**get_token** gets an attestation token (JWT) from TA.
 
-``` python
+```python
   def get_token(self, args: GetTokenArgs) -> GetTokenResponse
 ```
 
-| Parameter/return  | Comment |
-|:--- | --- |
-|GetTokenArgs.nonce | Optional. A **VerifierNonce** object (JSON format) that contains a nonce received from TA.|
-|GetTokenArgs.evidence | Required. An **Evidence** object returned by a TEE adapter's **collect_evidence()** method, or (in background-check attestation mode) evidence received from the attester.|
-|GetTokenArgs.policy_ids | An optional array of one to ten attestation policy IDs.|
-|GetTokenArgs.request_id | An optional request ID for tracking. The **request_id** is a maximum of 128 characters, including a-z, A-Z, 0-9, and - (hyphen). Special characters are not allowed.|
-|GetTokenResponse.token | Contains a JWT in base-64 encoded format. |
-| GetTokenResponse.headers | An array of one or more HTTP response headers.|
+| Parameter/return | Comment |
+| :--- | :--- |
+| GetTokenArgs.nonce | Optional. A **VerifierNonce** object (JSON format) that contains a nonce received from TA. |
+| GetTokenArgs.evidence | Required. An **Evidence** object returned by a TEE adapter's **collect_evidence()** method, or (in background-check attestation mode) evidence received from the attester. |
+| GetTokenArgs.policy_ids | An optional array of one to 10 attestation policy IDs. |
+| GetTokenArgs.request_id | An optional request ID for tracking. The **request_id** is a maximum of 128 characters, including a-z, A-Z, 0-9, and - (hyphen). Special characters aren't allowed. |
+| GetTokenResponse.token | Contains a JWT in base64-encoded format. |
+| GetTokenResponse.headers | An array of one or more HTTP response headers. |
 
+**get_token** calls the TA REST API to request an attestation token. You can use **get_token** in passport or background-check attestation models, with or without a TEE adapter. The **attest** method provides an example of the steps your code should take before calling **get_token** in passport mode. Unlike **attest**, **get_token** doesn't need a TEE adapter, which allows a relying party operating in background-check mode to request an attestation token by using evidence provided by an attester.
 
-**get_token** calls the TA REST API to request an attestation token. **get_token** can be used in passport or background-check attestation models, with or without a TEE adapter. The **attest** method provides an example of the steps your code should take before calling **get_token** in passport mode. Unlike **attest**, **get_token** doesn't need a TEE adapter, which allows a relying party operating in background-check mode to request an attestation token by using evidence provided by an attester. 
-
-To include user data, such as a public key for secure key release or similar use case, you must pass the user_data to the evidence adapter when you create a new adapter object.
+To include user data, such as a public key for secure key release or a similar use case, you must pass the user_data to the evidence adapter when you create a new adapter object.
 
 ### get_token_signing_certificates
 
-Gets the list of attestation token signing certificates from `https://<base_url>/certs`.
+**get_token_signing_certificates** gets the list of attestation token signing certificates from `https://<base_url>/certs`.
 
-``` python
+```python
   def get_token_signing_certificates(self)
 ```
 
@@ -140,13 +144,13 @@ The following example attempts to retrieve the JWKS from TA. In a later step (no
 
 ### verify_token
 
-Verifies that the token is well-formed and the signing certificate can be traced to the issuing authority.
+**verify_token** verifies that the token is well-formed and that the signing certificate can be traced to the issuing authority.
 
-``` python
+```python
 def verify_token(self, token)
 ```
 
-The following example attempts to verify an attestation token received from the **attest** method. If verification fails, the error is logged. If verification is successful, the verified token is saved to the log. 
+The following example attempts to verify an attestation token received from the **attest** method. If verification fails, the error is logged. If verification is successful, the verified token is saved to the log.
 
 ```python
 # verify the attestation token received from TA
@@ -163,9 +167,9 @@ The following example attempts to verify an attestation token received from the 
 
 ## TEE adapters
 
-As mentioned in the introduction, there are currently four Python language TEE adapters available. All of the TEE adapters present an identical API interface to the connector, so that several platforms can be supported by the same code base. 
+There are currently four Python TEE adapters available. All of the TEE adapters present an identical API interface to the connector, so that the same code base can support several platforms.
 
-The Intel TDX attestation sample application includes code to instantiate the correct adapter for the current platform at run time. This allows the sample to run on all four Intel TDX platforms without any modifications, except for setting an environment variable. The following code sample from the Intel TDX example shows how to create the appropriate adapter and pass user data to include in the attestation token.
+The Intel TDX attestation sample application includes code to instantiate the correct adapter for the current platform at run time. This allows the sample to run on all of the supported Intel TDX platforms without any modifications, except for setting an environment variable. The following code sample from the Intel TDX example shows how to create the appropriate adapter and pass user data to include in the attestation token.
 
 ```python
   # Create TDX Adapter
@@ -186,25 +190,22 @@ The Intel TDX attestation sample application includes code to instantiate the co
       exit(1)
 ```
 
-As shown in the preceding code, you have the option to provide user_data when creating a new adapter object. User data can be binary or JSON, and must always be encoded as either Base64 or Base64url. The maximum size allowed is 1Mb. The user data is concatenated with the nonce (if provided), hashed, and the resulting extended hash is saved in the **report_data** attribute in the evidence, and then output in the JWT **`<tee>`_report_data** claim. TA uses the report_data hash to verify that the user data wasn't modified after evidence was collected. 
+As shown in the preceding code, you can provide user_data when you create a new adapter object. User data can be binary or JSON, and must always be encoded as either Base64 or Base64url. The maximum size allowed is 1Mb. The user data is concatenated with the nonce (if provided) and hashed. The resulting extended hash is saved in the **report_data** attribute in the evidence, and then output in the JWT **`<tee>_report_data`** claim. TA uses the report_data hash to verify that the user data wasn't modified after evidence was collected.
 
-It’s important to note that user_data is known by several names, and clarification is necessary. The following terms all refer to the data provided to the evidence adapter during object instantiation:
+The term user_data is known by several names. The following terms all refer to the data provided to the evidence adapter during object instantiation:
 
-- In the REST API request body as the **runtime_data** parameter. Evidence.user_data maps to the attestation request runtime_data field.
-- In the client connector source code (across all languages) it's referred to as **user_data** or **uData**, depending on language convention.
-- In the attestation token **attester_held_data** output claim if user data is provided in binary forma, and as **attester_user_data** output claim if the user data is provided in JSON format.
+- In the REST API request body, it's the **runtime_data** parameter. Evidence.user_data maps to the attestation request runtime_data field.
+- In the client connector source code (across all languages), it's referred to as **user_data** or **uData**, depending on language convention.
+- In the attestation token, it's the **attester_held_data** output claim if user data is provided in binary format, and the **attester_user_data** output claim if user data is provided in JSON format.
 
-Note that user data will appear in only one output claim in the attestation token. A single claim can't output both binary and JSON due to data rules, which is why there are two output claims for user_data/runtime_data.
+User data appears in only one output claim in the attestation token. A single claim can't output both binary and JSON because of data rules, which is why there are two output claims for user_data/runtime_data.
 
 ### collect_evidence
 
-The collect_evidence method is the same for all adapters. A nonce is optional, however, it's a good practice to always include a nonce if your use case allows. 
+The collect_evidence method is the same for all adapters. A nonce is optional, but it's a good practice to always include a nonce if your use case allows.
 
 ```python
   def collect_evidence(self, nonce=None) -> Evidence
 ```
 
-**collect_evidence** returns an **Evidence** object. The **ITAConnector.get_token** make_request() method shows how the evidence can be used to construct the REST API attestation request body.
-
-
-
+**collect_evidence** returns an **Evidence** object. The **ITAConnector.get_token** make_request() method shows how to use the evidence to construct the REST API attestation request body.
