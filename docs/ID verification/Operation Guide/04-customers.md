@@ -3,7 +3,7 @@ title: Create and edit customers
 description: Create and configure customers in Identity Router Studio, including customer context, company and domain information, license agreements, SSO session and cipher-rotation settings, portal configuration, Integrated Windows Authentication, Identity Router NFS and CIFS clustering, User Management, and audit logging.
 author: pcartee
 topic: administration
-date: 09/17/2024
+date: "2024-09-17"
 uid: idr-customers
 ---
 
@@ -16,7 +16,7 @@ The *Customers* page displays all customers associated with your Studio system. 
 The icons below each customer icon let the system administrator perform actions for that customer. The following table describes each icon and its action.
 
 | ICON | DESCRIPTION |
-|------|-------------|
+| ------ | ------------- |
 | ![Context icon](/img/operations-guide/context.png) | Sets the context of Studio to that of the customer. Setting the context to a particular customer filters the GUI so that you only see the Studio elements that the customer sees (while keeping your system administrator rights). Selecting the **Reset Context** link in the upper-right corner ends customer context and returns you to the system administrator role in Studio. |
 | ![Cipher Rotation icon](/img/operations-guide/cipher-rotation.png) | Manually rotate the cipher key. |
 | ![Delete icon](/img/operations-guide/delete.png) | Deletes the selected administrator. Only a super administrator can delete other super administrators or administrators. |

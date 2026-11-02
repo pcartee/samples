@@ -3,7 +3,7 @@ title: Software Guard Extensions (SGX)
 description: "Explains requirements for SGX application attestation, including ECDSA quotes, provisioning, Linux kernel support, and Enclave Page Cache (EPC) memory."
 author: pcartee
 topic: conceptual
-date: 11/18/2024
+date: "2024-11-18"
 uid: tee.sgx
 ---
 

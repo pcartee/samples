@@ -3,7 +3,7 @@ title: Policy builder tool
 description: Learn how to use the Trust Authority (TA) Policy Builder command-line tool to convert simplified JSON policies into Rego for Intel SGX, Intel TDX, AMD SEV-SNP, NVIDIA GPU, and TPM attestation, including appraisal, custom TCB, token customization, and composite policies.
 author: pcartee
 topic: conceptual
-date: 07/18/2024
+date: "2024-07-18"
 uid: policy.builder.tool
 ---
 

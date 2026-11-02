@@ -3,7 +3,7 @@ title: TA C connector
 description: Reference for the Trust Authority (TA) C client libraries, including the C connector, Intel SGX, Intel TDX, TPM, NVIDIA GPU, and AMD SEV-SNP adapters, token functions, and evidence builder functions used to collect evidence and request and verify attestation tokens.
 author: pcartee
 topic: integration
-date: 05/19/2025
+date: "2025-05-19"
 uid: integrate.c.client
 sidebar_position: 5
 ---
@@ -49,7 +49,7 @@ TRUST_AUTHORITY_STATUS trust_authority_connector_new(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -59,7 +59,7 @@ TRUST_AUTHORITY_STATUS trust_authority_connector_new(
 | ***retry_max*** | Input | The maximum number of retries allowed. If this value is nonzero, it's copied to `*connector->retry_config` and used for subsequent API calls. |
 | ***retry_wait_sec*** | Input | The time in seconds to wait between retry attempts. If this value is nonzero, it's copied to `*connector->retry_config` and used for subsequent API calls. |
 
-**Example**
+#### Example
 
 ```c
 #ifndef __CONNECTOR_H__
@@ -103,7 +103,7 @@ TRUST_AUTHORITY_STATUS get_nonce(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -126,7 +126,7 @@ TRUST_AUTHORITY_STATUS get_token(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -154,7 +154,7 @@ TRUST_AUTHORITY_STATUS get_token_signing_certificate(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -173,7 +173,7 @@ TRUST_AUTHORITY_STATUS connector_free(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -189,7 +189,7 @@ TRUST_AUTHORITY_STATUS token_free(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -205,7 +205,7 @@ TRUST_AUTHORITY_STATUS evidence_free(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -221,7 +221,7 @@ TRUST_AUTHORITY_STATUS nonce_free(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -245,7 +245,7 @@ int sgx_adapter_new(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -290,7 +290,7 @@ int sgx_collect_evidence(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -310,7 +310,7 @@ int sgx_adapter_free(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -348,7 +348,7 @@ int tdx_adapter_new(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -372,7 +372,7 @@ int tdx_collect_evidence(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -396,7 +396,7 @@ int tdx_adapter_free(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -444,7 +444,7 @@ TRUST_AUTHORITY_STATUS collect_token(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -474,7 +474,7 @@ TRUST_AUTHORITY_STATUS verify_token(
 );
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
@@ -504,13 +504,13 @@ Creates a new adapter to get TPM evidence from the platform.
 int tpm_adapter_new(evidence_adapter **adapter)
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
 | **adapter** | The evidence adapter instance to initialize. |
 
-**Returns**
+#### Returns
 
 An int containing the status.
 
@@ -528,7 +528,7 @@ int tpm_get_evidence(
 )
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
@@ -538,7 +538,7 @@ int tpm_get_evidence(
 | **user_data** | A pointer to user data to include with the evidence. |
 | **user_data_len** | The length of the user data. |
 
-**Returns**
+#### Returns
 
 An int containing **TRUST_AUTHORITY_STATUS**.
 
@@ -550,11 +550,11 @@ Generates the identifier for TPM evidence.
 const char *tpm_get_evidence_identifier()
 ```
 
-**Parameters**
+#### Parameters
 
 None.
 
-**Returns**
+#### Returns
 
 An evidence identifier.
 
@@ -569,7 +569,7 @@ int tpm_with_ak_handle(
 )
 ```
 
-**Returns**
+#### Returns
 
 0 on success, otherwise failure.
 
@@ -584,7 +584,7 @@ int tpm_with_device_type(
 )
 ```
 
-**Returns**
+#### Returns
 
 Zero (0) on success, otherwise failure.
 
@@ -599,7 +599,7 @@ int tpm_with_ima_log(
 )
 ```
 
-**Returns**
+#### Returns
 
 0 on success, otherwise failure.
 
@@ -614,7 +614,7 @@ int tpm_with_owner_auth(
 )
 ```
 
-**Returns**
+#### Returns
 
 0 on success, otherwise failure.
 
@@ -629,7 +629,7 @@ int tpm_with_pcr_selections(
 )
 ```
 
-**Returns**
+#### Returns
 
 0 on success, otherwise failure.
 
@@ -644,7 +644,7 @@ int tpm_with_uefi_log(
 )
 ```
 
-**Returns**
+#### Returns
 
 0 on success, otherwise failure.
 
@@ -664,13 +664,13 @@ Creates a new adapter to get evidence and the corresponding certificate chain fr
 int nvgpu_adapter_new(evidence_adapter **adapter)
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
 | **adapter** | A pointer reference to the evidence adapter. |
 
-**Returns**
+#### Returns
 
 An int containing the status.
 
@@ -688,7 +688,7 @@ int nvgpu_get_evidence(
 )
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
@@ -698,7 +698,7 @@ int nvgpu_get_evidence(
 | **user_data** | Must be NULL because NVGPU attestation doesn't support it. |
 | **user_data_len** | Must be 0 because NVGPU attestation doesn't support it. |
 
-**Returns**
+#### Returns
 
 A `size_t` value.
 
@@ -710,7 +710,7 @@ Generates the identifier for the NVGPU evidence.
 const char* nvgpu_get_evidence_identifier()
 ```
 
-**Returns**
+#### Returns
 
 The resulting identifier.
 
@@ -730,13 +730,13 @@ Creates a new adapter to get a report from the Azure SEVSNP platform.
 int azure_sevsnp_adapter_new(evidence_adapter **adapter)
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
 | **adapter** | The evidence adapter instance to initialize. |
 
-**Returns**
+#### Returns
 
 An int containing the status.
 
@@ -754,13 +754,13 @@ Creates a new SEVSNP adapter instance.
 int sevsnp_adapter_new(evidence_adapter **adapter)
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
 | **adapter** | The evidence adapter instance to initialize. |
 
-**Returns**
+#### Returns
 
 An int containing the status.
 
@@ -778,7 +778,7 @@ int sevsnp_collect_evidence(
 )
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
@@ -788,7 +788,7 @@ int sevsnp_collect_evidence(
 | **user_data** | User data. |
 | **user_data_len** | The length of the user data. |
 
-**Returns**
+#### Returns
 
 An int containing the status.
 
@@ -806,7 +806,7 @@ int sevsnp_collect_evidence_azure(
 )
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
@@ -816,7 +816,7 @@ int sevsnp_collect_evidence_azure(
 | **user_data** | User data. |
 | **user_data_len** | The length of the user data. |
 
-**Returns**
+#### Returns
 
 An int containing the status.
 
@@ -834,7 +834,7 @@ int sevsnp_get_evidence(
 )
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
@@ -844,7 +844,7 @@ int sevsnp_get_evidence(
 | **user_data** | User data. |
 | **user_data_len** | The length of the user data. |
 
-**Returns**
+#### Returns
 
 An int containing the status.
 
@@ -862,7 +862,7 @@ int sevsnp_get_evidence_azure(
 )
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
@@ -872,7 +872,7 @@ int sevsnp_get_evidence_azure(
 | **user_data** | User data. |
 | **user_data_len** | The length of the user data. |
 
-**Returns**
+#### Returns
 
 An int containing the status.
 
@@ -893,14 +893,14 @@ int with_vmpl(
 )
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
 | **ctx** | A void pointer containing context. |
 | **vmpl_level** | The VM privilege level to set when retrieving the SEVSNP evidence (on-premises or GCP only). |
 
-**Returns**
+#### Returns
 
 An int containing the status.
 
@@ -917,14 +917,14 @@ TRUST_AUTHORITY_STATUS evidence_builder_add_adapter(
 )
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
 | **builder** | The evidence builder instance to add the evidence adapter to. |
 | **adapter** | The evidence adapter to add to the builder. |
 
-**Returns**
+#### Returns
 
 A **TRUST_AUTHORITY_STATUS** value.
 
@@ -945,14 +945,14 @@ TRUST_AUTHORITY_STATUS evidence_builder_get_evidence(
 )
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
 | **builder** | The evidence builder instance with evidence adapters added. |
 | **evidence** | The composite evidence generated by the builder. |
 
-**Returns**
+#### Returns
 
 A **TRUST_AUTHORITY_STATUS** value.
 
@@ -967,12 +967,12 @@ TRUST_AUTHORITY_STATUS evidence_builder_new(
 )
 ```
 
-**Parameters**
+#### Parameters
 
 | Name | Description |
 | :--- | :--- |
 | **opts** | The builder options for building composite evidence. |
 
-**Returns**
+#### Returns
 
 A **TRUST_AUTHORITY_STATUS** value.

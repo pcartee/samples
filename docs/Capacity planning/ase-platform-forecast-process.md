@@ -1,7 +1,7 @@
 ---
 title: ASE Platform Forecast Process
 author: a_kanduri@apple.com
-date: 2025-10-10
+date: "2025-10-10"
 description: "Describes the ASE platform capacity forecasting process, including scope, inputs, monthly cadence, forecast entry and maintenance rules, review and approval, and late-breaking capacity requests."
 sidebar_position: 2
 ---

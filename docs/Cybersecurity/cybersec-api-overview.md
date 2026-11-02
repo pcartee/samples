@@ -3,7 +3,7 @@ title: "API Overview"
 description: "Overview of the LogRhythm API, including the technology stack, security requirements, deployment guidelines, and WSDL endpoints for integrating custom applications."
 author: pcartee
 topic: Reference
-date: 2017-01-22
+date: "2017-01-22"
 uid: cybersec.api.overview
 sidebar_position: 1
 ---

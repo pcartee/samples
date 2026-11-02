@@ -1,16 +1,18 @@
 ---
-title: Install a Local Kubernetes deployment
-description: "Guide to preparing an Ubuntu host and deploying a local Kubernetes cluster with k3s (v1.30.9+k3s1) and Calico (v3.29.1). Covers package installation, inotify limits, cluster initialization, KUBECONFIG configuration, Calico CNI setup, and verifying that pods are running."
+title: Deploy a local Kubernetes cluster
+description: Deploy a local Kubernetes cluster on Ubuntu using k3s and Calico. Covers prerequisites, Docker and Porter installation, inotify limits, cluster initialization, KUBECONFIG setup, Calico CNI configuration, and verifying that pods are running.
 author: "Redacted"
 topic: Local Kubernetes cluster deployment with k3s and Calico
 date: "2025-04-09"
 uid: pkg.deploy.kubernetes
 sidebar_position: 1
---- 
+---
 
 ## Deploy Kubernetes
 
-This guide explains how to prepare an Ubuntu server for a local application, install a Kubernetes cluster with `k3s`, and configure Calico as the cluster's Container Network Interface (CNI).
+This guide explains how to prepare an Ubuntu server for a local
+application, install a Kubernetes cluster with `k3s`, and configure
+Calico as the cluster's Container Network Interface (CNI).
 
 ### Install prerequisites
 
@@ -56,7 +58,8 @@ These steps apply to both trusted execution environment (`TEE`) and non-TEE depl
 
 ### Increase inotify limits
 
-Run these commands once on each host to help prevent "Too many open files" errors.
+Run these commands once on each host to help prevent “too many open
+files” errors.
 
 ```bash
 sudo -E /bin/bash -c 'echo "fs.inotify.max_user_watches = 524288" >> /etc/sysctl.conf'
@@ -80,26 +83,24 @@ sudo sysctl -p
 
 1. Set up the Container Network Interface (CNI).
 
-   The following configuration uses Calico for cluster networking and enables container IP forwarding.
+   The following configuration uses Calico for cluster networking and
+   enables container IP forwarding.
 
    :::note
    Copy and paste the commands carefully. Do not add extra spaces.
    :::
 
-   ```yaml
+   ```bash
    kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.1/manifests/tigera-operator.yaml
 
    cat << EOF | kubectl apply -f -
-   
-sidebar_position: 1
----
    kind: Installation
    apiVersion: operator.tigera.io/v1
    metadata:
      name: default
    spec:
      variant: Calico
-     calicoNetwork: 
+     calicoNetwork:
        containerIPForwarding: Enabled
    EOF
    ```

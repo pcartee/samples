@@ -2,7 +2,7 @@
 title: Paul Cartee
 description: Senior Technical Writer specializing in docs-as-code, CI/CD pipelines, API and CLI reference documentation, and confidential computing content.
 author: pcartee
-date: 09/23/2026
+date: "2026-09-23"
 id: introduction
 sidebar_position: 1
 slug: /

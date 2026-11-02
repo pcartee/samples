@@ -3,7 +3,7 @@ title: "Set up Windows authentication"
 description: "Instructions for configuring Kerberos delegation, IIS, SQL Server, application accounts, and WCF clients to use Windows authentication with the LogRhythm API, including troubleshooting guidance."
 author: pcartee
 topic: Reference
-date: 2017-01-22
+date: "2017-01-22"
 uid: cybersec.win.auth
 sidebar_position: 5
 ---

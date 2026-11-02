@@ -3,7 +3,7 @@ title: TA Python connector
 description: Reference for the Trust Authority (TA) Python client. Describes the ITAConnector class methods (attest, get_nonce, get_token, get_token_signing_certificates, verify_token), Config and RetryConfig setup, TEE adapters for Intel SGX and Intel TDX platforms, user data handling, and collect_evidence, with Python examples.
 author: pcartee
 topic: integration
-date: 05/16/2024
+date: "2024-05-16"
 uid: integrate.python.client
 sidebar_position: 4
 ---
@@ -57,6 +57,7 @@ If you are in the European Union (EU) region, use the following TA URLs:
 
 - Base URL: `https://portal.eu.ta.intel.com`
 - API URL: `https://api.eu.ta.intel.com`
+
 :::
 
 **RetryConfig** is optional. If you don't set RetryConfig, the client uses the default values defined in `inteltrustauthorityclient/resources/constants.py`.

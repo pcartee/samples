@@ -3,7 +3,7 @@ title: User management
 description: Learn how tenant admins in Trust Authority (TA) view, invite, search, update, and delete users with the TA portal or the tactl CLI, including user roles (Tenant Admin and User) and related commands.
 author: pcartee
 topic: how to
-date: 12/09/2024
+date: "2024-12-09"
 uid: manage.users
 sidebar_position: 1
 ---

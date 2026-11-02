@@ -4,7 +4,7 @@ title: Trusted Execution Environments (TEE)
 description: Learn what a trusted execution environment (TEE) is, how Intel SGX enclaves and Intel TDX trust domains use a trusted computing base (TCB), quotes, and attestation, and the ways to integrate SGX and TDX workloads with Trust Authority (TA) services, including the Go, C, Java, and Python client libraries.
 author: pcartee
 topic: conceptual
-date: 02/07/2025
+date: "2025-02-07"
 uid: tees.overview
 ---
 

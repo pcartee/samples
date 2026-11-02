@@ -3,7 +3,7 @@ title: "Disaster Recovery: Installation and Configuration"
 description: "Instructions for preparing, installing, configuring, and testing LogRhythm Disaster Recovery between Primary and Secondary sites, including setup for High Availability deployments."
 author: pcartee
 topic: Reference
-date: 2017-01-22
+date: "2017-01-22"
 uid: cybersec.disaster.recovery.installation
 sidebar_position: 4
 ---

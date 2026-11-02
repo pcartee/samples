@@ -3,7 +3,7 @@ title: Understanding TA integrations
 description: Overview of the Trust Authority (TA) integration framework. Describes the TA components (web portal, REST API, client libraries, CLIs, and Gramine client), the TEE adapter support matrix for the Go, Python, C, and Java clients, and a passport attestation integration example.
 author: pcartee
 topic: conceptual
-date: 06/20/2024
+date: "2024-06-20"
 uid: integrate.overview
 sidebar_position: 1
 ---
@@ -34,7 +34,7 @@ Other integration components include the following:
 
 The trusted execution environment (TEE) adapters encapsulate the low-level code needed to collect evidence from the TEE and format a quote for attestation. The following client library support matrix shows which client languages are currently available and the TEE adapters they support.
 
-|   | Intel SGX | Intel TDX | Azure TDX | GCP TDX | NVIDIA GPU | AMD SEV-SNP |
+| | Intel SGX | Intel TDX | Azure TDX | GCP TDX | NVIDIA GPU | AMD SEV-SNP |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | [**Go**](../Integration/integrate-go-client.md) | X | X | X | X | — | P |
 | [**Python**](../Integration/integrate-python-client.md) | X | X | X | X | P | — |

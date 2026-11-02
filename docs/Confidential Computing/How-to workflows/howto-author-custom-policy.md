@@ -3,7 +3,7 @@ title: Author a custom policy
 description: Learn how to author Trust Authority (TA) attestation policies in Rego, including policy requirements, obtaining expected claim values, and sample Intel SGX and Azure confidential VM policies using Intel TDX and vTPM.
 author: pcartee
 topic: how to
-date: 07/17/2024
+date: "2024-07-17"
 uid: author.custom.policy
 sidebar_position: 3
 ---

@@ -1,22 +1,24 @@
 ---
 title: TA CLI user management
-description: Learn how to use the TA CLI to create, list, update, and delete users, and to configure tenant notifications for attestation failures.
+description: Reference for using `tactl` to create, list, find, update, and delete Trust Authority users; manage tenant roles; and configure or disable email notifications for attestation failures.
 author: pcartee
 topic-type: Reference
-date: 08/17/2023
+date: "2023-08-17"
 uid: cli-user-commands
 sidebar_position: 2
 ---
 
-Use these commands to manage users with the TA CLI. You can also manage users in the TA portal by following the [manage users workflow](../How-to%20workflows/howto-manage-users.md).
+Use these commands to manage users with the Trust Authority (TA) CLI. You can also manage users in the TA portal by following the [manage users workflow](../How-to%20workflows/howto-manage-users.md).
 
 ## Create a user
 
 This command creates a TA user.
 
 ```bash
-tactl create user -e <email address> -r <role (Tenant Admin or User)>
+tactl create user -e EMAIL_ADDRESS -r "ROLE"
 ```
+
+Set `ROLE` to `Tenant Admin` or `User`. Keep the quotation marks when the role name contains a space.
 
 ### Sample call
 
@@ -187,10 +189,10 @@ Users:
 
 ## Get users by email address
 
-This command lists users in your TA environment by email address.
+This command finds users in your TA environment by email address.
 
 ```bash
-tactl list user -e <email address>
+tactl list user -e EMAIL_ADDRESS
 ```
 
 ### Sample call
@@ -223,8 +225,10 @@ Users:
 This command updates a specific user's role.
 
 ```bash
-tactl update user role -u <user ID> -r <role (Tenant Admin or User)>
+tactl update user role -u USER_ID -r "ROLE"
 ```
+
+Set `ROLE` to `Tenant Admin` or `User`. Keep the quotation marks when the role name contains a space.
 
 ### Sample call
 
@@ -261,7 +265,7 @@ Updated User:
 This command deletes a specific user.
 
 ```bash
-tactl delete user -u <user ID>
+tactl delete user -u USER_ID
 ```
 
 ### Sample call
@@ -279,7 +283,7 @@ User 4324598fs-0404-4f4r-9oii9-8f8flk893w21 deleted
 
 ## List tenant settings
 
-This command lists the email address configured to receive notifications when an attestation failure occurs.
+This command lists the email address configured to receive notifications about attestation failures.
 
 ```bash
 tactl list tenant-settings
@@ -297,7 +301,7 @@ Tenant Settings:
 
 ## Update tenant settings
 
-This command sets the email address that receives notifications when an attestation failure occurs. Notifications are sent only for attestation failures, not policy mismatches. Notifications are disabled by default.
+This command sets the email address that receives notifications about attestation failures. Notifications are sent only for attestation failures, not policy mismatches. Notifications are disabled by default.
 
 ```bash
 tactl update tenant-settings -e "<email address>"
@@ -320,7 +324,7 @@ trace-id:  LOnTgGR2IAMEFAA=
 
 ## Disable tenant notifications
 
-This command disables notifications for attestation failures.
+This command disables email notifications for attestation failures.
 
 ```bash
 tactl update tenant-settings -d

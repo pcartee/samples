@@ -3,7 +3,7 @@ title: UEFI Event Logs
 description: "Explains how TA collects and replays UEFI event logs during TPM attestation, how to write an appraisal policy for Secure Boot, and how to troubleshoot event-log errors."
 author: pcartee
 topic-type: conceptual
-date: 11/14/2024
+date: "2024-11-14"
 uid: uefi.log
 ---
 

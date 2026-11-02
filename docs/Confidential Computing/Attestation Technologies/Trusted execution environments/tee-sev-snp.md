@@ -3,7 +3,7 @@ title: AMD SEV-SNP
 description: "Overview of AMD SEV-SNP virtual machine isolation, Linux kernel and IOMMU support requirements, attestation reports, and related tutorials."
 author: pcartee
 topic: conceptual
-date: 05/20/2025
+date: "2025-05-20"
 uid: tee.sev.snp
 ---
 

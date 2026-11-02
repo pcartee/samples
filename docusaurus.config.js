@@ -27,12 +27,6 @@ const config = {
   tagline: "Paul Cartee's Writing Samples",
   favicon: 'img/favicon.ico',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
-  future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
-    faster: false, // Disable Docusaurus Faster / rspack options when @docusaurus/faster is not installed
-  },
-
   // Set the production url of your site here
   url: `https://${effectiveOwner}.github.io`,
   // Set the /<baseUrl>/ pathname under which your site is served

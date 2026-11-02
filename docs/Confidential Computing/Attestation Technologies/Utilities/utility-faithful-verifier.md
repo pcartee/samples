@@ -3,7 +3,7 @@ title: Faithful Verifier Tool
 description: Learn how to use the Trust Authority (TA) Faithful Verification (FV) command-line tool on Linux to audit a TA attestation token. Covers how Faithful Verification works, prerequisites (Ubuntu, Intel SGX DCAP, PCCS), downloading and verifying the tool, running the config and verify commands, interpreting passed and failed output, and CLI reference.
 author: pcartee
 topic: conceptual
-date: 06/12/2024
+date: "2024-06-12"
 uid: faithful.verifier
 ---
 

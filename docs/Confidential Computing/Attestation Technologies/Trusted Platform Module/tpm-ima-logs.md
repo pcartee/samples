@@ -3,7 +3,7 @@ title: Integrity Measurement Architecture (IMA) logs
 description: "Explains Linux Integrity Measurement Architecture (IMA) runtime logs, TPM PCR replay, IMA policy configuration on an Azure confidential VM, and TA appraisal policies for verifying measured files."
 author: pcartee
 topic: IMA logs
-date: 11/14/2024
+date: "2024-11-14"
 uid: ima-log
 ---
 

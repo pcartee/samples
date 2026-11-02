@@ -3,7 +3,7 @@ title: "Data Indexer Appliance Hardware Installation"
 description: "Instructions for unpacking and rack-mounting LogRhythm Data Indexer appliances, configuring network settings, and installing single-node or multi-node clusters."
 author: pcartee
 topic: Reference
-date: 2016-01-20
+date: "2016-01-20"
 uid: cybersec-data-indexer-install
 sidebar_position: 2
 ---

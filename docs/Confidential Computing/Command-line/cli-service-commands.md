@@ -1,9 +1,9 @@
 ---
 title: TA CLI service management
-description: Learn how to use the TA CLI to list service offers, services, plans, and products and to retrieve service and plan details.
+description: Reference for using `tactl` to list Trust Authority service offers, subscribed services, plans, and products, and to retrieve service or plan details by ID.
 author: pcartee
 topic-type: Reference
-date: 08/16/2023
+date: "2023-08-16"
 uid: cli-service-commands
 sidebar_position: 3
 ---
@@ -16,7 +16,7 @@ Have your API key available before running these commands. For instructions, see
 
 ## List service offers
 
-This command lists the service offers available in your TA environment.
+This command lists the service offers available in your Trust Authority environment.
 
 ```bash
 tactl list serviceOffer
@@ -32,9 +32,8 @@ tactl list serviceOffer
 
 ```text
 trace-id:  LOm53EuHoAMEIhA=
-Service offers: 
-
- [
+Service offers:
+[
   {
     "id": "d47f9540-5bd6-47ff-b984-5fcf0d74c6e2",
     "name": "TEE Attestation"
@@ -44,7 +43,7 @@ Service offers:
 
 ## List services
 
-This command lists all services subscribed to by the tenant associated with your API key.
+This command lists all services subscribed to the tenant associated with your API key.
 
 ```bash
 tactl list service
@@ -54,7 +53,7 @@ tactl list service
 
 ```text
 trace-id:  LOm7kE9WoAMEG_w=
- [
+[
   {
     "id": "1dceedae-0f71-4bb7-a076-52b29f751fbd",
     "tenant_id": "92b8f7a8-3a3b-4530-a562-91edca330fac",
@@ -70,11 +69,13 @@ trace-id:  LOm7kE9WoAMEG_w=
 
 ## Get a service by ID
 
-This command retrieves details for the specified service ID associated with the tenant linked to your API key.
+This command retrieves details for a service associated with the tenant linked to your API key.
 
 ```bash
-tactl list service -r < service ID >
+tactl list service -r SERVICE_ID
 ```
+
+Replace `SERVICE_ID` with the ID of the service.
 
 ### Sample call
 
@@ -101,11 +102,13 @@ Services:
 
 ## List plans
 
-This command lists the plans available for the specified service offer in your TA environment.
+This command lists the plans available for a service offer in your Trust Authority environment.
 
 ```bash
-tactl list plan -r < service offer ID >
+tactl list plan -r SERVICE_OFFER_ID
 ```
+
+Replace `SERVICE_OFFER_ID` with the ID of the service offer.
 
 ### Sample call
 
@@ -117,9 +120,8 @@ tactl list plan -r 8fe770d6-aec0-4eca-bc9d-893ae1998fab7
 
 ```text
 trace-id:  LOm5_EPjoAMEN4Q=
-Plans: 
-
- [
+Plans:
+[
   {
     "id": "e8b6cf50-e2d2-4b2e-ad1b-93994002b980",
     "service_offer_id": "d47f9540-5bd6-47ff-b984-5fcf0d74c6e2",
@@ -145,11 +147,13 @@ Plans:
 
 ## Get a plan by ID
 
-This command retrieves details for the specified plan and service offer.
+This command retrieves details for a plan and its service offer.
 
 ```bash
-tactl list plan -r < service offer ID > -p < plan ID >
+tactl list plan -r SERVICE_OFFER_ID -p PLAN_ID
 ```
+
+Replace `SERVICE_OFFER_ID` and `PLAN_ID` with the corresponding IDs.
 
 ### Sample call
 
@@ -161,9 +165,8 @@ tactl list plan -r 8fe770d6-aec0-4eca-bc9d-893ae1998fab7 -p b5fae544-5894-4305-8
 
 ```text
 trace-id:  LOm6XED-oAMEoFQ=
-Plans: 
-
- {
+Plans:
+{
   "id": "e8b6cf50-e2d2-4b2e-ad1b-93994002b980",
   "service_offer_id": "d47f9540-5bd6-47ff-b984-5fcf0d74c6e2",
   "name": "Starter",
@@ -205,11 +208,13 @@ Plans:
 
 ## List products
 
-This command lists the products available for the specified service offer in your TA environment.
+This command lists the products available for a service offer in your Trust Authority environment.
 
 ```bash
-tactl list product -r < service offer ID >
+tactl list product -r SERVICE_OFFER_ID
 ```
+
+Replace `SERVICE_OFFER_ID` with the ID of the service offer.
 
 ### Sample call
 
@@ -221,9 +226,8 @@ tactl list product -r ea6ad8d3-fd3f-4ccb-82c7-ac021899a199
 
 ```text
 trace-id:  LOm7LHeVIAMEttg=
-Products: 
-
- [
+Products:
+[
   {
     "id": "0ce6c2b6-c81f-48d6-a14b-ddca2e607ead",
     "service_offer_id": "d47f9540-5bd6-47ff-b984-5fcf0d74c6e2",
