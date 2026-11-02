@@ -1,48 +1,82 @@
 ---
 title: UEFI Event Logs
-description: How TA uses UEFI event logs to validate PCR values and help with troubleshooting.
+description: "Explains how TA collects and replays UEFI event logs during TPM attestation, how to write an appraisal policy for Secure Boot, and how to troubleshoot event-log errors."
 author: pcartee
 topic-type: conceptual
 date: 11/14/2024
 uid: uefi.log
 ---
 
-Modern UEFI firmware triggers system integrity measurements during the boot sequence. These measurements are stored in event logs and can be consumed by TA during remote attestation. These logs include the individual measurement events for TPM PCRs 0-7 that were extended when the system booted. 
+Modern UEFI firmware measures system integrity during boot. It stores these
+measurements in event logs that TA can use during remote attestation. The logs
+include individual measurement events extended to TPM PCRs 0 through 7 during
+boot.
 
 :::note
-UEFI generates event logs using the hash algorithm set by the UEFI author, typically SHA-256. For UEFI event log replays to work correctly, the same algorithm must be enabled in the TPM PCR banks. Support for different TPM PCR banks differs by OEM. Some manufacturers allow multiple PCR banks to be enabled at the same time, while others only allow a single PCR bank to be enabled. Where possible, Intel recommends enabling all PCR banks on the TPM, as this will generally ensure that the PCR bank matching the event log algorithm is always available. Where this is not possible, check the UEFI event log at `/sys/firmware/security/tpm0/binary_bios_measurements` and use the hash length of the event measurements to determine the algorithm in use by your system's UEFI (16 bytes for SHA-1, 32 bytes for SHA-256, and 48 bytes for SHA-384).
 
-Also note that the `pcr_selections` setting in the `config.json` configuration file defines the PCR bank that the attestation client CLI will use. This must match the algorithm used for any event logs, so that the attestation client CLI picks the correct PCR bank for use in the event log replay.
+UEFI generates event logs using the hash algorithm selected by the UEFI
+implementation, typically SHA-256. For event log replay to work correctly, the
+TPM must have a PCR bank enabled for the same algorithm. OEM support for TPM
+PCR banks varies. Some manufacturers allow multiple banks to be enabled at
+once, while others allow only one. Where possible, Intel recommends enabling
+all PCR banks on the TPM. This generally ensures that a bank matching the event
+log algorithm is available. If this isn't possible, check the UEFI event log
+at `/sys/firmware/security/tpm0/binary_bios_measurements` and use the hash
+length of the event measurements to determine which algorithm the system's
+UEFI uses: 16 bytes for SHA-1, 32 bytes for SHA-256, and 48 bytes for SHA-384.
+
+The `pcr_selections` setting in `config.json` defines the PCR bank that the
+attestation client CLI uses. It must match the algorithm used for the event
+logs so that the CLI selects the correct bank for replay.
+
 :::
 
-### When measurements change
-PCR values change at system boot when firmware, the bootloader, OS kernel, or other changes are made.  
+## When measurements change
 
-However, TPM measurements (except some IMA measurements) only update on system reboot. If you update the OS kernel, the new kernel will not be measured until reboot. UEFI logs are part of boot-time integrity attestation, not run-time.
+PCR values change at boot when firmware, the boot loader, the OS kernel, or
+other components change.
 
-### Sample appraisal policy to verify Secure Boot is active
+TPM measurements (except some IMA measurements) update only when the system
+reboots. If you update the OS kernel, the system does not measure the new
+kernel until reboot. UEFI logs are part of boot-time integrity attestation, not
+runtime attestation.
 
-This sample appraisal policy asserts that Secure Boot is enabled, as well as verifying chain-of-trust requirements.
+## Sample appraisal policy to verify Secure Boot is active
 
-`tdx.tdx_mrtd measurement`: this is a measurement from the Azure confidential VM trust domain. This requires Intel® Trust Domain Extensions (Intel® TDX) and is unique to this version of the trust domain from Azure, and may change if Azure performs an update. The purpose of including this measurement in policy is to verify that the attester (the confidential VM) is a legitimate Azure confidential VM with Intel TDX. This proves that we're using the vTPM version we expect, because Azure links their vTPM implementation with Intel TDX. Effectively this means that the "root" of our chain of trust is Intel TDX.
+This sample appraisal policy verifies that Secure Boot is enabled and checks
+the chain-of-trust requirements.
 
-`evlog := input.tpm.uefi_event_logs[_]`: The notation `[_]` tells the policy to iterate over all elements in the event logs claim. 
+`tdx.tdx_mrtd` measurement: This value measures the Azure confidential VM
+trust domain. It requires Intel® Trust Domain Extensions (Intel® TDX) and is
+unique to this version of the Azure trust domain; it may change when Azure
+updates the version. Including this measurement in the policy verifies that
+the attester (the confidential VM) is an Azure confidential VM with Intel TDX.
+This helps verify that the expected vTPM version is in use because Azure
+integrates its vTPM implementation with Intel TDX. In effect, Intel TDX is the
+"root" of the chain of trust.
 
-`evlog.index == 7`: Tells the policy to verify that the PCR index for this event is 7. The measurement event for the Secure Boot enablement setting is extended to PCR7. 
+`evlog := input.tpm.uefi_event_logs[_]`: The `[_]` notation tells the policy
+to iterate over all elements in the event logs claim.
 
-`evlog.type_name == "EV_EFI_VARIABLE_DRIVER_CONFIG"`: This is the name of the measurement event.
+`evlog.index == 7`: Tells the policy to verify that the event's PCR index is 7.
+The Secure Boot enablement measurement is extended to PCR 7.
 
-`evlog.details.unicode_name == "SecureBoot"`: This is the unicode name of the measurement event, and this is how we verify that we're looking at the Secure Boot enablement boolean.
+`evlog.type_name == "EV_EFI_VARIABLE_DRIVER_CONFIG"`: Specifies the
+measurement event name.
 
-`evlog.details.variable_data == "AQ=="`: This is hexadecimal for True, so we are asserting that the SecureBoot state must be enabled.
+`evlog.details.unicode_name == "SecureBoot"`: Specifies the Unicode name of
+the measurement event and identifies the Secure Boot enablement value.
 
-You can generate an attestation token without any policy to see all of the claims, including event logs, for the attester. This is the easiest way to capture claims you might want to use when writing policies. The token is in base-64 encoding, so you'll need to decode it to see the claims. 
+`evlog.details.variable_data == "AQ=="`: Asserts that Secure Boot is enabled.
+The value `AQ==` represents True.
 
-```bash
+To view all claims for the attester, including event logs, generate an
+attestation token without a policy. This is a way to capture claims for policy
+authoring. The token is Base64-encoded; decode it to view the claims.
 
-The same mechanics used to create this policy for Secure Boot can be applied to creating any number of other UEFI event log policies.
+You can use the same approach to create policies for other UEFI event logs.
 
-```json
+```rego
 default valid_evlog_measurements = false
 valid_evlog_measurements = true {
   input.tdx.tdx_mrtd == "89b65df57162988700bb27b57b6dfb4fe21d9979bdbbc128cc0d4a291fb07cb6b790ab205ea59216e8bf1de414fc25aa"
@@ -56,27 +90,37 @@ valid_evlog_measurements = true {
 }
 ```
 
-### UEFI event logs with TA client
+## UEFI event logs with TA client
 
-The TA attestation client CLI provides options for collecting and including UEFI event logs during remote attestation.
+The TA attestation client CLI can collect and include UEFI event logs during
+remote attestation.
 
-To request an attestation including UEFI event logs with the TA attestation client CLI, use the `--evl` flag  with `ta-cli token`. Note that the `--evl` option requires the `--tpm` option as well.
+To request attestation with UEFI event logs, use the `--evl` flag with
+`ta-cli token`. The `--evl` option also requires the `--tpm` option.
 
 ```bash
 sudo ta-cli token --tdx --tpm --evl -c config.json
 ```
 
-Linux distributions expose the event logs for each UEFI measurement event. The `--evl` option enables the collection of UEFI event logs. By default, the UEFI event logs are stored at `/sys/kernel/security/tpm0/binary_bios_measurements`. To customize the log collection path for the attestation client CLI (this may be required for different Linux distributions that expose the logs elsewhere), use the `--evl-path` option. 
-```bash
-trustauthoritycli token --evl-path <path> --tdx --tpm --evl -c config.json
-```
-## Evidence with event log
+Linux distributions expose event logs for each UEFI measurement event. The
+`--evl` option enables UEFI event log collection. By default, the logs are
+stored at `/sys/kernel/security/tpm0/binary_bios_measurements`. If your Linux
+distribution exposes the logs at a different path, use the `--evl-path` option
+to specify the path.
 
-The following sample of evidence with event logs includes runtime and uefi event log evidence using the command below.  
+```bash
+ta-cli token --evl-path <path> --tdx --tpm --evl -c config.json
+```
+
+## Evidence with event logs
+
+The following command collects evidence that includes runtime and UEFI event
+logs.
 
 ```bash
 ./ta-cli evidence --tpm --tdx --evl -c config.json > evidence-with-event-logs.json
 ```
+
 ```json
 {
  "tdx": {
@@ -92,11 +136,17 @@ The following sample of evidence with event logs includes runtime and uefi event
 }
 ```
 
-### Errors
+## Errors
 
-You may experience errors under the following conditions.
+Errors can occur under the following conditions:
+
 - When the system is booted to legacy BIOS mode instead of UEFI.
 - When `/sys/firmware/security/tpm0/binary_bios_measurements` is not the current path or does not exist, or the current user doesn't have permission to access the path.
 - If the Linux user collecting TPM evidence does not have read access to `/sys/kernel/security/tpm0/binary_bios_measurements`.
 
-Successful attestation requires that all provided event logs pass an event log replay check. This involves replaying the measurement extension events of each event ion the log and matching the final measurement against the actual PCR value. This is an integrity check that verifies that the event log can be trusted. If the event log replay for any PCR does not match the actual PCR value, the event log is considered untrustworthy and an error will be returned.
+For attestation to succeed, all provided event logs must pass replay checks.
+Replay applies each measurement extension event in the log and compares the
+final measurement with the actual PCR value. This integrity check verifies
+that the event log can be trusted. If replay for any PCR does not match the
+actual PCR value, the log is considered untrustworthy and attestation returns
+an error.

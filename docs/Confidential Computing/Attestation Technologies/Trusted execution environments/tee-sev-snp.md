@@ -1,27 +1,35 @@
 ---
 title: AMD SEV-SNP
-description: Overview of AMD SEV-SNP isolation, Linux kernel support, and attestation.
+description: "Overview of AMD SEV-SNP virtual machine isolation, Linux kernel and IOMMU support requirements, attestation reports, and related tutorials."
 author: pcartee
 topic: conceptual
 date: 05/20/2025
 uid: tee.sev.snp
 ---
 
-*AMD Secure Encrypted Virtualization–Secure Nested Paging (AMD* SEV-SNP) provides a secure computing environment for virtual machines by isolating them from the hypervisor and other virtual machines on the host. This enables hardware-isolated virtual machines.
+AMD Secure Encrypted Virtualization–Secure Nested Paging (AMD* SEV-SNP)
+provides a secure computing environment for virtual machines by isolating them
+from the hypervisor and other virtual machines on the host. This enables
+hardware-isolated virtual machines.
 
-Read more about [AMD* SEV-SNP](https://www.amd.com/en/developer/sev.html).
+For more information, see [AMD* SEV-SNP](https://www.amd.com/en/developer/sev.html).
 
 ## AMD SEV-SNP driver support in the kernel
 
-AMD* SEV-SNP requires driver support at the kernel level. On Linux, this support requires a development kernel with IOMMU enabled in the BIOS because the SNP patches have not been merged into the main Linux kernel.
+AMD* SEV-SNP requires kernel-level driver support. On Linux, this support
+requires a development kernel and IOMMU enabled in the BIOS because the SNP
+patches have not been merged into the main Linux kernel.
 
-See [AMDSEV](https://github.com/AMDESE/AMDSEV/blob/snp-latest/stable-commits) for more information on kernel support.
+For more information about kernel support, see
+[AMDSEV](https://github.com/AMDESE/AMDSEV/blob/snp-latest/stable-commits).
 
 ## Attestation
 
-A signed attestation report validates the system's state and identity and helps confirm that it is genuine AMD hardware. Attestation provides confidence in the guest configuration, launch, and platform configuration.
+A signed attestation report validates the system's state and identity and helps
+confirm that it is genuine AMD hardware. Attestation provides confidence in the
+guest configuration, launch, and platform configuration.
 
-AMD* SEV-SNP attestation uses V2 policies and a new V2 appraisal API endpoint.
+AMD* SEV-SNP attestation uses V2 policies and a V2 appraisal API endpoint.
 
 ## Related tutorials
 

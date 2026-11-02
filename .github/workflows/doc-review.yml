@@ -43,7 +43,8 @@ jobs:
         if: steps.changed.outputs.has_files == 'true'
         uses: vale-cli/vale-action@v3
         with:
-          files: docs
+          files: ${{ steps.changed.outputs.globs }}
+          separator: "\n"
           fail_on_error: false
           config: docs/.vale.ini
 

@@ -1,145 +1,209 @@
 ---
 title: Integrity Measurement Architecture (IMA) logs
-description: An overview of Integrity Measurement Architecture (IMA) logs and how to verify the application's integrity using IMA logs with TA.
+description: "Explains Linux Integrity Measurement Architecture (IMA) runtime logs, TPM PCR replay, IMA policy configuration on an Azure confidential VM, and TA appraisal policies for verifying measured files."
 author: pcartee
 topic: IMA logs
 date: 11/14/2024
-uid: ima-log 
+uid: ima-log
 ---
 
-The Linux Integrity Measurement Architecture (IMA) is a security subsystem in the Linux kernel that includes three main features: IMA-Measurement, IMA-Appraisal, and IMA-Audit. These features are activated based on IMA Policy rule actions. TA can include IMA event logs in TPM attestations.
+The Linux Integrity Measurement Architecture (IMA) is a Linux kernel security
+subsystem with three main features: IMA measurement, IMA appraisal, and IMA
+audit. IMA policy rule actions activate these features. TA can include IMA
+event logs in TPM attestations.
 
 :::note
-IMA generates event logs using the hash algorithm set by kernel modules. The default kernel modules for most current distributions use SHA-256 (for example, Ubuntu 24.04), but some OS versions still in wide use will by default use SHA-1 (for example, Ubuntu 20.04). For event log replays to work correctly, the same algorithm must be enabled in the TPM PCR banks. Support for different TPM PCR banks differs by OEM. Some manufacturers allow multiple PCR banks to be enabled at the same time, while others only allow a single PCR bank to be enabled. Where possible, Intel recommends enabling all PCR banks on the TPM, as this will generally ensure that the PCR bank matching the event log algorithm is always available. Where this is not possible, check the kernel flags enabled for your system.
 
- ```bash
- cat /boot/config-$(uname -r) | grep CONFIG_IMA_DEFAULT_HASH
+IMA generates event logs using the hash algorithm set by kernel modules. The
+default kernel modules for many current distributions use SHA-256 (for example,
+Ubuntu 24.04), while some widely used OS versions default to SHA-1 (for example,
+Ubuntu 20.04). For event log replay to work correctly, the TPM must have a PCR
+bank enabled for the same algorithm. OEM support for TPM PCR banks varies. Some
+manufacturers allow multiple PCR banks to be enabled at the same time, while
+others allow only one. Where possible, Intel recommends enabling all PCR banks
+on the TPM. This generally ensures that a PCR bank matching the event log
+algorithm is available. If this isn't possible, check the kernel flags enabled
+for your system.
 
- # CONFIG_IMA_DEFAULT_HASH_SHA1 is not set
- CONFIG_IMA_DEFAULT_HASH_SHA256=y
+```bash
+cat /boot/config-$(uname -r) | grep CONFIG_IMA_DEFAULT_HASH
+
+# CONFIG_IMA_DEFAULT_HASH_SHA1 is not set
+CONFIG_IMA_DEFAULT_HASH_SHA256=y
 ```
 
-In this example, the IMA default hash algorithm is set to SHA-256. For event log replays to work correctly, the SHA-256 PCR bank must be enabled on the TPM.
+In this example, the default IMA hash algorithm is SHA-256. For event log
+replay to work correctly, the TPM must have the SHA-256 PCR bank enabled.
 
-Also note that the `pcr_selections` setting in the `config.json` configuration file defines the PCR bank that the attestation client CLI will use. This must match the algorithm used for any event logs, so that the attestation client CLI picks the correct PCR bank for use in the event log replay.
+The `pcr_selections` setting in `config.json` defines the PCRs that the
+attestation client CLI uses. The selected PCR bank must match the algorithm
+used for the event logs so that the CLI uses the correct bank during replay.
+
 :::
 
-## IMA boot-time vs. runtime measurement
+## IMA boot-time and runtime measurements
 
-Boot-time measurements focus on the system's initial state, while runtime measurements focus on maintaining integrity during normal operation. Boot-time measurements are only updated when the system is booted. Runtime measurements can be extended while the system is powered on.
+Boot-time measurements capture the system's initial state, while runtime
+measurements help maintain integrity during normal operation. The system updates
+boot-time measurements only when it boots. It can extend runtime measurements
+while the system is powered on.
 
 ### IMA runtime measurements
 
-Runtime measurements are taken during the regular operation of the system. These measurements help ensure the system remains in a known good state during its operation and no unauthorized modifications occur. IMA runtime measurements typically include measuring the integrity of the following:
+Runtime measurements are taken during normal system operation. They help ensure
+that the system remains in a known good state and that unauthorized
+modifications do not occur. IMA runtime measurements typically cover:
 
-- Executable files loaded and executed
-- Critical configuration files read during runtime
-- Kernel modules loaded after the initial boot process
-- Scripts executed
+- Executable files that are loaded and run
+- Critical configuration files that are read at runtime
+- Kernel modules loaded after startup
+- Scripts that are run
 - Data files accessed by applications
 
-IMA generates event logs for each triggered measurement event. These logs represent an ordered list of all measurements extended to the TPM. During attestation, the verifier (TA) "replays" the event logs to verify that the final resulting measurement matches the actual PCR value. If these values match, the event log integrity is verified, and the log content can be trusted for use with appraisal policies.
+IMA generates event logs for each measurement event. These logs list, in
+order, all measurements extended to the TPM. During attestation, the verifier
+(TA) replays the event logs to verify that the resulting measurement matches
+the actual PCR value. If the values match, the event log's integrity is
+verified, and its content can be trusted for use with appraisal policies.
 
-If the event log replay does not match the PCR value, the event log is untrustworthy, and its integrity cannot be verified. This will result in an error during attestation.
+If event log replay does not match the PCR value, the log is untrustworthy and
+its integrity cannot be verified. Attestation returns an error.
 
-You must provision an IMA policy to determine what files or resources need to be measured to satisfy your security needs. The IMA policy is configured on the system to be attested (the "attester"), and differs from appraisal policies configured using TA.
+Configure an IMA policy on the system to be attested (the attester) to specify
+which files or resources to measure. This IMA policy differs from appraisal
+policies configured through TA.
 
-#### IMA police
+#### IMA policy
 
-- Configured on the attester (the system with a TPM), using a text file provisioned to `/etc/ima/ima-policy`
-- Determines which files on the system will be measured, and under what conditions the measurement will be repeated
+- Configure this policy on the attester (the system with a TPM) using a text
+  file at `/etc/ima/ima-policy`.
+- This policy determines which files on the system to measure and the
+  conditions under which IMA repeats the measurements.
 
 #### Appraisal policy
 
-- Configured on the verifier (TA) using Rego policy language
-- Determines required claims values in an attestation token to indicate that the policy matches
+- Configure this policy on the verifier (TA) using the Rego policy language.
+- This policy specifies the claim values required in an attestation token for
+  the policy to match.
 
-Attestation of a TPM including IMA logs requires setting both an IMA policy on the attester to measure the desired files, and configuring an appraisal policy using TA to assert the expected values of those measured files.
+To attest a TPM with IMA logs, configure an IMA policy on the attester to
+measure the desired files, and configure an appraisal policy in TA to assert
+the expected values for those files.
 
 ### Integrity Measurement Architecture (IMA) documentation
 
-To learn more about configuring IMA and understanding IMA policies, see the [Integrity Measurement Architecture (IMA)](https://sourceforge.net/p/linux-ima/wiki/Home/) wiki page.
+To learn more about configuring IMA and understanding IMA policies, see the
+[Integrity Measurement Architecture (IMA) wiki](https://sourceforge.net/p/linux-ima/wiki/Home/).
 
 ## Configure an Azure Confidential VM for vTPM attestation with IMA
 
-1. Create an Azure confidential virtual machine (CVM) with Intel TDX. Azure's vTPM uses Intel TDX as its root of trust, and IMA is enabled by default on Azure confidential VMs. However, you must add an IMA policy to measure anything other than the default TCB policy.
+1. Create an Azure confidential virtual machine (CVM) with Intel TDX. Azure's
+   vTPM uses Intel TDX as its root of trust, and IMA is enabled by default on
+   Azure confidential VMs. However, you must add an IMA policy to measure
+   anything beyond the default TCB policy.
 
 :::note
-See the Intel TDX Attestation on Microsoft Azure tutorial for guidance on how to build an Azure CVM with the required features enabled.
+
+See the Intel TDX Attestation on Microsoft Azure tutorial for guidance on
+building an Azure CVM with the required features enabled.
+
 :::
 
 1. Install the TA attestation client CLI on the new Azure confidential VM.
 
 ```sh
-curl https://raw.githubusercontent.com/intel/ta-client-for-go/main/release/install-tdx-cli-azure.sh | sudo bash - 
+curl https://raw.githubusercontent.com/intel/ta-client-for-go/main/release/install-tdx-cli-azure.sh | sudo bash -
 ```
 
 1. Configure the attestation client CLI.
 
-You must configure certain properties before using the token and verify commands. The properties and values are saved as JSON in config.json. Create `~/config.json` with the following content:
+   Configure the required properties before using the `token` and `verify`
+   commands. Save the properties and values as JSON in `config.json`. Create
+   `~/config.json` with the following content:
 
-```json
-{
-    "cloud_provider": "azure"
-    "trustauthority_url": "https://portal.ta.intel.com",
-    "trustauthority_api_url": "https://api.ta.intel.com",
-    "trustauthority_api_key": "<trustauthority attestation api key>",
-    "tpm": {
-        "owner_auth": "",
-        "ak_handle": "81000003"
-        "pcr_selections": "sha1:10+sha256:all"
-    }
-}
-```
+   ```json
+   {
+     "cloud_provider": "azure",
+     "trustauthority_url": "https://portal.ta.intel.com",
+     "trustauthority_api_url": "https://api.ta.intel.com",
+     "trustauthority_api_key": "<trustauthority attestation API key>",
+     "tpm": {
+       "owner_auth": "",
+       "ak_handle": "81000003",
+       "pcr_selections": "sha1:10+sha256:all"
+     }
+   }
+   ```
 
-The "cloud_provider": is needed only for Microsoft Azure. Owner_auth is the TPM owner password, and ak_handle is the TPM attestation key handle. For this release, the owner_auth is an empty string, and the ak_handle is hardcoded to 81000003, which is the location of the Azure-provisioned AK in the vTPM. The pcr_selections field specifies which PCRs to include in the attestation token. The default is all SHA256 PCRs, however, IMA replay won't verify if SHA1 PCR10 isn't included.
+The `cloud_provider` setting is required only for Microsoft Azure. `owner_auth`
+is the TPM owner password, and `ak_handle` is the TPM attestation key handle.
+For this release, `owner_auth` is an empty string, and `ak_handle` is set to
+`81000003`, the handle of the Azure-provisioned AK in the vTPM. The
+`pcr_selections` field specifies which PCRs to include in the attestation
+token. The default is all SHA-256 PCRs; however, IMA replay won't verify
+without SHA-1 PCR 10.
 
-This config file is used when executing the attestation client CLI.
+Use this configuration file when running the attestation client CLI.
 
 ### Configure an IMA policy on the Azure confidential VM
 
-An IMA policy is needed to tell the system which files need to be measured and under what circumstances. As an example, we will create an IMA policy that measures all files executed by a specific user.
+An IMA policy specifies which files to measure and under what circumstances.
+In this example, you create a policy that measures all files executed by a
+specific user.
 
 #### Create a user
 
-The user "imajean" is created solely for demonstration purposes. The IMA policy outlined in these instructions requires a UID, hence the creation of this user. The user "imajean" will execute the workload and be utilized in the IMA policy to replay issues and mitigate log size.
+Create the `imauser` account for this example. The IMA policy requires a UID,
+so this account will run the workload and be named in the policy. This limits
+the measurements and helps manage the log size.
 
-1. `sudo useradd -m imajean`
+1. `sudo useradd -m imauser`
 
-1. `sudo passwd imajean` (enter password)
+1. `sudo passwd imauser` (enter a password)
 
-1. `sudo id imajean` (apply to the ima-policy.txt below; in this example assume that the uid is "1001")
+1. `sudo id imauser` (use the UID in `ima-policy.txt`; this example assumes
+   the UID is `1001`)
 
-1. `sudo usermod -aG tss imajean` (grant access to the TPM)
+1. `sudo usermod -aG tss imauser` (grant access to the TPM)
 
 #### Grant read access to IMA log files
 
-Grant read access to the IMA logs for the TSS group so "imajean" can read them.
+Grant the TSS group read access to the IMA logs so `imauser` can read them.
 
 1. `sudo chgrp tss /sys/kernel/security/ima/ascii_runtime_measurements`
 
 1. `sudo chmod g+r /sys/kernel/security/ima/ascii_runtime_measurements`
 
-#### Deploy the ta-cli and configuration to the "imajean" user's home directory
+#### Deploy the CLI and configuration to the `imauser` home directory
 
-1. `sudo cp ta-cli /home/imajean`
+1. `sudo cp ta-cli /home/imauser`
 
-1. `sudo cp config.json /home/imajean`
+1. `sudo cp config.json /home/imauser`
 
-1. `sudo chown -R imajean:imajean /home/imajean/ta-cli`
+1. `sudo chown -R imauser:imauser /home/imauser/ta-cli`
 
-1. `sudo chown -R imajean:imajean /home/imajean/config.json`
+1. `sudo chown -R imauser:imauser /home/imauser/config.json`
 
-#### Create "ima-policy.txt" in the "imajean" user's home directory
+#### Create `ima-policy.txt` in the `imauser` home directory
 
-This IMA policy is based on the default "TCB" policy with additions for monitoring processes run by the "uuid" created above. This configures IMA so that it measures all files executed by the "imajean" user.
+This IMA policy is based on the default TCB policy, with additional rules to
+monitor processes run by the user created above. It configures IMA to measure
+all files executed by `imauser`.
 
 :::note
-For more information on IMA policies, see the [IMA Recipes](https://wiki.gentoo.org/wiki/Integrity_Measurement_Architecture/Recipes) page.
+
+For more information on IMA policies, see the
+[IMA Recipes](https://wiki.gentoo.org/wiki/Integrity_Measurement_Architecture/Recipes).
+
 :::
 
 :::warning
-Copying and pasting the policy below may alter its formatting. Ensure there are no spaces before the text in the file. Verify the formatting before using it. Improperly formatted IMA policies can prevent the system from booting.
+
+Copying and pasting the policy below may alter its formatting. Ensure that
+there are no spaces before text in the file, and verify the formatting before
+using it. An incorrectly formatted IMA policy can prevent the system from
+booting.
+
 :::
 
 ```bash
@@ -167,48 +231,63 @@ dont_measure fsmagic=0x27e0eb
 # CGROUP2_SUPER_MAGIC=0x63677270
 dont_measure fsmagic=0x63677270
 # NSFS_MAGIC=0x6e736673
-dont_measure fsmagic=0x6e736673 
-dont_measure func=MMAP_CHECK mask=MAY_EXEC 
-dont_measure func=FILE_CHECK mask=MAY_READ uid=0 
-dont_measure func=MODULE_CHECK 
+dont_measure fsmagic=0x6e736673
+dont_measure func=MMAP_CHECK mask=MAY_EXEC
+dont_measure func=FILE_CHECK mask=MAY_READ uid=0
+dont_measure func=MODULE_CHECK
 dont_measure func=FIRMWARE_CHECK
 
 # measure kernel and initramfs
 measure func=KEXEC_KERNEL_CHECK
-measure func=KEXEC_INITRAMFS_CHECK 
+measure func=KEXEC_INITRAMFS_CHECK
 
-# This is the actual addition made for this example. This policy will not measure the execution of binaries by the root user (uid=0) but will measure the execution of binaries by the "imajean" user (uid=1001). This setup is useful for monitoring the integrity of a specific user's workload without collecting too much data.
+# This addition excludes binaries run by root (uid=0) and measures binaries
+# run by imauser (uid=1001). This helps monitor the user's workload without
+# collecting too much data.
 dont_measure func=BPRM_CHECK mask=MAY_EXEC uid=0
 measure func=BPRM_CHECK mask=MAY_EXEC uid=1001
 ```
 
 :::note
-The "uid=1001" in the "ima-policy.txt" file is the ID of the user "imajean" created above. Only files executed by "imajean" will be measured. Other users can execute any number of files without triggering an IMA measurement. Ensure that any user being used to execute files whose integrity needs to be measured matches the UID in the IMA policy.
+
+The `uid=1001` entry in `ima-policy.txt` is the UID of the `imauser` account
+created above. The user-specific `BPRM_CHECK` rule measures files executed by
+`imauser`; executions by other users do not trigger that rule. Other IMA policy
+rules may measure additional system events. Ensure that the account used to
+execute files whose integrity must be measured has the UID specified in the
+IMA policy.
+
 :::
 
-1. Deploy the ima-policy. The file `/etc/ima/ima-policy` defines the measurements IMA will record on the next boot.
+1. Deploy the IMA policy. The file `/etc/ima/ima-policy` defines the
+   measurements IMA records on the next boot.
 
-`sudo cp ima-policy.txt /etc/ima/ima-policy`
+   `sudo cp ima-policy.txt /etc/ima/ima-policy`
 
-1. Reboot the Azure VM from the control panel to ensure the system starts with the new policy.
+2. Reboot the Azure VM from the control panel to ensure that the system starts
+   with the new policy.
 
 #### Verify the IMA policy
 
-Validate the IMA policy to ensure that the policy is correctly applied and functioning as intended.
+Validate the IMA policy to ensure that it is applied and functioning as
+intended.
 
 1. After reboot, inspect the IMA logs:
 
-`sudo cat /sys/kernel/security/ima/ascii_runtime_measurements`
+   `sudo cat /sys/kernel/security/ima/ascii_runtime_measurements`
 
-1. Run a process as the "imajean" user to generate IMA log entries:
+2. Run a process as `imauser` to generate IMA log entries:
 
-   1. `su - imajean (password)`
+   1. `su - imauser` (enter the password)
 
-   1. `ls` Listing directories will generate an IMA log entry for the "ls" binary.
+   2. `ls` (listing directories generates an IMA log entry for the `ls`
+      binary)
 
-   1. `exit` Exiting will generate an IMA log entry.
-  
-1. Confirm the ima-policy is working as expected (`cat /sys/kernel/security/ima/ascii_runtime_measurements`) should include "/usr/bin/ls".
+   3. `exit` (exiting the shell generates an IMA log entry)
+
+3. Confirm that the IMA policy is working. The output of
+   `cat /sys/kernel/security/ima/ascii_runtime_measurements` should include
+   `/usr/bin/ls`.
 
 ```bash
 10 98aa9e41ffe519d74f9a8d20f5f9fdad8b998855 ima-ng sha1:7448a72f7519d1d1564a2456bc178b30673836d6 /usr/bin/ls
@@ -216,12 +295,18 @@ Validate the IMA policy to ensure that the policy is correctly applied and funct
 
 ### Author an appraisal policy for IMA measurements
 
-These instructions explain how to collect reference values from the token created in the previous step and use them to configure an appraisal policy on TA.
+Collect reference values from the token created in the previous step and use
+them to configure an appraisal policy in TA.
 
-1. Collect reference values from token claims. We create a new attestation token using the system for which we have just successfully configured an IMA policy. This will ensure the IMA logs containing the measurements in our example will show up in the token claims.
+1. Create a new attestation token on the system where you configured the IMA
+   policy. This ensures that the token claims include the IMA logs containing
+   the measurements from this example.
 
 :::note
-Be sure to log in as the "imajean" user first. This will ensure the files executed are measured by the IMA policy.
+
+Log in as `imauser` first to ensure that the IMA policy measures the files you
+run.
+
 :::
 
 ```sh
@@ -232,7 +317,7 @@ sudo ./ta-cli token --tdx --tpm --ima -c config.json
 sudo ./ta-cli token --tpm --ima -c config.json
 ```
 
-1. The returned token is base64 encoded. Decode the token to make it human-readable so you can retrieve the claims.
+1. The returned token is Base64-encoded. Decode it to read the claims.
 
 ```json
   ...other token claims...
@@ -248,9 +333,10 @@ sudo ./ta-cli token --tpm --ima -c config.json
         }
 ```
 
-1. Use token claims to build an appraisal policy (see sample policy below).
+1. Use the token claims to build an appraisal policy. See the sample policy
+   below.
 
-```sh
+```rego
 import rego.v1
 
 default valid_runtime_measurements = false
@@ -258,16 +344,26 @@ valid_runtime_measurements = true {
   input.tdx.tdx_mrtd == "b4f3e2748d800711d81fa75d5b4fee1e9..."
   input.tdx.tdx_seamsvn == 4
 
-# The above section of the policy verifies the integrity of the trust domain. The TD in Azure includes the vTPM, so this measurement is needed to maintain the chain-of-trust for Azure confidential VMs. To trust the IMA measurements, we need to trust the TPM. To trust the TPM, we need to trust the TD. Note that this tdx_mrtd measurement will be uniform across all Azure Confidential VMs for a given version; if Azure updates the TD version, this measurement will change, and the policy needs to be updated. Capture the value from the token; the claim name is "tdx_mrtd". This section is not necessary for physical TPMs or vTPMs that do not depend on Intel TDX.
+# This section verifies the integrity of the trust domain. The TD in Azure
+# includes the vTPM, so this measurement is needed to maintain the chain of
+# trust for Azure confidential VMs. To trust the IMA measurements, trust the
+# TPM; to trust the TPM, trust the TD. This tdx_mrtd measurement is uniform
+# across Azure confidential VMs for a given version. If Azure updates the TD
+# version, this measurement changes and the policy must be updated. Capture
+# the value from the token; the claim name is "tdx_mrtd". This section is not
+# needed for physical TPMs or vTPMs that do not depend on Intel TDX.
 
 # Example: "tdx_mrtd": "bb379...f2de0d7154"
 
 default ima_cli_rtm_match := false
 ima_cli_rtm_match if {
-  ima_rtm_match(input.tpm.runtime_measurements, 10, "/home/imajean/ta-cli", "753a72acc9828e99ad8f1b37b8954471e31803f6fee66fda6bad09ecd3dfa534")
+  ima_rtm_match(input.tpm.runtime_measurements, 10, "/home/imauser/ta-cli", "753a72acc9828e99ad8f1b37b8954471e31803f6fee66fda6bad09ecd3dfa534")
 }
 
-# The section above invokes the "ima_rtm_match" function, which is defined below. It passes the IMA event log from the "tpm.runtime_measurements" claim, sets the TPM PCR index to 10 (where IMA extends measurements), sets the event file path to "/home/imajean/ta-cli", and asserts the required measurement.
+# The section above invokes the "ima_rtm_match" function, which is defined
+# below. It passes the IMA event log from the "tpm.runtime_measurements" claim,
+# sets the TPM PCR index to 10 (where IMA extends measurements), sets the event
+# file path to "/home/imauser/ta-cli", and asserts the required measurement.
 
 ima_rtm_match(runtime_measurements, idx, fp, dig) := r if {
   fp_digests := [ digest |
@@ -283,28 +379,43 @@ ima_rtm_match(runtime_measurements, idx, fp, dig) := r if {
   r := fp_digests[cnt-1] == dig
 }
 
-# The "ima_rtm_match" function iterates over the array of event log measurements for the specified PCR index and finds events where the file path matches. It then checks only the latest event if multiple measurements of the same file path are present. Because IMA measurements are triggered during runtime whenever the specified file is executed, this function ensures that older, matching measurements are disregarded and it only checks the most recent measurement of that file. This way the policy will detect changes to the executable. Note that only changes in the measurement are recorded (so repeated executions of the same binary with the same hash measurement will be represented by just one measurement event) and that attestation must still be triggered for the appraisal policy to be evaluated. In this example the policy is checking the attestation client CLI, so every attestation request is also verifying the integrity of the client that provided the evidence.
+# The "ima_rtm_match" function iterates over the event log measurements for
+# the specified PCR index and finds events whose file path matches. If the
+# same file path appears more than once, it checks only the latest event.
+# Because IMA measures a file at runtime when the specified file is executed,
+# this function ignores older measurements and checks only the most recent
+# measurement. This allows the policy to detect changes to the executable.
+# Note that IMA records only changes in measurements; repeated executions of
+# the same binary with the same hash are represented by a single measurement
+# event. Attestation must still be triggered for the appraisal policy to be
+# evaluated. In this example, the policy checks the attestation client CLI,
+# so each attestation request also verifies the integrity of the client that
+# provided the evidence.
 ```
 
-1. Use this file (with real digest values captured from the attestation token claims and without comments) to create a new appraisal policy using the TA web UI or the tenant management CLI.
+1. Use this file with real digest values captured from the attestation token
+   claims and without comments to create an appraisal policy in the TA web UI
+   or with the tenant management CLI.
 
-### Demonstrate Attestation
+### Demonstrate attestation
 
-Run ta-cli as the "imajean" user and inspect token claims to verify the policy.
+Run `ta-cli` as `imauser` and inspect the token claims to verify the policy.
 
-1. Log in to the Azure confidenctial VM as the "imajean" user.
-  
+1. Log in to the Azure confidential VM as `imauser`.
+
 ```bash
-su - imajean (provide password)
+su - imauser
 ```
 
-1. Run the following command to attest the system using the new IMA appraisal policy.
+1. Run the following command to attest the system using the new IMA appraisal
+   policy.
 
 ```bash
 ./ta-cli token --tdx --tpm --ima -c config.json --policy-ids <appraisal policy UUID>
 ```
 
-The output includes details such as the EAT profile, intended use, matched policy IDs, and unmatched policy IDs.
+The output includes details such as the EAT profile, intended use, matched
+policy IDs, and unmatched policy IDs.
 
 ```bash
   ...
@@ -318,45 +429,60 @@ The output includes details such as the EAT profile, intended use, matched polic
   "policy_ids_unmatched": null,
 ```
 
-By verifying that the policy is in the `policy_ids_matched` array, we confirm that the evidence provided matches the assertions in the policy. In our sample policy, this means that we've verified the Intel TDX Trust Domain as the root of trust for the Azure vTPM; we've verified the boot-time integrity of all measurements extended to PCR4, including the VM's OS kernel; we've verified the vTPM event log integrity; and we've verified the execution-time integrity of the TA attestation client CLI.
+If the policy appears in the `policy_ids_matched` array, the evidence matches
+the policy assertions. In this example, the policy verifies the Intel TDX
+trust domain as the root of trust for the Azure vTPM, the boot-time integrity
+of measurements extended to PCR 4 (including the VM's OS kernel), the vTPM
+event log integrity, and the execution-time integrity of the TA attestation
+client CLI.
 
 ### Sample IMA token claim
 
-The sample IMA token claim in JSON format includes details about TPM, PCRs and runtime measurements.
+The following sample IMA token claim in JSON format includes TPM, PCR, and
+runtime measurement details.
 
 ```json
-tpm {
-  "pcrs": [
-    ...
-    {
-      "alg": "SHA-1",
-      "digest": "6128FC2C16F02D...",
-      "index": 10
-    }
-  ],
-  "runtime_measurements": [
-    {
-      "alg": "SHA-1",
-      "index": 10,
-      "cumulative_hash": "6128FC2C16F02D...",
-      "measurements": [
-        {
-          "file_path": "/usr/bin/ta-cli",
-          "digest": "c25e74f77e121e7a61429..."
-        }
-        ...
+{
+  "tpm": {
+    "pcrs": [
+      ...
+      {
+        "alg": "SHA-1",
+        "digest": "6128FC2C16F02D...",
+        "index": 10
+      }
+    ],
+    "runtime_measurements": [
+      {
+        "alg": "SHA-1",
+        "index": 10,
+        "cumulative_hash": "6128FC2C16F02D...",
+        "measurements": [
+          {
+            "file_path": "/usr/bin/ta-cli",
+            "digest": "c25e74f77e121e7a61429..."
+          }
+          ...
+        ]
+      }
+    ]
+  }
+}
 ```
 
 ### Sample IMA evidence
 
-IMA event logs located in `/sys/kernel/security/ima/ascii_runtime_measurements` have six fields separated by spaces. The fields are as follows:
+IMA event logs in `/sys/kernel/security/ima/ascii_runtime_measurements` have
+six fields separated by spaces:
 
-- **10** - The PCR index
-- **92bbbb...** The PCR value before the measurement was extended
-- **ima-ng** - The event, in this case, Integrity Measurement Architecture Next Generation. The ima-gn format includes a hash algorithm identifier and the hash value of the object
-- **sha-1** - The sha algorithm used to hash the object
-- **47f202...** - The hash value of the measured object
-- **/usr/lib/modules/6.5** - the path to the file that ws measured
+- **`10`:** The PCR index.
+- **`92bbbb...`:** The PCR value before the measurement was extended.
+- **`ima-ng`:** The event type, in this case, Integrity Measurement
+  Architecture Next Generation (IMA-NG). The IMA-NG format includes a hash
+  algorithm identifier and the object's hash value.
+- **`sha1`:** The algorithm used to hash the object.
+- **`47f202...`:** The hash value of the measured object.
+- **`/usr/lib/modules/6.5`:** The path to the measured file.
 
 ```sh
 10 92bbbbbb24cdc02f01bb139cbd73fa7d51111958 ima-ng sha1:47f2024b02af118e838ad61aa915b078755aa85c boot_aggregate
@@ -369,7 +495,10 @@ IMA event logs located in `/sys/kernel/security/ima/ascii_runtime_measurements` 
 
 ### Sample IMA claims in an attestation token
 
-The IMA event log claims will be in the "tpm" section listed as "runtime_measurements" in an attestation token issued by TA. This array will contain the same data as the IMA event log located in `/sys/kernel/security/ima/ascii_runtime_measurements` for the attester whose evidence was used to generate the attestation token.
+In an attestation token issued by TA, IMA event log claims appear in the `tpm`
+section under `runtime_measurements`. This array represents the measurements
+from `/sys/kernel/security/ima/ascii_runtime_measurements` on the attester
+whose evidence was used to generate the token.
 
 ```json
   ...
@@ -388,4 +517,7 @@ The IMA event log claims will be in the "tpm" section listed as "runtime_measure
           "digest": "c434fdbf2ec9d65..."
         },
         ...
+      ]
+    }
+  ]
 ```
