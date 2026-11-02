@@ -28,7 +28,7 @@ Bare-metal infrastructure has specific policies and requirements. See the intern
 
 **Planning horizon:** Use a 15-month rolling forecast to support near-term execution and midterm planning.
 
-**Forecast cadence:**
+### Forecast cadence
 
 - **Monthly updates:** Make routine updates to capture incremental changes and actual demand.
 - **Quarterly deep refreshes:** Conduct a deep refresh in the second month of each quarter to reassess demand drivers, align with business milestones, and update assumptions.
@@ -114,9 +114,9 @@ Demand signal collection is the systematic gathering of data that indicates infr
 
 ### 5. Forecast validation and review
 
-**DRI: CIBO Demand Team.**
+**DRI:** CIBO Demand Team.
 
-**Validation activities**
+#### Validation activities
 
 - Validate space and power availability at each data center to ensure physical capacity can support forecasted demand.
 - Review changes from the previous forecast. If you detect material deviations, confirm with the LOB or platform team that the changes are intentional and reflect updated business assumptions.
@@ -127,7 +127,7 @@ Demand signal collection is the systematic gathering of data that indicates infr
 
 The CIBO Demand Team publishes and shares the finalized 15-month forecast with key stakeholders to support alignment and execution.
 
-**Publication activities**
+#### Publication activities
 
 - Publish the forecast by platform and resource type, including compute, storage, GPU, network, and third-party cloud.
 - Include detailed bare-metal demand in capacity units (racks, nodes, and site-level power).
@@ -136,7 +136,7 @@ The CIBO Demand Team publishes and shares the finalized 15-month forecast with k
 
 #### 6.1 Distribution list
 
-**Distribute forecast outputs to:**
+Distribute forecast outputs to:
 
 - Supply planning
 - Data center capacity planning
@@ -151,7 +151,7 @@ The CIBO Demand Team publishes and shares the finalized 15-month forecast with k
 
 Monthly variance tracking helps maintain forecast accuracy and continuously improve the planning process.
 
-**Monitoring activities**
+#### Monitoring activities
 
 - Compare forecasted and actual usage at the platform, resource, and site levels.
 - Engage with LOBs and platform teams to validate findings and update business assumptions.
@@ -171,7 +171,7 @@ Investigate root causes of significant variances, such as:
 
 Quarterly forecast refreshes align forecasts with evolving business priorities, product milestones, and infrastructure needs.
 
-**Refresh activities**
+#### Refresh activities
 
 - Re-engage LOBs to capture updated business drivers, roadmap changes, and revised growth assumptions.
 - Refresh platform translation models to reflect architecture changes, efficiency gains, or new SKUs.
@@ -182,7 +182,7 @@ Quarterly forecast refreshes align forecasts with evolving business priorities, 
 
 The infrastructure demand forecast informs annual financial and strategic plans.
 
-**Budget integration activities**
+#### Budget integration activities
 
 - Incorporate demand signals into long-range infrastructure expansion plans, including data center builds, regional growth, and technology changes.
 - Enable executive-level visibility into infrastructure trends, investment needs, and capacity posture.

@@ -20,7 +20,7 @@ Perform steps one through six in the order presented.
 
 ### Capacity request submission
 
-**Owner: LOB capacity requestor**
+**Owner:** LOB capacity requestor
 
 - The LOB requester notifies their Demand Planner of a platform capacity request.
 - The requester must include the business driver, platform, resource type (for example, vCPU, RAM, or sellable unit), quantity, need-by date, and business justification.
@@ -29,7 +29,7 @@ Perform steps one through six in the order presented.
 
 ### LOB demand planner review
 
-**Owner: LOB Demand Planner (see the people matrix below)**
+**Owner:** LOB Demand Planner (see the people matrix below)
 
 - Validate the request for completeness and accuracy.
 - Consult the Platform Capacity DRI to determine whether sufficient capacity is available.
@@ -41,7 +41,7 @@ Perform steps one through six in the order presented.
 
 ### LOB capacity DRI review
 
-**Owner: LOB Capacity DRI (see the people matrix below)**
+**Owner:** LOB Capacity DRI (see the people matrix below)
 
 - Review the request for alignment with strategic business priorities and capacity objectives.
 - Verify the timing and accuracy of resource requirements.
@@ -51,7 +51,7 @@ Perform steps one through six in the order presented.
 
 ### LOB financial controller review
 
-**Owner: LOB Financial Controller (see the people matrix below)**
+**Owner:** LOB Financial Controller (see the people matrix below)
 
 - Review the financial implications of the request.
 - Validate budget alignment with fiscal constraints and forecasts.
@@ -61,7 +61,7 @@ Perform steps one through six in the order presented.
 
 ### Notify platform stakeholders of approved demand
 
-**Owner: LOB Demand Planning Team**
+**Owner:** LOB Demand Planning Team
 
 - Share the fully approved request with the Platform Demand Planner and Platform Capacity DRI.
 - Include a breakdown by resource type (for example, vCPU, GPU, or TB of storage), need-by month, and data center.
@@ -70,7 +70,7 @@ Perform steps one through six in the order presented.
 
 ### Platform acknowledgment, review, and response
 
-**Owner: Platform Capacity DRI**
+**Owner:** Platform Capacity DRI
 
 - Review the approved request for feasibility against existing platform constraints, such as supply availability, deployment timelines, and architectural dependencies.
 - Notify the LOB Demand Planner and other stakeholders of any issues or risks that might affect timely fulfillment.
