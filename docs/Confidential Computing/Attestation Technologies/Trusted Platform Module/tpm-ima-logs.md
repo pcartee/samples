@@ -109,13 +109,13 @@ building an Azure CVM with the required features enabled.
 
 :::
 
-2. Install the TA attestation client CLI on the new Azure confidential VM.
+1. Install the TA attestation client CLI on the new Azure confidential VM.
 
 ```sh
 curl https://raw.githubusercontent.com/intel/ta-client-for-go/main/release/install-tdx-cli-azure.sh | sudo bash -
 ```
 
-3. Configure the attestation client CLI.
+1. Configure the attestation client CLI.
 
    Configure the required properties before using the `token` and `verify`
    commands. Save the properties and values as JSON in `config.json`. Create
@@ -317,7 +317,7 @@ sudo ./ta-cli token --tdx --tpm --ima -c config.json
 sudo ./ta-cli token --tpm --ima -c config.json
 ```
 
-2. The returned token is Base64-encoded. Decode it to read the claims.
+1. The returned token is Base64-encoded. Decode it to read the claims.
 
 ```json
   ...other token claims...
@@ -333,7 +333,7 @@ sudo ./ta-cli token --tpm --ima -c config.json
         }
 ```
 
-3. Use the token claims to build an appraisal policy. See the sample policy
+1. Use the token claims to build an appraisal policy. See the sample policy
    below.
 
 ```rego
@@ -407,7 +407,7 @@ Run `ta-cli` as `imauser` and inspect the token claims to verify the policy.
 su - imauser
 ```
 
-2. Run the following command to attest the system using the new IMA appraisal
+1. Run the following command to attest the system using the new IMA appraisal
    policy.
 
 ```bash
