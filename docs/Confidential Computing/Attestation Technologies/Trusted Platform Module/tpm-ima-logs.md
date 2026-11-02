@@ -97,8 +97,6 @@ To learn more about configuring IMA and understanding IMA policies, see the
 
 ## Configure an Azure Confidential VM for vTPM attestation with IMA
 
-<!-- markdownlint-disable MD029 -->
-
 1. Create an Azure confidential virtual machine (CVM) with Intel TDX. Azure's
    vTPM uses Intel TDX as its root of trust, and IMA is enabled by default on
    Azure confidential VMs. However, you must add an IMA policy to measure
