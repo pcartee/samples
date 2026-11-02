@@ -23,7 +23,7 @@ This operation bypasses Kubernetes cleanup safeguards and can leave resources be
 Replace `<namespace>` with the namespace you have investigated:
 
 ```bash
-kubectl get namespace <namespace> -o json \
+kubectl get namespace "<namespace>" -o json \
   | jq '.spec.finalizers = []' \
   | kubectl replace --raw "/api/v1/namespaces/<namespace>/finalize" -f -
 ```
@@ -33,7 +33,7 @@ kubectl get namespace <namespace> -o json \
 If you removed the k3s cluster without uninstalling the application with Porter, a stale installation record can prevent a new installation. After confirming that the old deployment no longer exists, delete its record:
 
 ```bash
-porter installations delete <installation-name> -n <namespace> --force
+porter installations delete "<installation-name>" -n "<namespace>" --force
 ```
 
 ## Resolve a Porter filesystem secret-read error
@@ -41,10 +41,10 @@ porter installations delete <installation-name> -n <namespace> --force
 If `porter install` fails with an `rpc error: code = Unknown desc = error reading secret from filesystem` message, verify that the configured secrets plugin and filesystem permissions are correct. If the failed installation left a stale record, confirm that it is safe to remove, then delete it:
 
 ```bash
-porter installations delete <installation-name> -n <namespace> --force
+porter installations delete "<installation-name>" -n "<namespace>" --force
 ```
 
-## Remove a stalled object bucket claim
+## Remove a stalled ObjectBucketClaim
 
 If an ObjectBucketClaim (OBC) is stalled, first check its status and the associated storage resources. Removing finalizers can orphan storage resources, so do this only after investigating the cause and confirming cleanup is safe.
 
@@ -53,8 +53,8 @@ Replace `<claim-name>` and `<namespace>` with the verified claim and namespace. 
 :::
 
 ```bash
-kubectl patch obc/<claim-name> \
-  --namespace <namespace> \
+kubectl patch "obc/<claim-name>" \
+  --namespace "<namespace>" \
   --type=merge \
   --patch '{"metadata":{"finalizers":null}}'
 ```
@@ -74,14 +74,14 @@ Use the following commands to list installations, view outputs, and retrieve log
 
 ```bash
 # List installations.
-porter installations list -n <namespace>
+porter installations list -n "<namespace>"
 
 # List outputs.
-porter installations output list -i <installation-name> -n <namespace>
+porter installations output list -i "<installation-name>" -n "<namespace>"
 
 # Show selected outputs.
-porter installations output show <output-name> -i <installation-name> -n <namespace>
+porter installations output show "<output-name>" -i "<installation-name>" -n "<namespace>"
 
 # Get logs.
-porter logs -i <installation-name> -n <namespace>
+porter logs -i "<installation-name>" -n "<namespace>"
 ```

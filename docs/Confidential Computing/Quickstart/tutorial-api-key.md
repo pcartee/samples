@@ -1,6 +1,6 @@
 ---
 title: Get started with TA API keys and attestation
-description: Learn how to view and copy Trust Authority (TA) admin API keys, create attestation API keys in the portal or with the REST API, request an SGX attestation token using the REST API or Go client, and troubleshoot sign-in after a password change.
+description: Learn how to manage Trust Authority (TA) admin and attestation API keys, create attestation keys in the portal or REST API, request an SGX attestation token with the REST API or Go client, and resolve sign-in issues after changing your password.
 author: pcartee
 topic: tutorial
 date: "2024-06-07"
@@ -11,8 +11,8 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This quickstart walks through a sample workflow for generating your
-first attestation with TA.
+This quickstart explains how to manage TA API keys and request an SGX
+attestation.
 
 ## Admin API key management
 
@@ -44,7 +44,7 @@ an attestation API key's value, which you can do only in the portal.
 
 1. View the API keys in the table.
 
-    ![TA Portal Admin API Keys page showing a table of admin API keys and their actions.](/img/howto-manage-admin-api-keys/admin-api-keys.png)
+    ![TA Portal Admin API Keys page showing the table of admin API keys and available actions.](/img/howto-manage-admin-api-keys/admin-api-keys.png)
 
 ### Copy admin API keys {/*#admin-keys*/}
 
@@ -54,12 +54,12 @@ an attestation API key's value, which you can do only in the portal.
 
 1. Go to the API key that you want to copy.
 
-1. Select the ![View icon](/img/common-graphics/view-icon.png) icon for
-   the API key.
+1. Select the ![Eye-shaped View button](/img/common-graphics/view-icon.png)
+   for the API key.
 
     The API key appears.
 
-1. Select the ![Copy icon](/img/common-graphics/copy-icon.png) icon.
+1. Select the ![Copy button](/img/common-graphics/copy-icon.png).
 
     The API key is copied to the clipboard.
 
@@ -73,14 +73,14 @@ users.
 Attestation API keys authenticate attestation-related functions,
 including generating an attestation token, creating a signed nonce, and
 requesting a Faithful Verification token audit report. Include an
-attestation API key with all attestation-related requests. It lets you
-attest any supported TEE.
+attestation API key with all attestation-related requests. An
+attestation API key lets you attest any supported TEE.
 
 You can create an attestation API key in the portal or by using the REST
 API, but you can retrieve its value only from the portal. This
-restriction prevents a rogue client from creating and using an
+restriction prevents an unauthorized client from creating and using an
 attestation key. A client can obtain and use a new attestation key only
-when a user with portal access transfers it to the client.
+after a user with portal access transfers it to the client.
 
 You can associate one or more attestation policies with an attestation
 API key. Associated policies apply to all attestation requests that the
@@ -109,7 +109,7 @@ in the tenant organization.
 
     The **Add API key** page appears.
 
-    ![TA Portal Add API key page with fields for the key name, optional tags, and optional policies.](/img/howto-manage-api-keys/add-api-key.png)
+    ![TA Portal Add API key page with fields for the key name and optional tags and policies.](/img/howto-manage-api-keys/add-api-key.png)
 
 1. Enter a name for the API key. It must contain 3 to 64 characters.
    Use letters and numbers; spaces and special characters aren't
@@ -150,7 +150,7 @@ key for authentication.
    `GET /management/v1/service-offers` and note the ID of the offer you
    want to use.
 
-1. Retrieve the services subscribed to by your tenant with
+1. Retrieve the services to which your tenant is subscribed with
    `GET /management/v1/services`. Find the service associated with the
    offer and note its `id` as the `serviceId`.
 
@@ -200,20 +200,21 @@ API or the Go client library.
 Use the TA REST API to request an attestation. This example assumes that
 you have an SGX application that can retrieve an SGX quote.
 
-1. Request a nonce.
+1. Request a nonce. Replace `<TA_API_URL>` with the TA API URL for your
+   region.
 
    ```bash
-   curl --location 'https://api.ta.company.com/appraisal/v1/nonce' \
+   curl --location '<TA_API_URL>/appraisal/v1/nonce' \
      --header 'Accept: application/json' \
      --header 'x-api-key: <attestation API key>'
    ```
 
    :::note
-   If you're in the European Union (EU) region, use the following URL
-   instead:
+   If you're in the European Union (EU) region, use
+   `<TA_EU_API_URL>` instead:
 
    ```bash
-   curl --location 'https://api.eu.ta.company.com/appraisal/v1/nonce' \
+   curl --location '<TA_EU_API_URL>/appraisal/v1/nonce' \
      --header 'Accept: application/json' \
      --header 'x-api-key: <attestation API key>'
    ```
@@ -240,7 +241,7 @@ you have an SGX application that can retrieve an SGX quote.
 1. Request an attestation token.
 
    ```bash
-   curl --location 'https://api.ta.company.com/appraisal/v1/attest' \
+   curl --location '<TA_API_URL>/appraisal/v1/attest' \
      --header 'Accept: application/json' \
      --header 'x-api-key: <attestation API key>' \
      --header 'Content-Type: application/json' \
@@ -266,7 +267,7 @@ Use the TA Go client library to request an attestation token. This
 example assumes that you integrated the client, including the `go-sgx`
 module, with an SGX-enabled application.
 
-For more code samples, see the [TA client repo](https://github.com/ta-client-for-go/tree/main).
+For more code samples, see the [TA client repository](https://github.com/ta-client-for-go/tree/main).
 
 1. Instantiate the client.
 

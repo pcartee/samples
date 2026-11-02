@@ -1,5 +1,5 @@
 ---
-title: Third-party components for a Kubernetes
+title: Third-party components for a local Kubernetes deployment
 description: "Guide to preparing a single-node k3s cluster and installing third-party Kubernetes components for a local application. Covers Helm, Kustomize, Calico, secret management, certificate management, Istio, node feature discovery, hardware device plugins, PostgreSQL, deployment prerequisites, and a local authenticated Docker registry."
 author: pcartee
 topic: Third-party Kubernetes components for local deployment
@@ -34,40 +34,45 @@ curl -s https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/
 sudo mv kustomize /usr/local/bin/
 ```
 
-## Set up k3s management services
+## Set up the k3s cluster
 
-k3s is a lightweight Kubernetes distribution designed to run on a single server. The following commands create a cluster and configure the `kubectl` client.
+k3s is a lightweight Kubernetes distribution designed to run on a single
+server. The following commands create a cluster, configure the `kubectl`
+client, and install the CNI.
 
 1. Install k3s.
 
    ```bash
    curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.29.9+k3s1 INSTALL_K3S_EXEC="--write-kubeconfig-mode 0600 --cluster-init --flannel-backend=none --disable=traefik --disable-network-policy --cluster-cidr 192.168.0.0/16 --tls-san $(hostname)" sh -
-   sudo chown -R $USER:$USER /etc/rancher/k3s/
+   sudo chown -R "$USER:$USER" /etc/rancher/k3s/
    export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 
    kustomize build --enable-alpha-plugins --enable-exec infra/cni | kubectl create -f -
    ```
 
-1. Wait for the k3s pods to start and reach the **Ready** state. This can take five minutes or longer. The `/etc/rancher/k3s/k3s.yaml` file contains administrative credentials and cluster connection information. Restrict access to this file and do not share it.
+1. Wait for the k3s pods to start and reach the **Ready** state. This can
+   take five minutes or longer. The `/etc/rancher/k3s/k3s.yaml` file
+   contains administrative credentials and cluster connection
+   information. Restrict access to this file and do not share it.
 
-   ```bash 
+   ```bash
    watch kubectl get pods -A
    ```
 
-### Install add-ons
+### Review the required add-ons
 
-The application requires several additional plugins and services.
+The application requires several additional plug-ins and services.
 
-#### Hardware device plugin operator
+#### Hardware device plug-in operator
 
-The device plugin operator manages hardware devices that can be allocated to Kubernetes workloads. It can:
+The device plug-in operator manages hardware devices that can be allocated to Kubernetes workloads. It can:
 
-* Identify nodes with supported hardware.
-* Configure device plugins and make hardware resources available to workloads.
-* Support hardware-backed trusted execution workloads.
+- Identify nodes with supported hardware.
+- Configure device plug-ins and make hardware resources available to workloads.
+- Support hardware-backed trusted execution workloads.
 
 :::note
-Build the required device plugin container image from source. See the build instructions below.
+Build the required device plug-in container image from source. See the build instructions below.
 :::
 
 #### Calico CNI
@@ -102,9 +107,11 @@ The Istio ingress gateway manages traffic entering the service mesh. See the [Is
 
 Node Feature Discovery (NFD) detects hardware features on cluster nodes and advertises them with node labels. These labels help Kubernetes schedule workloads that require specific hardware. See the [NFD Helm deployment guide](https://kubernetes-sigs.github.io/node-feature-discovery/v0.16/deployment/helm.html#deployment).
 
-#### Device plugins operator
+#### Device plug-in operator
 
-Device plugins let Kubernetes schedule and allocate supported hardware resources, such as accelerators, to containers. Use the approved hardware vendor's device plugin operator chart for installation guidance.
+Device plug-ins let Kubernetes schedule and allocate supported hardware
+resources, such as accelerators, to containers. Use the approved hardware
+vendor's device plug-in operator chart for installation guidance.
 
 #### Trusted execution service manager
 
@@ -122,21 +129,25 @@ Vault stores and controls access to secrets, such as API keys, passwords, and ce
 
 PostgreSQL is an open-source relational database for storing and querying structured data. See the [Bitnami PostgreSQL chart](https://artifacthub.io/packages/helm/bitnami/postgresql) for installation instructions.
 
-#### Build the hardware plugin container
+### Deploy the add-ons
 
-1. Clone the approved hardware plugin repository.
+#### Build the hardware plug-in container
+
+1. Clone the approved hardware plug-in repository.
 1. Build the required container image.
 1. Tag and push the image to your container registry.
 
 #### Extract the deployment archive
 
 :::note
-If the deployment archive is not available for your release, contact your software provider for help installing these prerequisites.
+If the deployment archive is not available for your release, contact your
+software provider for help installing these prerequisites.
 :::
 
 1. Extract the archive.
 
-   Replace the archive and directory placeholders with the actual names before running these commands.
+   Replace the archive and directory placeholders with the actual names
+   before running these commands.
 
    ```bash
    tar -xvf "<archive-file>"
@@ -167,7 +178,11 @@ If the deployment archive is not available for your release, contact your softwa
    ```
 
    :::warning
-   These variables are user-defined. Ensure the registry name, image name, and image tag match the values used when you pushed the hardware plugin image. Base64 encoding does not encrypt the database password. Use an approved secret-management system, and do not commit the password or populated environment file to source control.
+   These variables are user-defined. Ensure the registry name, image
+   name, and image tag match the values used when you pushed the hardware
+   plug-in image. Base64 encoding does not encrypt the database password.
+   Use an approved secret-management system, and do not commit the
+   password or populated environment file to source control.
    :::
 
 1. Deploy the base controllers.
@@ -180,7 +195,9 @@ If the deployment archive is not available for your release, contact your softwa
 
    ```bash
    watch kubectl get pods -A
+   ```
 
+   ```text
    NAMESPACE                NAME                                                 READY   STATUS      RESTARTS   AGE
    cert-manager             cert-manager-974688dfd-7fjml                         1/1     Running     0          17m
    cert-manager             cert-manager-cainjector-6687cc685b-sbqmq             1/1     Running     0          17m
@@ -224,7 +241,9 @@ If the deployment archive is not available for your release, contact your softwa
 
    ```bash
    watch kubectl get pods -A
+   ```
 
+   ```text
    NAMESPACE                   NAME                                                     READY   STATUS      RESTARTS        AGE
    calico-system               calico-kube-controllers-7bf877c685-qklnp                 1/1     Running     0               26m
    calico-system               calico-node-4k5qq                                        1/1     Running     0               26m
@@ -268,7 +287,7 @@ If the deployment archive is not available for your release, contact your softwa
    vault                       vault-agent-injector-695dcf78c6-vpxzh                    1/1     Running     0               3m13s
    ```
 
-1. Verify that the hardware device plugin registered successfully. Follow the verification instructions in the plugin documentation.
+1. Verify that the hardware device plug-in registered successfully. Follow the verification instructions in the plug-in documentation.
 
 ### Set up a local Docker registry
 
@@ -284,10 +303,13 @@ Host container images in a registry that Helm and Kubernetes can access. The fol
    docker pull registry:2.7
    ```
 
-1. Create an authentication file. The following commands create a directory for authentication files and generate a password file. You are prompted to enter a password for the `imageregistry` user.
+1. Create an authentication file. These commands create a directory
+   for authentication files and generate a password file. You are
+   prompted to enter a password for the `imageregistry` user.
 
    :::note
-   The generated password hash in `auth/htpasswd` is needed to create the registry pull secret during deployment.
+   The password hash in `auth/htpasswd` is needed to create the
+   registry pull secret during deployment.
    :::
 
    ```bash
@@ -295,8 +317,9 @@ Host container images in a registry that Helm and Kubernetes can access. The fol
    htpasswd -Bc auth/htpasswd imageregistry
    ```
 
-1. Run the authenticated Docker Registry container. It listens on port 5000 and uses the credentials in the `htpasswd` file.
+1. Run the authenticated Docker Registry container. It listens on port
+   5000 and uses the credentials in the `htpasswd` file.
 
    ```bash
-   docker run -d --name registry -p 5000:5000 -v $(pwd)/auth:/auth -e "REGISTRY_AUTH=htpasswd" -e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" -e "REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd" registry:2.7
+   docker run -d --name registry -p 5000:5000 -v "$(pwd)/auth:/auth" -e "REGISTRY_AUTH=htpasswd" -e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" -e "REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd" registry:2.7
    ```

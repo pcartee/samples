@@ -16,14 +16,14 @@ and quotas, or cancel your subscription.
 TA offers Starter and Enterprise subscription plans. Each plan has
 different service limits and quotas.
 
-| Plan                                    | Max attestation API keys (workloads) | Max management API keys | Max tenant admins | Max tenant users | Policies |
-| --------------------------------------- | ------------------------------------ | ----------------------- | ----------------- | ---------------- | -------- |
-| Starter                                 | 1                                    | 2                       | 2                 | 100              | 10       |
-| Enterprise — Base configuration         | 5                                    | 2                       | 5                 | 100              | 10       |
-| Enterprise — one additional workload    | 6                                    | 2                       | 5                 | 100              | 15       |
-| Enterprise — three additional workloads | 8                                    | 2                       | 5                 | 100              | 20       |
-| Enterprise — five additional workloads  | 10                                   | 2                       | 5                 | 100              | 25       |
-| Enterprise — custom                     | 100                                  | 2                       | 5                 | 100              | 50       |
+| Plan                                    | Maximum attestation API keys (workloads) | Maximum management API keys | Maximum tenant admins | Maximum tenant users | Policies |
+|:----------------------------------------|:----------------------------------------:|:---------------------------:|:---------------------:|:--------------------:|:--------:|
+| Starter                                 | 1                                        | 2                           | 2                     | 100                  | 10       |
+| Enterprise — Base configuration        | 5                                        | 2                           | 5                     | 100                  | 10       |
+| Enterprise — one additional workload    | 6                                        | 2                           | 5                     | 100                  | 15       |
+| Enterprise — three additional workloads | 8                                        | 2                           | 5                     | 100                  | 20       |
+| Enterprise — five additional workloads  | 10                                       | 2                           | 5                     | 100                  | 25       |
+| Enterprise — custom                    | 100                                      | 2                           | 5                     | 100                  | 50       |
 
 ### Change your subscription level
 
@@ -42,7 +42,7 @@ containing a link. Complete these steps to register:
    in.
 1. Accept the guest consent agreement.
 1. Register for multifactor authentication. Use a time-based
-   authenticator app, such as Microsoft Authenticator*or Google
+   authenticator app, such as Microsoft Authenticator* or Google
    Authenticator*, or receive a one-time passcode by text or voice call.
 1. Read and accept the Terms of Use.
 1. In the TA Portal, select **Continue** to acknowledge that you have
