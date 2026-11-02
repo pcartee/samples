@@ -250,8 +250,8 @@ If you're in the European Union (EU), use the following TA API URL:
 
 1. Run the sample application. The `application-sevsnp-cli` utility's
    `token` command automatically collects SEV-SNP evidence and requests
-   an attestation token from TA. For usage details, see the [TA Client
-   CLI documentation](<TA_CLIENT_CLI_DOCUMENTATION_URL>).
+   an attestation token from TA. For usage details, see the TA Client
+   CLI documentation.
 
    ```bash
    sudo ./application-sevsnp-cli token --config config.json
