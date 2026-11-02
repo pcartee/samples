@@ -302,8 +302,6 @@ them to configure an appraisal policy in TA.
    policy. This ensures that the token claims include the IMA logs containing
    the measurements from this example.
 
-<!-- markdownlint-disable MD029 -->
-
 :::note
 
 Log in as `imauser` first to ensure that the IMA policy measures the files you
@@ -415,8 +413,6 @@ su - imauser
 ```bash
 ./ta-cli token --tdx --tpm --ima -c config.json --policy-ids <appraisal policy UUID>
 ```
-
-<!-- markdownlint-enable MD029 -->
 
 The output includes details such as the EAT profile, intended use, matched
 policy IDs, and unmatched policy IDs.
