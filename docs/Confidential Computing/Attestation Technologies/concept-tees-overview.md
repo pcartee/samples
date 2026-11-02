@@ -9,7 +9,6 @@ date: 02/07/2025
 uid: tees.overview
 ---
 
-<<<<<<< HEAD
 A trusted execution environment (TEE) helps protect code and data from modification by untrusted software, hardware, and system components outside the TEE boundary. TEEs can help defend against many software-based and some hardware-based attacks, and they provide assurance that the software and hardware within the TEE haven't been tampered with.
 
 Trust Authority (TA) supports Intel® Software Guard Extensions (Intel® SGX) and Intel® Trust Domain Extensions (Intel® TDX) TEEs. TA also supports AMD SEV-SNP confidential VMs and NVIDIA GPU TEEs. This article focuses on SGX and TDX. To use TA services, you need a working knowledge of the underlying TEE technology. To learn more about SGX, TDX, and SEV-SNP, see [Next steps](#next-steps).
@@ -28,7 +27,6 @@ TA provides several ways to integrate TEE workloads with its services:
 
 ## Next steps
 
-<<<<<<< HEAD
 TEE technology articles:
 
 - [Software Guard Extensions (SGX)](./Trusted%20execution%20environments/tee-sgx.md)
@@ -39,12 +37,6 @@ Intel resources:
 
 - [Intel SGX overview](https://www.intel.com/content/www/us/en/developer/tools/software-guard-extensions/overview.html)
 - [Intel TDX overview](https://www.intel.com/content/www/us/en/developer/tools/trust-domain-extensions/overview.html)
-=======
-### SGX and TDX resources
-
-- [Intel SGX overview](https://www.intel.com/content/www/us/en/developer/tools/software-guard-extensions/overview.html)
-- [Intel TDX documentation](https://www.intel.com/content/www/us/en/developer/tools/trust-domain-extensions/documentation.html)
->>>>>>> origin/main
 
 ### TA TEE integrations
 
