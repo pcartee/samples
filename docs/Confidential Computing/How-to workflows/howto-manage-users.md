@@ -276,8 +276,6 @@ tactl create user -e user@example.com -r User
 
 #### Sample response
 
-#### Sample response
-
 ```text
 trace-id:  LOnduFR-IAMEVqw=
 User:

@@ -8,10 +8,10 @@ uid: siem-integration
 sidebar_position: 2
 ---
 
-This article explains how to integrate Trust Authority (TA) with third-party Security Information and Event Management (SIEM) services, such as Splunk* or Datadog*, to receive real-time notifications about critical events, including successful and failed attestations.
+This article explains how to integrate Trust Authority (TA) with third-party Security Information and Event Management (SIEM) services, such as Splunk\* or Datadog\*, to receive real-time notifications about critical events, including successful and failed attestations.
 
 :::note
-TA SIEM events are approximately 12 KB. Splunk* limits event sizes to 10 KB by default, and truncates event messages larger than 10 KB. Splunk* administrators can increase the character limit to more than 10,000 to prevent messages from being truncated.
+TA SIEM events are approximately 12 KB. Splunk\* limits event sizes to 10 KB by default, and truncates event messages larger than 10 KB. Splunk\* administrators can increase the character limit to more than 10,000 to prevent messages from being truncated.
 :::
 
 ## Attestation events

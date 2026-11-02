@@ -97,6 +97,8 @@ To learn more about configuring IMA and understanding IMA policies, see the
 
 ## Configure an Azure Confidential VM for vTPM attestation with IMA
 
+<!-- markdownlint-disable MD029 -->
+
 1. Create an Azure confidential virtual machine (CVM) with Intel TDX. Azure's
    vTPM uses Intel TDX as its root of trust, and IMA is enabled by default on
    Azure confidential VMs. However, you must add an IMA policy to measure
@@ -134,6 +136,8 @@ curl https://raw.githubusercontent.com/intel/ta-client-for-go/main/release/insta
      }
    }
    ```
+
+<!-- markdownlint-enable MD029 -->
 
 The `cloud_provider` setting is required only for Microsoft Azure. `owner_auth`
 is the TPM owner password, and `ak_handle` is the TPM attestation key handle.
@@ -302,6 +306,8 @@ them to configure an appraisal policy in TA.
    policy. This ensures that the token claims include the IMA logs containing
    the measurements from this example.
 
+<!-- markdownlint-disable MD029 -->
+
 :::note
 
 Log in as `imauser` first to ensure that the IMA policy measures the files you
@@ -413,6 +419,8 @@ su - imauser
 ```bash
 ./ta-cli token --tdx --tpm --ima -c config.json --policy-ids <appraisal policy UUID>
 ```
+
+<!-- markdownlint-enable MD029 -->
 
 The output includes details such as the EAT profile, intended use, matched
 policy IDs, and unmatched policy IDs.

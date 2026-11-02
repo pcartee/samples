@@ -15,5 +15,9 @@ MD041: false
 MD024:
   siblings_only: true
 
+# Preserve the intentional numbering in procedural steps.
+MD029:
+  style: one_or_ordered
+
 # Some pages use dashes and some use asterisks for lists across the corpus.
 MD004: false

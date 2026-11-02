@@ -72,7 +72,6 @@ The **ITAConnector.get_token** method supports single-device attestation for Int
 
 The TA Python CLI for Intel TDX and NVIDIA GPUs, **ta-pycli**, attests an Intel TDX trust domain (TD) and NVIDIA GPU with TA.
 
-
 **ta-pycli** requires `python-connector`, `python-intel-tdx`, `python-nvgpu`, and the NVIDIA Attestation SDK. You must have a configuration file in the **ta-pycli** directory. For details and documentation of the following commands, see the README.
 
 **ta-pycli** has three commands: **attest**, **evidence**, and **verify**.
