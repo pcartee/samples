@@ -3,7 +3,7 @@ title: Understanding TA integrations
 description: Overview of the Trust Authority (TA) integration framework. Describes the TA components (web portal, REST API, client libraries, CLIs, and Gramine client), the TEE adapter support matrix for the Go, Python, C, and Java clients, and a passport attestation integration example.
 author: pcartee
 topic: conceptual
-date: 06/20/2024
+date: "2024-06-20"
 uid: integrate.overview
 sidebar_position: 1
 ---

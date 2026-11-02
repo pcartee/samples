@@ -3,7 +3,7 @@ title: Trusted Platform Module (TPM) event logs
 description: "Explains TPM and vTPM attestation, PCR measurements, boot-time and runtime event logs, PCR replay, and how event logs support selective verification and troubleshooting."
 author: pcartee
 topic-type: conceptual
-date: 10/25/2024
+date: "2024-10-25"
 uid: tpm.log
 ---
 

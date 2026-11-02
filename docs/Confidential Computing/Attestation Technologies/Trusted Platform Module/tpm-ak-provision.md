@@ -3,7 +3,7 @@ title: Attestation keys and certificates
 description: "Explains attestation keys (AKs) and endorsement keys (EKs), TA's AK certificate provisioning process for physical TPMs, CLI configuration and commands, and troubleshooting."
 author: pcartee
 topic: integration
-date: 10/28/2024
+date: "2024-10-28"
 uid: tpm.ak.provision
 ---
 

@@ -2,7 +2,7 @@
 title: TA MAA adapter service
 description: Learn how the TA MAA adapter service supports Azure Attestation-compatible requests, how its workflow works, and how to migrate policies and workloads to TA.
 author: pcartee
-date: 06/12/2024
+date: "2024-06-12"
 uid: maa.adapter.service
 ---
 

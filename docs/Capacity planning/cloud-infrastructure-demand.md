@@ -1,7 +1,7 @@
 ---
 title: Cloud Infrastructure Demand Planning
 author: mgauthier@apple.com
-date: 2025-10-10
+date: "2025-10-10"
 description: Planning instructions for cloud infrastructure.
 sidebar_position: 1
 ---

@@ -1,7 +1,7 @@
 ---
 title: Supply Buildout Process - E2E Documentation
 author: jm_tobkin@apple.com
-date: 2026-04-14
+date: "2026-04-14"
 description: Review and approval process for platform capacity requests.
 sidebar_position: 4
 ---

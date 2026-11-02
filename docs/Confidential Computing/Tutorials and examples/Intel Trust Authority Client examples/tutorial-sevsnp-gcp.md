@@ -1,33 +1,33 @@
 ---
 title: TA Client Tutorial for Google Cloud Platform with AMD SEV-SNP
-description: Tutorial for creating a Google Cloud confidential VM with AMD SEV-SNP, authenticating with GitHub CLI, and building the TA client for Go.
+description: Create a Google Cloud confidential VM with AMD SEV-SNP, authenticate with GitHub CLI, build the Trust Authority Go client, and request an attestation token.
 author: pcartee
 topic-type: tutorial
-date: 12/19/24
+date: "2024-12-19"
 uid: tutorial.sevsnp.gcp
 ---
 
-This tutorial explains how to deploy a demo application that uses the TA client to secure an application with AMD SEV-SNP on Google Cloud Platform**\*** (GCP).
+This tutorial shows you how to deploy a demo application that uses the Trust Authority (TA) client with AMD SEV-SNP on Google Cloud Platform**\*** (GCP).
 
-The demo application, built for AMD SEV-SNP, uses the TA client to retrieve evidence from the platform and request an attestation from TA. This demonstrates a simple passport attestation model that stops before involving a relying party. The application's output is the resulting attestation token. The demo application can be used as a workflow reference for your applications.
+The demo application uses the TA client to retrieve platform evidence and request an attestation from TA. It demonstrates a simple passport attestation model that stops before involving a relying party. The application outputs the resulting attestation token. Use the demo as a workflow reference for your applications.
 
 ## Create a CVM with AMD SEV-SNP on GCP
 
-To create a confidential VM (CVM) with AMD SEV-SNP on GCP, sign in to GCP and create a CVM using the terminal. When creating an instance using the GCP web UI, all AMD CVMs default to SEV instead of SEV-SNP. These instructions use the Cloud Shell terminal to create an AMD SEV-SNP CVM.
+To create a confidential VM (CVM) with AMD SEV-SNP on GCP, sign in to GCP and create the VM in Cloud Shell. When you create an instance in the GCP web UI, AMD CVMs default to SEV instead of SEV-SNP. These instructions use Cloud Shell to create an AMD SEV-SNP CVM.
 
-Create a CVM that supports AMD SEV-SNP on GCP with the following attributes:
+Create a GCP CVM that supports AMD SEV-SNP with the following attributes:
 
-- Virtual machine name - Give your virtual machine a name
-- Machine type: **n2d-standard-2**
-- Minimum CPU platform: **AMD Milan**
-- Zone: **us-central1-a**
-- Confidential compute type: **SEV_SNP**
-- Maintenance policy: **TERMINATE**
-- Image family: **ubuntu-2204-lts**
-- Image project: **ubuntu-os-cloud**
+- **Virtual machine name**: Enter a name for your virtual machine.
+- **Machine type**: **n2d-standard-2**
+- **Minimum CPU platform**: **AMD Milan**
+- **Zone**: **us-central1-a**
+- **Confidential compute type**: **SEV_SNP**
+- **Maintenance policy**: **TERMINATE**
+- **Image family**: **ubuntu-2204-lts**
+- **Image project**: **ubuntu-os-cloud**
 
 :::note
-The availability of specific CVM images in specific regions and availability zones is dynamic and may change. This tutorial uses `us-central1-a` as an example. If you're outside North America, you may need to select a different region and availability zone. Check the Google [Regions and zones](https://cloud.google.com/compute/docs/regions-zones) page to find the regions and availability zones with available Confidential VMs with AMD SEV-SNP support.
+The availability of CVM images in specific regions and zones can change. This tutorial uses `us-central1-a` as an example. If you are outside North America, you might need to select a different region and zone. Check Google Cloud's [Regions and zones](https://cloud.google.com/compute/docs/regions-zones) page to find regions and zones that support confidential VMs with AMD SEV-SNP.
 :::
 
 To get a list of compute images for AMD SEV-SNP, use the following command in Google Cloud Shell.
@@ -36,179 +36,188 @@ To get a list of compute images for AMD SEV-SNP, use the following command in Go
 gcloud compute images list --filter="guestOsFeatures[].type:SEV_SNP_CAPABLE"
 ```
 
-Use the following steps to create a GCP CVM in Cloud Shell.
+Use these steps to create a GCP CVM in Cloud Shell.
 
 1. Sign in to the [Google Cloud console](https://console.cloud.google.com/).
 
-1. Select the option to **Create a VM**.
+1. Select **Create a VM**.
 
-1. Open Cloud Shell by selecting the terminal icon in the upper-right corner of the screen. The Cloud Shell terminal displays.
+1. Open Cloud Shell by selecting the terminal icon in the upper-right corner. The Cloud Shell terminal opens.
 
 1. Create the CVM in Cloud Shell.
 
-   The following is an example of creating a CVM using Ubuntu* 22.04 LTS with AMD SEV-SNP in Cloud Shell.
+   The following command creates a CVM that uses Ubuntu* 22.04 LTS with AMD SEV-SNP.
 
    ```bash
-      gcloud compute instances create sev-snp-vm \
-         --machine-type=n2d-standard-2 \
-         --min-cpu-platform="AMD  Milan" \
-         --zone=us-central1-a \
-         --confidential-compute-type=SEV_SNP \
-         --maintenance-policy=TERMINATE \
-         --image-family=ubuntu-2204-lts \
-         --image-project=ubuntu-os-cloud
+   gcloud compute instances create sev-snp-vm \
+     --machine-type=n2d-standard-2 \
+     --min-cpu-platform="AMD Milan" \
+     --zone=us-central1-a \
+     --confidential-compute-type=SEV_SNP \
+     --maintenance-policy=TERMINATE \
+     --image-family=ubuntu-2204-lts \
+     --image-project=ubuntu-os-cloud
    ```
 
-Once the CVM is created, you should see details such as the name, zone, machine type, IP addresses, and status.
+After the CVM is created, confirm that the output includes details such as the name, zone, machine type, IP addresses, and status.
 
-## Connect to the CVM via SSH
+## Connect to the CVM over SSH
 
-After the CVM is created, exit the Cloud Shell terminal and connect to the CVM through SSH. You can connect in the browser with the following steps.
+After the CVM is created, exit Cloud Shell and connect to the CVM over SSH in your browser.
 
-1. Select the drop-down arrow for SSH in the **Connect** category for your CVM.
+1. Select the drop-down arrow for **SSH** in the **Connect** section for your CVM.
 
 1. Select **Open in browser window**.
 
-   After this selection, an **SSH in browser** window appears. Another window displays a button for you to **Authorize**.
+   An **SSH in browser** window appears, along with another window that contains an **Authorize** button.
 
-1. Select the **Authorize** button. After authorization, a browser terminal connects to your CVM through SSH.
+1. Select **Authorize**. After authorization, a browser terminal connects to your CVM over SSH.
 
-## GCP CVM AMD SEV-SNP Prerequisites
+## Verify AMD SEV-SNP and install prerequisites
 
-To verify that AMD SEV-SNP is enabled on the CVM, use the following command. This should print `Memory Encryption Features active: SEV-SNP`. If this is missing, SEV-SNP is not enabled. In that case, check that the parameters are correct.
+To verify that AMD SEV-SNP is enabled on the CVM, run the following command. The output should include `Memory Encryption Features active: SEV-SNP`. If it does not, check that the VM parameters are correct.
 
-   ```bash
-      sudo dmesg | grep -i sev-snp
-   ```
+```bash
+sudo dmesg | grep -i sev-snp
+```
 
-To run the initial setup, you will need the following dependencies:
+Install the following dependencies for the initial setup:
 
-- git
-- Go
+- Git
+- Go 1.22 or later
 - make
 - gcc
-- gh
+- GitHub CLI (`gh`)
 
-Install the required packages.
+Install the system packages:
 
-## Use GitHub CLI to Connect to GitHub
+```bash
+sudo apt-get update
+sudo apt-get install -y git make gcc gh
+```
 
-Use the following commands to check the version, log in, and check the status.
+Install Go 1.23.1:
 
-To check the version, use `--version`.
+```bash
+wget https://go.dev/dl/go1.23.1.linux-amd64.tar.gz
+sudo tar -xvf go1.23.1.linux-amd64.tar.gz -C /usr/local
+export PATH=$PATH:/usr/local/go/bin
+```
+
+Verify the Go installation:
+
+```bash
+go version
+```
+
+## Use GitHub CLI to connect to GitHub
+
+Use GitHub CLI to check its version, sign in, and verify your authentication status.
+
+Check the version:
 
 ```bash
 gh --version
 ```
 
-1. Log in with GitHub CLI by running the following command.
+1. Sign in with GitHub CLI:
 
    ```bash
-         gh auth login
+   gh auth login
    ```
 
-   Follow the on-screen prompts. You will be prompted to select GitHub.com or a GitHub Enterprise Server.
+   Follow the prompts. Select GitHub.com or GitHub Enterprise Server.
 
 1. Select your account.
 
    ```text
-      What account do you want to log in to?
-      GitHub.com or GitHub Enterprise Server
+   What account do you want to log in to?
+   GitHub.com or GitHub Enterprise Server
    ```
 
 1. Select HTTPS or SSH.
 
    ```text
-      What is your preferred protocol for Git operations? HTTPS or SSH
+   What is your preferred protocol for Git operations? HTTPS or SSH
    ```
 
-1. You will be prompted to authenticate with GitHub credentials. Press **Enter** for Yes or type **n** for no, then press **Enter**.
+1. When prompted to authenticate Git with your GitHub credentials, press **Enter** for yes or type **n** for no, and then press **Enter**.
 
    ```text
-      HTTPS > Authenticate Git with your GitHub credentials (Y/n)
+   HTTPS > Authenticate Git with your GitHub credentials (Y/n)
    ```
 
-1. You will be prompted to authenticate with a web browser or authentication token.
+1. Choose whether to authenticate with a web browser or an authentication token.
 
    ```text
-      How would you like to authenticate GitHub CLI?
-      Login with a web browser or Paste an authentication token?
+   How would you like to authenticate GitHub CLI?
+   Login with a web browser or Paste an authentication token?
    ```
 
-1. Select the option for web browser and use the **Enter** key. A one-time code displays.
+1. Select the web browser option, and then press **Enter**. A one-time code appears.
 
-1. Copy the one-time code. The following text displays to open the browser.
+1. Copy the one-time code. A prompt appears to open the browser.
 
    ```text
-      Press **Enter** to open github.com in your browser...
+   Press Enter to open github.com in your browser...
    ```
 
-1. Press **Enter**. If the browser does not open, manually enter [the GitHub device activation URL](https://github.com/login/device) in your browser to authorize your `gh` login. The URL takes you to **Device Activation**.
+1. Press **Enter**. If the browser does not open, go to the [GitHub device activation page](https://github.com/login/device) to authorize your `gh` sign-in. The page displays **Device Activation**.
 
-   a. Select **Continue**.
-
-   b. Enter the one-time code. An **Authorize CLI** screen displays.
-   c. Select **Authorize GitHub**. A **Confirm access** screen displays.
-
-   d. Enter the password.
-
-   e. Select **Confirm**. A screen displays the following message: Congratulations, you're all set! Your device is now connected.
-
-   f. Return to the SSH connect window. The terminal displays that authentication is complete.
+    1. Select **Continue**.
+    1. Enter the one-time code. The **Authorize CLI** screen appears.
+    1. Select **Authorize GitHub**. The **Confirm access** screen appears.
+    1. Enter your password.
+    1. Select **Confirm**. A confirmation message indicates that your device is connected.
+    1. Return to the SSH connection window. The terminal indicates that authentication is complete.
 
 1. Press **Enter** to continue. Information displays that you are logged in.
 
-1. Check the status of GitHub CLI by running the command below. The output will confirm you are logged into github.com.
+1. Check your GitHub CLI authentication status. The output confirms that you are signed in to GitHub.com.
 
    ```bash
-      gh auth status
+   gh auth status
    ```
 
 ## Install the TA Client for Go
 
-The TA CLI client provides a command-line wrapper for Go client libraries. The following steps download and build the client for Go.
+The TA CLI provides a command-line wrapper for the Go client libraries. Follow these steps to download and build it.
 
 :::note
 The preview branch is being checked out for the GCP AMD SEV-SNP feature, because this feature is not supported on the main branch of the client CLI.
 :::
 
-1. Build the TA client.
+1. Clone the client repository, check out the preview branch, and build the CLI.
 
    ```bash
-      git clone https://github.com/company/application-client -b sevsnp-preview \
-      cd application-client/sevsnp-cli \
-      make cli
+   git clone --branch sevsnp-preview https://github.com/company/application-client
+   cd application-client/sevsnp-cli
+   make cli
    ```
 
-   Configure your API key and any desired policy to evaluate. Set the attestation API key and attestation endpoint.
+   Configure your attestation API key and endpoint. You can also configure a policy to evaluate.
 
-1. Create config.json.
-
-   ```bash
-   touch config.json
-   ```
-
-1. You must configure certain properties before using the token and verify commands. The properties and values are saved as JSON in config.json. The config.json requires the following properties:
+1. Before using the `token` and `verify` commands, configure the required properties in `config.json`:
 
    ```bash
-      cat <<EOF> config.json
-         {
-            "application_api_url": "https://[redacted]",
-            "application_api_key": "<attestation api key>"
-         }
-      EOF
+   cat <<EOF > config.json
+   {
+     "application_api_url": "https://[redacted]",
+     "application_api_key": "<attestation API key>"
+   }
+   EOF
    ```
 
 :::note
-If you are in the European Union (EU) region, use the following Company Name URL:
+If you are in the European Union (EU), use the following Company Name API URL:
 
 `"application_api_url": "https://[redacted]"`
 :::
 
-1. Run the sample application. Use the `application-cli` utility to request an attestation. The *token* command automatically collects evidence from SEV-SNP and requests an attestation token from TA. For full usage details, see the [TA Client CLI documentation](https://docs.application.company.com/main/articles/integrate-go-client.html).
+1. Run the sample application. The `application-sevsnp-cli` utility's `token` command automatically collects SEV-SNP evidence and requests an attestation token from TA. For usage details, see the [TA Client CLI documentation](https://docs.application.company.com/main/articles/integrate-go-client.html).
 
    ```bash
-      sudo ./application-sevsnp-cli token --config config.json
+   sudo ./application-sevsnp-cli token --config config.json
    ```
 
 **\*** Other names and brands may be claimed as the property of others.

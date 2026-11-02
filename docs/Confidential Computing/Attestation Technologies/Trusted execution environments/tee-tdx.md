@@ -3,7 +3,7 @@ title: Trust Domain Extensions (TDX)
 description: "Overview of Intel Trust Domain Extensions (TDX), including trust domain isolation, attestation, supported platforms and tools, and the TD Integrity feature."
 author: pcartee
 topic: conceptual
-date: 05/16/2025
+date: "2025-05-16"
 uid: tee.tdx
 ---
 

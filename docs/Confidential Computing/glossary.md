@@ -3,7 +3,7 @@ title: Glossary
 description: Definitions of TA and confidential computing terms, including API keys, attestation roles, policies, tokens, and trusted execution technologies.
 author: pcartee
 topic: conceptual
-date: 10/15/2024
+date: "2024-10-15"
 uid: concept.glossary
 ---
 

@@ -3,7 +3,7 @@ title: "`go-tdx` adapter API reference"
 description: "API reference for the TA Go TDX attestation client. Describes how to collect evidence, decrypt data, generate key pairs, and read trust domain event logs."
 author: "[redacted]"
 topic: integration
-date: 12/22/2023
+date: "2023-12-22"
 uid: integrate.tdx.api
 ---
 

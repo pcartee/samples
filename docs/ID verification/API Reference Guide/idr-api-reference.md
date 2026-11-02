@@ -5,7 +5,7 @@ description: >-
   and API call operations.
 author: pcartee
 topic-type: API_reference
-date: 09/13/2026
+date: "2026-09-13"
 uid: api.identity.reference
 slug: /reference/identity-router-api
 keywords:

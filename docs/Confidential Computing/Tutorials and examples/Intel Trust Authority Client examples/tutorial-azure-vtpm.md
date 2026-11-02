@@ -1,21 +1,21 @@
 ---
 title: TA Tutorial for Azure with vTPM and Intel TDX
-description: Step-by-step tutorial to stand up an Azure VM with vTPM and Intel TDX
+description: Create an Azure confidential VM with Intel TDX and vTPM, configure the Attestation Client CLI, and generate composite attestation evidence and tokens.
 author: pcartee
 topic: tutorial
-date: 10/16/2024
+date: "2024-10-16"
 uid: tutorial.tpm.azure
 ---
 
-This tutorial provides steps to use the TA Attestation Client CLI to attest evidence from a virtual Trusted Platform Module (vTPM) on Microsoft Azure. The [latest version of the client CLI with vTPM support](https://github.com/intel/application-client-for-go/tree/main/tdx-cli) is required to attest the vTPM. The client CLI is a command-line tool that collects evidence from the vTPM and sends it to the Company Name for attestation. The Company Name will verify the evidence and return an attestation token (a JWT) containing the claims for the vTPM. If attestation is successful, this demonstration will print the attestation token to the screen.
+This tutorial shows you how to use the Trust Authority Attestation Client CLI to attest evidence from a virtual Trusted Platform Module (vTPM) on Microsoft Azure. The [latest version of the client CLI with vTPM support](https://github.com/intel/application-client-for-go/tree/main/tdx-cli) is required to attest the vTPM. The CLI collects evidence from the vTPM and sends it to the Company Name verifier. The verifier validates the evidence and returns an attestation token (a JWT) containing vTPM claims. If attestation succeeds, this tutorial prints the token.
 
 Microsoft Azure's implementation of vTPM uses Intel® Trust Domain Extensions (Intel® TDX) to ensure the integrity and authenticity of the "paravisor" (where the vTPM resides) and VM image. The vTPM public attestation key (AK, used to verify the TPM quote signature) is included as part of the `user-data` in the Intel TDX quote, tying the vTPM identity to the trust domain.
 
 This tutorial has three main sections:
 
-1. Create a Microsoft Azure confidential VM (CVM) with Intel TDX, verify that Intel TDX and the vTPM are enabled, and configure access to the vTPM.
-2. Install and configure the Company Name Attestation Client CLI.
-3. Demonstrate attestation of the Intel TDX trust domain and vTPM.
+1. Create an Azure confidential VM (CVM) with Intel TDX, verify that Intel TDX and the vTPM are enabled, and configure access to the vTPM.
+1. Install and configure the Company Name Attestation Client CLI.
+1. Attest the Intel TDX trust domain and vTPM.
 
 ## Prerequisites
 
@@ -24,126 +24,127 @@ This tutorial has three main sections:
 
 ## Create a VM with Intel TDX on Microsoft Azure
 
-In this section you'll create an Azure CVM with Intel TDX and a vTPM.
+In this section, create an Azure CVM with Intel TDX and a vTPM.
 
 :::note
-The availability of Azure confidential VMs with Intel TDX images and sizes in specific regions and availability zones is dynamic and may change. This tutorial uses US West 2 and Availability Zone 1 as an example. If you're outside North America, you may need to select a different region and availability zone. Check the Azure [Products by Region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/?products=virtual-machines) page to find the regions and availability zones with available Confidential VM with Intel TDX support.
+The availability of Azure confidential VM images and sizes with Intel TDX in specific regions and availability zones can change. This tutorial uses West US 2 and Availability Zone 1 as an example. If you are outside North America, you might need to select a different region and availability zone. Check the Azure [Products by Region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/?products=virtual-machines) page to find regions and availability zones that support confidential VMs with Intel TDX.
 :::
 
 To create an Azure confidential VM with Intel TDX, perform the following steps.
 
-1. Sign in to Azure.
+1. Sign in to the Azure portal.
 
 1. Select **Create a resource**.
 
-1. Select **Virtual machine**, and then **create**.
+1. Select **Virtual machine**, and then select **Create**.
 
-1. On the **Basics** tab, under **Project Details**, select an existing **Resource group** or create a new group. It's recommended to create a new resource group for this tutorial. That way, when you're done you can delete the resource group and free all the resources in one step. To create a new resource group, select **Create new** (under the resource group text box) and give it a name.
+1. On the **Basics** tab, under **Project Details**, select an existing **Resource group** or create one. We recommend creating a new resource group for this tutorial. When you finish, you can delete the resource group to remove all the resources in one step. To create a resource group, select **Create new** under the **Resource group** box, and then enter a name.
 
 1. In the **Instance details** section, complete the following fields:
 
-    - Virtual machine name - Give your virtual machine a name.
-    - Region - **(US) West US 2**.
-    - Availability options -  **Availability zone**.
-    - Availability zone -  **zone 1**.
-    - Security type -  **Trusted launch virtual machine**.
-    - Image -  **Ubuntu Server 22.04 LTS (Confidential VM) - x64 Gen2**
-    - Size -  **DC1s_v3** (If not immediately listed, you may need to select **see all sizes**" to select **DC1s_v3** from the full list.) The smallest size with 1 vCPU is sufficient for this tutorial.
-    - Public inbound - **None**
+    - **Virtual machine name**: Enter a name for your virtual machine.
+    - **Region**: Select **(US) West US 2**.
+    - **Availability options**: Select **Availability zone**.
+    - **Availability zone**: Select **Zone 1**.
+    - **Security type**: Select **Trusted launch virtual machine**.
+    - **Image**: Select **Ubuntu Server 22.04 LTS (Confidential VM) - x64 Gen2**.
+    - **Size**: Select **DC1s_v3**. If it is not listed, select **See all sizes** and then select **DC1s_v3**. The smallest size with one vCPU is sufficient for this tutorial.
+    - **Public inbound ports**: Select **None**.
 
-1. In the **Administrator account** section
+1. In the **Administrator account** section:
 
-    - Authentication type - **SSH public key** (recommended, but you can use a password if you prefer).
-    - Username - **azureuser** (or another username of your choice).
-    - SSH public key - **Generate new key pair**
-    - Accept the defaults for SSH key type and key pair name.
+    - **Authentication type**: Select **SSH public key** (recommended), or use a password.
+    - **Username**: Enter **azureuser** or another username.
+    - **SSH public key**: Select **Generate new key pair**.
+    - Keep the default SSH key type and key pair name.
 
 1. In the **Inbound port rules** section, select **None**.
 
-1. Skip ahead to the **Networking** tab. For **Public IP**, select **None**.
+1. Select the **Networking** tab. For **Public IP**, select **None**.
 
 1. At this point, you can skip the remaining sections and go directly to **Review + create**.
 
-1. Review the options and then select **Create**.
+1. Review the options, and then select **Create**.
 
-1. The **Generate new key pair** screen appears. Select **Download private key and create resource**. Deployment usually takes a few minutes to complete.
+1. When the **Generate new key pair** screen appears, select **Download private key and create resource**. Deployment usually takes a few minutes.
 
-1. Once the deployment is complete, select **Go to resource** to view the VM. The Virtual machine overview page appear.
+1. When deployment is complete, select **Go to resource** to view the VM. The virtual machine overview page appears.
 
-1. Select **Connect** from the menu pane on the left and then select **Bastion**.
+1. In the left menu, select **Connect**, and then select **Bastion**.
 
 1. Select **Deploy Bastion**. Bastion deployment takes a few minutes.
 
-1. When deployment is complete, select **Connect** and then **Go to Bastion**
+1. When deployment is complete, select **Connect**, and then select **Go to Bastion**.
+
     1. Set **Authentication Type** to **SSH Private Key from Local File**.
-    1. For **Username**, use the username you specified when creating the VM. The default is "azureuser".
-    1. Select the private key file you downloaded when creating the VM.
-    1. Select **Connect**. This will open a new browser tab with a connection to the VM terminal.
+    1. For **Username**, enter the username you specified when creating the VM. The default is `azureuser`.
+    1. Select the private key file that you downloaded when creating the VM.
+    1. Select **Connect**. A new browser tab opens with a connection to the VM terminal.
 
-Once you are connected, proceed with the following steps to confirm that you have an Intel TDX-enabled VM with a vTPM. Then add the current user to the `tss` group to provide the needed permissions for the TPM.
+After you connect, confirm that the VM has Intel TDX and a vTPM. Then add your user account to the `tss` group to provide the required TPM permissions.
 
-1. Verify TDX is enabled. This step and the next step should print character device file attributes for `tpmrm0` and `tpm0`. If either one is missing, Intel TDX is not enabled. In that case, check to see that the VM image (OS) and size (Standard DC1s_v3) are correct.
+1. Verify that TDX is enabled. This step and the next step should display the character-device attributes for `tpmrm0` and `tpm0`. If either device is missing, check that the VM image and size (Standard DC1s_v3) are correct.
 
     ```bash
-    ll /dev/tpmrm0
+    ls -l /dev/tpmrm0
     ```
 
 1. Verify the vTPM is enabled.
 
     ```bash
-    ll /dev/tpm0
+    ls -l /dev/tpm0
     ```
 
-1. Add the current user to the `tss` user group to provide the needed permissions for the TPM (the username is assumed to be the default "azureuser" in the example below).
+1. Add your user account to the `tss` group to provide the required TPM permissions.
 
     ```bash
-    sudo usermod -aG tss azureuser
+    sudo usermod -aG tss "$USER"
     ```
 
-1. Exit and then reconnect via bastion.
+1. Exit, and then reconnect through Bastion.
 
-CVM setup is now complete. You can now proceed to install the Company Name Attestation Client CLI.
+The CVM setup is complete. Continue to install the Company Name Attestation Client CLI.
 
 ## Install and configure the Attestation Client CLI
 
-Connect to the Azure CVM via Bastion and follow these steps to install and configure the Company Name Attestation Client CLI.
+Connect to the Azure CVM through Bastion, and then follow these steps to install and configure the Company Name Attestation Client CLI.
 
 1. Go 1.22 or later is required to run the Attestation Client CLI. The following commands install Go on Ubuntu 22.04 LTS.
 
     ```bash
-    wget https://go.dev/dl/go1.23.1.linux-amd64.tar.gz;ls
+    wget https://go.dev/dl/go1.23.1.linux-amd64.tar.gz
     sudo tar -xvf go1.23.1.linux-amd64.tar.gz -C /usr/local
     export PATH=$PATH:/usr/local/go/bin
     ```
 
-    Verify that go is installed correctly by running `go version`. The output should be similar to `go version go1.23.1 linux/amd64`.
+    Verify that Go is installed by running `go version`. The output should be similar to `go version go1.23.1 linux/amd64`.
 
-1. Install the Attestation Client CLI. This script will install the Attestation Client CLI and its dependencies. You might need to restart one or more services.
+1. Install the Attestation Client CLI. This script installs the CLI and its dependencies. You might need to restart one or more services.
 
     ```bash
     curl -sL https://github.com/intel/application-client-for-go/blob/main/release/install-tdx-cli-azure.sh | sudo bash -
     ```
 
-    Verify the Attestation Client CLI is installed correctly by running `application-cli version`.
+    Verify the Attestation Client CLI is installed correctly by running `trustauthority-cli version`.
 
-1. You must configure certain properties before using the token and verify commands. The properties and values are saved as JSON in config.json. The config.json requires the following properties:
+1. Before you use the `token` and `verify` commands, configure the required properties in `tpm-cli.json`:
 
     ```bash
     cat << EOF | tee ./tpm-cli.json
     {
-    "cloud_provider": "azure",
-    "application_url": "https://[redacted]",
-    "application_api_url": "https://[redacted]",
-    "application_api_key": "<application attestation api key>",
-    "tpm": {
+      "cloud_provider": "azure",
+      "application_url": "https://[redacted]",
+      "application_api_url": "https://[redacted]",
+      "application_api_key": "<application attestation API key>",
+      "tpm": {
         "owner_auth": "",
         "ak_handle": "81000003"
-        }
+      }
     }
     EOF
     ```
 
-    Owner_auth is the TPM owner password and ak_handle is the TPM attestation key handle. The owner_auth is an empty string and the ak_handle is hardcoded to 81000003, which is the location of the Azure-provisioned AK in the vTPM.
+    `owner_auth` is the TPM owner password, and `ak_handle` is the TPM attestation key handle. For Azure confidential VMs, `owner_auth` is an empty string and `ak_handle` is set to `81000003`, the location of the Azure-provisioned AK in the vTPM.
 
 | Setting | Description |
 | --- | --- |
@@ -153,56 +154,59 @@ Connect to the Azure CVM via Bastion and follow these steps to install and confi
 | `tpm.owner_auth` | The TPM owner password. This is the password used to establish authority for making some TPM commands. For Azure Confidential VMs, this is empty. |
 | `tpm.ak_handle` | The TPM Attestation Key (AK) handle. This is a reference to the TPM Attestation Key (AK) to be used when generating a TPM quote. For Microsoft Azure Confidential VMs with Intel TDX, this handle is always "81000003". |
 
-[1] If you are in the European Union (EU) region, use the following Company Name URLs: Base URL — `https://[redacted]`,
-API URL — `https://[redacted]`. All other regions use the URLs shown in the example.
+1. If you are in the European Union (EU), use the following Company Name URLs:
+    - Base URL: `https://[redacted]`
+    - API URL: `https://[redacted]`
+
+    All other regions use the URLs shown in the example.
 
 ## Demonstrate attestation of the Intel TDX trust domain and vTPM
 
-This section takes you through the steps to attest your confidential virtual machine (CVM) with the Company Name Attestation Client CLI.
+This section shows you how to attest your confidential virtual machine (CVM) with the Company Name Attestation Client CLI.
 
-1. Display composite evidence for both Intel TDX and vTPM. This displays the evidence that would be sent to the Company Name verifier for attestation.
+1. Display composite evidence for Intel TDX and vTPM. The command displays the evidence that would be sent to the Company Name verifier for attestation.
 
     ```bash
-    application-cli evidence --tdx --tpm -c ~/tpm-cli.json
+    trustauthority-cli evidence --tdx --tpm -c ~/tpm-cli.json
     ```
 
-    ```bash
+    ```text
     [DEBUG] GET https://[redacted]/appraisal/v1/nonce
     INFO[0001] Successfully wrote 64 bytes at NV index 1400002
     INFO[0001] Sleeping for 3 seconds to allow Azure to read the runtime data
     {
-    "tdx": {
+      "tdx": {
         "runtime_data": "eyJrZX...J9",
         "quote": "BA...AA=",
         "verifier_nonce": {
-            "val": "dk...Q==",
-            "iat": "M...EM=",
-            "signature": "Im...g"
-            }
-        },
-    "tpm": {
+          "val": "dk...Q==",
+          "iat": "M...EM=",
+          "signature": "Im...g"
+        }
+      },
+      "tpm": {
         "quote": "/1...DA==",
         "signature": "AB...AA",
         "pcrs": "h/...AA",
         "verifier_nonce": {
-            "val": "dk...PQ==",
-            "iat": "Mj...EM=",
-            "signature": "Im...Ag"
-            }
+          "val": "dk...PQ==",
+          "iat": "Mj...EM=",
+          "signature": "Im...Ag"
         }
+      }
     }
     ```
 
-1. Generate a composite Intel TDX/TPM attestation token. This will collect evidence from both Intel TDX and the TPM, and send it to Company Name for attestation. The output will be an attestation token containing the claims for both Intel TDX and TPM.
+1. Generate a composite Intel TDX and TPM attestation token. This command collects evidence from Intel TDX and the TPM, and sends it to the Company Name verifier. The output is an attestation token containing claims for both Intel TDX and the TPM.
 
     ```bash
-    application-cli token --tdx --tpm -c ./tpm-cli.json
+    trustauthority-cli token --tdx --tpm -c ./tpm-cli.json
     ```
 
-You can experiment with the other `application-cli` commands. To see them all, run `application-cli --help`. When you're done experimenting, you can delete the resource group to free up all the resources you created for this tutorial.
+You can try the other `trustauthority-cli` commands. To see them, run `trustauthority-cli --help`. When you finish, delete the resource group to remove the resources you created for this tutorial.
 
 ## Conclusion
 
-This tutorial demonstrated how to create an Azure confidential VM with Intel TDX and a vTPM, install and configure the Company Name Attestation Client CLI, and attest the Intel TDX trust domain and vTPM. This is an example of composite attestation, that is, the attestation of a TEE and vTPM in a single attestation token.
+This tutorial showed how to create an Azure confidential VM with Intel TDX and a vTPM, install and configure the Company Name Attestation Client CLI, and attest the Intel TDX trust domain and vTPM. This is composite attestation: attesting a trusted execution environment (TEE) and vTPM in a single token.
 
 For more information, see the Company Name Attestation Client CLI documentation.

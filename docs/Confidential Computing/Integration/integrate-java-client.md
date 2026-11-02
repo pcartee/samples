@@ -3,7 +3,7 @@ title: TA Java client integration
 description: Reference for the Trust Authority (TA) Java client. Describes the Java connector, Intel SGX adapter, and Intel TDX adapter APIs, with method signatures, parameters, and Java examples for creating a connector, collecting evidence, requesting attestation tokens and nonces, and verifying tokens.
 author: pcartee
 topic: integration
-date: 11/08/2024
+date: "2024-11-08"
 uid: integrate.java.client
 sidebar_position: 3
 ---

@@ -1,7 +1,7 @@
 ---
 title: Platform Capacity Approval Process
 author: a_kanduri@apple.com
-date: 2025-10-10
+date: "2025-10-10"
 description: Review and approval process for platform capacity requests.
 sidebar_position: 3
 ---

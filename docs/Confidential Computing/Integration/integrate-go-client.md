@@ -3,7 +3,7 @@ title: TA Go connector
 description: Reference for the Trust Authority (TA) Go client. Describes the go-connector, go-sgx, go-tdx, go-nvgpu, and go-amd APIs, with function signatures, parameters, return values, and Go examples for collecting evidence, requesting and verifying attestation tokens, and configuring regional endpoints.
 author: pcartee
 topic: integration
-date: 05/16/2025
+date: "2025-05-16"
 uid: integrate.go.client
 sidebar_position: 2
 ---

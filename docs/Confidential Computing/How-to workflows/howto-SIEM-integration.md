@@ -3,7 +3,7 @@ title: SIEM integration
 description: Learn how to configure Trust Authority (TA) to send successful and failed attestation events to Splunk or Datadog, including event types, authentication, endpoint URL, and API key.
 author: pcartee
 topic: how to
-date: 05/14/2024
+date: "2024-05-14"
 uid: siem-integration
 sidebar_position: 2
 ---

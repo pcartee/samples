@@ -3,7 +3,7 @@ title: GPU remote attestation with TA
 description: Learn how Trust Authority (TA) attests NVIDIA H100 GPUs with Intel TDX, including composite (CPU and GPU) and GPU-only attestation, the architecture, the Python client and CLI, the REST API endpoint, sample JWTs, policy-usable claims, and example Rego appraisal policies.
 author: pcartee
 topic: conceptual, attestation, gpu
-date: 09/17/2024
+date: "2024-09-17"
 uid: gpu.attestation
 ---
 

@@ -3,7 +3,7 @@ title: Identity Router handlers
 description: Configure Identity Router application handlers in Studio, including viewing and editing customer handler filters, allowing all customers or restricting handlers to selected customers, and enabling the adapters required for synchronization with Active Directory, Google, and Salesforce user stores.
 author: pcartee
 topic: administration
-date: 09/17/2024
+date: "2024-09-17"
 uid: idr-handlers
 ---
 

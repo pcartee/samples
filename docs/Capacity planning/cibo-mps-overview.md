@@ -1,7 +1,7 @@
 ---
 title: CIBO MPS Overview
 author: paulcartee@yahoo.com
-date: 2026-02-12
+date: "2026-02-12"
 description: An overview of the CIBO MPS process for managing monthly server build plans with OEMs.
 sidebar_position: 5
 ---

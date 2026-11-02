@@ -3,7 +3,7 @@ title: TA C connector
 description: Reference for the Trust Authority (TA) C client libraries, including the C connector, Intel SGX, Intel TDX, TPM, NVIDIA GPU, and AMD SEV-SNP adapters, token functions, and evidence builder functions used to collect evidence and request and verify attestation tokens.
 author: pcartee
 topic: integration
-date: 05/19/2025
+date: "2025-05-19"
 uid: integrate.c.client
 sidebar_position: 5
 ---
