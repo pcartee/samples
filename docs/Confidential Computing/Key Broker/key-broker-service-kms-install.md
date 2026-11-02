@@ -1,78 +1,82 @@
 ---
-title: Hashicorp Vault installation
-description: Hashicorp Vault Installation
+title: HashiCorp Vault and PyKMIP installation
+description: Install and configure HashiCorp Vault or PyKMIP as the Key Broker System (KBS) key management service (KMS). Includes setup references, Vault initialization and configuration, and the PyKMIP certificates and server settings required for KBS communication.
 author: pcartee
 topic: kbs
-date: 04/14/2025
+date: "2025-04-14"
 uid: kms.install
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-A Key Management Service (KMS) must be installed before installing the Key Broker System (KBS). The KBS is compatible with two key management systems, Hashicorp Vault and PyKMIP. Select the proper key management system for your environment and follow the instructions.
+A key management service (KMS) must be installed before you install the
+Key Broker System (KBS). KBS supports HashiCorp Vault and PyKMIP. Select
+the KMS that suits your environment, and follow the instructions.
 
 <Tabs>
-<TabItem value="hashicorp-config" label="Hashicorp vault KMS configuration">
+<TabItem value="hashicorp-config" label="HashiCorp Vault configuration">
 
-### Hashicorp vault KMS configuration
+### HashiCorp Vault configuration
 
-1. Install Vault according to the instructions provided here: https://developer.hashicorp.com/vault/tutorials/getting-started/getting-started-install.
+1. [Install Vault](https://developer.hashicorp.com/vault/tutorials/getting-started/getting-started-install).
 
-1. Create a Vault server config file: https://developer.hashicorp.com/vault/docs/configuration.
+1. [Create a Vault server configuration file](https://developer.hashicorp.com/vault/docs/configuration).
 
-1. Start the Vault server: https://developer.hashicorp.com/vault/docs/commands/server.
+1. [Start the Vault server](https://developer.hashicorp.com/vault/docs/commands/server).
 
-1. Initialize the Vault server: https://developer.hashicorp.com/vault/docs/commands/server. Securely store/save the keys.
+1. Initialize the Vault server using the [Vault server command documentation](https://developer.hashicorp.com/vault/docs/commands/server). Store the keys securely.
 
-1. Unseal the Vault server: https://developer.hashicorp.com/vault/docs/commands/operator/unseal.
+1. [Unseal the Vault server](https://developer.hashicorp.com/vault/docs/commands/operator/unseal).
 
-1. Login to Vault by running the following command:
+1. Log in to Vault by running the following command:
 
    ```bash
    vault login <root-token>
    ```
 
-1. Enable a kv secrets engine for KBS to use.
+1. Enable a KV secrets engine for KBS:
 
-    ```bash
+   ```bash
    vault secrets enable -path=keybroker kv
-    ```
+   ```
 
-1. In the KBS config file, add the following Vault server information:
+1. Add the following Vault server information to the KBS configuration file:
 
-    ```bash
-    VAULT_SERVER_IP=<vault server IP address>
-    VAULT_SERVER_PORT=<vault port number; default 8200>
-    VAULT_CLIENT_TOKEN=<vault root token>
-    ```
+   ```bash
+   VAULT_SERVER_IP=<Vault server IP address>
+   VAULT_SERVER_PORT=<Vault port number; default 8200>
+   VAULT_CLIENT_TOKEN=<Vault root token>
+   ```
 
 </TabItem>
-<TabItem value="pymip-config" label="PyKMIP configuration">
+<TabItem value="pykmip-config" label="PyKMIP configuration">
 
 ### PyKMIP configuration
 
 :::important
-The user must create all the certificates/keys required for KBS-PyKMIP communication. KBS only reads the configuration file provided by the user and, therefore, uses the communication type defined by the user in that file.
+Create all certificates and keys required for KBS-PyKMIP communication.
+KBS reads the configuration file you provide and uses the communication
+type defined in that file.
 :::
 
-1. Follow the instructions at https://pykmip.readthedocs.io/en/latest/installation.html to install PyKMIP.
+1. [Install PyKMIP](https://pykmip.readthedocs.io/en/latest/installation.html).
 
-1. Create server certificates and configure the server as provided in the instructions here: https://pykmip.readthedocs.io/en/latest/server.html.
+1. [Create server certificates and configure the server](https://pykmip.readthedocs.io/en/latest/server.html).
 
-1. In the KBS config file, add the following PyKMIP server information:
+1. Add the following PyKMIP server information to the KBS configuration file:
 
-    ```bash
-    KMIP_CLIENT_KEY_PATH=<path to KMIP client key>
-    KMIP_ROOT_CERT_PATH=<path to KMIP root certificate>
-    KMIP_CLIENT_CERT_PATH=<path to KMIP client certificate>
-    KMIP_SERVER_IP=<KMIP server IP address>
-    KMIP_SERVER_PORT=<KMIP server port number>
-    KMIP_HOSTNAME=hostname where KMIP is running
-    KMIP_USERNAME=KMIP server username
-    KMIP_PASSWORD=KMIP password
-    KMIP_VERSION=KMIP version
-    ```
+   ```bash
+   KMIP_CLIENT_KEY_PATH=<path to KMIP client key>
+   KMIP_ROOT_CERT_PATH=<path to KMIP root certificate>
+   KMIP_CLIENT_CERT_PATH=<path to KMIP client certificate>
+   KMIP_SERVER_IP=<KMIP server IP address>
+   KMIP_SERVER_PORT=<KMIP server port number>
+   KMIP_HOSTNAME=<hostname where KMIP is running>
+   KMIP_USERNAME=<KMIP server username>
+   KMIP_PASSWORD=<KMIP password>
+   KMIP_VERSION=<KMIP version>
+   ```
 
 </TabItem>
 </Tabs>

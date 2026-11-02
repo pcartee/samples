@@ -1,18 +1,18 @@
 ---
 title: Troubleshoot a local Kubernetes deployment
-description: "Troubleshooting guide for a local Kubernetes deployment. Covers expanding bare-metal host storage, recovering namespaces stuck in Terminating, removing stale Porter installation records, resolving Porter secret-read errors, cleaning up stalled object bucket claims, reclaiming container image disk space, and retrieving deployment outputs and logs."
+description: Troubleshoot a local Kubernetes deployment. Learn how to expand bare-metal host storage, recover namespaces stuck in Terminating, remove stale Porter installation records, resolve Porter filesystem secret-read errors, clean up stalled ObjectBucketClaims, reclaim disk space by pruning unused Docker and k3s images, and retrieve deployment outputs and logs.
 author: pcartee
 topic: Local Kubernetes deployment troubleshooting
 date: "2025-04-01"
 uid: pkg.trouble
 sidebar_position: 5
---- 
+---
 
 ## Expand storage on a bare-metal host
 
-If the host has available storage, follow the guide to [extend the default LVM space on Ubuntu](https://packetpushers.net/blog/ubuntu-extend-your-default-lvm-space/).
+If the host has available storage, see the guide to [extend the default LVM space on Ubuntu](https://packetpushers.net/blog/ubuntu-extend-your-default-lvm-space/).
 
-## Remove a namespace stuck in the Terminating state
+## Remove a namespace stuck in the `Terminating` state
 
 Removing finalizers can leave resources orphaned. First, investigate and remove or repair the resources that are preventing deletion. Only remove finalizers as a last resort, and specify the namespace explicitly; do not automatically select the first namespace in a terminating state.
 
@@ -30,7 +30,7 @@ kubectl get namespace <namespace> -o json \
 
 ## Remove a stale Porter installation record
 
-If you removed the k3s cluster without uninstalling the application with Porter, a stale installation record can prevent a new installation. After confirming that the old deployment no longer exists, remove its record:
+If you removed the k3s cluster without uninstalling the application with Porter, a stale installation record can prevent a new installation. After confirming that the old deployment no longer exists, delete its record:
 
 ```bash
 porter installations delete <installation-name> -n <namespace> --force
@@ -59,7 +59,7 @@ kubectl patch obc/<claim-name> \
   --patch '{"metadata":{"finalizers":null}}'
 ```
 
-## Reclaim disk space by removing unused images
+## Reclaim disk space by pruning unused images
 
 These commands remove unused Docker and k3s images. Review what will be removed before running them; you might need to download images again.
 
