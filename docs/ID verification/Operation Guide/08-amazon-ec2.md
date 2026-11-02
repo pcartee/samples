@@ -57,7 +57,7 @@ Creating an EC2 environment involves two steps: Create a New Amazon Web Services
 
 ## **Create a New Amazon Web Services Account**
 
-- 1) Go to <http://aws.amazon.com>.
+- 1) Go to [http://aws.amazon.com](http://aws.amazon.com).
 - 1) Follow the instructions supplied by Amazon.
 
 ## **Create a Cert/Key Pair**

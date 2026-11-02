@@ -135,7 +135,7 @@ The *Portal* dialog displays with the **Default Portal** option selected.
 
 The *Custom Portal* textfields display.
 
-**Note**: In the *Edit Profile* dialog on the **Portal** tab, enter the end-user facing URLs for the portal page, i.e. "<https://portal.myco.com/login.jsp>", "<https://portal.myco.com/portal.jsp>", etc... (rather than "<https://backendhostname/login.jsp>")
+**Note**: In the *Edit Profile* dialog on the **Portal** tab, enter the end-user facing URLs for the portal page, i.e. "[https://portal.myco.com/login.jsp](https://portal.myco.com/login.jsp)", "[https://portal.myco.com/portal.jsp](https://portal.myco.com/portal.jsp)", etc... (rather than "[https://backendhostname/login.jsp](https://backendhostname/login.jsp)")
 
 #### **Basic Custom Portal Configuration**
 
@@ -219,7 +219,7 @@ Windows clients will only respond to IWA challenges from servers located within 
 
 Due to a new feature in Windows 7 (which has been backported to older versions of Windows via a security patch) a registry entry must be added to individual Windows clients before they can perform IWA. The registry entry that must be added is
 
-**HKEY\_LOCAL\_MACHINE\SYSTEM\CurrentControlSet\Control\LSA\SuppressExtendedProtection.** The value of the entry should be **2**. This addition needs to be applied ONLY if the client machines have been updated with the Windows 7 Security Update. The official announcement from Microsoft can be found at <http://support.microsoft.com/kb/968389>. Please refer to Microsoft's documentation on how to push registry settings via the GPO to all machines in a domain.
+**HKEY\_LOCAL\_MACHINE\SYSTEM\CurrentControlSet\Control\LSA\SuppressExtendedProtection.** The value of the entry should be **2**. This addition needs to be applied ONLY if the client machines have been updated with the Windows 7 Security Update. The official announcement from Microsoft can be found at [http://support.microsoft.com/kb/968389](http://support.microsoft.com/kb/968389). Please refer to Microsoft's documentation on how to push registry settings via the GPO to all machines in a domain.
 
 ## **IWA Enabled by IP Networks - Edit Profile**
 
@@ -267,7 +267,7 @@ Windows clients will only respond to IWA challenges from servers located within 
 
 ### **Technical Note: IWA Kerberos Windows 7 Security Update**
 
-Due to a new feature in Windows 7 (which has been backported to older versions of Windows via a security patch) a registry entry must be added to individual Windows clients before they can perform IWA. The registry entry that must be added is **HKEY\_LOCAL\_MACHINE\SYSTEM\CurrentControlSet\Control\LSA\SuppressExtendedProtection.** The value of the entry should be **2**. This addition needs to be applied ONLY if the client machines have been updated with the Windows 7 Security Update. The official announcement from Microsoft can be found at <http://support.microsoft.com/kb/968389>. Please refer to Microsoft's documentation on how to push registry settings via the GPO to all machines in a domain.
+Due to a new feature in Windows 7 (which has been backported to older versions of Windows via a security patch) a registry entry must be added to individual Windows clients before they can perform IWA. The registry entry that must be added is **HKEY\_LOCAL\_MACHINE\SYSTEM\CurrentControlSet\Control\LSA\SuppressExtendedProtection.** The value of the entry should be **2**. This addition needs to be applied ONLY if the client machines have been updated with the Windows 7 Security Update. The official announcement from Microsoft can be found at [http://support.microsoft.com/kb/968389](http://support.microsoft.com/kb/968389). Please refer to Microsoft's documentation on how to push registry settings via the GPO to all machines in a domain.
 
  1) Click **Save** to persist your changes.
 

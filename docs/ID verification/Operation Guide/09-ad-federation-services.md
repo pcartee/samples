@@ -21,7 +21,7 @@ Several Microsoft TechNet articles may be of use for you in designing and deploy
 
 environment. Some of the relevant articles are below.
 
-**ADFS Overview <http://technet.microsoft.com/en-us/library/cc772593%28WS.10%29.aspx> Install the ADFS Software <http://technet.microsoft.com/en-us/library/dd807096%28WS.10%29.aspx> Federated SSO by Example <http://technet.microsoft.com/en-us/library/cc779508(WS.10).aspx>**
+**ADFS Overview [http://technet.microsoft.com/en-us/library/cc772593%28WS.10%29.aspx](http://technet.microsoft.com/en-us/library/cc772593%28WS.10%29.aspx) Install the ADFS Software [http://technet.microsoft.com/en-us/library/dd807096%28WS.10%29.aspx](http://technet.microsoft.com/en-us/library/dd807096%28WS.10%29.aspx) Federated SSO by Example [http://technet.microsoft.com/en-us/library/cc779508(WS.10).aspx](http://technet.microsoft.com/en-us/library/cc779508(WS.10).aspx)**
 
 ## **Configuring Your ADFS Server**
 
@@ -61,8 +61,8 @@ The Relying Party Trust configuration is where you will define the relationship 
 - 1) On the *Specify Display Name* page type a name in the **Display name** field (perhaps Hewlett Packard Identity Router), under Notes type a description for this relying party trust, and then click **Next**.
 - 1) On the *Choose Profile* page, click **AD FS 2.0 profile**, and then click **Next**.
 - 1) On the *Configure Certificate* page, click **Browse** to locate a certificate file, and then click **Next**.
-- 1) On the *Configure URL* page, select the **Enable support for the SAML 2.0 WebSSO protocol** check box. Under Relying party SAML 2.0 SSO service URL, type the Security Assertion Markup Language (SAML) service endpoint URL for this relying party trust, and then click Next. (Assuming your Identity Router's portal interface is "sso.domain.com" this link would <https://sso.domain.com/SPServlet?sp\_id=fed.adfs&RelayState=portal.jsf> )
-- 1) On the *Configure Identifiers* page, specify one or more identifiers for this relying party, click **Add** to add them to the list, and then click **Next**. (Assuming your Identity Rouoter's portal interface is "sso.domain.com" this link would be <https://sso.domain.com/SPServlet> )
+- 1) On the *Configure URL* page, select the **Enable support for the SAML 2.0 WebSSO protocol** check box. Under Relying party SAML 2.0 SSO service URL, type the Security Assertion Markup Language (SAML) service endpoint URL for this relying party trust, and then click Next. (Assuming your Identity Router's portal interface is "sso.domain.com" this link would [https://sso.domain.com/SPServlet?sp\_id=fed.adfs&RelayState=portal.jsf](https://sso.domain.com/SPServlet?sp\_id=fed.adfs&RelayState=portal.jsf) )
+- 1) On the *Configure Identifiers* page, specify one or more identifiers for this relying party, click **Add** to add them to the list, and then click **Next**. (Assuming your Identity Rouoter's portal interface is "sso.domain.com" this link would be [https://sso.domain.com/SPServlet](https://sso.domain.com/SPServlet) )
 - 1) On the *Choose Issuance Authorization Rules* page, select either **Permit** all users to access this relying party or **Deny** all users access to this relying party, and then click **Next**.
 - 1) On the *Ready to Add Trust* page, review the settings, and then click **Next** to save your relying party trust information.
 - 1) On the *Finish* page, click **Close**. This action automatically displays the *Edit Claim Rules* dialog box.
