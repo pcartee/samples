@@ -1,139 +1,110 @@
 ---
-title: Platform Capacity Approval Process
+title: Platform capacity approval process
 author: a_kanduri@apple.com
 date: "2025-10-10"
-description: Review and approval process for platform capacity requests.
+description: Describes the review, approval, and fulfillment process for platform capacity requests from lines of business and non-foundational platforms, including roles, required information, and stakeholder responsibilities.
 sidebar_position: 3
 ---
 
-This document provides an end-to-end guide for the Supply Buildout Process at
-Apple's Cloud Infrastructure Build Operations (CIBO). It covers how platform
-capacity requests are reviewed, approved, and fulfilled.
+This document describes Apple's Supply Buildout Process for Cloud Infrastructure Build Operations (CIBO). It explains how platform capacity requests are reviewed, approved, and fulfilled.
 
 ## Purpose
 
-This process governs the review and approval of platform capacity requests
-initiated by Lines of Business (LOBs) and non-foundational platforms (KCS and
-ADP) submitted to platform teams (for example, Compute, Storage, Data Services)
-for fulfillment.
+This process governs the review and approval of platform capacity requests that lines of business (LOBs) and non-foundational platforms (KCS and ADP) submit to platform teams, such as Compute, Storage, and Data Services, for fulfillment.
 
 ## Process Flow
 
 :::note
-
-Steps one through six are sequential and must be performed in the order
-presented.
-
+Perform steps one through six in the order presented.
 :::
 
 ### Capacity request submission
 
-**Owner: LOB Capacity Requestor**
+**Owner: LOB capacity requestor**
 
 - The LOB requester notifies their Demand Planner of a platform capacity request.
-- The LOB requester must include all required details: business driver,
-platform, resource type (for example, vCPU, RAM, sellable unit), quantity,
-need-by date, and business justification.
+- The requester must include the business driver, platform, resource type (for example, vCPU, RAM, or sellable unit), quantity, need-by date, and business justification.
 
-**Output:** Email submitted to the LOB Demand Planner.
+**Output:** An email submitted to the LOB Demand Planner.
 
 ### LOB demand planner review
 
-**Owner: LOB Demand Planner (See People Matrix below.)**
+**Owner: LOB Demand Planner (see the people matrix below)**
 
-- Validates the completeness and accuracy of the request.
-- Checks with Platform Capacity DRI to determine if the necessary capacity is
-available for the request.
-- Translates the platform resource request into a capital expenditure (CapEx)
-estimate.
-- The LOB Demand Planner prepares an approval request email with all required
-details, including business driver, resource type, quantity, need-by date,
-justification, and CapEx estimate.
-- The email must include the following stakeholders: Capacity Requestor, LOB
-Capacity DRI, LOB Financial Controller, CIBO Platform Demand Planner,
-Platform Capacity DRI, Infrastructure Finance, and ASE Capacity EPMs.
+- Validate the request for completeness and accuracy.
+- Consult the Platform Capacity DRI to determine whether sufficient capacity is available.
+- Translate the platform resource request into a capital expenditure (CapEx) estimate.
+- Prepare an approval request email with the business driver, resource type, quantity, need-by date, justification, and CapEx estimate.
+- Include these stakeholders in the email: Capacity Requestor, LOB Capacity DRI, LOB Financial Controller, CIBO Platform Demand Planner, Platform Capacity DRI, Infrastructure Finance, and ASE Capacity EPMs.
 
-**Output:** Email sent to the LOB Capacity DRI and financial controller
-requesting approval.
+**Output:** An email requesting approval, sent to the LOB Capacity DRI and financial controller.
 
 ### LOB capacity DRI review
 
-**Owner: LOB Capacity DRI (See People Matrix below.)**
+**Owner: LOB Capacity DRI (see the people matrix below)**
 
-- Reviews the request for alignment with strategic business priorities and
-capacity objectives.
-- Verifies the timing and accuracy of resource requirements.
-- Approves, modifies, or requests clarification as needed.
+- Review the request for alignment with strategic business priorities and capacity objectives.
+- Verify the timing and accuracy of resource requirements.
+- Approve or modify the request, or request clarification as needed.
 
-**Output:** The LOB Capacity DRI provides feedback via email on an as-needed
-basis and sends an approval email.
+**Output:** The LOB Capacity DRI provides feedback by email as needed and sends an approval email.
 
 ### LOB financial controller review
 
-**Owner: LOB Financial Controller (See People Matrix below.)**
+**Owner: LOB Financial Controller (see the people matrix below)**
 
-- Reviews financial implications of the request.
-- Validates budget alignment with fiscal constraints and forecasts.
-- Approves, rejects, or requests modification to ensure financial
-compliance.
+- Review the financial implications of the request.
+- Validate budget alignment with fiscal constraints and forecasts.
+- Approve or reject the request, or request modifications to ensure financial compliance.
 
-**Output:** The LOB Financial Controller provides feedback via email on an
-as-needed basis and sends an approval email.
+**Output:** The LOB Financial Controller provides feedback by email as needed and sends an approval email.
 
 ### Notify platform stakeholders of approved demand
 
 **Owner: LOB Demand Planning Team**
 
-- Shares the email of the fully approved request with the Platform Demand
-Planner and Platform Capacity DRI.
-- Includes a breakdown by resource type (for example, vCPU, GPU, TB Storage),
-need by month, and data center(s).
+- Share the fully approved request with the Platform Demand Planner and Platform Capacity DRI.
+- Include a breakdown by resource type (for example, vCPU, GPU, or TB of storage), need-by month, and data center.
 
-**Output:** Email sent to the Platform Demand Planner and Platform Capacity
-DRI notifying them of approved demand.
+**Output:** An email notifying the Platform Demand Planner and Platform Capacity DRI of the approved demand.
 
 ### Platform acknowledgment, review, and response
 
 **Owner: Platform Capacity DRI**
 
-- Reviews the approved request for feasibility against existing platform
-constraints (for example, supply availability, deployment timelines,
-architectural dependencies).
-- Notifies the LOB Demand Planner and other stakeholders if any issues or
-risks may impact timely fulfillment.
+- Review the approved request for feasibility against existing platform constraints, such as supply availability, deployment timelines, and architectural dependencies.
+- Notify the LOB Demand Planner and other stakeholders of any issues or risks that might affect timely fulfillment.
 
-**Output:** Email acknowledging receipt of the approved demand and
-highlighting any constraints or risks related to fulfillment.
+**Output:** An email acknowledging receipt of the approved demand and identifying any fulfillment constraints or risks.
 
 ### Platform approval guidelines
 
-For detailed information on platform approval guidelines, see
-[Platform approval and allocation guidelines from CIBO](https://quip-apple.com/L0xOAso0hjaq#temp:C:REP79c8a2f34e03472a840dbc48b)
+For detailed information about platform approval guidelines, see the internal CIBO platform approval and allocation guidelines (link redacted).
 
 ## LOB capacity roles and responsibilities matrix
 
-| Line of Business (LOB) | CIBO Demand Planner | LOB Finance Controller | LOB Capacity DRI | LOB Capacity Point of Contact | LOB Capacity Team |
-| ------------------------------ | ------------------- | ---------------------- | ----------------- | ------------------------------ | ------------------------- |
-| AIML | Josh Rose | Martin Lu | Benoit Dupin | Various | |
-| Apps | Josh Rose | Jenny Lui | Mark Takacs | Mark Takacs | |
-| HW-Technology | Josh Rose | Jason Koehn | Ravi Poddar | Russell Heredia | |
-| iCloud | Lydia Hwang | Martin Lu | Pascal Borghino | Mathieu Dardenne; Julien Grave | |
-| IS&T | Greg Carter | Kunnal Vij | Adam Bechtel | Ayumi Minamikawa | Ryan Dooley, JP Chilumula |
-| Maps | Simon Tang | Martin Lu | Adithya Nagarajan | Venkat Appineni | Sree Veeramachaneni |
-| Media | Kevin Johnson | Martin Lu | Lionel Gentil | Anthony Fleming | |
-| Private Cloud Compute (PCC) | Simon Tang | Martin Lu | Pascal Borghino | Babak Alipour; Leslie Cheung | |
-| SWE | Simon Tang | Garrett LoCascio | Diogo Almeida | Angel Viera; Jonathan Rawson | |
-| Wallet, Payments, and Commerce | Kevin Johnson | Tim Laughland | Teo Cervantes | Elaine Chalfin | |
+| Line of business (LOB) | CIBO Demand Planner | LOB Finance Controller | LOB Capacity DRI | LOB Capacity Point of Contact | LOB Capacity Team |
+| ---------------------- | ------------------- | ---------------------- | ---------------- | ------------------------------ | ----------------- |
+| AIML                   | Redacted            | Redacted               | Redacted         | Various                        |                   |
+| Apps                   | Redacted            | Redacted               | Redacted         | Redacted                       |                   |
+| HW-Technology          | Redacted            | Redacted               | Redacted         | Redacted                       |                   |
+| iCloud                 | Redacted            | Redacted               | Redacted         | Redacted                       |                   |
+| IS&T                   | Redacted            | Redacted               | Redacted         | Redacted                       | Redacted          |
+| Maps                   | Redacted            | Redacted               | Redacted         | Redacted                       | Redacted          |
+| Media                  | Redacted            | Redacted               | Redacted         | Redacted                       |                   |
+| Private Cloud Compute (PCC) | Redacted       | Redacted               | Redacted         | Redacted                       |                   |
+| SWE                    | Redacted            | Redacted               | Redacted         | Redacted                       |                   |
+| Wallet, Payments, and Commerce | Redacted     | Redacted               | Redacted         | Redacted                       |                   |
 
 ## Platform capacity roles and responsibilities matrix
 
-| | CIBO Demand Planner | Infra Finance | ASE Capacity EPM | Platform Capacity DRI | ASE Infrastructure Engineering |
-| --------------------------- | ------------------- | ------------- | ---------------- | --------------------- | ------------------------------ |
-| Kube | Kristen Daves | Manny Morales | | Andrea Tosatto | Madhu |
-| Simcloud | Tim Schultz | Manny Morales | | Stratos | Madhu |
-| Apple Cloud Elastic Compute | Christina Mancuso | Manny Morales | Surabhi Ravindra | Neerja Khattar | Madhu |
-| Cassandra | Ben Wu | Manny Morales | | Chris Earman | Scott Andreas |
-| OS2.0 | Spencer Myers | Manny Morales | | Vijay Bellur | Suri Medapati |
-| ACED/ScaleIO | Ben Wu | Manny Morales | | Vijay Bellur | Suri Medapati |
-| FDB | Lydia Hwang | Manny Morales | | Josh McManus | |
-| Hadoop to Tiered Storage | Ben Wu | Manny Morales | | Tu Tran | |
+| Platform | CIBO Demand Planner | Infra Finance | ASE Capacity EPM | Platform Capacity DRI | ASE Infrastructure Engineering |
+| -------- | ------------------- | ------------- | ---------------- | --------------------- | ------------------------------ |
+| Kube | Redacted | Redacted | | Redacted | Redacted |
+| Simcloud | Redacted | Redacted | | Redacted | Redacted |
+| Apple Cloud Elastic Compute | Redacted | Redacted | Redacted | Redacted | Redacted |
+| Cassandra | Redacted | Redacted | | Redacted | Redacted |
+| OS2.0 | Redacted | Redacted | | Redacted | Redacted |
+| ACED/ScaleIO | Redacted | Redacted | | Redacted | Redacted |
+| FDB | Redacted | Redacted | | Redacted | |
+| Hadoop to Tiered Storage | Redacted | Redacted | | Redacted | |
