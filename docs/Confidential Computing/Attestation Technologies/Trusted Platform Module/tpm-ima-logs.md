@@ -393,7 +393,7 @@ ima_rtm_match(runtime_measurements, idx, fp, dig) := r if {
 # provided the evidence.
 ```
 
-4. Use this file with real digest values captured from the attestation token
+1. Use this file with real digest values captured from the attestation token
    claims and without comments to create an appraisal policy in the TA web UI
    or with the tenant management CLI.
 
