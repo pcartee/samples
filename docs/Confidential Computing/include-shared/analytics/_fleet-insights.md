@@ -127,7 +127,7 @@ The **Remote verification report / PLI report** provide a summary of the devices
 
 ### Filter report data
 
-The information on this page can be filtered by the following: 
+The information on this page can be filtered by the following:
 
 - **Remote verification result**
 - **Component type**

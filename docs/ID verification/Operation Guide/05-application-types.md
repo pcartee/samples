@@ -31,16 +31,16 @@ The *Application Types* page displays.
 
 The **My Application Types** page displays the types of applications Studio can configure for your system.
 
-2) Click **HTTP Basic.**
+1) Click **HTTP Basic.**
 
 The *Edit Application Config* dialog displays.
 
 ![Edit Application Config dialog for HTTP Basic](/img/operations-guide/_page_41_Picture_3.jpeg)
 
-- 3) Complete the following fields: • **Name** - Enter a name for the application type • **Login URL** - Enter the login URL for the application type
+- 1) Complete the following fields: • **Name** - Enter a name for the application type • **Login URL** - Enter the login URL for the application type
   - **Customer**  This field is automatically populated
 
-4) Click **Save** to persist your changes.
+1) Click **Save** to persist your changes.
 
 ## **HTTP Digest Configuration**
 
@@ -54,16 +54,16 @@ The *My Application Types* page displays.
 
 The **My Application Types** page displays the types of applications that can be configure in Studio for your system.
 
-2) Click **HTTP Digest.**
+1) Click **HTTP Digest.**
 
 The *Edit Authentication Config* dialog displays.
 
 ![Edit Authentication Config dialog for HTTP Digest](/img/operations-guide/_page_42_Picture_6.jpeg)
 
-- 3) Complete the following fields:
+- 1) Complete the following fields:
   - **Name**  Enter a name for the application type • **Login URL** - Enter the login URL for the application type •**Customer** - This field is automatically populated
 
-4) Click **Save** to persist your changes.
+1) Click **Save** to persist your changes.
 
 ## **Discovery**
 
@@ -85,12 +85,12 @@ The *My Application Types* page displays.
 
 The **My Application Types** page displays the types of applications Studio can configure for your system.
 
-2) Complete the following fields at the top of the page:
+1) Complete the following fields at the top of the page:
 
 - •**Discovery** - Select the customer for whom the discovery is taking place from the drop-down list
 - **Login Form URL** Enter the URL of the Web application for which the login fields will be discovered
 
-### 3) Click **Discover** to scan the Login Form URL.
+### 3) Click **Discover** to scan the Login Form URL
 
 The discovery process may take a substantial amount of time (two minutes or more). When the login
 
@@ -100,7 +100,7 @@ information is found, the *Edit Authentication Config* dialog displays.
 
 #### **Authentication Configuration Information**
 
-#### 4) Complete the following fields:
+#### 4) Complete the following fields
 
 - • **Name** - Enter a name for the application type. The name entered in this field appears on the *Applications* page in the Studio GUI
 - **Login URL** Enter the URL containing the login fields
@@ -108,19 +108,19 @@ information is found, the *Edit Authentication Config* dialog displays.
 
 #### **Failure Detection**
 
-### 5) Complete the following fields:
+### 5) Complete the following fields
 
 - Select a failure-detection type from the drop-down list. The failure detection type tells Studio what to look for when it checks for login success o **VISIBLE\_TEXT** - Studio looks for contents in the VISIBLE\_TEXT field to determine that a login failure has occurred o **URL** - Studio looks for the URL entered in this field (for example, an error page) o **STATUS** - Studio looks for a status • Select the qualifier for the contents of this message from the drop-down list. •Enter a value for the fields, if needed
 
 #### **Forms**
 
-6) Select the **Forms** tab.
+1) Select the **Forms** tab.
 
 ![Forms tab with the discovered login form](/img/operations-guide/_page_45_Picture_2.jpeg)
 
-- 7) Select the URL of the login form from the **Login Form** drop-down list.
-- 8) If necessary, delete the fields that are not needed for this form by clicking the **Delete** icon next to the fields that are not needed.
-- 9) Click **Save** to persist your changes.
+- 1) Select the URL of the login form from the **Login Form** drop-down list.
+- 1) If necessary, delete the fields that are not needed for this form by clicking the **Delete** icon next to the fields that are not needed.
+- 1) Click **Save** to persist your changes.
 
 ## **Add a Custom Form**
 
@@ -130,7 +130,7 @@ Custom forms are created to handle login authentication for Web applications spe
 
 **Note**: These instructions assume you are using the Discovery feature and have already completed the initial discovery process.
 
-#### 1) Click the **Add Custom Form** icon.
+#### 1) Click the **Add Custom Form** icon
 
 ![Add Custom Form control](/img/operations-guide/_page_46_Picture_2.jpeg)
 
@@ -138,22 +138,22 @@ The **Edit Form** dialog displays.
 
 ![Edit Form dialog with configuration fields](/img/operations-guide/_page_46_Picture_5.jpeg)
 
-### 2) Complete the following fields:
+### 2) Complete the following fields
 
 • **Action** - Enter the name of the action that will take place • **Method** - Enter the method that will be called •**Identifier** - Enter the identifier associated with this form
 
 #### **Inputs**
 
-3) Select the **Inputs** tab.
+1) Select the **Inputs** tab.
 
 ![Inputs tab for configuring custom form inputs](/img/operations-guide/_page_47_Picture_2.jpeg)
 
-#### 4) Complete the following fields:
+#### 4) Complete the following fields
 
 • **Identifier** - Enter the identifier associated with this custom form • **Name** - Enter the name associated with this custom form • **Purpose** - Select how this value will be used from the **Purpose** drop-down list •**Value/Label** - If necessary, enter the text for the label associated with the identifier
 
-5) Optionally click the **Add Custom Form** icon and repeat steps 2 through 4 to
+1) Optionally click the **Add Custom Form** icon and repeat steps 2 through 4 to
 
 configure other form inputs.
 
-6) Click **Update** to persist the changes.
+1) Click **Update** to persist the changes.

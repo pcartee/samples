@@ -83,28 +83,28 @@ For detailed information about platform approval guidelines, see the internal CI
 
 ## LOB capacity roles and responsibilities matrix
 
-| Line of business (LOB) | CIBO Demand Planner | LOB Finance Controller | LOB Capacity DRI | LOB Capacity Point of Contact | LOB Capacity Team |
-| ---------------------- | ------------------- | ---------------------- | ---------------- | ------------------------------ | ----------------- |
-| AIML                   | Redacted            | Redacted               | Redacted         | Various                        |                   |
-| Apps                   | Redacted            | Redacted               | Redacted         | Redacted                       |                   |
-| HW-Technology          | Redacted            | Redacted               | Redacted         | Redacted                       |                   |
-| iCloud                 | Redacted            | Redacted               | Redacted         | Redacted                       |                   |
-| IS&T                   | Redacted            | Redacted               | Redacted         | Redacted                       | Redacted          |
-| Maps                   | Redacted            | Redacted               | Redacted         | Redacted                       | Redacted          |
-| Media                  | Redacted            | Redacted               | Redacted         | Redacted                       |                   |
-| Private Cloud Compute (PCC) | Redacted       | Redacted               | Redacted         | Redacted                       |                   |
-| SWE                    | Redacted            | Redacted               | Redacted         | Redacted                       |                   |
-| Wallet, Payments, and Commerce | Redacted     | Redacted               | Redacted         | Redacted                       |                   |
+| Line of business (LOB)          | CIBO Demand Planner | LOB Finance Controller | LOB Capacity DRI | LOB Capacity Point of Contact | LOB Capacity Team |
+| ------------------------------- | ------------------- | ---------------------- | ---------------- | ----------------------------- | ----------------- |
+| AIML                            | Redacted            | Redacted               | Redacted         | Various                       |                   |
+| Apps                            | Redacted            | Redacted               | Redacted         | Redacted                      |                   |
+| HW-Technology                   | Redacted            | Redacted               | Redacted         | Redacted                      |                   |
+| iCloud                          | Redacted            | Redacted               | Redacted         | Redacted                      |                   |
+| IS&T                            | Redacted            | Redacted               | Redacted         | Redacted                      | Redacted          |
+| Maps                            | Redacted            | Redacted               | Redacted         | Redacted                      | Redacted          |
+| Media                           | Redacted            | Redacted               | Redacted         | Redacted                      |                   |
+| Private Cloud Compute (PCC)     | Redacted            | Redacted               | Redacted         | Redacted                      |                   |
+| SWE                             | Redacted            | Redacted               | Redacted         | Redacted                      |                   |
+| Wallet, Payments, and Commerce  | Redacted            | Redacted               | Redacted         | Redacted                      |                   |
 
 ## Platform capacity roles and responsibilities matrix
 
-| Platform | CIBO Demand Planner | Infra Finance | ASE Capacity EPM | Platform Capacity DRI | ASE Infrastructure Engineering |
-| -------- | ------------------- | ------------- | ---------------- | --------------------- | ------------------------------ |
-| Kube | Redacted | Redacted | | Redacted | Redacted |
-| Simcloud | Redacted | Redacted | | Redacted | Redacted |
-| Apple Cloud Elastic Compute | Redacted | Redacted | Redacted | Redacted | Redacted |
-| Cassandra | Redacted | Redacted | | Redacted | Redacted |
-| OS2.0 | Redacted | Redacted | | Redacted | Redacted |
-| ACED/ScaleIO | Redacted | Redacted | | Redacted | Redacted |
-| FDB | Redacted | Redacted | | Redacted | |
-| Hadoop to Tiered Storage | Redacted | Redacted | | Redacted | |
+| Platform                     | CIBO Demand Planner | Infra Finance | ASE Capacity EPM | Platform Capacity DRI | ASE Infrastructure Engineering |
+| ---------------------------- | ------------------- | ------------- | ---------------- | --------------------- | ------------------------------ |
+| Kube                         | Redacted            | Redacted      |                  | Redacted              | Redacted                       |
+| Simcloud                     | Redacted            | Redacted      |                  | Redacted              | Redacted                       |
+| Apple Cloud Elastic Compute  | Redacted            | Redacted      | Redacted         | Redacted              | Redacted                       |
+| Cassandra                    | Redacted            | Redacted      |                  | Redacted              | Redacted                       |
+| OS2.0                        | Redacted            | Redacted      |                  | Redacted              | Redacted                       |
+| ACED/ScaleIO                 | Redacted            | Redacted      |                  | Redacted              | Redacted                       |
+| FDB                          | Redacted            | Redacted      |                  | Redacted              |                                |
+| Hadoop to Tiered Storage     | Redacted            | Redacted      |                  | Redacted              |                                |

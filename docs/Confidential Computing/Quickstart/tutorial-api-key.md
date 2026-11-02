@@ -46,7 +46,7 @@ an attestation API key's value, which you can do only in the portal.
 
     ![TA Portal Admin API Keys page showing a table of admin API keys and their actions.](/img/howto-manage-admin-api-keys/admin-api-keys.png)
 
-### Copy admin API keys {/* #admin-keys */}
+### Copy admin API keys {/*#admin-keys*/}
 
 1. Sign in to the TA Portal.
 
@@ -138,7 +138,7 @@ in the tenant organization.
 
 <TabItem value="restapi" label="REST API">
 
-### Create an attestation API key
+### Create an attestation API key with the REST API
 
 Creating an attestation API key with the REST API requires an admin API
 key for authentication.
@@ -217,6 +217,7 @@ you have an SGX application that can retrieve an SGX quote.
      --header 'Accept: application/json' \
      --header 'x-api-key: <attestation API key>'
    ```
+
    :::
 
    Sample response:

@@ -57,6 +57,7 @@ If you are in the European Union (EU) region, use the following TA URLs:
 
 - Base URL: `https://portal.eu.ta.intel.com`
 - API URL: `https://api.eu.ta.intel.com`
+
 :::
 
 **RetryConfig** is optional. If you don't set RetryConfig, the client uses the default values defined in `inteltrustauthorityclient/resources/constants.py`.

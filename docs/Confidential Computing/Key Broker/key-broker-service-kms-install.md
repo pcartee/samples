@@ -17,7 +17,7 @@ the KMS that suits your environment, and follow the instructions.
 <Tabs>
 <TabItem value="hashicorp-config" label="HashiCorp Vault configuration">
 
-### HashiCorp Vault configuration
+## HashiCorp Vault configuration
 
 1. [Install Vault](https://developer.hashicorp.com/vault/tutorials/getting-started/getting-started-install).
 

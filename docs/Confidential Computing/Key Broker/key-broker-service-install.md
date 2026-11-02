@@ -87,6 +87,7 @@ If you are in the European Union (EU) region, use the following TA URLs:
 TRUSTAUTHORITY_API_URL="https://api.eu.ta.company.com"
 TRUSTAUTHORITY_BASE_URL="portal.eu.ta.company.com"
 ```
+
 :::
 
 <Tabs>

@@ -9,15 +9,14 @@ uid: idr-certificates
 
 Certificates secure communication between an Identity Router and end users or delegated authentication services. This guide explains how to use CA-signed certificates and intermediate certificate chains, and how to choose between non-wildcard, wildcard, Subject Alternative Name (SAN), and self-signed certificates when configuring Identity Router virtual domains.
 
-
 ## **CA-signed Certificates**
 
 If a customer uses a CA-signed certificate that uses an intermediate certificate chain (for instance, GoDaddy.com-signed certificates) for delegated authentication, you may need to import the intermediate certificate chain to the customer's Identity Router. For instance, when Salesforce.com contacts our delegated authentication service, SFDC is acting as a client and requires our intermediate certificate bundle for the SSL Handshake (since our certificate is signed by GoDaddy.com, which uses and intermediate certificate bundle.) Please perform the following steps:
 
 - 1) Copy the certificate file to the customer's Identity Rourt, at the location: /usr/local/symplified/etc/certs/
-- 2) Navigate the the directory: /usr/local/symplified/etc
-- 3) Edit the following files: httpd-virtual-host-template-catch-all-ssl and httpd-virtual-host-template-singlepoint-jk-proxy-ssl Add the following line: `SSLCertificateChainFile "/usr/local/symplified/etc/certs/<CERT_BUNDLENAME>"`
-- 4) Restart the customer's Identity Router.
+- 1) Navigate the the directory: /usr/local/symplified/etc
+- 1) Edit the following files: httpd-virtual-host-template-catch-all-ssl and httpd-virtual-host-template-singlepoint-jk-proxy-ssl Add the following line: `SSLCertificateChainFile "/usr/local/symplified/etc/certs/<CERT_BUNDLENAME>"`
+- 1) Restart the customer's Identity Router.
 
 ## **Non-Wildcard Certificates**
 
