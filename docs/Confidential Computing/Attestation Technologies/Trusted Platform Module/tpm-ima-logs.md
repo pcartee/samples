@@ -135,8 +135,6 @@ curl https://raw.githubusercontent.com/intel/ta-client-for-go/main/release/insta
    }
    ```
 
-<!-- markdownlint-enable MD029 -->
-
 The `cloud_provider` setting is required only for Microsoft Azure. `owner_auth`
 is the TPM owner password, and `ak_handle` is the TPM attestation key handle.
 For this release, `owner_auth` is an empty string, and `ak_handle` is set to
