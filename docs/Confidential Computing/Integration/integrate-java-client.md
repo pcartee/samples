@@ -1,6 +1,6 @@
 ---
 title: TA Java client integration
-description: Reference for the Trust Authority (TA) Java client. Describes the Java connector, Intel SGX adapter, and Intel TDX adapter APIs, with method signatures, parameters, and Java examples for creating a connector, collecting evidence, requesting attestation tokens and nonces, and verifying tokens.
+description: Reference for the Trust Authority (TA) Java client, including Java connector, Intel SGX adapter, and Intel TDX adapter APIs, method parameters, and examples for collecting evidence, requesting tokens and nonces, and verifying tokens.
 author: pcartee
 topic: integration
 date: "2024-11-08"
@@ -8,7 +8,7 @@ uid: integrate.java.client
 sidebar_position: 3
 ---
 
-The Java connector is one of several language-specific clients available for TA. The client libraries provide an interface to the TA REST API and (for attesters) the platform software that collects measurements for a quote. A trusted execution environment (TEE) adapter is needed to collect evidence for attestation. Currently, the Java TEE adapters support Intel® SGX and Intel® TDX. Supported Intel TDX platforms include on-premises Intel TDX hosts, Google Cloud Platform (GCP) confidential VMs with Intel TDX, and Azure confidential VMs with Intel TDX.
+The Java connector is one of several language-specific clients available for TA. The client libraries provide an interface to the TA REST API and, for attesters, to the platform software that collects measurements for a quote. Attestation requires a trusted execution environment (TEE) adapter to collect evidence. The Java TEE adapters support Intel® SGX and Intel® TDX. Supported Intel TDX platforms include on-premises Intel TDX hosts, Google Cloud Platform (GCP) confidential VMs with Intel TDX, and Azure confidential VMs with Intel TDX.
 
 The TA Java client modules, build instructions, and installation instructions are on [GitHub](https://github.com/intel/ta-client-for-java).
 
@@ -26,10 +26,10 @@ Provides a relatively simple method to obtain an attestation token for the clien
 Retrieves a signed nonce from TA.
 
 [**GetToken**](#gettoken)  
-Fetches the token from the TA server by using the specified API URL.
+Requests an attestation token from the TA server.
 
 [**getTokenSigningCertificates**](#gettokensigningcertificates)  
-Retrieves a certificate from the collection of signing certificates that TA uses to sign attestation tokens.
+Retrieves signing certificates that TA uses to sign attestation tokens.
 
 [**verifyToken**](#verifytoken)  
 Verifies the signature of an attestation token received from TA.
@@ -52,11 +52,11 @@ Collects evidence from an Intel TDX trust domain.
 
 ## Java-connector API
 
-The Java connector module uses the TA REST APIs to communicate with the TA service. The first step in using the Java connector is to create a connector instance.
+The Java connector module uses the TA REST APIs to communicate with the TA service. To use the Java connector, first create a connector instance.
 
 ### `TrustAuthorityConnector` API
 
-Create a new connector instance, and then use the exposed interfaces to access different parts of the TA API.
+Create a connector instance, and then use its interfaces to access the TA API.
 
 ```java
 
@@ -71,8 +71,8 @@ TrustAuthorityConnector connector = new TrustAuthorityConnector(cfg);
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
-| connector | Output | Receives a pointer to a Java TrustAuthorityConnector instance. |
-| cfg | Input | The configuration file provided by the user. |
+| connector | Output | Receives a reference to a Java TrustAuthorityConnector instance. |
+| cfg | Input | The configuration object provided by the user. |
 
 #### Cfg parameters
 
@@ -88,7 +88,7 @@ TrustAuthorityConnector connector = new TrustAuthorityConnector(cfg);
 
 ### `attest`
 
-**attest** provides a relatively simple method to obtain an attestation token for the client.
+**attest** provides a simple way to obtain an attestation token for the client.
 
 ```java
 public class TrustAuthorityConnector {
@@ -110,7 +110,7 @@ AttestResponse attestResponse = connector.attest(attestArgs);
 
 #### Usage
 
-**attest** is designed for a Passport attestation model where the attester wants to get a token and doesn't need to append user data to evidence. The attester only needs to create a new TA client connection and evidence adapter before calling **attest**. If you need to include user data with the evidence, see [GetToken](#gettoken).
+**attest** is designed for the Passport attestation model when the attester wants a token and does not need to append user data to the evidence. Before calling **attest**, create a TA client connection and an evidence adapter. To include user data with the evidence, see [GetToken](#gettoken).
 
 **attest** performs the following actions:
 
@@ -137,7 +137,7 @@ GetNonceResponse nonceResponse = connector.GetNonce(nonceArgs);
 
 | Name | I/O | Description |
 | :--- | :--- | :--- |
-| **GetNonceArgs.requestId** | Input | An optional request ID to identify the request. If you don't provide a request ID, the API gateway creates one for you, but it isn't guaranteed to be unique. |
+| **GetNonceArgs.requestId** | Input | An optional request ID to identify the request. If you do not provide one, the API gateway creates one, but it is not guaranteed to be unique. |
 | nonce | Output | A signed nonce returned by TA. |
 
 ### `GetToken`
@@ -168,13 +168,13 @@ GetTokenResponse tokenResponse = connector.GetToken(tokenArgs);
 
 #### Usage
 
-**GetToken** is for complex scenarios where **attest** doesn't provide enough flexibility. **GetToken** provides more control than **attest** by allowing a confidential app to include user_data, provide a nonce, or modify evidence structures before requesting a token. **GetToken** supports both Passport and Background-check validation models.
+Use **GetToken** for scenarios where **attest** does not provide enough flexibility. **GetToken** allows a confidential app to include `user_data`, provide a nonce, or modify evidence structures before requesting a token. **GetToken** supports both Passport and Background-check validation models.
 
-You can associate policies with an attestation API key. If you specify policyIds directly in the call, they override and replace any policies associated with the API key.
+You can associate policies with an attestation API key. If you specify `policyIds` in the call, they replace any policies associated with the API key.
 
 ### `getTokenSigningCertificates`
 
-**getTokenSigningCertificates** retrieves a JSON Web Key Set (JWKS) that contains the collection of signing certificates (in JWT format) that TA uses to sign attestation tokens and nonces.
+**getTokenSigningCertificates** retrieves a JSON Web Key Set (JWKS) containing the signing certificates TA uses to sign attestation tokens and nonces.
 
 ```java
 public class TrustAuthorityConnector {
@@ -184,7 +184,7 @@ public class TrustAuthorityConnector {
 
 #### Parameters
 
-**getTokenSigningCertificates** doesn't take any input.
+**getTokenSigningCertificates** does not take any input.
 
 ```java
 String certs = connector.getTokenSigningCertificates();
@@ -196,13 +196,13 @@ String certs = connector.getTokenSigningCertificates();
 
 **verifyToken** performs the following actions:
 
-- Gets the kid from the header.
+- Gets the `kid` from the header.
 - Gets the signing certificates.
-- Finds the JWT from the kid and verifies the certificate against the CA.
-- Checks that the public key can be retrieved from the certificate.
+- Finds the JWT by its `kid` and verifies the certificate against the CA.
+- Checks that it can retrieve the public key from the certificate.
 - Returns the parsed JWT.
 
-A relying party can use the connector and the **verifyToken** function to validate any received tokens before establishing trust.
+A relying party can use the connector and the **verifyToken** function to validate received tokens before establishing trust.
 
 ```java
 public class TrustAuthorityConnector {
@@ -222,7 +222,7 @@ JWTClaimsSet claims = connector.verifyToken(token);
 
 ## Java SGX adapter API reference
 
-Before you integrate an Intel SGX workload with the TA client, the workload must implement a function to generate an enclave report. This function should take the SHA256 hash of the nonce and user data to form report data for the `EnclaveReport`. The TA Attestation Service performs a report data verification in which it expects the report data to be a SHA256 hash of the nonce and user_data (if any).
+Before you integrate an Intel SGX workload with the TA client, implement a function to generate an enclave report. This function should use the SHA-256 hash of the nonce and user data as report data for the `EnclaveReport`. The TA Attestation Service verifies the report data and expects it to be a SHA-256 hash of the nonce and `user_data`, if provided.
 
 ### `SgxAdapter`
 
@@ -242,7 +242,7 @@ SgxAdapter sgxAdapter = new SgxAdapter(enclaveID, useData, EnclaveLibrary.Enclav
 
 ### `collectEvidence` (Intel SGX)
 
-**collectEvidence** gets a quote from an Intel SGX enclave by using Intel SGX DCAP.
+**collectEvidence** collects a quote from an Intel SGX enclave by using Intel SGX DCAP.
 
 ```java
 Evidence evidence = sgxAdapter.collectEvidence(nonce);
@@ -256,11 +256,11 @@ Evidence evidence = sgxAdapter.collectEvidence(nonce);
 
 ## Java Intel TDX adapter API reference
 
-The Intel TDX adapter for Java is two adapters: one for systems that use the configfs-tsm Linux subsystem for quote generation, such as on-premises Intel TDX hosts and Google Cloud Platform confidential VMs with Intel TDX, and one for Azure confidential VMs with Intel TDX. Azure uses a proprietary scheme for quote generation. These adapters are installed from the same source and share an identical package name (`com.intel.ta.tdx`) and API in the `TdxAdapter` class.
+The Java Intel TDX adapter has two variants: one for systems that use the configfs-tsm Linux subsystem for quote generation, such as on-premises Intel TDX hosts and Google Cloud Platform confidential VMs with Intel TDX, and one for Azure confidential VMs with Intel TDX. Azure uses a proprietary scheme for quote generation. These variants are installed from the same source and share the package name (`com.intel.ta.tdx`) and the API in the `TdxAdapter` class.
 
 ### `TdxAdapter`
 
-**TdxAdapter** creates a new TdxAdapter instance.
+**TdxAdapter** creates a new `TdxAdapter` instance.
 
 ```java
 TdxAdapter tdxAdapter = new TdxAdapter(userData);

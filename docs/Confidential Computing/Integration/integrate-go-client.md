@@ -10,7 +10,7 @@ sidebar_position: 2
 
 The TA client and related trusted execution environment (TEE) adapters encapsulate all the functions needed to collect evidence, package it as a quote, and obtain an attestation token from the TA service. Both attesters and relying parties can use the client modules.
 
-The TA Go client modules, build instructions, and installation instructions are on GitHub at [intel/ta-client-for-go][ta-go-client]. The **main** branch contains the latest release. The TA Go client code is [open source][ta-client-license]. The client code is a good source of examples that show how to use the following API functions.
+The TA Go client modules, build instructions, and installation instructions are on GitHub at [intel/ta-client-for-go][ta-go-client]. The **main** branch contains the latest release. The TA Go client code is [open source][ta-client-license] and provides examples of how to use the following API functions.
 
 :::note
 We are transitioning from manually created API documentation (this article) to Go package documentation generated from comments in the codebase. For more information, see the [TA Client for Go][ta-pkg-go] package documentation on pkg.go.dev. The package documentation is more complete than this article. We will remove the API documentation from this article in a future release.
@@ -69,13 +69,13 @@ Gets the TD event logs that contain the events used to create the RTMR(0-3) hash
 Creates a new composite evidence adapter for Intel TDX and GPU evidence.
 
 [**GetEvidence**](#getevidence)  
-Gets evidence from the GPU.
+Collects evidence from the GPU.
 
 [**GetEvidenceIdentifier**](#getevidenceidentifier)  
-Gets the evidence identifier, currently set to "nvgpu".
+Returns the evidence identifier, which is currently set to `"nvgpu"`.
 
 [**GPUAttester**](#gpuattester)  
-Gets evidence from a remote GPU attester.
+Collects evidence from a remote GPU attester.
 
 [**GPUEvidence**](#gpuevidence)  
 Returns the GPU evidence collected from the attester.
@@ -95,34 +95,34 @@ Retrieves the SEV-SNP report.
 
 **go-sgx** is required to collect evidence (a quote) from an Intel SGX enclave. **go-sgx** requires Intel SGX DCAP and an Intel SGX-enabled platform.
 
-**go-tdx** is required to collect evidence from an Intel TDX trust domain. There are currently two variants of **go-tdx**, with more in development:
+**go-tdx** collects evidence from an Intel TDX trust domain. Two variants are currently available, with more in development:
 
-- Intel TDX platform adapter: For on-premises and cloud platforms that use the Intel TDX stack and PSW. This version of go-tdx is in the **main** branch of the client repo.
-- Azure confidential VMs for Intel TDX adapter: For TDs that run on Azure confidential VMs with the Intel TDX platform only. This adapter is a fork of the Intel TDX adapter, customized to work with Azure's implementation of Intel TDX. This adapter requires the TPM2 TSS library, but doesn't require Intel SGX DCAP. This version of go-tdx is in the **azure-tdx-preview** branch of the client repo.
+- **Intel TDX platform adapter**: Supports on-premises and cloud platforms that use the Intel TDX stack and PSW. This version of go-tdx is in the **main** branch of the client repository.
+- **Azure confidential VM adapter for Intel TDX**: Supports TDs running only on Azure confidential VMs with Intel TDX. This adapter is a fork of the Intel TDX adapter, customized for Azure's implementation of Intel TDX. It requires the TPM2 TSS library but not Intel SGX DCAP. This version of go-tdx is in the **azure-tdx-preview** branch of the client repository.
 
-**go-amd** is required to collect the measurement data from AMD SEV-SNP hardware platforms during the remote attestation process and to integrate with the existing attestation workflow.
+**go-amd** collects measurement data from AMD SEV-SNP hardware platforms during remote attestation and integrates with the existing attestation workflow.
 
 ## Basic attestation API workflow
 
-The following steps describe the basic attestation workflow. Many variations are possible. With the exception of **Attest**, which requires a TEE adapter, both the attester and the relying party (RP) can use all the APIs.
+The following steps describe the basic attestation workflow. Many variations are possible. Except for **Attest**, which requires a TEE adapter, both the attester and the relying party (RP) can use all the APIs.
 
-1. **New**: Create a new connector for TA SaaS.
+1. **New**: Create a connector for TA SaaS.
 1. **NewEvidenceAdapter**: An attesting TEE creates a new evidence adapter. (RPs skip this step.)
 1. Intel TDX clients must call **NewEventLogParser** to get the ACPI tables before creating a new adapter.
-1. **Attest**: The simplest use case for attesters that use the Passport attestation model. Gets a nonce, collects evidence, and requests an attestation token. If successful, it returns an attestation token.
-1. **GetNonce**: Gets a nonce to include with the quote in the request for attestation.
+1. **Attest**: The simplest option for attesters that use the Passport attestation model. It gets a nonce, collects evidence, and requests an attestation token. If successful, it returns the token.
+1. **GetNonce**: Gets a nonce to include with the quote in the attestation request.
 1. (EvidenceAdapter) **CollectEvidence**: Collects evidence for a quote. The attester can add TEE or application user data to the evidence collected from the TEE.
-1. **GetToken**: After it's given a nonce, evidence collected from the TEE, and optional user data, requests an attestation token (JWT) from TA.
-1. **VerifyToken**: After it's given an attestation token, checks that the token is properly formatted and signed by TA.
+1. **GetToken**: Requests an attestation token (JWT) from TA after receiving a nonce, evidence collected from the TEE, and optional user data.
+1. **VerifyToken**: Checks that an attestation token is properly formatted and signed by TA.
 1. **GetTokenSigningCertificates**: Retrieves a JWKS that contains the signing certificates used to sign nonces and JWTs.
 
 TEE attesters and RPs use the other APIs as needed.
 
 ## `go-connector` API
 
-To use the connector, you must first set values for the connector configuration and retry configuration, and then create a new connector instance, as shown in the following code fragment.
+To use the connector, first set the connector and retry configuration values, and then create a connector instance, as shown in the following code fragment.
 
-There are two TA deployment regions: the European Union (EU) region and a global region for all other countries. Each region has a different BaseUrl and ApiUrl, as follows:
+TA has two deployment regions: the European Union (EU) region and a global region for all other countries. Each region has a different `BaseUrl` and `ApiUrl`:
 
 | Region | BaseUrl | ApiUrl |
 | :--- | :--- | :--- |
@@ -156,7 +156,7 @@ retryCfg := connector.RetryConfig{
         // after each request. Default retries when HTTP status code is one among 500, 503, and 504
         // and when there is a client timeout or if a service is unavailable.
         CheckRetry:
-        // Backoff specifies the policy for how long to wait between retries, default is DefaultBackoff, which 
+        // Backoff specifies the policy for how long to wait between retries. The default is DefaultBackoff, which
         // provides a default callback for Backoff which will perform exponential backoff based on the attempt
         // number and limited by the provided minimum and maximum durations.
         BackOff:
@@ -194,13 +194,13 @@ func (connector *trustAuthorityConnector) Attest(args AttestArgs) (AttestRespons
 
 #### Usage
 
-**Attest** is designed for a Passport attestation model where the attester wants to get a token and doesn't need to append user data to evidence. The attester only needs to create a new TA client connection and evidence adapter before calling **Attest**. If you need to include user data with the evidence, see [**GetToken**](#gettoken).
+**Attest** is designed for the Passport attestation model when the attester wants a token and does not need to append user data to the evidence. The attester needs to create a TA client connection and evidence adapter before calling **Attest**. To include user data with the evidence, see [**GetToken**](#gettoken).
 
-If you don't provide policy IDs, TA uses the policies (if any) associated with the API key. If you do provide a list of policy IDs, the supplied policies replace the associated policies, which aren't evaluated at all.
+If you do not provide policy IDs, TA uses the policies (if any) associated with the API key. If you provide a list of policy IDs, the supplied policies replace the associated policies, which are not evaluated.
 
 If you don't provide a request ID, the API gateway generates a random ID that isn't guaranteed to be unique.
 
-The TokenSigningAlg option lets you choose a signing algorithm (RS256) that is less computationally intensive than PS384, or that is compatible with other systems.
+The `TokenSigningAlg` option lets you choose RS256, which is less computationally intensive than PS384 or might be compatible with other systems.
 
 **Attest** performs the following actions:
 
@@ -283,7 +283,7 @@ func (connector *trustAuthorityConnector) GetToken(args GetTokenArgs) (GetTokenR
 
 #### Usage
 
-**GetToken** is for complex scenarios where [**Attest**](#attest) doesn't provide enough flexibility. **GetToken** provides more control than **Attest** by allowing a confidential app to include user_data, provide a nonce, or modify evidence structures before requesting a token. **GetToken** supports both Passport and Background-check validation models.
+Use **GetToken** for scenarios where [**Attest**](#attest) does not provide enough flexibility. **GetToken** allows a confidential app to include `user_data`, provide a nonce, or modify evidence structures before requesting a token. **GetToken** supports both Passport and Background-check validation models.
 
 #### Example
 
@@ -305,7 +305,7 @@ if err != nil {
 
 ### `GetTokenSigningCertificates`
 
-**GetTokenSigningCertificates** retrieves a JSON Web Key Set (JWKS) that contains the collection of signing certificates (in JWT format) that TA uses to sign attestation tokens and nonces.
+**GetTokenSigningCertificates** retrieves a JSON Web Key Set (JWKS) containing the signing certificates TA uses to sign attestation tokens and nonces.
 
 ```go
 func (connector *trustAuthorityConnector) GetTokenSigningCertificates() ([]byte, error)
@@ -313,7 +313,7 @@ func (connector *trustAuthorityConnector) GetTokenSigningCertificates() ([]byte,
 
 #### Parameters
 
-**GetTokenSigningCertificates** doesn't take any input.
+**GetTokenSigningCertificates** does not take any input.
 
 #### Returns
 
@@ -403,7 +403,7 @@ An **EvidenceAdapter** structure.
 
 ### `CollectEvidence` (Intel SGX)
 
-**CollectEvidence** gets a quote from an Intel SGX enclave by using Intel SGX DCAP.
+**CollectEvidence** collects a quote from an Intel SGX enclave by using Intel SGX DCAP.
 
 ```go
 func (adapter *sgxAdapter) CollectEvidence(nonce []byte) (*connector.Evidence, error)
@@ -421,22 +421,22 @@ An **Evidence** structure that contains the quote for attestation.
 
 ## `go-tdx` adapter API reference
 
-The TA Intel TDX Attestation client includes a Go client and a CLI for use on the command line or by languages other than Go. You can use them to add Intel TDX remote attestation to your application.
+The TA Intel TDX Attestation client includes a Go client and a CLI that you can use from the command line or from languages other than Go. Use either tool to add Intel TDX remote attestation to your application.
 
-There are currently two variants of the TA go-tdx adapter, as explained in the next section. Some details of an Intel TDX client implementation for cloud service provider (CSP) platforms differ from the standard Intel TDX TCB that runs on a hosted server or an on-premises server. CSP platforms require a customized adapter to map CSP implementations to the requirements of the TA evidence verification service. The TA **go-tdx** adapters differ mainly in how the evidence collected from the TD is combined with user data (if supplied) and hashed for verification. Nearly all of the API functions are identical across adapters. Where behavior differs, the API's Usage section describes the difference.
+Two variants of the TA go-tdx adapter are currently available, as described in the next section. Some details of an Intel TDX client implementation for cloud service provider (CSP) platforms differ from the standard Intel TDX TCB that runs on a hosted or on-premises server. CSP platforms require a customized adapter to map their implementations to the requirements of the TA evidence verification service. The TA **go-tdx** adapters differ mainly in how they combine the evidence collected from the TD with user data, if supplied, and hash it for verification. Nearly all API functions are identical across adapters. Where behavior differs, the API's Usage section describes the difference.
 
 ### TA go-tdx variants
 
 - **go-tdx** for Intel TDX-enabled platforms. The code for this adapter is in [intel/ta-client-for-go/go-tdx](https://github.com/intel/ta-client-for-go/tree/main/go-tdx) on the **main** branch.
 - **go-tdx** for [Microsoft Azure confidential VMs with Intel TDX](https://azure.microsoft.com/en-us/updates/confidential-vms-with-intel-tdx-dcesv5-ecesv5-public-preview/). The code for the Azure adapter is in [intel/ta-client-for-go/go-tdx](https://github.com/intel/ta-client-for-go/tree/azure-tdx-preview/go-tdx) on the **azure_tdx_preview** branch.
 
-The go-tdx adapter for Azure confidential VMs with Intel TDX differs from the Intel TDX stack in the following ways:
+The go-tdx adapter for Azure confidential VMs with Intel TDX differs from the standard Intel TDX stack in the following ways:
 
 - The `tdreport.report_data` hash doesn't measure user data. It only measures the Azure TD runtime data provided by the Azure "paravisor" component.
 - Azure TD runtime data is always a JSON object literal.
 - If the user data is JSON, it's output as JSON in the **attester_user_data** claim. If the user data is binary, it's output as base64-encoded data in the **attester_held_data** claim.
 - TA requires a hash of the runtime data to be present in the `TDREPORT.report_data` field. The customized go-tdx adapter for Azure TD handles the logic to retrieve the runtime data from the paravisor. The Azure TD runtime data has a predefined JSON data structure, which includes a 64-byte user-data field. The customized go-tdx adapter for Azure TD uses the `runtime_data.user-data` field to hold the SHA512 hash of the original user-provided data and nonce (if any).
-- A new API endpoint is available to support Azure TDX attestation: `api.trusthauthority.com/appraisal/v1/attest/tdxvm`. This API accepts a user_data parameter in the request:
+- The Azure TDX attestation endpoint is `api.trusthauthority.com/appraisal/v1/attest/tdxvm`. This endpoint accepts a `user_data` parameter in the request:
 
   ```json
   {
@@ -479,7 +479,7 @@ func NewEventLogParser() EventLogParser
 
 #### Parameters
 
-**NewEventLogParser** doesn't take any input.
+**NewEventLogParser** does not take any input.
 
 #### Example
 
@@ -613,7 +613,7 @@ func (parser *fileEventLogParser) GetEventLogs() ([]RtmrEventLog, error)
 
 #### Parameters
 
-**GetEventLogs** doesn't take any input.
+**GetEventLogs** does not take any input.
 
 #### Returns
 
@@ -657,7 +657,7 @@ func (adapter *GPUAdapter) GetEvidence(verifierNonce *connector.VerifierNonce, u
 
 ### `GetEvidenceIdentifier`
 
-**GetEvidenceIdentifier** is currently set to return "nvgpu".
+**GetEvidenceIdentifier** returns `"nvgpu"`.
 
 ```go
 func (*GPUAdapter) GetEvidenceIdentifier() string
@@ -695,7 +695,7 @@ This feature is in limited preview status. Details of implementation and usage m
 
 ### `CollectEvidence` (AMD)
 
-**CollectEvidence** retrieves an SEV-SNP report by using an SEV-SNP guest driver in the VM.
+**CollectEvidence** retrieves an SEV-SNP report by using the SEV-SNP guest driver in the VM.
 
 :::note
 **CollectEvidence** follows different internal logic depending on which Intel AMD SEVSNP platform you use. Some CSPs customize the base Intel AMD SEVSNP stack for their platform, which requires a modified go-amd to match the requirements for TA quote verification. Ensure that you use the correct adapter for your Intel AMD SEVSNP platform.

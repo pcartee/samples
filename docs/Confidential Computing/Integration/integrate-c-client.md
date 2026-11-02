@@ -1,6 +1,6 @@
 ---
 title: TA C connector
-description: Reference for the Trust Authority (TA) C client libraries, including the C connector, Intel SGX, Intel TDX, TPM, NVIDIA GPU, and AMD SEV-SNP adapters, token functions, and evidence builder functions used to collect evidence and request and verify attestation tokens.
+description: Reference for the Trust Authority (TA) C client, including connector, Intel SGX, Intel TDX, TPM, NVIDIA GPU, and AMD SEV-SNP adapters, token APIs, evidence builder functions, and return values.
 author: pcartee
 topic: integration
 date: "2025-05-19"
@@ -8,19 +8,19 @@ uid: integrate.c.client
 sidebar_position: 5
 ---
 
-The Trust Authority (TA) client provides a set of C libraries for attesting Intel® Software Guard Extensions (Intel® SGX) and Intel® Trust Domain Extensions (Intel® TDX) trusted execution environments (TEEs), and Azure confidential VMs with Intel TDX. You can import the C libraries into your application and make REST calls to TA to get an attestation token that contains information about the TEE attestation and verification.
+The Trust Authority (TA) C client provides libraries for attesting Intel® Software Guard Extensions (Intel® SGX) and Intel® Trust Domain Extensions (Intel® TDX) trusted execution environments (TEEs), as well as Azure confidential VMs with Intel TDX. Import the libraries into your application to make REST calls to TA and obtain attestation tokens that contain information about TEE attestation and verification.
 
 The TA C client modules, build instructions, and installation instructions are on GitHub at [**intel/ta-client-for-c**](https://github.com/intel/ta-client-for-c).
 
 ## Return values
 
-All C connector functions return an integer **TRUST_AUTHORITY_STATUS** value. Multiple status conditions are combined by using bitwise OR. Subcomponents, such as the platform adapters, might include an error base value to identify the component (for example, `STATUS_TDX_ERROR_BASE 0x3000`), which is combined by using OR with the **TRUST_AUTHORITY_STATUS** value.
+All C connector functions return an integer **TRUST_AUTHORITY_STATUS** value. Multiple status conditions are combined by using bitwise OR. Subcomponents, such as platform adapters, might include an error base value to identify the component (for example, `STATUS_TDX_ERROR_BASE 0x3000`). TA combines this value with **TRUST_AUTHORITY_STATUS** by using bitwise OR.
 
 For a complete list of status conditions, see the `TRUST_AUTHORITY_STATUS` enumeration in [intel/ta-client-for-c/include/types.h](https://github.com/intel/ta-client-for-c/include/types.h).
 
 ## C client library structure
 
-The TA client for C contains the following libraries:
+The TA C client contains the following libraries:
 
 - **C connector**: Establishes a connection to TA services and contains general-purpose attestation functions.
 - **Intel SGX adapter (C-SGX)**: Works with the low-level Intel SGX DCAP functions to collect evidence and prepare a quote.
@@ -33,11 +33,11 @@ The TA client for C contains the following libraries:
 
 ## C connector API
 
-The C connector module communicates with the TA service by using TA REST APIs. The first step in using the C connector is to create a connector instance.
+The C connector module communicates with the TA service through TA REST APIs. To use the C connector, first create a connector instance.
 
 ### `trust_authority_connector_new`
 
-Connects to TA. All APIs that communicate with TA require a pointer to the connector instance. Delete the connector instance by using **connector_free**.
+Connects to TA. All APIs that communicate with TA require a pointer to the connector instance. Delete the instance by using **connector_free**.
 
 ```c
 TRUST_AUTHORITY_STATUS trust_authority_connector_new(
@@ -318,11 +318,11 @@ int sgx_adapter_free(
 
 ## C Intel TDX API
 
-The Intel TDX adapter is available in two variations: one for TDs running on the standard Intel TDX [TCB](../glossary.md#tcb), and one for TDs running on Azure confidential VMs with Intel TDX. Both adapters are installed when you install the TA C client.
+The Intel TDX adapter is available in two variations: one for TDs running on the standard Intel TDX [TCB](../glossary.md#tcb), and one for TDs running on Azure confidential VMs with Intel TDX. The TA C client installation includes both adapters.
 
-Both Intel TDX adapters support the same set of APIs. The APIs for Azure VMs include `_azure` in the name. Arguments and usage are identical for both adapters, but the adapters aren't interchangeable. The platform software and the details of collecting evidence differ between the Intel TDX TCB and the Azure VM TCB. The Intel TDX adapter uses the configfs-tsm Linux subsystem to collect evidence for a quote. Azure confidential VMs with Intel TDX use a proprietary method to collect evidence for the trust domain.
+Both Intel TDX adapters support the same APIs. The Azure VM APIs include `_azure` in their names. The arguments and usage are identical, but the adapters aren't interchangeable because the platform software and evidence collection differ between the Intel TDX TCB and the Azure VM TCB. The Intel TDX adapter uses the configfs-tsm Linux subsystem to collect evidence for a quote. Azure confidential VMs with Intel TDX use a proprietary method to collect evidence for the trust domain.
 
-An API endpoint is available to support Azure TDX attestation: `<api_url>/appraisal/v1/attest/azure/tdxvm`. This API accepts a `user_data` parameter in the request:
+The Azure TDX attestation endpoint is `<api_url>/appraisal/v1/attest/azure/tdxvm`. This endpoint accepts a `user_data` parameter in the request:
 
 ```json
 {
@@ -336,7 +336,7 @@ An API endpoint is available to support Azure TDX attestation: `<api_url>/apprai
 
 For more information about the differences between the Intel TDX adapter and the Azure adapter for Intel TDX, see [TA go-tdx variants](../Integration/integrate-go-client.md#ta-go-tdx-variants).
 
-All Intel TDX adapter functions return an integer value that indicates status. The status value is the bitwise OR of **STATUS_TDX_ERROR_BASE** (0x3000) and **TRUST_AUTHORITY_STATUS**. For an enumeration of possible status values, see **types.h**.
+All Intel TDX adapter functions return an integer status value. TA combines **STATUS_TDX_ERROR_BASE** (0x3000) and **TRUST_AUTHORITY_STATUS** by using bitwise OR. For an enumeration of possible status values, see **types.h**.
 
 ### `tdx_adapter_new`
 
@@ -404,7 +404,7 @@ int tdx_adapter_free(
 
 ### Intel TDX example
 
-The following code fragment creates a new Intel TDX adapter for an Azure VM, and then uses the adapter to collect evidence for a quote. The code for a standard Intel TDX TD is the same, except for the function names.
+The following code fragment creates an Intel TDX adapter for an Azure VM and uses it to collect evidence for a quote. The code for a standard Intel TDX TD is the same, except for the function names.
 
 ```c
 #include <tdx_adapter.h>
@@ -426,11 +426,11 @@ if (status != STATUS_OK)
 
 ## Token API
 
-This section describes the functions exported in **token_provider.h** and **token_verifier.h**.
+This section describes the functions exported by **token_provider.h** and **token_verifier.h**.
 
 ### `collect_token`
 
-Gets an attestation token from TA. This function calls the evidence adapter to collect evidence, and then sends the quote to TA to get a token.
+Gets an attestation token from TA. This function calls the evidence adapter to collect evidence and then sends the quote to TA to obtain a token.
 
 ```c
 TRUST_AUTHORITY_STATUS collect_token(
@@ -461,7 +461,7 @@ TRUST_AUTHORITY_STATUS collect_token(
 
 ### `verify_token`
 
-Parses and validates the elements of a token, gets the token signing certificate (JWK) from TA, and initiates verification of the token against the token signing certificate.
+Parses and validates a token, retrieves the token signing certificate (JWK) from TA, and begins verifying the token against that certificate.
 
 ```c
 TRUST_AUTHORITY_STATUS verify_token(
@@ -498,7 +498,7 @@ int tpm_adapter_free(
 
 ### `tpm_adapter_new()`
 
-Creates a new adapter to get TPM evidence from the platform.
+Creates an adapter to collect TPM evidence from the platform.
 
 ```c
 int tpm_adapter_new(evidence_adapter **adapter)
@@ -512,7 +512,7 @@ int tpm_adapter_new(evidence_adapter **adapter)
 
 #### Returns
 
-An int containing the status.
+An integer status value.
 
 ### `tpm_get_evidence()`
 
@@ -540,7 +540,7 @@ int tpm_get_evidence(
 
 #### Returns
 
-An int containing **TRUST_AUTHORITY_STATUS**.
+An integer **TRUST_AUTHORITY_STATUS** value.
 
 ### `tpm_get_evidence_identifier()`
 
@@ -658,7 +658,7 @@ int nvgpu_adapter_free(evidence_adapter *adapter)
 
 ### `nvgpu_adapter_new()`
 
-Creates a new adapter to get evidence and the corresponding certificate chain from the provisioned NVIDIA H100 GPU.
+Creates an adapter to collect evidence and the corresponding certificate chain from the provisioned NVIDIA H100 GPU.
 
 ```c
 int nvgpu_adapter_new(evidence_adapter **adapter)
@@ -668,15 +668,15 @@ int nvgpu_adapter_new(evidence_adapter **adapter)
 
 | Name | Description |
 | :--- | :--- |
-| **adapter** | A pointer reference to the evidence adapter. |
+| **adapter** | A pointer to the evidence adapter. |
 
 #### Returns
 
-An int containing the status.
+An integer status value.
 
 ### `nvgpu_get_evidence()`
 
-Collects NVGPU evidence from an NVIDIA GPU and generates a JSON object-based request body for TA attestation.
+Collects NVGPU evidence from an NVIDIA GPU and generates a JSON-based request body for TA attestation.
 
 ```c
 int nvgpu_get_evidence(
@@ -693,7 +693,7 @@ int nvgpu_get_evidence(
 | Name | Description |
 | :--- | :--- |
 | **ctx** | The pointer to the context. |
-| **evidence** | The pointer reference to the generated JSON object-based evidence. |
+| **evidence** | A pointer to the generated JSON-based evidence. |
 | **nonce** | The pointer to the nonce. |
 | **user_data** | Must be NULL because NVGPU attestation doesn't support it. |
 | **user_data_len** | Must be 0 because NVGPU attestation doesn't support it. |
@@ -717,14 +717,14 @@ The resulting identifier.
 ## C-SEVSNP adapter API
 
 :::note
-AMD SEV-SNP attestation is currently in limited preview status in the pilot environment only. Details of implementation might change before release. For access to the preview, contact your Intel representative.
+AMD SEV-SNP attestation is available only as a limited preview in the pilot environment. Implementation details might change before release. To access the preview, contact your Intel representative.
 :::
 
 As of the v1.10 release, Azure confidential VMs with AMD SEV-SNP and vTPM attestation are supported in the pilot environment. For more information, see the [Azure TPM Token](https://github.com/intel/ta-client-for-c/tree/main/examples/azure_tpm_token) example application.
 
 ### `azure_sevsnp_adapter_new()`
 
-Creates a new adapter to get a report from the Azure SEVSNP platform.
+Creates an adapter to get a report from the Azure SEV-SNP platform.
 
 ```c
 int azure_sevsnp_adapter_new(evidence_adapter **adapter)
@@ -748,7 +748,7 @@ int sevsnp_adapter_free(evidence_adapter *adapter)
 
 ### `sevsnp_adapter_new()`
 
-Creates a new SEVSNP adapter instance.
+Creates a new SEV-SNP adapter instance.
 
 ```c
 int sevsnp_adapter_new(evidence_adapter **adapter)
@@ -766,7 +766,7 @@ An int containing the status.
 
 ### `sevsnp_collect_evidence()`
 
-Collects an SEVSNP evidence report from an on-premises or GCP VM.
+Collects an SEV-SNP evidence report from an on-premises or GCP VM.
 
 ```c
 int sevsnp_collect_evidence(
@@ -794,7 +794,7 @@ An int containing the status.
 
 ### `sevsnp_collect_evidence_azure()`
 
-Collects the SEVSNP report from the Azure platform.
+Collects the SEV-SNP report from the Azure platform.
 
 ```c
 int sevsnp_collect_evidence_azure(
@@ -822,7 +822,7 @@ An int containing the status.
 
 ### `sevsnp_get_evidence()`
 
-Collects the SEVSNP report from an on-premises or GCP platform.
+Collects the SEV-SNP report from an on-premises or GCP platform.
 
 ```c
 int sevsnp_get_evidence(
@@ -850,7 +850,7 @@ An int containing the status.
 
 ### `sevsnp_get_evidence_azure()`
 
-Collects the SEVSNP report from an Azure confidential VM with AMD SEV-SNP.
+Collects the SEV-SNP report from an Azure confidential VM with AMD SEV-SNP.
 
 ```c
 int sevsnp_get_evidence_azure(
@@ -884,7 +884,7 @@ const char *sevsnp_get_evidence_identifier()
 
 ### `with_vmpl()`
 
-Collects the SEVSNP report from the Azure platform.
+Collects the SEV-SNP report from the Azure platform.
 
 ```c
 int with_vmpl(
@@ -898,11 +898,11 @@ int with_vmpl(
 | Name | Description |
 | :--- | :--- |
 | **ctx** | A void pointer containing context. |
-| **vmpl_level** | The VM privilege level to set when retrieving the SEVSNP evidence (on-premises or GCP only). |
+| **vmpl_level** | The VM privilege level to set when retrieving SEV-SNP evidence (on-premises or GCP only). |
 
 #### Returns
 
-An int containing the status.
+An integer status value.
 
 ## Evidence Builder API
 
@@ -958,7 +958,7 @@ A **TRUST_AUTHORITY_STATUS** value.
 
 ### `evidence_builder_new()`
 
-Creates a new evidence builder to build composite evidence for TA.
+Creates an evidence builder to build composite evidence for TA.
 
 ```c
 TRUST_AUTHORITY_STATUS evidence_builder_new(

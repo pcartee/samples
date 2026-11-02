@@ -1,6 +1,6 @@
 ---
 title: User management
-description: Learn how tenant admins in Trust Authority (TA) view, invite, search, update, and delete users with the TA portal or the tactl CLI, including user roles (Tenant Admin and User) and related commands.
+description: Learn how tenant admins manage users in Trust Authority (TA) through the portal and tactl CLI, including viewing, inviting, searching, changing roles, and deleting users.
 author: pcartee
 topic: how to
 date: "2024-12-09"
@@ -11,13 +11,13 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Trust Authority (TA) divides user permissions into _tenant admins_ and _users_. Tenant admins can perform all regular user functions and manage other users through the **Manage users** dashboard. Your tenant must have at least one active tenant admin. TA automatically assigns this role to the first TA subscriber from a tenant organization. Only tenant admins can invite, edit, and delete users.
+Trust Authority (TA) assigns each user one of two roles: Tenant Admin or User. Tenant admins can perform all regular user functions and manage other users through the **Manage users** dashboard. Your tenant must have at least one active tenant admin. TA automatically assigns this role to the first TA subscriber from a tenant organization. Only tenant admins can invite, edit, and delete users.
 
 :::important
 Enable more than one tenant admin account for redundancy.
 :::
 
-You can manage users in the TA portal, with the [CLI](../Command-line/cli-user-commands.md), or by using the REST API. Select the tab for your preferred method.
+You can manage users in the TA portal, with the [CLI](../Command-line/cli-user-commands.md), or by using the REST API. This article provides instructions for the portal and CLI. Select the tab for your preferred method.
 
 <Tabs>
   <TabItem value="portal" label="TA portal" default>
@@ -32,7 +32,7 @@ To view the list of users:
 
 1. Select **Manage users**.
 
-   ![The Manage Users page listing each user's email address, role, status, and actions, with an Invite a user button and search by email, role, and status controls.](/img/howto-manage-users/view-users.png)
+   ![The Manage users page showing a table of users with their email addresses, roles, statuses, and actions; an Invite a user button; and search filters for email, role, and status.](/img/howto-manage-users/view-users.png)
 
    The table lists each user, their role, and their status.
 
@@ -68,7 +68,7 @@ You can search for TA users within your tenant by filtering by email, role, or s
 
 1. In the **Manage users** dashboard, filter users by using any of the following options:
 
-   - **Search by email**: In the **Search by email** box, enter the user's email address. This is an incremental search that starts when you enter the first character. The table displays users whose email addresses match.
+   - **Search by email**: In the **Search by email** box, enter the user's email address. Search results update as you type, starting with the first character. The table displays users whose email addresses match.
    - **Search by role**: From the menu, select a role option (**Show All**, **Tenant Admin**, or **User**). The table displays users with the selected role.
    - **Search by status**: From the menu, select a status option (**Show All**, **Active**, or **Pending**). The table displays users with the selected status.
 
@@ -82,9 +82,9 @@ To update a user's role:
 
 1. Identify the user to update.
 
-1. Select the **Edit** icon ![Pencil icon that represents Edit.](/img/common-graphics/edit-icon.png).
+1. Select the **Edit** icon ![Pencil icon for Edit.](/img/common-graphics/edit-icon.png).
 
-1. In the pop-up window, select **YES, EDIT**.
+1. In the dialog box, select **YES, EDIT**.
 
 1. From the menu, select the new role.
 
@@ -102,9 +102,9 @@ To delete a user:
 
 1. Identify the user to delete.
 
-1. Select the **Delete** icon ![Trash can icon that represents Delete.](/img/common-graphics/delete-icon.png).
+1. Select the **Delete** icon ![Trash can icon for Delete.](/img/common-graphics/delete-icon.png).
 
-1. In the pop-up window, select **YES, DELETE USER**.
+1. In the dialog box, select **YES, DELETE USER**.
 
    TA deletes the user and removes them from the **Active Users** pane.
 
@@ -118,9 +118,11 @@ Deleting a user does **not** delete the user's policies, tags, or API keys.
 
 ## CLI
 
+The sample responses use example email addresses and redacted identifiers, timestamps, and trace IDs.
+
 ### View tenant admins and users
 
-This command lists the current users in your environment:
+This command lists the current users in your tenant:
 
 ```bash
 tactl list user
@@ -135,138 +137,140 @@ tactl list user
 #### Sample response
 
 ```text
-trace-id:  LOnetHW6IAMEEQQ=
+trace-id:  <redacted trace ID>
 Users:
 [
   {
-    "id": "e3968eb8-e053-4646-98dd-7b61991a66d1",
+    "id": "<redacted user ID>",
     "email": "user@example.com",
     "tenant_roles": [
       {
-        "tenant_id": "020f1162-25ed-441c-9d8f-69cfc7974cc1",
+        "tenant_id": "<redacted tenant ID>",
         "roles": [
           {
-            "id": "66ec2e33-8cd3-42b1-8963-c7765205446e",
+            "id": "<redacted role ID>",
             "name": "Tenant Admin"
           }
         ]
       }
     ],
     "active": true,
-    "created_at": "2022-09-29T16:42:46.236499Z"
+    "created_at": "<redacted timestamp>"
   },
   {
-    "id": "f9af3e31-9fc5-48db-afc3-c818049f6570",
+    "id": "<redacted user ID>",
     "email": "user@example.com",
     "tenant_roles": [
       {
-        "tenant_id": "020f1162-25ed-441c-9d8f-69cfc7974cc1",
+        "tenant_id": "<redacted tenant ID>",
         "roles": [
           {
-            "id": "66ec2e33-8cd3-42b1-8963-c7765205446e",
+            "id": "<redacted role ID>",
             "name": "Tenant Admin"
           }
         ]
       }
     ],
     "active": false,
-    "created_at": "2022-10-01T01:00:53.924856Z"
+    "created_at": "<redacted timestamp>"
   },
   {
-    "id": "82ac5d98-c8ba-49cf-ac3e-4d4a1385be68",
+    "id": "<redacted user ID>",
     "email": "user@example.com",
     "tenant_roles": [
       {
-        "tenant_id": "020f1162-25ed-441c-9d8f-69cfc7974cc1",
+        "tenant_id": "<redacted tenant ID>",
         "roles": [
           {
-            "id": "885391bf-2a37-4dc7-9444-833c5a817cdf",
+            "id": "<redacted role ID>",
             "name": "User"
           }
         ]
       }
     ],
     "active": false,
-    "created_at": "2022-10-01T01:27:44.145412Z"
+    "created_at": "<redacted timestamp>"
   },
   {
-    "id": "42850600-7a58-43a1-970a-85bb4008cd88",
+    "id": "<redacted user ID>",
     "email": "user@example.com",
     "tenant_roles": [
       {
-        "tenant_id": "020f1162-25ed-441c-9d8f-69cfc7974cc1",
+        "tenant_id": "<redacted tenant ID>",
         "roles": [
           {
-            "id": "66ec2e33-8cd3-42b1-8963-c7765205446e",
+            "id": "<redacted role ID>",
             "name": "Tenant Admin"
           }
         ]
       }
     ],
     "active": false,
-    "created_at": "2022-10-11T20:30:40.348744Z"
+    "created_at": "<redacted timestamp>"
   },
   {
-    "id": "1c83eeb3-e9f7-4a59-8104-7009f6f385b0",
+    "id": "<redacted user ID>",
     "email": "user@example.com",
     "tenant_roles": [
       {
-        "tenant_id": "020f1162-25ed-441c-9d8f-69cfc7974cc1",
+        "tenant_id": "<redacted tenant ID>",
         "roles": [
           {
-            "id": "66ec2e33-8cd3-42b1-8963-c7765205446e",
+            "id": "<redacted role ID>",
             "name": "Tenant Admin"
           }
         ]
       }
     ],
     "active": false,
-    "created_at": "2022-10-11T21:16:45.358066Z"
+    "created_at": "<redacted timestamp>"
   },
   {
-    "id": "598db1fc-4340-4bbc-9e19-2d596c3b7bd8",
+    "id": "<redacted user ID>",
     "email": "user@example.com",
     "tenant_roles": [
       {
-        "tenant_id": "020f1162-25ed-441c-9d8f-69cfc7974cc1",
+        "tenant_id": "<redacted tenant ID>",
         "roles": [
           {
-            "id": "885391bf-2a37-4dc7-9444-833c5a817cdf",
+            "id": "<redacted role ID>",
             "name": "User"
           }
         ]
       }
     ],
     "active": false,
-    "created_at": "2022-10-12T03:18:17.545383Z"
+    "created_at": "<redacted timestamp>"
   },
   {
-    "id": "dd4b49c7-9207-43e4-a3c1-8c734cf828a4",
+    "id": "<redacted user ID>",
     "email": "user@example.com",
     "tenant_roles": [
       {
-        "tenant_id": "020f1162-25ed-441c-9d8f-69cfc7974cc1",
+        "tenant_id": "<redacted tenant ID>",
         "roles": [
           {
-            "id": "66ec2e33-8cd3-42b1-8963-c7765205446e",
+            "id": "<redacted role ID>",
             "name": "Tenant Admin"
           }
         ]
       }
     ],
     "active": false,
-    "created_at": "2022-10-12T03:18:19.458591Z"
+    "created_at": "<redacted timestamp>"
   }
 ]
 ```
 
 ### Create a user (CLI)
 
-Use the following command to create a user in your environment:
+Use the following command to create a user in your tenant:
 
 ```bash
-tactl create user -e <email address> -r <role (Tenant Admin/User)>
+tactl create user -e "<email address>" -r "<role>"
 ```
+
+Use `Tenant Admin` or `User` as the role.
 
 #### Sample call
 
@@ -277,18 +281,18 @@ tactl create user -e user@example.com -r User
 #### Sample response
 
 ```text
-trace-id:  LOnduFR-IAMEVqw=
+trace-id:  <redacted trace ID>
 User:
 
- {
-  "id": "8f96ee5c-69a7-497d-9cf7-900ed2250470",
+{
+  "id": "<redacted user ID>",
   "email": "user@example.com",
   "role": {
-    "id": "885391bf-2a37-4dc7-9444-833c5a817cdf",
+    "id": "<redacted role ID>",
     "name": "User"
   },
   "active": false,
-  "created_at": "2023-09-14T04:02:57.329824144Z",
+  "created_at": "<redacted timestamp>",
   "privacy_acknowledgement": false
 }
 ```
@@ -298,7 +302,7 @@ User:
 Use the following command to update the role of a specified user:
 
 ```bash
-tactl update user role -u <user ID> -r <role (Tenant Admin/User)>
+tactl update user role -u "<user ID>" -r "<role>"
 ```
 
 #### Sample call
@@ -310,24 +314,24 @@ tactl update user role -a "<redacted admin API key>" -u "<user ID>" -r "Tenant A
 #### Sample response
 
 ```text
-trace-id:  LOnetHW6IAMEEQQ=
+trace-id:  <redacted trace ID>
 Updated User:
 {
-  "id": "598db1fc-4340-4bbc-9e19-2d596c3b7bd8",
+  "id": "<redacted user ID>",
   "email": "user@example.com",
   "tenant_roles": [
     {
-      "tenant_id": "020f1162-25ed-441c-9d8f-69cfc7974cc1",
+      "tenant_id": "<redacted tenant ID>",
       "roles": [
         {
-          "id": "66ec2e33-8cd3-42b1-8963-c7765205446e",
+          "id": "<redacted role ID>",
           "name": "Tenant Admin"
         }
       ]
     }
   ],
   "active": false,
-  "created_at": "2022-10-12T03:18:17.545383Z"
+  "created_at": "<redacted timestamp>"
 }
 ```
 
@@ -336,7 +340,7 @@ Updated User:
 This command deletes the specified user from the tenant you're signed in to:
 
 ```bash
-tactl delete user -u <user ID>
+tactl delete user -u "<user ID>"
 ```
 
 #### Sample call
@@ -348,7 +352,7 @@ tactl delete user -a "<redacted admin API key>" -u "<user ID>"
 #### Sample response
 
 ```text
-trace-id:  LOnf6FS_oAMEXPw=
+trace-id:  <redacted trace ID>
 User <user ID> deleted
 ```
 
