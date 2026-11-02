@@ -1,5 +1,5 @@
 ---
-title: Supply buildout process: end-to-end guide
+title: Supply buildout process
 author: jm_tobkin@apple.com
 date: "2026-04-14"
 description: End-to-end guide to SAFE approvals, CIBO supply allocation, DRC deployments, partial fulfillment, server returns, and the Flip the Bit decommissioning process.
