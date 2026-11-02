@@ -1,6 +1,6 @@
 ---
 title: Author a custom policy
-description: Learn how to author Trust Authority (TA) attestation policies in Rego, including policy requirements, obtaining expected claim values, and sample Intel SGX and Azure confidential VM policies using Intel TDX and vTPM.
+description: Learn how to write Trust Authority (TA) attestation policies in Rego, obtain expected claim values, and create sample policies for Intel SGX and Azure confidential VMs using Intel TDX and vTPM.
 author: pcartee
 topic: how to
 date: "2024-07-17"
@@ -9,14 +9,14 @@ sidebar_position: 3
 ---
 
 :::important
-This article describes version 1 (V1) of the attestation policy supported by TA. Version 2 (V2) is also available. We strongly encourage you to transition your V1 policies to V2. TA continues to support V1 for now, but will eventually phase it out. For more information about transitioning to V2, see Attestation policy V2.
+This article describes version 1 (V1) of the attestation policy supported by TA. Version 2 (V2) is also available. We recommend transitioning your V1 policies to V2. TA continues to support V1 for now but will eventually phase it out. For more information about transitioning to V2, see Attestation policy V2.
 :::
 
-This article explains how to create policies for TA. TA uses [Open Policy Agent (OPA)](https://www.openpolicyagent.org/docs/latest/) to decouple policy evaluation logic from policy enforcement. Policies are written in the [Rego policy language](https://www.openpolicyagent.org/docs/latest/policy-language/).
+This article explains how to write policies for TA. TA uses [Open Policy Agent (OPA)](https://www.openpolicyagent.org/docs/latest/) to decouple policy evaluation logic from policy enforcement. Policies are written in the [Rego policy language](https://www.openpolicyagent.org/docs/latest/policy-language/).
 
 TA always issues a token, even when a policy fails. The exception is the built-in default policy, which evaluates the integrity of the Intel® Software Guard Extensions (Intel® SGX) quoting enclave and trusted computing base (TCB). If the built-in policy fails, TA returns an error and does not issue a token.
 
-The issued token categorizes policies as matched or unmatched.
+The token indicates whether each policy matched or did not match.
 
 ## Allowed built-in functions and operators
 
@@ -49,15 +49,15 @@ Every policy must have at least one rule that evaluates to the correct output ty
 
 ## Attestation policies
 
-Attestation policies define the requirements that the appraiser (TA) compares with the evidence provided by an attester. When a token request specifies user-defined attestation policies, the resulting token contains arrays of matched and unmatched policy IDs. These arrays indicate which policies' requirements the evidence satisfied.
+Attestation policies define the requirements that the appraiser (TA) compares with the evidence provided by an attester. When a token request specifies user-defined attestation policies, the resulting token contains arrays of matched and unmatched policy IDs. These arrays indicate which policies' requirements the evidence satisfies.
 
 ### Obtaining policy values
 
 Attestation policies require expected claim values. For example, a policy might require the `sgx.mrenclave` claim to match the value `83f4e819861adef6ffb2a4865efea9337b91ed30fa33491b17f0d5d9e8204410`. How you initially obtain an expected value depends on the claims being evaluated and the technology being attested.
 
-The easiest method is to use the TA client to request an attestation for a known-good example of the application you want to protect. Examine the claims in the resulting token to see the supported claim values, then use the relevant values to author a policy that meets your application's trust requirements. For most attestation technologies, use the Attestation Client CLI's `token` command. For example, to request attestation of a VM protected by Intel TDX, run `ta-cli token --config config.json`.
+The easiest method is to use the TA client to request an attestation for a known-good instance of the application you want to protect. Examine the claims in the resulting token to see the supported claim values, then use the relevant values to write a policy that meets your application's trust requirements. For most attestation technologies, use the Attestation Client CLI's `token` command. For example, to request attestation of a VM protected by Intel TDX, run `ta-cli token --config config.json`.
 
-Alternatively, some technologies produce claim values as build outputs, or the software owner defines them. For example, with Intel SGX, the `sgx.mrenclave` value is a hash of the SGX enclave (a code library) and can be output as part of the build process. The `sgx_isvsvn` value is an integer defined by the software developer that indicates the enclave's security version level.
+Some technologies produce claim values as build outputs; for others, the software owner defines them. For example, with Intel SGX, the `sgx.mrenclave` value is a hash of the SGX enclave (a code library) and can be produced as part of the build process. The `sgx_isvsvn` value is an integer defined by the software developer that indicates the enclave's security version level.
 
 Some claim values are defined or known only to the infrastructure owner. Service providers might publish these values.
 
@@ -67,7 +67,7 @@ See the vendor documentation for the supported attestation technology to learn h
 
 TA always applies a default policy, even when other policies are associated with the API key or specified in an array in the token request. The default policy validates the enclave's trusted computing base (TCB) against the latest firmware and authenticated code modules. This provides assurance that the quoting enclave is genuine and up to date.
 
-When a customer-defined policy is assigned to an API key or specified in an array in the token request, the attestation token includes lists of matched and unmatched policy IDs. The token includes these lists only if a customer-defined attestation policy is specified in the token request or associated with the API key. The lists are not included when TA evaluates only the default policy. The TA team recommends defining one or more appraisal policies to validate specific claims in the quote.
+When a customer-defined policy is assigned to an API key or specified in an array in the token request, the attestation token includes arrays of matched and unmatched policy IDs. The token includes these arrays only if a customer-defined attestation policy is specified in the token request or associated with the API key. The arrays are not included when TA evaluates only the default policy. The TA team recommends defining one or more appraisal policies to validate specific claims in the quote.
 
 ## Sample Intel SGX attestation policy
 
@@ -76,11 +76,11 @@ This sample policy sets `false` as the default value and changes it to `true` on
 ```rego
 default matches_sgx_policy = false
 matches_sgx_policy = true {
-   input.sgx_mrenclave == "83f4e819861adef6ffb2a4865efea9337b91ed30fa33491b17f0d5d9e8204410"
-   input.sgx_mrsigner == "83d719e77deaca1470f6baf62a4d774303c899db69020f9c70ee1dfc08c7ce9e"
-   input.sgx_isvprodid == 3
-   input.sgx_isvsvn == 2
-   input.sgx_is_debuggable == false
+    input.sgx_mrenclave == "83f4e819861adef6ffb2a4865efea9337b91ed30fa33491b17f0d5d9e8204410"
+    input.sgx_mrsigner == "83d719e77deaca1470f6baf62a4d774303c899db69020f9c70ee1dfc08c7ce9e"
+    input.sgx_isvprodid == 3
+    input.sgx_isvsvn == 2
+    input.sgx_is_debuggable == false
 }
 ```
 
@@ -88,30 +88,29 @@ matches_sgx_policy = true {
 
 This section uses an Intel SGX attestation policy as an example. The authoring process is the same for all policies supported by TA.
 
-Before beginning these instructions, have access to the hash for the **mrenclave** measurement and the hash for the signing key.
+Before you begin, make sure you have the hash for the `mrenclave` measurement and the signing-key hash.
 
 1. Create a new file.
 
-2. Add the default value before evaluation:
+1. Set the default value before evaluation:
 
    ```rego
    default matches_sgx_policy = false
    ```
 
-3. Add the conditions (rules) that must be met to change the value to `true`:
+1. Add the conditions (rules) that must be met to change the value to `true`:
 
    ```rego
-   default matches_sgx_policy = false
    matches_sgx_policy = true {
-      input.sgx_mrenclave == "83f4e819861adef6ffb2a4865efea9337b91ed30fa33491b17f0d5d9e8204410"
-      input.sgx_mrsigner == "83d719e77deaca1470f6baf62a4d774303c899db69020f9c70ee1dfc08c7ce9e"
-      input.sgx_isvprodid == 3
-      input.sgx_isvsvn == 2
-      input.sgx_is_debuggable == false
+       input.sgx_mrenclave == "83f4e819861adef6ffb2a4865efea9337b91ed30fa33491b17f0d5d9e8204410"
+       input.sgx_mrsigner == "83d719e77deaca1470f6baf62a4d774303c899db69020f9c70ee1dfc08c7ce9e"
+       input.sgx_isvprodid == 3
+       input.sgx_isvsvn == 2
+       input.sgx_is_debuggable == false
    }
    ```
 
-4. Save the file.
+1. Save the file.
 
 ## Sample Azure* confidential VM policy with Intel® TDX and vTPM attestation
 
@@ -123,10 +122,12 @@ This sample policy verifies the integrity and authenticity of an Azure\* confide
 
 This policy imports the `rego.v1` package, which is required before defining a rule block. The package provides future keywords and related features.
 
+The measurement and digest values in the sample are abbreviated placeholders. Replace them with the values for your environment.
+
 ### Verify the integrity of an Azure* confidential VM with vTPM and Intel® TDX
 
 :::note
-Many system components extend TPM PCR measurements. With vTPM, the policy verifies the integrity and authenticity of the hypervisor and image. When an Azure* confidential VM runs updates, PCR values change at boot time, except for runtime PCR extensions such as IMA. The changed PCRs are updated on boot.
+Many system components extend TPM PCR measurements. With vTPM, the policy verifies the integrity and authenticity of the hypervisor and image. When an Azure* confidential VM runs updates, PCR values change at boot, except for runtime PCR extensions such as IMA. The changed PCR values are updated on boot.
 :::
 
 This sample policy sets `false` as the default value and changes it to `true` only if all the rules match.
@@ -158,44 +159,44 @@ is_azure_tdx_platform if {
 
 This section uses an Intel TDX with vTPM attestation policy as an example. The authoring process is the same for all policies supported by TA.
 
-Before you begin, have the hashes for the `mrseam` and `mrtd` measurements and the hash for the PCR digest.
+Before you begin, make sure you have the hashes for the `mrseam` and `mrtd` measurements and for the PCR digest.
 
 1. Create a new file.
 
-2. Import `rego.v1` at the top of your policy:
+1. Import `rego.v1` at the top of your policy:
 
    ```rego
    import rego.v1
    ```
 
-3. Add the default value for verifying an Azure* confidential VM with Intel TDX:
+1. Add the default value for verifying an Azure* confidential VM with Intel TDX:
 
    ```rego
    default match := false
    ```
 
-4. Add the conditions (rules) that must be met to change the value to `true`:
+1. Add the conditions (rules) that must be met to change the value to `true`:
 
    ```rego
    match if {
-    is_azure_tdx_cvm
-    is_azure_tdx_platform
+       is_azure_tdx_cvm
+       is_azure_tdx_platform
    }
 
    is_azure_tdx_cvm if {
-    input.tdx.tdx_mrseam == "360304d34a16aace0a18e09ad2d07d2b9fd3c17..."
-    input.tdx.tdx_mrtd == "0cc279c02d62414498ef4455822f2aea53351c8dc..."
+       input.tdx.tdx_mrseam == "360304d34a16aace0a18e09ad2d07d2b9fd3c17..."
+       input.tdx.tdx_mrtd == "0cc279c02d62414498ef4455822f2aea53351c8dc..."
    }
 
    is_azure_tdx_platform if {
-    pcr := input.tpm.pcrs[_]
-    pcr.alg == "SHA-256"
-    pcr.index == 0
-    pcr.digest == "f70272c29c9fd4b76eab8441a768..."
+       pcr := input.tpm.pcrs[_]
+       pcr.alg == "SHA-256"
+       pcr.index == 0
+       pcr.digest == "f70272c29c9fd4b76eab8441a768..."
    }
    ```
 
-5. Save the file.
+1. Save the file.
 
 ## Next steps
 

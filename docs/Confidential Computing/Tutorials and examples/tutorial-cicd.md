@@ -1,6 +1,6 @@
 ---
 title: CI/CD integration
-description: Automate updates to an Intel SGX appraisal policy in GitHub Actions. The example uses tactl and Gramine Shielded Containers to retrieve a new mrenclave measurement and update an existing Trust Authority policy.
+description: Learn how to use GitHub Actions, tactl, and Gramine Shielded Containers to retrieve an Intel SGX mrenclave measurement and update an existing Trust Authority appraisal policy.
 author: pcartee
 topic-type: tutorial
 date: "2023-08-01"
@@ -8,25 +8,25 @@ uid: tutorial.update.policies
 ---
 
 This tutorial shows how to automate updates to an Intel SGX appraisal
-policy in a GitHub Actions workflow. It retrieves the `mrenclave`
-measurement from a newly built application image and updates an existing
-policy to match the application version being attested. The example uses
-a Gramine Shielded Container, but you can adapt the workflow to other
-SGX build pipelines.
+policy in a GitHub Actions workflow. The workflow retrieves the
+`mrenclave` measurement from a newly built application image and updates
+an existing policy to match the application version being attested. The
+example uses a Gramine Shielded Container, but you can adapt the
+workflow to other SGX build pipelines.
 
 ## Update policies with GitHub Actions
 
 When a TEE-protected application is part of a continuous delivery (CD)
-workflow, the appraisal policy often needs to be updated as part of that
+workflow, you might need to update its appraisal policy as part of that
 workflow. Some application attributes, such as the `mrenclave`
-measurement, change with each build. If the policy still contains values
-from the previous version, its appraisal won't match the new evidence.
-The following GitHub Actions example automates the policy update so the
-policy stays current.
+measurement, change with each build. If the policy contains values from
+the previous version, its appraisal won't match the new evidence. The
+following GitHub Actions example automates the policy update to keep the
+policy current.
 
 ## Sample policy
 
-This tutorial assumes that you are familiar with GitHub Actions.
+This tutorial assumes that you're familiar with GitHub Actions.
 
 :::note
 This example assumes that you have an existing application that uses
@@ -53,23 +53,23 @@ the `mrenclave` value; it leaves the other claim values unchanged.
 The following steps show how to update the `mrenclave` value in an
 existing policy. The example retrieves TEE information for an SGX
 application in a Gramine Shielded Container (GSC) with the integrated TA
-client. It uses the [Docker integration for
-Gramine](https://github.com/gramineproject/gsc) command
-`gsc/gsc info-image` to get the latest `mrenclave` value from a newly
-built container image. The workflow then updates the appraisal policy
-so TA can attest the GSC enclave with the new value.
+client. It uses the `gsc/gsc info-image` command from the [Gramine Docker
+integration](https://github.com/gramineproject/gsc) to get the latest
+`mrenclave` value from a newly built container image. The workflow then
+updates the appraisal policy so TA can attest the GSC enclave with the
+new value.
 
 Although this example uses a GSC image, you can adapt the workflow for
 images that don't use GSC.
 
 1. Download the TA tenant management [CLI
    utility](../Command-line/cli-install.md). Replace
-   `<path-to-tactl>` with the path and file name of the `tactl`
+   `<tactl-download-URL>` with the download URL for the `tactl`
    executable.
 
    ```yaml
    name: Get TA tenant CLI
-   run: wget <path-to-tactl>
+   run: wget <tactl-download-URL>
    ```
 
 1. Retrieve the policy and temporarily save it to `policy.txt`. Set the
@@ -85,7 +85,7 @@ images that don't use GSC.
 
 1. Retrieve the updated `mrenclave` value from the GSC image.
 
-   Make sure `repo` and `tag` are available as environment variables to
+   Make sure `repo` and `tag` are available as environment variables in
    this step. `${repo}` is the image path, including the registry URL
    (for example, `container-registry-sample.com/sample-imagename`).
    `${tag}` is the image tag.

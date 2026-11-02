@@ -5,7 +5,6 @@ author: pcartee
 topic: Kubernetes deployment troubleshooting and logs
 date: "2024-08-14"
 uid: pkg.log
-
 sidebar_position: 3
 ---
 
@@ -177,7 +176,7 @@ Run this command to retrieve logs from all pods and containers managed
 by a deployment:
 
 ```bash
-kubectl logs deployment/<deployment-name> --all-pods=true --all-containers=true --namespace <namespace>
+kubectl logs "deployment/<deployment-name>" --all-pods=true --all-containers=true --namespace "<namespace>"
 ```
 
 ### Get the pod name
@@ -185,7 +184,7 @@ kubectl logs deployment/<deployment-name> --all-pods=true --all-containers=true 
 Run this command to list pods in a namespace:
 
 ```bash
-kubectl get pods --namespace <namespace>
+kubectl get pods --namespace "<namespace>"
 ```
 
 ### Get and follow pod logs
@@ -193,7 +192,7 @@ kubectl get pods --namespace <namespace>
 Use `--follow` to stream log output from a specific pod:
 
 ```bash
-kubectl logs <pod-name> --follow --namespace <namespace>
+kubectl logs "<pod-name>" --follow --namespace "<namespace>"
 ```
 
 ### Get details about the pod
@@ -202,7 +201,7 @@ Use `kubectl describe` to get details about a resource or group of
 resources:
 
 ```bash
-kubectl describe pod <pod-name> --namespace <namespace>
+kubectl describe pod "<pod-name>" --namespace "<namespace>"
 ```
 
 ## Search logs
@@ -212,5 +211,5 @@ REST API requests or pass a request ID with the client CLI, if
 supported. Search for that ID to trace a request through the system:
 
 ```bash
-kubectl logs deployment/<deployment-name> --namespace <namespace> | grep '<request-id>'
+kubectl logs "deployment/<deployment-name>" --namespace "<namespace>" | grep "<request-id>"
 ```

@@ -1,6 +1,6 @@
 ---
 title: Key Broker service installation
-description: Install and configure the Key Broker System (KBS) on Linux. Covers prerequisites, building the Docker image, creating host directories, configuring KBS and HashiCorp Vault or PyKMIP, optional proxy settings, and running the KBS container.
+description: Install and configure the Key Broker System (KBS) on Linux, including prerequisites, building its Docker image, creating host directories, configuring Vault or PyKMIP, setting optional proxy variables, and running the KBS container.
 author: pcartee
 topic: KBS
 date: "2025-04-14"
@@ -10,7 +10,7 @@ uid: kbs.installation
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To install and configure the Key Broker System (KBS), complete these steps:
+To install and configure the Key Broker System (KBS), follow these steps:
 
 1. [Install and configure the Key Management System (KMS)](key-broker-service-kms-install.md)
 1. Install and configure the KBS.
@@ -25,8 +25,8 @@ To install and configure the Key Broker System (KBS), complete these steps:
 
 ## Install and configure the Key Management System (KMS)
 
-KBS supports two KMS options: [HashiCorp Vault](key-broker-service-kms-install.md)
-and [PyKMIP](key-broker-service-kms-install.md). Follow the installation
+KBS supports two KMS options: [HashiCorp Vault](key-broker-service-kms-install.md#hashicorp-vault-configuration)
+and [PyKMIP](key-broker-service-kms-install.md#pykmip-configuration). Follow the installation
 instructions for the KMS you use.
 
 ## Build and install the Key Broker System (KBS)
@@ -38,11 +38,11 @@ Run `make docker` to build the KBS Docker image
 
 ### Install the KBS
 
-On Linux, follow these steps to install the KBS:
+On Linux, follow these steps to install KBS:
 
 1. Create directories.
 
-   Create the following directories on the host machine.
+   Create the following directories on the host:
 
    ```bash
    sudo mkdir -p /opt/kbs/users /etc/kbs/certs/tls /opt/kbs/keys /opt/kbs/keys-transfer-policy /etc/kbs/certs/signing-keys
@@ -55,7 +55,7 @@ On Linux, follow these steps to install the KBS:
 
 1. Configure the KBS.
 
-   Create a `kbs.env` file and add the configuration variables listed below.
+   Create a `kbs.env` file and add the configuration variables shown below.
 
    :::note
    The `kbs.env` file contains secrets, including the admin username and
@@ -71,9 +71,9 @@ On Linux, follow these steps to install the KBS:
    ADMIN_PASSWORD=<kbs admin password>
    HTTP_READ_HEADER_TIMEOUT=<KBS server read header timeout, default 10 sec>
    BEARER_TOKEN_VALIDITY_IN_MINUTES=<kbs auth token validity, default 5 min>
-   TRUSTAUTHORITY_API_URL="api.ta.company.com"
+   TRUSTAUTHORITY_API_URL="https://api.ta.intel.com"
    TRUSTAUTHORITY_API_KEY=<TA API key>
-   TRUSTAUTHORITY_BASE_URL="portal.ta.company.com"
+   TRUSTAUTHORITY_BASE_URL="https://portal.ta.intel.com"
    AUTHENTICATION_DEFEND_MAX_ATTEMPTS=<max number of invalid login attempts; default 5 attempts>
    AUTHENTICATION_DEFEND_INTERVAL_MINUTES=<time interval for invalid token fetch attempts; default 1 min>
    AUTHENTICATION_DEFEND_LOCKOUT_MINUTES=<lockout duration after the maximum number of attempts is exceeded; default 1 min>
@@ -81,11 +81,11 @@ On Linux, follow these steps to install the KBS:
    ```
 
 :::note
-If you are in the European Union (EU) region, use the following TA URLs:
+If you are in the European Union (EU) region, use these TA URLs:
 
 ```bash
-TRUSTAUTHORITY_API_URL="https://api.eu.ta.company.com"
-TRUSTAUTHORITY_BASE_URL="portal.eu.ta.company.com"
+TRUSTAUTHORITY_API_URL="https://api.eu.ta.intel.com"
+TRUSTAUTHORITY_BASE_URL="https://portal.eu.ta.intel.com"
 ```
 
 :::
@@ -127,7 +127,7 @@ KMIP_VERSION=<KMIP version>
 
 1. Optionally, configure a proxy setting.
 
-    If you're running behind a proxy, add the following to the `kbs.env` file.
+    If you are using a proxy, add these variables to the `kbs.env` file.
 
     ```bash
     http_proxy=<http proxy>

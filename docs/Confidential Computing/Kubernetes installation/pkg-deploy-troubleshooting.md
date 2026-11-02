@@ -18,14 +18,14 @@ proxies.
 ## Refresh TPM endorsement certificates
 
 During initial setup, the deployment downloads TPM endorsement
-certificates from an external URL. Refresh them periodically to get the
-latest versions.
+certificates from an external URL. Refresh them periodically to download
+the latest versions.
 
 1. Set the environment variables.
 
    ```bash
    # Namespace for the application deployment.
-   export APP_NAMESPACE=<application-namespace>
+   export APP_NAMESPACE="<application-namespace>"
 
    # AWS CLI image. Do not change.
    export AWS_CLI_IMAGE=amazon/aws-cli
@@ -52,43 +52,43 @@ latest versions.
    certificate manifests.
 
    ```bash
-   kustomize build <redacted-manifest-path> | envsubst | kubectl apply --timeout "${KUBECTL_TIMEOUT}" --filename -
+   kustomize build "<redacted-manifest-path>" | envsubst | kubectl apply --timeout "${KUBECTL_TIMEOUT}" --filename -
    ```
 
 1. Restart the certificate provisioning deployment. Replace
    `<redacted-deployment>` with its deployment name.
 
    ```bash
-   kubectl rollout restart deployment <redacted-deployment> --namespace "$APP_NAMESPACE"
+   kubectl rollout restart deployment "<redacted-deployment>" --namespace "$APP_NAMESPACE"
    ```
 
 ## Refresh TEE collateral
 
-Publish updated collateral containers every month.
+Publish updated collateral containers monthly.
 
 Set the environment variables for the collateral container:
 
 ```bash
 # Namespace for the application deployment.
-export NAMESPACE=<application-namespace>
+export NAMESPACE="<application-namespace>"
 
 # Name of the collateral container.
-export DATA_CONTAINER_NAME=<container-name>
+export DATA_CONTAINER_NAME="<container-name>"
 
 # Registry where the collateral container is stored.
-export CONTAINER_REGISTRY=<container-registry>
+export CONTAINER_REGISTRY="<container-registry>"
 
 # Image name for the collateral container.
-export DATA_CONTAINER_IMAGE_NAME=<image-name>
+export DATA_CONTAINER_IMAGE_NAME="<image-name>"
 
 # Image tag for the collateral container.
-export DATA_CONTAINER_IMAGE_TAG=<image-tag>
+export DATA_CONTAINER_IMAGE_TAG="<image-tag>"
 ```
 
 Update the collateral deployment to use the new image:
 
 ```bash
-kubectl patch deployment <redacted-deployment> --namespace "$NAMESPACE" \
+kubectl patch deployment "<redacted-deployment>" --namespace "$NAMESPACE" \
   --patch "{\"spec\":{\"template\":{\"spec\":{\"containers\":[{\"name\":\"$DATA_CONTAINER_NAME\",\"image\":\"$DATA_CONTAINER_IMAGE_NAME:$DATA_CONTAINER_IMAGE_TAG\"}]}}}}"
 ```
 
@@ -96,9 +96,9 @@ Restart the deployments that use the collateral. Replace the
 placeholders with your application's deployment names.
 
 ```bash
-kubectl rollout restart deployment <redacted-deployment-1> --namespace "$NAMESPACE"
-kubectl rollout restart deployment <redacted-deployment-2> --namespace "$NAMESPACE"
-kubectl rollout restart deployment <redacted-deployment-3> --namespace "$NAMESPACE"
+kubectl rollout restart deployment "<redacted-deployment-1>" --namespace "$NAMESPACE"
+kubectl rollout restart deployment "<redacted-deployment-2>" --namespace "$NAMESPACE"
+kubectl rollout restart deployment "<redacted-deployment-3>" --namespace "$NAMESPACE"
 ```
 
 ## Refresh CRLs
@@ -107,7 +107,7 @@ The Helm installation creates a custom resource (CR) for the certificate
 operator. To inspect it, run:
 
 ```bash
-kubectl get <redacted-resource-type> --namespace "$NAMESPACE" --output yaml
+kubectl get "<redacted-resource-type>" --namespace "$NAMESPACE" --output yaml
 ```
 
 The following example shows the general structure of the CR. Replace the
@@ -171,15 +171,15 @@ To force a refresh for a specific CRL, edit the custom resource and set
 its `refreshBeforeInDays` value to `0`:
 
 ```bash
-kubectl edit <redacted-resource-type> --namespace "$NAMESPACE"
+kubectl edit "<redacted-resource-type>" --namespace "$NAMESPACE"
 ```
 
 ## Uninstall the application
 
 ```bash
-cd <redacted-deployment-directory> \
-  && source <deployment-environment-file> \
-  && porter uninstall <application-name> -n <application-namespace> -f <redacted-porter-manifest>
+cd "<redacted-deployment-directory>" \
+  && source "<deployment-environment-file>" \
+  && porter uninstall "<application-name>" -n "<application-namespace>" -f "<redacted-porter-manifest>"
 ```
 
 ## Uninstall k3s (optional)
@@ -207,7 +207,7 @@ sudo /usr/local/bin/k3s-uninstall.sh
 
    ```bash
    # The file system volume path is shown by `df -h`.
-   sudo lvextend -L <expand-size> <full-path-of-the-file-system-volume>
+   sudo lvextend -L "<expand-size>" "<full-path-of-the-file-system-volume>"
    # Example: sudo lvextend -L 200G /dev/mapper/ubuntu--vg-ubuntu--lv
    ```
 

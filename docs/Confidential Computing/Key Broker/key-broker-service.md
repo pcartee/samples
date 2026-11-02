@@ -1,6 +1,6 @@
 ---
 title: Key Broker Service
-description: Overview of the Key Broker Service (KBS), its role in remote attestation and key release, and its Passport and Background verification modes. Explains the background verification workflow, key wrapping, and how to install KBS.
+description: Learn how the Key Broker Service (KBS) uses remote attestation to release keys. Covers Passport and background verification modes, the background verification workflow, key wrapping, and installation.
 author: pcartee
 topic: KBS
 date: "2024-04-18"
@@ -12,19 +12,18 @@ import TabItem from '@theme/TabItem';
 
 ## Key Broker Service and Trust Authority
 
-The Key Broker Service (KBS) enables key distribution by using
-attestation from a Trusted Execution Environment (TEE), such as Software
-Guard Extensions (SGX) or Trusted Domain Extensions (TDX), to authorize
-key transfers. It retains image decryption keys and acts as a bridge
-between an attestation service, such as Trust Authority (TA), and
-Key Management Interoperability Protocol (KMIP)-compatible key
-management platforms. KBS brokers access to secrets stored in key
-management services (KMSs) by evaluating attestation tokens against a
-key transfer policy. The policy defines the trust requirements for
-retrieving a key.
+The Key Broker Service (KBS) uses attestation from a trusted execution
+environment (TEE), such as Software Guard Extensions (SGX) or Trust
+Domain Extensions (TDX), to authorize key transfers. KBS retains image
+decryption keys and acts as a bridge between an attestation service,
+such as Trust Authority (TA), and key management platforms that support
+the Key Management Interoperability Protocol (KMIP). KBS brokers access
+to secrets stored in key management services (KMSs) by evaluating
+attestation tokens against a key transfer policy. This policy defines
+the trust requirements for retrieving a key.
 
-In remote attestation, a relying party (such as a key manager, secrets
-vault, or network access controller) must establish trust with a
+In remote attestation, a relying party, such as a key manager, secrets
+vault, or network access controller, must establish trust with a
 workload (the attester). The relying party uses a remote attestation
 service (a verifier) to appraise evidence from the attester and issue an
 attestation token that reports the appraisal.
@@ -34,19 +33,19 @@ example, HashiCorp Vault does not natively integrate with a remote
 attestation authority. KBS helps bridge this gap by acting as an
 intermediary.
 
-KBS can connect to a third-party, KMIP-compliant KMS, such as HashiCorp
-Vault or PyKMIP, for key creation and secure storage.
+KBS can connect to a third-party KMIP-compliant KMS, such as HashiCorp
+Vault or PyKMIP, to create and securely store keys.
 
 ## KBS use cases
 
-KBS acts as a relying party in remote attestation. It provides the
+KBS acts as a relying party in remote attestation and provides the
 following functionality:
 
 - Manages policies associated with keys.
 - Supports key requests and transfers in two modes:
   - **Passport mode:** The client sends a `POST` request to the key
     request URL with an attestation token in the request body.
-  - **Background check mode:** The request does not include a TA
+  - **Background-check mode:** The request does not include a TA
     attestation token. Instead, KBS requires a TEE quote, a verifier
     nonce, and runtime data (the public key created by the attested
     workload).
@@ -67,9 +66,9 @@ requested key.
 <TabItem value="background-verification-mode" label="Background verification mode">
 
 The workload (the key requester) requests a key from KBS. KBS requests a
-nonce from TA and forwards it to the workload, which uses it to obtain a
-quote. The quote and nonce are then sent to TA to obtain an attestation
-token.
+nonce from TA and forwards it to the workload, which uses the nonce to
+obtain a quote. The quote and nonce are then sent to TA to obtain an
+attestation token.
 
 ### Background verification mode steps
 

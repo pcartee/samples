@@ -1,6 +1,6 @@
 ---
 title: HashiCorp Vault and PyKMIP installation
-description: Install and configure HashiCorp Vault or PyKMIP as the Key Broker System (KBS) key management service (KMS). Includes setup references, Vault initialization and configuration, and the PyKMIP certificates and server settings required for KBS communication.
+description: Install and configure HashiCorp Vault or PyKMIP as the Key Broker System (KBS) key management service (KMS), including Vault setup and the certificates and server settings needed for KBS to communicate with PyKMIP.
 author: pcartee
 topic: kbs
 date: "2025-04-14"
@@ -10,9 +10,9 @@ uid: kms.install
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-A key management service (KMS) must be installed before you install the
-Key Broker System (KBS). KBS supports HashiCorp Vault and PyKMIP. Select
-the KMS that suits your environment, and follow the instructions.
+Install a key management service (KMS) before you install the Key Broker
+System (KBS). KBS supports HashiCorp Vault and PyKMIP. Select the KMS that
+suits your environment, and follow the instructions.
 
 <Tabs>
 <TabItem value="hashicorp-config" label="HashiCorp Vault configuration">
@@ -25,7 +25,7 @@ the KMS that suits your environment, and follow the instructions.
 
 1. [Start the Vault server](https://developer.hashicorp.com/vault/docs/commands/server).
 
-1. Initialize the Vault server using the [Vault server command documentation](https://developer.hashicorp.com/vault/docs/commands/server). Store the keys securely.
+1. Initialize the Vault server by following the [Vault server command documentation](https://developer.hashicorp.com/vault/docs/commands/server). Store the keys securely.
 
 1. [Unseal the Vault server](https://developer.hashicorp.com/vault/docs/commands/operator/unseal).
 
@@ -52,7 +52,7 @@ the KMS that suits your environment, and follow the instructions.
 </TabItem>
 <TabItem value="pykmip-config" label="PyKMIP configuration">
 
-### PyKMIP configuration
+## PyKMIP configuration
 
 :::important
 Create all certificates and keys required for KBS-PyKMIP communication.

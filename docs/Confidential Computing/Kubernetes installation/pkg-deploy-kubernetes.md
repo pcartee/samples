@@ -1,6 +1,6 @@
 ---
 title: Deploy a local Kubernetes cluster
-description: Deploy a local Kubernetes cluster on Ubuntu using k3s and Calico. Covers prerequisites, Docker and Porter installation, inotify limits, cluster initialization, KUBECONFIG setup, Calico CNI configuration, and verifying that pods are running.
+description: Prepare an Ubuntu server and deploy a local Kubernetes cluster with k3s and Calico. Covers prerequisites, Docker and Porter installation, inotify limits, cluster initialization, KUBECONFIG setup, and verifying that pods are running.
 author: "Redacted"
 topic: Local Kubernetes cluster deployment with k3s and Calico
 date: "2025-04-09"
@@ -8,26 +8,25 @@ uid: pkg.deploy.kubernetes
 sidebar_position: 1
 ---
 
-## Deploy Kubernetes
-
 This guide explains how to prepare an Ubuntu server for a local
 application, install a Kubernetes cluster with `k3s`, and configure
-Calico as the cluster's Container Network Interface (CNI).
+Calico as the cluster's container network interface (CNI).
 
-### Install prerequisites
+## Install prerequisites
 
 :::note
-These steps apply to both trusted execution environment (`TEE`) and non-TEE deployments.
+These steps apply to deployments with and without a trusted execution
+environment (TEE).
 :::
 
-1. Update and upgrade the packages.
+1. Update the package lists and upgrade installed packages.
 
    ```bash
    sudo apt-get update
    sudo apt-get upgrade -y
    ```
 
-1. Install the required packages.
+1. Install the required packages:
 
    ```bash
    sudo apt-get install ca-certificates curl unzip wget msr-tools jq bzip2 make -y
@@ -36,13 +35,13 @@ These steps apply to both trusted execution environment (`TEE`) and non-TEE depl
 1. Install [Docker](https://docs.docker.com/engine/install/ubuntu/).
 
    :::note
-   If your network uses a proxy, configure Docker to use it before continuing.
+   If your network uses a proxy, configure Docker to use it before you continue.
    :::
 
 1. Install [Porter](https://porter.sh/docs/getting-started/install-porter/#install-or-upgrade).
 
    :::note
-   Set `VERSION` to `latest` to install the latest Porter release.
+   Set `VERSION` to `latest` to install the latest version of Porter.
    :::
 
    ```bash
@@ -56,7 +55,7 @@ These steps apply to both trusted execution environment (`TEE`) and non-TEE depl
    export PORTER_DEFAULT_SECRETS_PLUGIN=filesystem
    ```
 
-### Increase inotify limits
+## Increase inotify limits
 
 Run these commands once on each host to help prevent “too many open
 files” errors.
@@ -67,12 +66,12 @@ sudo -E /bin/bash -c 'echo "fs.inotify.max_user_instances = 512" >> /etc/sysctl.
 sudo sysctl -p
 ```
 
-### Set up the Kubernetes cluster
+## Set up the Kubernetes cluster
 
 1. Install `k3s`.
 
    ```bash
-   curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.30.9+k3s1 INSTALL_K3S_EXEC="--write-kubeconfig-mode "0644" --cluster-init --flannel-backend=none --disable=traefik --disable-network-policy --cluster-cidr 192.168.0.0/16 --tls-san `hostname`" sh -
+   curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.30.9+k3s1 INSTALL_K3S_EXEC="--write-kubeconfig-mode 0644 --cluster-init --flannel-backend=none --disable=traefik --disable-network-policy --cluster-cidr 192.168.0.0/16 --tls-san $(hostname)" sh -
    ```
 
 1. Set the `KUBECONFIG` environment variable.
