@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
-<title data-rh="true">Disaster Recovery: Installation and Configuration | Paul Cartee&#x27;s Writing Samples</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://pcartee.github.io/samples/img/trust.png"><meta data-rh="true" name="twitter:image" content="https://pcartee.github.io/samples/img/trust.png"><meta data-rh="true" property="og:url" content="https://pcartee.github.io/samples/Cybersecurity/cybersec-disaster-recovery-installation/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Disaster Recovery: Installation and Configuration | Paul Cartee&#x27;s Writing Samples"><meta data-rh="true" name="description" content="Instructions for preparing, installing, configuring, and testing LogRhythm Disaster Recovery between Primary and Secondary sites, including setup for High Availability deployments."><meta data-rh="true" property="og:description" content="Instructions for preparing, installing, configuring, and testing LogRhythm Disaster Recovery between Primary and Secondary sites, including setup for High Availability deployments."><link data-rh="true" rel="icon" href="/samples/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://pcartee.github.io/samples/Cybersecurity/cybersec-disaster-recovery-installation/"><link data-rh="true" rel="alternate" href="https://pcartee.github.io/samples/Cybersecurity/cybersec-disaster-recovery-installation/" hreflang="en"><link data-rh="true" rel="alternate" href="https://pcartee.github.io/samples/Cybersecurity/cybersec-disaster-recovery-installation/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Disaster Recovery: Installation and Configuration","item":"https://pcartee.github.io/samples/Cybersecurity/cybersec-disaster-recovery-installation"}]}</script><link rel="stylesheet" href="/samples/assets/css/styles.fc16a4af.css">
-<script src="/samples/assets/js/runtime~main.1afbbc0b.js" defer="defer"></script>
+<title data-rh="true">Disaster Recovery: Installation and Configuration | Paul Cartee&#x27;s Writing Samples</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://pcartee.github.io/samples/img/trust.png"><meta data-rh="true" name="twitter:image" content="https://pcartee.github.io/samples/img/trust.png"><meta data-rh="true" property="og:url" content="https://pcartee.github.io/samples/Cybersecurity/cybersec-disaster-recovery-installation/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Disaster Recovery: Installation and Configuration | Paul Cartee&#x27;s Writing Samples"><meta data-rh="true" name="description" content="Instructions for preparing, installing, configuring, and testing LogRhythm Disaster Recovery between Primary and Secondary sites, including DNS, failover, database mirroring, and High Availability deployments."><meta data-rh="true" property="og:description" content="Instructions for preparing, installing, configuring, and testing LogRhythm Disaster Recovery between Primary and Secondary sites, including DNS, failover, database mirroring, and High Availability deployments."><link data-rh="true" rel="icon" href="/samples/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://pcartee.github.io/samples/Cybersecurity/cybersec-disaster-recovery-installation/"><link data-rh="true" rel="alternate" href="https://pcartee.github.io/samples/Cybersecurity/cybersec-disaster-recovery-installation/" hreflang="en"><link data-rh="true" rel="alternate" href="https://pcartee.github.io/samples/Cybersecurity/cybersec-disaster-recovery-installation/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Disaster Recovery: Installation and Configuration","item":"https://pcartee.github.io/samples/Cybersecurity/cybersec-disaster-recovery-installation"}]}</script><link rel="stylesheet" href="/samples/assets/css/styles.fc16a4af.css">
+<script src="/samples/assets/js/runtime~main.e4c13b39.js" defer="defer"></script>
 <script src="/samples/assets/js/main.ad347fb6.js" defer="defer"></script>
 </head>
 <body>
@@ -43,10 +43,9 @@ and Secondary sites.</p>
 Primary and Secondary sites.</p>
 </li>
 <li class="">
-<p>A network interface (NIC port) is dedicated to data replication
-between the Primary and Secondary sites (recommended so that
-normal Platform Manager traffic is separate from replicated
-traffic).</p>
+<p>A dedicated network interface (NIC port) is recommended for
+replication between the Primary and Secondary sites to separate
+replication traffic from normal Platform Manager traffic.</p>
 </li>
 <li class="">
 <p>The ports used for replication between the two sites are open and
@@ -55,9 +54,9 @@ blocked by Windows Firewall, but it does not configure other
 firewalls.</p>
 </li>
 <li class="">
-<p>A common DNS record that can point to the IP address of either the
-Primary Platform Manager or the IP address of the Secondary
-Platform Manager.</p>
+<p>A common DNS record can point to either the Primary Platform
+Manager&#x27;s IP address or the Secondary Platform Manager&#x27;s IP
+address.</p>
 </li>
 <li class="">
 <p>The Data Indexers and AI Engines are configured to connect to the
@@ -67,14 +66,14 @@ Platform Manager by DNS name rather than IP address.</p>
 <p>The DNS zone spans the Primary and Secondary sites.</p>
 </li>
 <li class="">
-<p>A TTL (Time to Live) is configured in DNS records.</p>
+<p>A time to live (TTL) is configured in DNS records.</p>
 </li>
 </ul>
-<div><p>Use only static IP addresses for the replication interface. Do not use DHCP.</p></div>
+<div class="theme-admonition theme-admonition-important admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>important</div><div class="admonitionContent_BuS1"><p>Use only static IP addresses for the replication interface. Do not use DHCP.</p></div></div>
 </li>
 <li class="">
 <p><strong>Install and configure the Disaster Recovery software.</strong> During
-installation, you will perform the following steps:</p>
+installation, you:</p>
 <ul>
 <li class="">
 <p>Configure the Primary system.</p>
@@ -101,7 +100,7 @@ Monitor.</p>
 confirm that it works as expected.</p>
 </li>
 <li class="">
-<p><strong>Upgrade the DR test systems.</strong> Perform DR upgrade testing.</p>
+<p><strong>Upgrade the DR test systems.</strong> Test the DR upgrade process.</p>
 <ul>
 <li class="">
 <p>Stop LogRhythm services on both nodes. Pay close attention to
@@ -124,7 +123,7 @@ do.</p>
 </ul>
 </li>
 </ol>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="definition-of-terms">Definition of terms<a href="#definition-of-terms" class="hash-link" aria-label="Direct link to Definition of terms" title="Direct link to Definition of terms" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="definitions">Definitions<a href="#definitions" class="hash-link" aria-label="Direct link to Definitions" title="Direct link to Definitions" translate="no">​</a></h2>
 <p>The following table describes terms used in this guide.</p>
 <table><thead><tr><th style="text-align:left">Term</th><th style="text-align:left">Definition</th></tr></thead><tbody><tr><td style="text-align:left">Disaster recovery sites</td><td style="text-align:left">The solution uses two sites. <strong>Primary</strong> is the main site that collects and processes log data. <strong>Secondary</strong> is the mirrored site that can be available if the Primary site fails.</td></tr><tr><td style="text-align:left">System status</td><td style="text-align:left"><strong>Active</strong> describes the site currently collecting and processing log data. The Primary site is usually active unless failover has occurred. <strong>Standby</strong> describes a system available to collect and process log data.</td></tr><tr><td style="text-align:left">Site types</td><td style="text-align:left"><strong>Cold:</strong> Available, but possibly powered off or unconfigured. <strong>Warm:</strong> Configured, but unable to become active until it receives the Primary site&#x27;s backup files. <strong>Hot:</strong> Mirrored and able to become active within minutes. The Secondary site in the LogRhythm DR solution is a hot site.</td></tr><tr><td style="text-align:left">Recovery objectives</td><td style="text-align:left"><strong>Recovery Point Objective (RPO):</strong> The maximum tolerable period of data loss from the Primary site after a disruption. <strong>Recovery Time Objective (RTO):</strong> The maximum period a site can be unavailable before restoration is required to avoid unacceptable business consequences. Each organization must determine acceptable RPO and RTO values based on the impact to its applications and systems.</td></tr><tr><td style="text-align:left">Transmission methods</td><td style="text-align:left"><strong>Asynchronous (default and recommended):</strong> The Primary site acknowledges the data transfer before sending it to the Secondary site. This supports performance during peak periods and allows synchronization to catch up during slower periods. <strong>Synchronous:</strong> The Secondary site commits the data before the Primary acknowledges the transfer. Primary site performance is limited by the link between the sites.</td></tr><tr><td style="text-align:left">Failover situations</td><td style="text-align:left"><strong>Unplanned failover:</strong> Occurs because of a disaster or unforeseen event. <strong>Planned failover:</strong> Occurs when administrators schedule the switch to another site.</td></tr></tbody></table>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="overview-of-the-logrhythm-dr-solution">Overview of the LogRhythm DR solution<a href="#overview-of-the-logrhythm-dr-solution" class="hash-link" aria-label="Direct link to Overview of the LogRhythm DR solution" title="Direct link to Overview of the LogRhythm DR solution" translate="no">​</a></h2>
@@ -142,11 +141,15 @@ in several ways. At a minimum, use the DR solution to replicate the
 Platform Manager database (EMDB), which contains key LogRhythm data and
 configuration information. Depending on your business needs, you can
 also replicate the Events, Alarms, LogMart, and CMDB databases.</p>
-<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>LogRhythm Archives are not included in DR replication because Archive  files are stored on individual Data Indexers, not on the Platform Manager. To protect LogRhythm Archives, administrators must manually back up the files from the Data Indexers to another system or configure them for replication in a storage area network (SAN).</p></div></div>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>LogRhythm Archives are not included in DR replication because Archive
+files are stored on individual Data Indexers, not on the Platform
+Manager. To protect LogRhythm Archives, manually back up the files from
+the Data Indexers to another system or configure them for replication
+in a storage area network (SAN).</p></div></div>
 <p>The following example shows a scenario where only the Platform Manager
 database (EMDB) is replicated on the Secondary site.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="example-1-emdb-replication-only">Example 1: EMDB replication only<a href="#example-1-emdb-replication-only" class="hash-link" aria-label="Direct link to Example 1: EMDB replication only" title="Direct link to Example 1: EMDB replication only" translate="no">​</a></h4>
-<p><img decoding="async" loading="lazy" alt="Primary and Secondary sites" src="/samples/assets/images/replication-474688550d934602e5512e2fae15890a.png" width="632" height="294" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Diagram showing the Primary site&amp;#39;s Platform Manager replicating the EMDB to the Secondary site&amp;#39;s Platform Manager; the Primary site also has an AI Engine, Data Processor, and Agents" src="/samples/assets/images/replication-474688550d934602e5512e2fae15890a.png" width="632" height="294" class="img_ev3q"></p>
 <div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>During failover, Agents installed on Data Indexers may not be accessible. Do not use them as primary collection points.</p></div></div>
 <p>The next example shows a scenario where the DR solution replicates all
 LogRhythm databases on the Secondary site. This Secondary site also
@@ -156,7 +159,7 @@ time. In addition, the Archives are manually backed up to another system
 or replicated in a SAN. Archives are available to Data Indexers in the
 Primary site and the Secondary site.</p>
 <h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="example-2-full-protection-with-minimal-disruption">Example 2: Full protection with minimal disruption<a href="#example-2-full-protection-with-minimal-disruption" class="hash-link" aria-label="Direct link to Example 2: Full protection with minimal disruption" title="Direct link to Example 2: Full protection with minimal disruption" translate="no">​</a></h4>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-2-3e08c686a17e4bee3eb352dccf3a436a.png" width="576" height="240" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Diagram showing replication of the EMDB, Events, Alarms, and LogMart databases to the Secondary site, with Data Processors, AI Engines, Agents, and Archives" src="/samples/assets/images/replication-2-3e08c686a17e4bee3eb352dccf3a436a.png" width="576" height="240" class="img_ev3q"></p>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="dns-infrastructure">DNS infrastructure<a href="#dns-infrastructure" class="hash-link" aria-label="Direct link to DNS infrastructure" title="Direct link to DNS infrastructure" translate="no">​</a></h3>
 <p>All components at the Primary and Secondary sites must use a common DNS
 infrastructure. Follow these guidelines when configuring DNS:</p>
@@ -209,7 +212,7 @@ Agents to a new Data Indexer by changing the DNS records or using
 the Deployment Manager in the SIEM Console.</p>
 <p>For detailed instructions, see the <em>LogRhythm Disaster Recovery
 Administration Guide</em>.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-4-2e0eb3bf4bbedb50b111d3342e1c4913.png" width="598" height="336" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Diagram showing manual failover to the Secondary site&amp;#39;s Platform Manager, DNS updates, and optional Agent redirection" src="/samples/assets/images/replication-4-97affbbccc743e7d680bc957a189c972.png" width="598" height="336" class="img_ev3q"></p>
 </li>
 </ol>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="preparation">Preparation<a href="#preparation" class="hash-link" aria-label="Direct link to Preparation" title="Direct link to Preparation" translate="no">​</a></h2>
@@ -236,15 +239,15 @@ extract it on the Primary Platform Manager.</p>
 your local system administrator credentials.</p>
 </li>
 <li class="">
-<p>In the first DR Setup dialog, enter credentials for a SQL System
-Admin or enable the Windows Authentication check box. Select
-<strong>Next</strong>.</p>
+<p>In the first DR Setup dialog, enter credentials for a SQL Server
+system administrator, or select the Windows Authentication check
+box. Then select <strong>Next</strong>.</p>
 <div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>The account you enter must have the <code>sysadmin</code> role in SQL Server. To verify its permissions, connect to SQL Server Management Studio (SSMS). In Object Explorer, expand <strong>Security &gt; Logins</strong>, select the user (or create one), and open <strong>Properties</strong>. Select <strong>Server Roles</strong> and verify that <strong>sysadmin</strong> is selected.</p></div></div>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-5-fe2ff333f6fb7c32a435b511242a27a3.png" width="336" height="316" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup dialog for entering SQL Server system administrator credentials or selecting Windows Authentication" src="/samples/assets/images/replication-5-fe2ff333f6fb7c32a435b511242a27a3.png" width="336" height="316" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Select <strong>Primary</strong>, then select <strong>Next</strong>.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-6-bc37adc033556e1101497d789d56a798.png" width="336" height="316" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup dialog with Primary selected as the server role" src="/samples/assets/images/replication-6-bc37adc033556e1101497d789d56a798.png" width="336" height="316" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Under <strong>Primary</strong>, select the IP address for the Primary site. Use
@@ -258,7 +261,7 @@ ports.</p>
 </li>
 <li class="">
 <p>Select <strong>Next</strong>.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-7-4b7f95a2c7322e1f15fdd1621520523f.png" width="336" height="316" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup dialog for selecting the Primary and Secondary replication IP addresses and ports" src="/samples/assets/images/replication-7-71a220f501835d1989046d10bc0de306.png" width="336" height="316" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Select the databases to replicate at the Secondary site, then select
@@ -266,7 +269,7 @@ ports.</p>
 database). The Events and Alarms databases must be selected
 together.</p>
 <div class="theme-admonition theme-admonition-important admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>important</div><div class="admonitionContent_BuS1"><p>The DR solution does not replicate LogRhythm Archives.</p></div></div>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-8-51f290f41a402cb4fa54ebb416d02ac0.png" width="420" height="395" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup dialog for selecting the databases to protect, with EMDB selected" src="/samples/assets/images/replication-8-51f290f41a402cb4fa54ebb416d02ac0.png" width="420" height="395" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Select a folder for temporarily storing the database backup, then
@@ -276,7 +279,7 @@ space. If there is not enough space for the backup, an error message
 appears at the bottom of the dialog. If necessary, select a network
 drive or external drive. To change your database selections, select
 <strong>Back</strong> to return to the previous screen.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-9-89ff68247b8569e946c9a727a0a4d7d3.png" width="336" height="316" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup dialog for choosing the temporary database backup location and displaying available free space" src="/samples/assets/images/replication-9-89ff68247b8569e946c9a727a0a4d7d3.png" width="336" height="316" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Select the desired Recovery Point Objective (RPO) in minutes. The
@@ -284,7 +287,7 @@ RPO is the maximum tolerable period during which data from the
 Primary system can be lost because of a disruption. If data
 replication falls behind this limit, LogRhythm SIEM generates an
 alert. The default is 60 minutes.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-10-1e531edd9cfb52b48a4a10c1d588d3e0.png" width="336" height="318" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup dialog for selecting the Recovery Point Objective in minutes" src="/samples/assets/images/replication-10-1e531edd9cfb52b48a4a10c1d588d3e0.png" width="336" height="318" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Select <strong>Install</strong> to back up the Platform Manager databases and install the DR solution on the Primary system.</p>
@@ -295,7 +298,7 @@ complete, the following prompt appears:</p>
 </li>
 <li class="">
 <p>Keep this progress window open. You will return to it later, after completing the setup on the secondary Platform Manager.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-11-2a0d1d0281482e8abaf9c35480e04291.png" width="480" height="240" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup progress window prompting the administrator to press Enter after setup completes on the Secondary system" src="/samples/assets/images/replication-11-2a0d1d0281482e8abaf9c35480e04291.png" width="480" height="240" class="img_ev3q"></p>
 </li>
 </ol>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="transfer-database-files-to-the-secondary-site">Transfer database files to the Secondary site<a href="#transfer-database-files-to-the-secondary-site" class="hash-link" aria-label="Direct link to Transfer database files to the Secondary site" title="Direct link to Transfer database files to the Secondary site" translate="no">​</a></h3>
@@ -306,7 +309,7 @@ complete, the following prompt appears:</p>
 </li>
 <li class="">
 <p>Select and copy all the database files and the <strong>logins</strong> file, similar to the following example.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-12-a049038100e0ff08b1393a6ef5dd0f90.png" width="456" height="292" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="File browser showing the database backup files and logins file to copy to the Secondary system" src="/samples/assets/images/replication-12-a049038100e0ff08b1393a6ef5dd0f90.png" width="456" height="292" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Access the Secondary Platform Manager server and paste the files into
@@ -335,7 +338,7 @@ box. Then select <strong>Next</strong>.</p>
 <li class="">
 <p>Select <strong>Secondary</strong> and select <strong>Next</strong>.</p>
 <div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>If you leave this setting at <strong>Primary</strong>, DR Setup will fail. Rerun DR Setup on the Secondary system and select <strong>Secondary</strong>.</p></div></div>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-13-45d2e5bb2545f4f5615fcd0cc72bd692.png" width="336" height="316" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup dialog with Secondary selected as the server role" src="/samples/assets/images/replication-13-45d2e5bb2545f4f5615fcd0cc72bd692.png" width="336" height="316" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Under <strong>Primary</strong>, enter the Primary site&#x27;s IP address. Make sure
@@ -344,12 +347,12 @@ site configuration. Under <strong>Secondary</strong>, select the Secondary
 site&#x27;s IP address. Use the drop-down arrow to select a discovered IP
 address. Make sure the Secondary port number matches the one you
 selected during Primary site configuration. Then select <strong>Next</strong>.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-14-0b11d4065f7289bb89552f32c181b638.png" width="336" height="316" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup dialog for entering the Primary replication address and selecting the Secondary address and ports" src="/samples/assets/images/replication-14-04c4e0685fb81d3c55a68116b87aa2ab.png" width="336" height="316" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Select the folder where you copied the Platform Manager databases,
 then select <strong>Next</strong>.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-15-5d872e822606f1c560cfe5bf5fe935ff.png" width="336" height="316" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup dialog for selecting the folder containing the copied Platform Manager databases" src="/samples/assets/images/replication-15-5d872e822606f1c560cfe5bf5fe935ff.png" width="336" height="316" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Select the desired Recovery Point Objective (RPO) in minutes for the
@@ -359,14 +362,16 @@ Manager.</p>
 </li>
 <li class="">
 <p>Select <strong>Install</strong>.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-16-2bee7b574c433ad709babd67dc54c411.png" width="336" height="316" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup dialog for setting the Recovery Point Objective on the Secondary site, with the Install button" src="/samples/assets/images/replication-16-2bee7b574c433ad709babd67dc54c411.png" width="336" height="316" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>When the <strong>Step complete</strong> message appears, press <strong>Enter</strong> to exit.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-17-271132cf964b61c1d3cd29f1749c9378.png" width="480" height="240" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup dialog showing that the Secondary-site installation step is complete" src="/samples/assets/images/replication-17-271132cf964b61c1d3cd29f1749c9378.png" width="480" height="240" class="img_ev3q"></p>
 <p>You are now done with setup on the Secondary site.</p>
-<p>:::note:** Do not start the Platform Manager&#x27;s Job Manager and ARM services on the Secondary site. Leave both services set to <strong>Manual</strong> unless you need to fail over to the Secondary site. For details, see the <em>LogRhythm Disaster Recovery Administration Guide</em>.
-:::</p>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>Do not start the Platform Manager&#x27;s Job Manager and ARM services on
+the Secondary site. Leave both services set to <strong>Manual</strong> unless you
+need to fail over to the Secondary site. For details, see the
+<em>LogRhythm Disaster Recovery Administration Guide</em>.</p></div></div>
 </li>
 </ol>
 <h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="complete-setup-on-the-primary-platform-manager">Complete setup on the Primary Platform Manager<a href="#complete-setup-on-the-primary-platform-manager" class="hash-link" aria-label="Direct link to Complete setup on the Primary Platform Manager" title="Direct link to Complete setup on the Primary Platform Manager" translate="no">​</a></h3>
@@ -378,9 +383,9 @@ Manager.</p>
 <li class="">
 <p>Press <strong>Enter</strong> to complete the setup on the Primary system.</p>
 <div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>If setup fails, check the log files in the <strong>Logs</strong> subdirectory.</p></div></div>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-18-5965dc725961774d98e49a9ba9c2d740.png" width="480" height="236" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup console prompting the administrator to press Enter after setup completes on the Secondary system" src="/samples/assets/images/replication-18-5965dc725961774d98e49a9ba9c2d740.png" width="480" height="236" class="img_ev3q"></p>
 <p>When the &quot;DR Setup Complete&quot; message appears, you are finished with the DR configuration.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-19-8e47d82560aef10e4996f0532315ac68.png" width="480" height="236" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="DR Setup window displaying the completion message" src="/samples/assets/images/replication-19-8e47d82560aef10e4996f0532315ac68.png" width="480" height="236" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>If desired, remove the backup files you created on both the Primary
@@ -415,11 +420,11 @@ you must first register the LogRhythm databases.</p>
 </li>
 <li class="">
 <p>Select <strong>Action &gt; Register Mirrored Database</strong>.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-20-c6da9fdd0b319cf3fc75174b7023236a.png" width="576" height="244" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Database Mirroring Monitor Action menu with Register Mirrored Database selected" src="/samples/assets/images/replication-20-c6da9fdd0b319cf3fc75174b7023236a.png" width="576" height="244" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>In the Register Mirrored Database dialog, select <strong>Connect</strong>.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-21-f8dfc24abf34661a37c5bbfd9d1626a0.png" width="384" height="300" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Register Mirrored Database dialog with the Connect button" src="/samples/assets/images/replication-21-f8dfc24abf34661a37c5bbfd9d1626a0.png" width="384" height="300" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Enter credentials for the SQL Server administrator, then select
@@ -429,7 +434,7 @@ you must first register the LogRhythm databases.</p>
 <p>In the Register Mirrored Database dialog, select the check boxes for
 all databases. Select the <strong>Show the Manage Server Connections</strong>
 check box, then select <strong>OK</strong>.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-22-57edd3c43377acf125cda02f426d4090.png" width="388" height="304" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Register Mirrored Database dialog with the database selections and Manage Server Connections option" src="/samples/assets/images/replication-22-f5074cf4ba896d265043e23c38bd2ea7.png" width="388" height="304" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>At the next prompt about Server Instance Connections, select
@@ -438,9 +443,9 @@ check box, then select <strong>OK</strong>.</p>
 <li class="">
 <p>In the Database Mirroring Monitor panel, select the plus sign to
 expand the list of mirrored databases.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replicatio-23-fe9b8945b877e0c0d2afe7eed5f61e9d.png" width="218" height="120" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Database Mirroring Monitor with the database tree collapsed and its expand control visible" src="/samples/assets/images/replicatio-23-fe9b8945b877e0c0d2afe7eed5f61e9d.png" width="218" height="120" class="img_ev3q"></p>
 <p>The LogRhythm databases now appear in Database Mirroring Monitor.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-24-53c6ce6c0940f770238ae9a692dc6b03.png" width="618" height="282" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Database Mirroring Monitor showing the registered LogRhythm databases" src="/samples/assets/images/replication-24-ab1262a3ed22368de464e8365431be33.png" width="618" height="282" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Go to the Secondary Platform Manager and follow the previous steps
@@ -451,7 +456,7 @@ to register the mirrored databases.</p>
 database in the left panel to view its status. For more information
 about Database Mirroring Monitor, see the <em>LogRhythm Disaster
 Recovery Administration Guide</em>.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-25-7ff0d7e54ef3658ca6abd5ba40452ab6.png" width="524" height="308" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Database Mirroring Monitor showing the status of a selected mirrored database" src="/samples/assets/images/replication-25-8155c4800cb033de9101ce963c40882c.png" width="524" height="308" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Install DX on both the Primary and Secondary machines.</p>
@@ -461,13 +466,15 @@ Recovery Administration Guide</em>.</p>
 </li>
 <li class="">
 <p>Point the DP on the DR side to the <code>logrhythm</code> cluster.</p>
-<p>note
-You can also view replication status by running LogRhythm&#x27;s <strong>DR Control</strong>. Select <strong>Start &gt; All Programs &gt; LogRhythm &gt; Disaster Recovery</strong>, right-click <strong>DR Control</strong>, and select <strong>Run as administrator</strong>. For more information, see the <em>LogRhythm Disaster Recovery Administration Guide</em>.
-:::</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-26-5652edfcaba01cd4842f8653cfe75704.png" width="605" height="300" class="img_ev3q"></p>
+<div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>You can also view replication status by running LogRhythm&#x27;s <strong>DR
+Control</strong>. Select <strong>Start &gt; All Programs &gt; LogRhythm &gt; Disaster
+Recovery</strong>, right-click <strong>DR Control</strong>, and select <strong>Run as
+administrator</strong>. For more information, see the <em>LogRhythm Disaster
+Recovery Administration Guide</em>.</p></div></div>
+<p><img decoding="async" loading="lazy" alt="DR Control console showing mirrored database synchronization status and failover options" src="/samples/assets/images/replication-26-0a235b92ba5e421991298d5f51d0d16d.png" width="605" height="300" class="img_ev3q"></p>
 </li>
 </ol>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="disaster-recovery-test">Disaster Recovery test<a href="#disaster-recovery-test" class="hash-link" aria-label="Direct link to Disaster Recovery test" title="Direct link to Disaster Recovery test" translate="no">​</a></h2>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="test-the-disaster-recovery-solution">Test the Disaster Recovery solution<a href="#test-the-disaster-recovery-solution" class="hash-link" aria-label="Direct link to Test the Disaster Recovery solution" title="Direct link to Test the Disaster Recovery solution" translate="no">​</a></h2>
 <p>Test the DR solution by running a failover and a failback scenario. See
 the <em>LogRhythm Disaster Recovery Administration Guide</em> for instructions
 on running these scenarios.</p>
@@ -483,10 +490,8 @@ replication interface.</p>
 </li>
 <li class="">
 <p>Right-click the active node and select <strong>Create Resource Hierarchy</strong>.</p>
+<p><img decoding="async" loading="lazy" alt="LifeKeeper context menu for the active node, with Create Resource Hierarchy available" src="/samples/assets/images/replication-27-0866a8ff32ff4348724fff5a702cfff9.png" width="485" height="148" class="img_ev3q"></p>
 </li>
-</ol>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-27-0866a8ff32ff4348724fff5a702cfff9.png" width="485" height="148" class="img_ev3q"></p>
-<ol>
 <li class="">
 <p>Follow the wizard steps:</p>
 <p>a. Select <strong>Next</strong> on the first screen.</p>
@@ -495,7 +500,7 @@ replication interface.</p>
 interfaces.</p>
 <p>d. Select the correct subnet mask.</p>
 <p>e. Provide a resource tag name (for example,
-<code>172.16.21.5_ResTag</code>).</p>
+<code>&lt;replication-ip&gt;_ResTag</code>).</p>
 <p>f. Choose the replication interface.</p>
 <p>g. Do not enable local recovery.</p>
 <p>h. The resource is created, and the Extend Wizard starts
@@ -507,7 +512,7 @@ automatically to extend the hierarchy to the standby node.</p>
 <li class="">
 <p>Right-click the SQL resource and select <strong>Add Dependency</strong>. Add the
 new resource as a dependency for the SQL resource.</p>
-<p><img decoding="async" loading="lazy" alt="Screenshot" src="/samples/assets/images/replication-28-8d87166ff71cfede22ef5ea0687f750b.png" width="360" height="248" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="LifeKeeper context menu for the SQL resource, with Add Dependency available" src="/samples/assets/images/replication-28-287c36c8b11bafebd636fedbb5492aaf.png" width="360" height="248" class="img_ev3q"></p>
 </li>
 <li class="">
 <p>Follow the wizard steps. Select the new IP resource as the <strong>Child
@@ -538,8 +543,8 @@ primary system.</p>
 <div class="theme-admonition theme-admonition-note admonition_xJq3 alert alert--secondary"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</div><div class="admonitionContent_BuS1"><p>Follow these instructions only for HA+DR.</p></div></div>
 <ul>
 <li class="">
-<p>Install HA as usual, using the <code>192.168.33.x</code> addresses for the
-private network.</p>
+<p>Install HA as usual, using the addresses assigned to your private
+network.</p>
 </li>
 <li class="">
 <p>Configure LogRhythm as follows:</p>
@@ -606,6 +611,6 @@ machine.</p>
 </li>
 </ul>
 </li>
-</ul></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/samples/Cybersecurity/cybersec-web-console-api-guide/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Web Console Case API Reference Guide</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/samples/Cybersecurity/cybersec-winauth/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Set up Windows authentication</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#intended-audience" class="table-of-contents__link toc-highlight">Intended audience</a></li><li><a href="#overview-of-steps" class="table-of-contents__link toc-highlight">Overview of steps</a></li><li><a href="#definition-of-terms" class="table-of-contents__link toc-highlight">Definition of terms</a></li><li><a href="#overview-of-the-logrhythm-dr-solution" class="table-of-contents__link toc-highlight">Overview of the LogRhythm DR solution</a><ul><li><a href="#appliance-configurations" class="table-of-contents__link toc-highlight">Appliance configurations</a></li><li><a href="#dns-infrastructure" class="table-of-contents__link toc-highlight">DNS infrastructure</a></li><li><a href="#overview-of-the-failover-process" class="table-of-contents__link toc-highlight">Overview of the failover process</a></li></ul></li><li><a href="#preparation" class="table-of-contents__link toc-highlight">Preparation</a></li><li><a href="#installation-and-configuration" class="table-of-contents__link toc-highlight">Installation and configuration</a><ul><li><a href="#configure-the-primary-platform-manager" class="table-of-contents__link toc-highlight">Configure the Primary Platform Manager</a></li><li><a href="#transfer-database-files-to-the-secondary-site" class="table-of-contents__link toc-highlight">Transfer database files to the Secondary site</a></li><li><a href="#configure-the-secondary-platform-manager" class="table-of-contents__link toc-highlight">Configure the Secondary Platform Manager</a></li><li><a href="#complete-setup-on-the-primary-platform-manager" class="table-of-contents__link toc-highlight">Complete setup on the Primary Platform Manager</a></li><li><a href="#register-logrhythm-databases-in-sql-server" class="table-of-contents__link toc-highlight">Register LogRhythm databases in SQL Server</a></li></ul></li><li><a href="#disaster-recovery-test" class="table-of-contents__link toc-highlight">Disaster Recovery test</a></li><li><a href="#appendix-a-preparation-on-an-ha-system" class="table-of-contents__link toc-highlight">Appendix A: Preparation on an HA system</a></li><li><a href="#appendix-b-installation-and-configuration-on-an-ha-system" class="table-of-contents__link toc-highlight">Appendix B: Installation and configuration on an HA system</a></li><li><a href="#appendix-c-configure-logrhythm-for-hadr" class="table-of-contents__link toc-highlight">Appendix C: Configure LogRhythm for HA+DR</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</ul></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/samples/Cybersecurity/cybersec-web-console-api-guide/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Web Console Case API Reference Guide</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/samples/Cybersecurity/cybersec-winauth/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Set up Windows authentication</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#intended-audience" class="table-of-contents__link toc-highlight">Intended audience</a></li><li><a href="#overview-of-steps" class="table-of-contents__link toc-highlight">Overview of steps</a></li><li><a href="#definitions" class="table-of-contents__link toc-highlight">Definitions</a></li><li><a href="#overview-of-the-logrhythm-dr-solution" class="table-of-contents__link toc-highlight">Overview of the LogRhythm DR solution</a><ul><li><a href="#appliance-configurations" class="table-of-contents__link toc-highlight">Appliance configurations</a></li><li><a href="#dns-infrastructure" class="table-of-contents__link toc-highlight">DNS infrastructure</a></li><li><a href="#overview-of-the-failover-process" class="table-of-contents__link toc-highlight">Overview of the failover process</a></li></ul></li><li><a href="#preparation" class="table-of-contents__link toc-highlight">Preparation</a></li><li><a href="#installation-and-configuration" class="table-of-contents__link toc-highlight">Installation and configuration</a><ul><li><a href="#configure-the-primary-platform-manager" class="table-of-contents__link toc-highlight">Configure the Primary Platform Manager</a></li><li><a href="#transfer-database-files-to-the-secondary-site" class="table-of-contents__link toc-highlight">Transfer database files to the Secondary site</a></li><li><a href="#configure-the-secondary-platform-manager" class="table-of-contents__link toc-highlight">Configure the Secondary Platform Manager</a></li><li><a href="#complete-setup-on-the-primary-platform-manager" class="table-of-contents__link toc-highlight">Complete setup on the Primary Platform Manager</a></li><li><a href="#register-logrhythm-databases-in-sql-server" class="table-of-contents__link toc-highlight">Register LogRhythm databases in SQL Server</a></li></ul></li><li><a href="#test-the-disaster-recovery-solution" class="table-of-contents__link toc-highlight">Test the Disaster Recovery solution</a></li><li><a href="#appendix-a-preparation-on-an-ha-system" class="table-of-contents__link toc-highlight">Appendix A: Preparation on an HA system</a></li><li><a href="#appendix-b-installation-and-configuration-on-an-ha-system" class="table-of-contents__link toc-highlight">Appendix B: Installation and configuration on an HA system</a></li><li><a href="#appendix-c-configure-logrhythm-for-hadr" class="table-of-contents__link toc-highlight">Appendix C: Configure LogRhythm for HA+DR</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
 </body>
 </html>
