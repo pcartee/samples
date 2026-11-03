@@ -1,6 +1,6 @@
 ---
 title: "Disaster Recovery: Installation and Configuration"
-description: "Instructions for preparing, installing, configuring, and testing LogRhythm Disaster Recovery between Primary and Secondary sites, including setup for High Availability deployments."
+description: "Instructions for preparing, installing, configuring, and testing LogRhythm Disaster Recovery between Primary and Secondary sites, including DNS, failover, database mirroring, and High Availability deployments."
 author: pcartee
 topic: Reference
 date: "2017-01-22"
@@ -37,33 +37,32 @@ use it to learn about the solution.
     - The SQL Server Agent service runs under the same account at the
       Primary and Secondary sites.
 
-    - A network interface (NIC port) is dedicated to data replication
-      between the Primary and Secondary sites (recommended so that
-      normal Platform Manager traffic is separate from replicated
-      traffic).
+    - A dedicated network interface (NIC port) is recommended for
+      replication between the Primary and Secondary sites to separate
+      replication traffic from normal Platform Manager traffic.
 
     - The ports used for replication between the two sites are open and
       not blocked by a firewall. DR Setup automatically opens ports
       blocked by Windows Firewall, but it does not configure other
       firewalls.
 
-    - A common DNS record that can point to the IP address of either the
-      Primary Platform Manager or the IP address of the Secondary
-      Platform Manager.
+    - A common DNS record can point to either the Primary Platform
+      Manager's IP address or the Secondary Platform Manager's IP
+      address.
 
     - The Data Indexers and AI Engines are configured to connect to the
       Platform Manager by DNS name rather than IP address.
 
     - The DNS zone spans the Primary and Secondary sites.
 
-    - A TTL (Time to Live) is configured in DNS records.
+    - A time to live (TTL) is configured in DNS records.
 
-    :::Important
+    :::important
     Use only static IP addresses for the replication interface. Do not use DHCP.
     :::
 
 1. **Install and configure the Disaster Recovery software.** During
-    installation, you will perform the following steps:
+    installation, you:
 
     - Configure the Primary system.
 
@@ -81,7 +80,7 @@ use it to learn about the solution.
 1. **Test the DR solution (recommended).** Test the configuration to
     confirm that it works as expected.
 
-1. **Upgrade the DR test systems.** Perform DR upgrade testing.
+1. **Upgrade the DR test systems.** Test the DR upgrade process.
 
     - Stop LogRhythm services on both nodes. Pay close attention to
       which services should run on each node. For example, `scarm` and
@@ -96,7 +95,7 @@ use it to learn about the solution.
 
     - Start the appropriate services (as noted above) on each node.
 
-## Definition of terms
+## Definitions
 
 The following table describes terms used in this guide.
 
@@ -129,7 +128,11 @@ configuration information. Depending on your business needs, you can
 also replicate the Events, Alarms, LogMart, and CMDB databases.
 
 :::note
-LogRhythm Archives are not included in DR replication because Archive  files are stored on individual Data Indexers, not on the Platform Manager. To protect LogRhythm Archives, administrators must manually back up the files from the Data Indexers to another system or configure them for replication in a storage area network (SAN).
+LogRhythm Archives are not included in DR replication because Archive
+files are stored on individual Data Indexers, not on the Platform
+Manager. To protect LogRhythm Archives, manually back up the files from
+the Data Indexers to another system or configure them for replication
+in a storage area network (SAN).
 :::
 
 The following example shows a scenario where only the Platform Manager
@@ -137,7 +140,7 @@ database (EMDB) is replicated on the Secondary site.
 
 #### Example 1: EMDB replication only
 
-![Primary and Secondary sites](../../static/img/cybersec/replication.png)
+![Diagram showing the Primary site's Platform Manager replicating the EMDB to the Secondary site's Platform Manager; the Primary site also has an AI Engine, Data Processor, and Agents](../../static/img/cybersec/replication.png)
 
 :::note
 During failover, Agents installed on Data Indexers may not be accessible. Do not use them as primary collection points.
@@ -153,7 +156,7 @@ Primary site and the Secondary site.
 
 #### Example 2: Full protection with minimal disruption
 
-![Screenshot](../../static/img/cybersec/replication-2.png)
+![Diagram showing replication of the EMDB, Events, Alarms, and LogMart databases to the Secondary site, with Data Processors, AI Engines, Agents, and Archives](../../static/img/cybersec/replication-2.png)
 
 ### DNS infrastructure
 
@@ -200,7 +203,7 @@ initiate failover as described below:
     For detailed instructions, see the *LogRhythm Disaster Recovery
     Administration Guide*.
 
-    ![Screenshot](../../static/img/cybersec/replication-4.png)
+    ![Diagram showing manual failover to the Secondary site's Platform Manager, DNS updates, and optional Agent redirection](../../static/img/cybersec/replication-4.png)
 
 ## Preparation
 
@@ -242,19 +245,19 @@ Use only static IP addresses for the replication interface. Do not use DHCP.
 1. Right-click **DR_Setup** and select **Run as administrator**. Enter
     your local system administrator credentials.
 
-1. In the first DR Setup dialog, enter credentials for a SQL System
-    Admin or enable the Windows Authentication check box. Select
-    **Next**.
+1. In the first DR Setup dialog, enter credentials for a SQL Server
+    system administrator, or select the Windows Authentication check
+    box. Then select **Next**.
 
     :::note
     The account you enter must have the `sysadmin` role in SQL Server. To verify its permissions, connect to SQL Server Management Studio (SSMS). In Object Explorer, expand **Security > Logins**, select the user (or create one), and open **Properties**. Select **Server Roles** and verify that **sysadmin** is selected.
     :::
 
-    ![Screenshot](../../static/img/cybersec/replication-5.png)
+    ![DR Setup dialog for entering SQL Server system administrator credentials or selecting Windows Authentication](../../static/img/cybersec/replication-5.png)
 
 1. Select **Primary**, then select **Next**.
 
-    ![Screenshot](../../static/img/cybersec/replication-6.png)
+    ![DR Setup dialog with Primary selected as the server role](../../static/img/cybersec/replication-6.png)
 
 1. Under **Primary**, select the IP address for the Primary site. Use
     the drop-down arrow to select a discovered IP address.
@@ -266,7 +269,7 @@ Use only static IP addresses for the replication interface. Do not use DHCP.
 
 1. Select **Next**.
 
-    ![Screenshot](../../static/img/cybersec/replication-7.png)
+    ![DR Setup dialog for selecting the Primary and Secondary replication IP addresses and ports](../../static/img/cybersec/replication-7.png)
 
 1. Select the databases to replicate at the Secondary site, then select
     **Next**. By default, you must select the **EMDB** (Platform Manager
@@ -277,7 +280,7 @@ Use only static IP addresses for the replication interface. Do not use DHCP.
     The DR solution does not replicate LogRhythm Archives.
     :::
 
-    ![Screenshot](../../static/img/cybersec/replication-8.png)
+    ![DR Setup dialog for selecting the databases to protect, with EMDB selected](../../static/img/cybersec/replication-8.png)
 
 1. Select a folder for temporarily storing the database backup, then
     select **Next**.
@@ -288,7 +291,7 @@ Use only static IP addresses for the replication interface. Do not use DHCP.
     drive or external drive. To change your database selections, select
     **Back** to return to the previous screen.
 
-    ![Screenshot](../../static/img/cybersec/replication-9.png)
+    ![DR Setup dialog for choosing the temporary database backup location and displaying available free space](../../static/img/cybersec/replication-9.png)
 
 1. Select the desired Recovery Point Objective (RPO) in minutes. The
     RPO is the maximum tolerable period during which data from the
@@ -296,7 +299,7 @@ Use only static IP addresses for the replication interface. Do not use DHCP.
     replication falls behind this limit, LogRhythm SIEM generates an
     alert. The default is 60 minutes.
 
-    ![Screenshot](../../static/img/cybersec/replication-10.png)
+    ![DR Setup dialog for selecting the Recovery Point Objective in minutes](../../static/img/cybersec/replication-10.png)
 
 1. Select **Install** to back up the Platform Manager databases and install the DR solution on the Primary system.
 
@@ -308,7 +311,7 @@ Use only static IP addresses for the replication interface. Do not use DHCP.
 
 1. Keep this progress window open. You will return to it later, after completing the setup on the secondary Platform Manager.
 
-    ![Screenshot](../../static/img/cybersec/replication-11.png)
+    ![DR Setup progress window prompting the administrator to press Enter after setup completes on the Secondary system](../../static/img/cybersec/replication-11.png)
 
 ### Transfer database files to the Secondary site
 
@@ -318,7 +321,7 @@ When the setup completes on the Primary system, copy the database backup files t
 
 1. Select and copy all the database files and the **logins** file, similar to the following example.
 
-    ![Screenshot](../../static/img/cybersec/replication-12.png)
+    ![File browser showing the database backup files and logins file to copy to the Secondary system](../../static/img/cybersec/replication-12.png)
 
 1. Access the Secondary Platform Manager server and paste the files into
     a folder. You will load the files from this folder when you
@@ -348,7 +351,7 @@ To configure the Secondary site:
     If you leave this setting at **Primary**, DR Setup will fail. Rerun DR Setup on the Secondary system and select **Secondary**.
     :::
 
-    ![Screenshot](../../static/img/cybersec/replication-13.png)
+    ![DR Setup dialog with Secondary selected as the server role](../../static/img/cybersec/replication-13.png)
 
 1. Under **Primary**, enter the Primary site's IP address. Make sure
     the Primary port number matches the one you selected during Primary
@@ -357,12 +360,12 @@ To configure the Secondary site:
     address. Make sure the Secondary port number matches the one you
     selected during Primary site configuration. Then select **Next**.
 
-    ![Screenshot](../../static/img/cybersec/replication-14.png)
+    ![DR Setup dialog for entering the Primary replication address and selecting the Secondary address and ports](../../static/img/cybersec/replication-14.png)
 
 1. Select the folder where you copied the Platform Manager databases,
     then select **Next**.
 
-    ![Screenshot](../../static/img/cybersec/replication-15.png)
+    ![DR Setup dialog for selecting the folder containing the copied Platform Manager databases](../../static/img/cybersec/replication-15.png)
 
 1. Select the desired Recovery Point Objective (RPO) in minutes for the
     Secondary Platform Manager. The default is 60 minutes. This value
@@ -371,15 +374,19 @@ To configure the Secondary site:
 
 1. Select **Install**.
 
-    ![Screenshot](../../static/img/cybersec/replication-16.png)
+    ![DR Setup dialog for setting the Recovery Point Objective on the Secondary site, with the Install button](../../static/img/cybersec/replication-16.png)
 
 1. When the **Step complete** message appears, press **Enter** to exit.
 
-    ![Screenshot](../../static/img/cybersec/replication-17.png)
+    ![DR Setup dialog showing that the Secondary-site installation step is complete](../../static/img/cybersec/replication-17.png)
 
     You are now done with setup on the Secondary site.
 
-    :::note:** Do not start the Platform Manager's Job Manager and ARM services on the Secondary site. Leave both services set to **Manual** unless you need to fail over to the Secondary site. For details, see the *LogRhythm Disaster Recovery Administration Guide*.
+    :::note
+    Do not start the Platform Manager's Job Manager and ARM services on
+    the Secondary site. Leave both services set to **Manual** unless you
+    need to fail over to the Secondary site. For details, see the
+    *LogRhythm Disaster Recovery Administration Guide*.
     :::
 
 ### Complete setup on the Primary Platform Manager
@@ -394,11 +401,11 @@ After completing the setup on the Secondary site, follow these steps:
     If setup fails, check the log files in the **Logs** subdirectory.
     :::
 
-    ![Screenshot](../../static/img/cybersec/replication-18.png)
+    ![DR Setup console prompting the administrator to press Enter after setup completes on the Secondary system](../../static/img/cybersec/replication-18.png)
 
     When the "DR Setup Complete" message appears, you are finished with the DR configuration.
 
-    ![Screenshot](../../static/img/cybersec/replication-19.png)
+    ![DR Setup window displaying the completion message](../../static/img/cybersec/replication-19.png)
 
 1. If desired, remove the backup files you created on both the Primary
     and Secondary Platform Managers. These files are no longer needed.
@@ -424,11 +431,11 @@ you must first register the LogRhythm databases.
 
 1. Select **Action > Register Mirrored Database**.
 
-    ![Screenshot](../../static/img/cybersec/replication-20.png)
+    ![Database Mirroring Monitor Action menu with Register Mirrored Database selected](../../static/img/cybersec/replication-20.png)
 
 1. In the Register Mirrored Database dialog, select **Connect**.
 
-    ![Screenshot](../../static/img/cybersec/replication-21.png)
+    ![Register Mirrored Database dialog with the Connect button](../../static/img/cybersec/replication-21.png)
 
 1. Enter credentials for the SQL Server administrator, then select
     **Connect**.
@@ -437,7 +444,7 @@ you must first register the LogRhythm databases.
     all databases. Select the **Show the Manage Server Connections**
     check box, then select **OK**.
 
-    ![Screenshot](../../static/img/cybersec/replication-22.png)
+    ![Register Mirrored Database dialog with the database selections and Manage Server Connections option](../../static/img/cybersec/replication-22.png)
 
 1. At the next prompt about Server Instance Connections, select
     **OK** again.
@@ -445,11 +452,11 @@ you must first register the LogRhythm databases.
 1. In the Database Mirroring Monitor panel, select the plus sign to
     expand the list of mirrored databases.
 
-    ![Screenshot](../../static/img/cybersec/replicatio-23.png)
+    ![Database Mirroring Monitor with the database tree collapsed and its expand control visible](../../static/img/cybersec/replicatio-23.png)
 
     The LogRhythm databases now appear in Database Mirroring Monitor.
 
-    ![Screenshot](../../static/img/cybersec/replication-24.png)
+    ![Database Mirroring Monitor showing the registered LogRhythm databases](../../static/img/cybersec/replication-24.png)
 
 1. Go to the Secondary Platform Manager and follow the previous steps
     to register the mirrored databases.
@@ -459,7 +466,7 @@ you must first register the LogRhythm databases.
     about Database Mirroring Monitor, see the *LogRhythm Disaster
     Recovery Administration Guide*.
 
-    ![Screenshot](../../static/img/cybersec/replication-25.png)
+    ![Database Mirroring Monitor showing the status of a selected mirrored database](../../static/img/cybersec/replication-25.png)
 
 1. Install DX on both the Primary and Secondary machines.
 
@@ -467,13 +474,17 @@ you must first register the LogRhythm databases.
 
 1. Point the DP on the DR side to the `logrhythm` cluster.
 
-    note
-    You can also view replication status by running LogRhythm's **DR Control**. Select **Start > All Programs > LogRhythm > Disaster Recovery**, right-click **DR Control**, and select **Run as administrator**. For more information, see the *LogRhythm Disaster Recovery Administration Guide*.
+    :::note
+    You can also view replication status by running LogRhythm's **DR
+    Control**. Select **Start > All Programs > LogRhythm > Disaster
+    Recovery**, right-click **DR Control**, and select **Run as
+    administrator**. For more information, see the *LogRhythm Disaster
+    Recovery Administration Guide*.
     :::
 
-    ![Screenshot](../../static/img/cybersec/replication-26.png)
+    ![DR Control console showing mirrored database synchronization status and failover options](../../static/img/cybersec/replication-26.png)
 
-## Disaster Recovery test
+## Test the Disaster Recovery solution
 
 Test the DR solution by running a failover and a failback scenario. See
 the *LogRhythm Disaster Recovery Administration Guide* for instructions
@@ -492,7 +503,7 @@ replication interface.
 
 1. Right-click the active node and select **Create Resource Hierarchy**.
 
-![Screenshot](../../static/img/cybersec/replication-27.png)
+    ![LifeKeeper context menu for the active node, with Create Resource Hierarchy available](../../static/img/cybersec/replication-27.png)
 
 1. Follow the wizard steps:
 
@@ -506,7 +517,7 @@ replication interface.
     d. Select the correct subnet mask.
 
     e. Provide a resource tag name (for example,
-        `172.16.21.5_ResTag`).
+        `<replication-ip>_ResTag`).
 
     f. Choose the replication interface.
 
@@ -524,7 +535,7 @@ replication interface.
 1. Right-click the SQL resource and select **Add Dependency**. Add the
     new resource as a dependency for the SQL resource.
 
-    ![Screenshot](../../static/img/cybersec/replication-28.png)
+    ![LifeKeeper context menu for the SQL resource, with Add Dependency available](../../static/img/cybersec/replication-28.png)
 
 1. Follow the wizard steps. Select the new IP resource as the **Child
     Resource** and accept the defaults for the remaining settings.
@@ -537,7 +548,7 @@ created in Appendix A as the DR Primary IP address.
 
 1. After DR setup is complete, use the LifeKeeper GUI to fail over the
     resource hierarchy to the HA secondary system. On that system,
-    extract the DR zip file and browse to the **DR\\bin** directory.
+    extract the DR zip file and browse to the **DR\bin** directory.
 
 1. Right-click **HA_DR_Setup.ps1** and select **Run with PowerShell**.
 
@@ -553,8 +564,8 @@ Follow the standard HA+DR instructions, with these changes:
 Follow these instructions only for HA+DR.
 :::
 
-- Install HA as usual, using the `192.168.33.x` addresses for the
-  private network.
+- Install HA as usual, using the addresses assigned to your private
+  network.
 
 - Configure LogRhythm as follows:
 

@@ -14,7 +14,7 @@ To use Windows authentication with the LogRhythm API, configure the web server f
 
 ### Create a domain service account
 
-The IIS application pool account needs permissions in the LogRhythm databases to validate Windows user permissions. The preferred approach is to create a domain account for this purpose in Active Directory.
+The IIS application pool account needs permissions in the LogRhythm databases to validate permissions for Windows users. The preferred approach is to create a domain account in Active Directory for the application pool.
 
 Alternatively, use the default `ApplicationPoolIdentity` and grant the web server's machine account (`<domain>\<hostname>$`) permission to access the databases. This option is less secure.
 
@@ -30,7 +30,7 @@ Alternatively, use the default `ApplicationPoolIdentity` and grant the web serve
 1. On the LogRhythm API server, open Internet Information Services (IIS) Manager.
 1. Select **Application Pools**.
 1. Open **Advanced Settings** for `LogRhythmAppPool`.
-1. Open the **Identity** dialog. Select **Custom account**, and enter the service account name and password.
+1. In the **Identity** dialog, select **Custom account**, then enter the service account name and password.
 
 ### Enable Windows authentication in IIS
 
@@ -46,7 +46,7 @@ Alternatively, use the default `ApplicationPoolIdentity` and grant the web serve
 1. On each LogRhythm XM, PM, or DPX appliance, open SQL Server Configuration Manager.
 1. Select **SQL Server Services**.
 1. For the SQL Server service, note the account shown under **Log On As**.
-1. If the service account is `NT AUTHORITY\LOCALSERVICE`, change it to `NT AUTHORITY\NETWORKSERVICE`. Stop LogRhythm services before you restart the database.
+1. If the service account is `NT AUTHORITY\LOCALSERVICE`, change it to `NT AUTHORITY\NETWORKSERVICE`. Stop LogRhythm services before restarting the database.
 1. If the service account is `LocalSystem` or `NT AUTHORITY\NETWORKSERVICE` (the preferred option), SQL Server should register the Service Principal Names (SPNs) automatically when it starts.
 1. If the service account is a domain account, a domain administrator must register the SPNs manually. Run these commands for each XM, PM, or DPX appliance that the application might query:
 
@@ -66,7 +66,7 @@ Alternatively, use the default `ApplicationPoolIdentity` and grant the web serve
 
 ### Configure the client
 
-The Windows Communication Foundation (WCF) client application must be configured to delegate credentials.
+Configure the Windows Communication Foundation (WCF) client application to delegate credentials.
 
 In the client's `web.config`, define an endpoint behavior for each service reference that uses Windows authentication. Add a behavior like this:
 
@@ -108,9 +108,9 @@ The LogRhythm web service application pool must run under an account with the `W
 1. Create the user profile and select **Web Service Administrator** as the security role.
 1. Complete the profile details, then select **OK**.
 
-## Configure web.config user initialization
+## Configure application account initialization in `Web.config`
 
-LogRhythm web services require an application account for global caching. Configure the account in `web.config` as shown below. If you do not use Windows or Basic authentication, you can comment out the corresponding section.
+LogRhythm web services require an application account for global caching. Configure the account in `Web.config` as follows. If you do not use Windows or Basic authentication, you can comment out the corresponding section.
 
 The application creates the global cache the first time it starts or when a session cannot find the cache. With Windows authentication, the application uses the application pool account. If this section is commented out, uncomment it and configure it as shown:
 

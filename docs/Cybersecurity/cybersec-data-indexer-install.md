@@ -1,6 +1,6 @@
 ---
 title: "Data Indexer Appliance Hardware Installation"
-description: "Instructions for unpacking and rack-mounting LogRhythm Data Indexer appliances, configuring network settings, and installing single-node or multi-node clusters."
+description: "Instructions for unpacking, rack-mounting, powering on, and configuring a LogRhythm Data Indexer appliance, then installing a single-node or multi-node cluster."
 author: pcartee
 topic: Reference
 date: "2016-01-20"
@@ -8,8 +8,7 @@ uid: cybersec-data-indexer-install
 sidebar_position: 2
 ---
 
-This guide explains how to install your Data Indexer appliance and
-provides links to additional information.
+This guide explains how to install and configure your Data Indexer appliance.
 
 ## Unpack the appliance
 
@@ -17,9 +16,8 @@ Unpack your appliance, keeping all shipping materials in case you need
 them later.
 
 Your Indexer appliance ships with a rack-mount chassis and rails for
-installing the appliance in a high-density server rack. Depending on
-your appliance model, the rack kit includes some or all of the
-following:
+installation in a high-density server rack. Depending on your appliance
+model, the rack kit includes some or all of the following:
 
 - One pair of sliding rail assemblies
 
@@ -55,10 +53,10 @@ fault-tolerant power source, such as an uninterruptible power supply
 
     ![Connect power cables to the appliance's power supplies](../../static/img/cybersec/appliance-1.png)
 
-1. Bend the system power cable into a loop as shown below, then secure
+1. Bend each system power cable into a loop as shown below, then secure
     the cable in the provided strap.
 
-    ![Loop the power cables and secure them with the provided straps](../../static/img/cybersec/appliance-2.png)
+    ![Power cables looped and secured with the provided straps](../../static/img/cybersec/appliance-2.png)
 
 1. Plug the other end of the cables into a grounded electrical outlet
     or a separate power source, such as an uninterruptible power supply
@@ -77,7 +75,7 @@ preinstalled:
 
 - LogRhythm Data Indexer Software Installation Script
 
-Upon your first login to the Indexer Appliance, you must provide
+When you first sign in to the Indexer appliance, provide
 configuration details that are specific to your network and
 organization.
 
@@ -92,14 +90,14 @@ setup, contact LogRhythm Support.
 
 To complete the initial appliance configuration, do the following:
 
-1. When prompted, enter `logrhythm` as the user name and enter the
-    default LogRhythm password.
+1. When prompted, enter the appliance account name and default password
+    provided for your installation.
 
 1. Press **y** to run the script.
 
-You will be prompted for network and NTP details. At each prompt,
+The script prompts you for network and NTP details. At each prompt,
 detected or default values are displayed in parentheses. To accept these
-values, simply press **Enter**.
+values, press **Enter**.
 
 1. Enter the network and NTP information as follows:
 
@@ -118,8 +116,8 @@ values, simply press **Enter**.
     If you plan to deploy the Indexer in a different network environment
     and expect the connectivity tests to fail, press **y** to proceed.
 
-    After you confirm the gateway and NTP values, you are logged in as
-    the `logrhythm` user.
+    After you confirm the gateway and NTP values, you are signed in to
+    the appliance.
     :::
 
 1. Restart the network interfaces to apply the new settings:
@@ -167,7 +165,7 @@ values, simply press **Enter**.
 1. Type **q** when prompted for another IP address.
 
 1. If prompted for the SSH password, enter the password for the
-    logrhythm user.
+    appliance account.
 
 The script will install the Indexer software.
 
@@ -193,32 +191,33 @@ installs the Indexer software on each node in the cluster.
     ```
 
 1. Using `sudo`, create a file named `hosts` in the current directory
-    (`/home/logrhythm/Soft`).
+    (`~/Soft`).
 
     The file should contain the IP addresses of all hosts in the
     cluster. To specify hostnames for the cluster nodes, enter each
     hostname after its IP address, separated by a space. If you do not
     specify hostnames, the installer will rename the hosts.
 
-    For example:
+    For example, replace the placeholders with each node's IP address
+    and hostname:
 
     ```text
-    10.1.23.65 LRLinux1
-    10.1.23.67 LRLinux2
-    10.1.23.91 LRLinux3
+    <node-1-ip> <node-1-hostname>
+    <node-2-ip> <node-2-hostname>
+    <node-3-ip> <node-3-hostname>
     ```
 
 1. Run the installer with the hosts file argument as follows:
 
     ```bash
-    sudo sh LRDataIndexer-*version*.centos.x86_64.run -- --hosts /home/logrhythm/Soft/hosts
+    sudo sh LRDataIndexer-*version*.centos.x86_64.run -- --hosts "$HOME/Soft/hosts"
     ```
 
     Press **Tab** after you begin typing the installer name to
     autocomplete the filename.
 
 1. If prompted for the SSH password, enter the password for the
-    logrhythm user.
+    appliance account.
 
 The script will install Indexer software on each node specified in the
 hosts file.
@@ -252,36 +251,12 @@ To become a registered user, log in to the [LogRhythm Support site](https://supp
 See *Getting Started: LogRhythm Appliance Software Configuration* on the
 LogRhythm Support site for further instructions.
 
-LogRhythm Inc., 4780 Pearl East Circle, Boulder, CO 80301
-
-[www.logrhythm.com](http://www.logrhythm.com) | (303) 413-8745 |
-[support@logrhythm.com](mailto:support@logrhythm.com)
-
-© LogRhythm, Inc. All rights reserved.
-
-This document contains proprietary and confidential information of
-LogRhythm, Inc., which is protected by copyright and possible
-non-disclosure agreements. The software described in this guide is
-furnished under the End User License Agreement or the applicable Terms
-and Conditions ("Agreement"), which governs the use of the software.
-This software may be used or copied only in accordance with the
-Agreement. No part of this guide may be reproduced or transmitted in any
-form or by any means, electronic or mechanical, including photocopying
-and recording, for any purpose other than what is permitted in the
-Agreement.
+> [Proprietary contact information and legal notice redacted.]
 
 ## Disclaimer
 
-The information contained in this document is subject to change without
-notice. LogRhythm, Inc. makes no warranty of any kind with respect to
-this information. LogRhythm, Inc. specifically disclaims the implied
-warranty of merchantability and fitness for a particular purpose.
-LogRhythm, Inc. shall not be liable for any direct, indirect,
-incidental, consequential, or other damages alleged in connection with
-the furnishing or use of this information.
+> [Proprietary disclaimer text redacted.]
 
 ## Trademark
 
-LogRhythm is a registered trademark of LogRhythm, Inc. All other company
-or product names mentioned may be trademarks, registered trademarks, or
-service marks of their respective holders.
+> [Proprietary trademark notice redacted.]
