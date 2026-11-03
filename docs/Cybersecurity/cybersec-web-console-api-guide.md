@@ -1,6 +1,6 @@
 ---
 title: "Web Console Case API Reference Guide"
-description: "Reference for the LogRhythm Web Console Case REST API, including authentication, case properties, routes, responses, errors, throttling, and JavaScript and C# examples."
+description: "Reference for the LogRhythm Web Console Case REST API, including authentication, case properties, routes for retrieving and updating cases, response codes, request throttling, and JavaScript and C# examples."
 author: pcartee
 topic: Reference
 date: "2017-01-22"
@@ -8,7 +8,7 @@ uid: cybersec.case.ape.ref
 sidebar_position: 3
 ---
 
-The LogRhythm Web Console Case API is a REST API that communicates over HTTPS and uses JSON. Its routes and methods let you work with cases, such as synchronizing tickets from a bug-tracking system with LogRhythm cases. Each request runs on behalf of the API account associated with the API token in the request.
+The LogRhythm Web Console Case API is a REST API that communicates over HTTPS and uses JSON. Use it to work with cases, such as synchronizing tickets from a bug-tracking system with LogRhythm cases. Each request runs on behalf of the API account associated with the API token in the request.
 
 Use the Case API to:
 
@@ -56,16 +56,16 @@ The Case API uses standard protocols to help protect API integrations and mainta
 Include an API token in the `Authorization` header of every request:
 
 ```http
-Authorization: Bearer <your-api-token>
+Authorization: <your API token>
 ```
 
 ### Content type
 
-The API uses JSON as its content type.
+The API uses JSON for its request and response bodies.
 
 ### API routes
 
-In a route, replace `:caseId` with `externalId/:externalId` or `number/:caseNumber`. Using an external ID is useful when synchronizing cases from another system because it lets you identify LogRhythm cases by that ID.
+In a route, replace `:caseId` with `externalId/:externalId` or `number/:caseNumber`. An external ID is useful when synchronizing cases from another system because it lets you identify LogRhythm cases by that ID.
 
 #### Get a case
 
@@ -167,21 +167,28 @@ Content-Type: application/json
 
 ### Errors
 
-Responses with an HTTP status code of 400 or higher indicate an error. The JSON response body includes the following properties:
+Responses with an HTTP status code of 400 or higher indicate an error.
+The JSON response body includes the following properties:
 
 - `statusCode` (number): HTTP status code. For details, see [Response status code explanations](#response-status-code-explanations).
 - `name` (string): Short error name, usually associated with the HTTP status code.
 - `message` (string): Human-readable error message. The exact message text can change, so API clients should not depend on it.
 
-Depending on the error, the response may include additional properties, such as `messageDetails`, with information about how to correct the request.
+Depending on the error, the response may include additional properties,
+such as `messageDetails`, with information about how to correct the
+request.
 
 ### Update objects and clear fields
 
-To clear an optional field, such as `summary`, send `null` as its value. If you omit a property, the API does not clear it.
+To clear an optional field, such as `summary`, send `null` as its
+value. If you omit a property, the API does not clear it.
 
 ### Request throttling
 
-By default, the API limits requests to 300 per minute. If you exceed this limit, the API returns a `429 Too Many Requests` response. The `X-Rate-Limit-Remaining` response header indicates how many requests remain in the current rate-limit window.
+By default, the API limits requests to 300 per minute. If you exceed
+this limit, the API returns a `429 Too Many Requests` response. The
+`X-Rate-Limit-Remaining` response header indicates how many requests
+remain in the current rate-limit window.
 
 ### Response status code explanations
 
@@ -200,11 +207,15 @@ The Case API uses the following response status codes:
 
 ## Sample code
 
-The following examples show how to call the Case API from JavaScript and C#. They use the default certificate validation behavior of their respective HTTP clients. In production, ensure that the server certificate is trusted and validated.
+The following examples show how to call the Case API from JavaScript and
+C#. They use the default certificate validation behavior of their
+respective HTTP clients. In production, ensure that the server
+certificate is trusted and validated.
 
 ### JavaScript
 
-This Node.js example uses the built-in `https` module and callbacks for asynchronous operations.
+This Node.js example uses the built-in `https` module and callbacks for
+asynchronous operations.
 
 ```javascript
 const https = require('https');
@@ -221,7 +232,7 @@ function request(method, path, data, callback) {
     method,
     path: `/api${path}`,
     headers: {
-      Authorization: `Bearer ${apiToken}`,
+      Authorization: apiToken,
       'Content-Type': 'application/json',
       'Content-Length': Buffer.byteLength(body),
     },
@@ -261,7 +272,8 @@ request('POST', '/cases', {
 
 ### C# example
 
-This example uses RestSharp and Newtonsoft.Json, both available from NuGet. It assumes a version of .NET that supports TLS 1.1 and TLS 1.2.
+This example uses RestSharp and Newtonsoft.Json, both available from
+NuGet. It assumes a version of .NET that supports TLS 1.1 and TLS 1.2.
 
 ```csharp
 using Newtonsoft.Json;
@@ -272,7 +284,7 @@ var client = new RestClient("https://<your LogRhythm host name or IP address>/ap
 const string apiToken = "<your API token>";
 
 var request = new RestRequest("cases", Method.Post);
-request.AddHeader("Authorization", $"Bearer {apiToken}");
+request.AddHeader("Authorization", apiToken);
 request.AddJsonBody(new
 {
     externalId = "example-123",
