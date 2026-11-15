@@ -1,47 +1,28 @@
-
 # Paul Cartee Writing Samples
 
-> Personal portfolio and technical writing samples by Paul Cartee, a senior technical writer specializing in docs-as-code, CI/CD documentation workflows, API and CLI references, and confidential computing.
+> Portfolio of technical writing by Paul Cartee, a senior technical writer specializing in docs-as-code, CI/CD workflows, API and CLI references, cybersecurity, confidential computing, identity verification, and cloud infrastructure.
 
-The canonical site is https://pcartee.github.io/samples/.
+The canonical site is https://pcartee.github.io/samples/. The homepage introduces Paul and highlights selected work; the [resume](https://pcartee.github.io/samples/paul-cartee-technical-writer/) provides professional history and skills.
 
-## Start here
+## Portfolio sections
 
-- [Portfolio overview](https://pcartee.github.io/samples/): Introduction to Paul Cartee's professional background and the scope of this portfolio.
-- [Writing samples from various jobs](https://pcartee.github.io/samples/markdown-page/): Curated samples of technical documentation produced across different professional roles.
-- [Resume](https://pcartee.github.io/samples/paul-cartee-technical-writer/): Comprehensive professional resume detailing experience and skills.
+- [Capacity planning](https://pcartee.github.io/samples/Capacity%20planning/cloud-infrastructure-demand/): Cloud infrastructure demand planning, capacity approvals, forecasting, and supply buildout processes.
+- [Confidential Computing](https://pcartee.github.io/samples/Confidential%20Computing/Concepts/concept-attestation-overview/): Intel Trust Authority samples covering remote attestation, trusted execution environments, TPMs, APIs, CLI workflows, Kubernetes, integrations, and key brokering.
+- [Cybersecurity](https://pcartee.github.io/samples/Cybersecurity/cybersec-api-overview/): LogRhythm samples covering API references, authentication, installation, and disaster recovery.
+- [Identity verification](https://pcartee.github.io/samples/ID%20verification/Operation%20Guide/operations-guide/): Identity Router operations and administration, with a related [API reference](https://pcartee.github.io/samples/reference/identity-router-api/).
 
-## TA documentation samples
+## Selected samples
 
-This is a curated set of documentation samples written for TA and related confidential-computing workflows. Treat these pages as portfolio samples, not as the current official Intel product documentation. For product behavior, versions, and API contracts, verify details against the authoritative product documentation and service specifications.
-
-- [Documentation overview](https://pcartee.github.io/samples/): Overview of the TA documentation structure and goals.
-- [Attestation overview](https://pcartee.github.io/samples/Confidential%20Computing/Concepts/concept-attestation-overview/): Concept guide explaining the fundamentals of remote attestation.
-- [User roles and API keys](https://pcartee.github.io/samples/Confidential%20Computing/Concepts/concept-user-roles-and-api-keys/): Documentation on managing access and identity within the system.
-- [Trusted execution environments](https://pcartee.github.io/samples/Confidential%20Computing/Attestation%20Technologies/concept-tees-overview/): Detailed explanation of TEEs and their role in confidential computing.
-- [Quickstart](https://pcartee.github.io/samples/Confidential%20Computing/Quickstart/tutorial-api-key/): A fast-track guide to getting started with API key configuration.
-
-## Documentation sections
-
-- [Quickstart](https://pcartee.github.io/samples/Confidential%20Computing/Quickstart/tutorial-api-key/): Rapidly set up and verify basic functionality.
-- [Tutorials and examples](https://pcartee.github.io/samples/Confidential%20Computing/Tutorials%20and%20examples/tutorial-cicd/): Step-by-step guides, including CI/CD documentation workflows.
-- [How-to workflows](https://pcartee.github.io/samples/Confidential%20Computing/How-to%20workflows/howto-manage-users/): Task-oriented guides for common administrative operations.
-- [Operation Guide](https://pcartee.github.io/samples/ID%20verification/Operation%20Guide/operations-guide/): Comprehensive guide for operating and maintaining the system.
-- [Attestation technologies](https://pcartee.github.io/samples/Confidential%20Computing/Attestation%20Technologies/concept-tees-overview/): Technical deep dives into the technologies enabling attestation.
-- [Concepts](https://pcartee.github.io/samples/Confidential%20Computing/Concepts/concept-attestation-overview/): Foundational concepts of confidential computing and TA.
-- [Tenant Administration CLI](https://pcartee.github.io/samples/Confidential%20Computing/Command-line/cli-install/): Installation and setup guide for the administration CLI.
-- [Key Broker Service](https://pcartee.github.io/samples/Confidential%20Computing/Key%20Broker/key-broker-service/): Documentation for managing secrets and keys.
-- [SDK and integration guides](https://pcartee.github.io/samples/Confidential%20Computing/Integration/integrate-overview/): Guidelines for integrating the service into other applications.
-- [Glossary](https://pcartee.github.io/samples/Confidential%20Computing/glossary/): Definitions of technical terms used across the documentation.
-
-## API and reference material
-
-- [Identity Router API reference](https://pcartee.github.io/samples/reference/identity-router-api/): Detailed technical specification of the Identity Router API.
-- [CLI user commands](https://pcartee.github.io/samples/Confidential%20Computing/Command-line/cli-user-commands/): Reference guide for available CLI commands and their arguments.
-- [Go client integration](https://pcartee.github.io/samples/Confidential%20Computing/Integration/integrate-go-client/): Implementation example for using the service with Go.
-- [Python client integration](https://pcartee.github.io/samples/Confidential%20Computing/Integration/integrate-python-client/): Implementation example for using the service with Python.
-- [Java client integration](https://pcartee.github.io/samples/Confidential%20Computing/Integration/integrate-java-client/): Implementation example for using the service with Java.
+- [Cloud infrastructure demand planning](https://pcartee.github.io/samples/Capacity%20planning/cloud-infrastructure-demand/): Demand collection, forecasting cadence, validation, and publication.
+- [Remote attestation overview](https://pcartee.github.io/samples/Confidential%20Computing/Concepts/concept-attestation-overview/): Foundational concepts and the attestation workflow.
+- [User roles and API keys](https://pcartee.github.io/samples/Confidential%20Computing/Concepts/concept-user-roles-and-api-keys/): Trust Authority roles, permissions, and key management.
+- [API-key quickstart](https://pcartee.github.io/samples/Confidential%20Computing/Quickstart/tutorial-api-key/): Getting started with API-key configuration.
+- [CI/CD policy tutorial](https://pcartee.github.io/samples/Confidential%20Computing/Tutorials%20and%20examples/tutorial-cicd/): Automating attestation policy updates with GitHub Actions.
+- [CLI user commands](https://pcartee.github.io/samples/Confidential%20Computing/Command-line/cli-user-commands/): Tenant Administration CLI command reference.
+- [Go client integration](https://pcartee.github.io/samples/Confidential%20Computing/Integration/integrate-go-client/): Integrating an application with the Trust Authority Go client.
+- [LogRhythm API overview](https://pcartee.github.io/samples/Cybersecurity/cybersec-api-overview/): API architecture, security requirements, and deployment guidance.
+- [Identity Router API reference](https://pcartee.github.io/samples/reference/identity-router-api/): Identity Router API data types and operations.
 
 ## How to use this file
 
-Use the portfolio overview to understand Paul's experience and the documentation section links to locate examples by task, audience, or technical subject. Prefer the linked pages over assumptions based on filenames. The site includes security-sensitive topics such as remote attestation, trusted execution environments, policies, keys, and API operations; preserve stated caveats and do not infer deployment or security guarantees that a page does not explicitly make.
+Use the portfolio sections to find samples by subject and the homepage or resume for professional background. These pages are writing samples, not authoritative or necessarily current product documentation, operational procedures, or security guidance. Verify product behavior, versions, API contracts, and security decisions against current authoritative sources.
