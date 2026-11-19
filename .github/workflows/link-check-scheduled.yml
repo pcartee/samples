@@ -1,0 +1,95 @@
+name: Weekly external link check
+
+# Checks every web link in docs/ once a week. Instead of blocking pull
+# requests, it opens (or updates) one GitHub issue labeled "broken-links" and
+# closes that issue when all links pass again.
+
+on:
+  schedule:
+    - cron: '0 14 * * 1' # Mondays at 14:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: link-check-scheduled
+  cancel-in-progress: false
+
+jobs:
+  external-links:
+    name: Full-site external links
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Cache pinned tools
+        uses: actions/cache@v6
+        with:
+          path: .tools
+          key: docs-lychee-${{ runner.os }}-${{ hashFiles('scripts/docs-quality/install-tools.mjs') }}
+
+      - name: Install lychee (pinned, checksum-verified)
+        run: node scripts/docs-quality/install-tools.mjs lychee
+
+      - name: Restore link check cache
+        uses: actions/cache@v6
+        with:
+          path: .lycheecache
+          key: lychee-cache-${{ github.run_id }}
+          restore-keys: lychee-cache-
+
+      - name: Check all web links
+        id: lychee
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          node scripts/docs-quality/links.mjs external --all --report "$RUNNER_TEMP/lychee-report.md"
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Open, update, or close the broken links issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EXIT_CODE: ${{ steps.lychee.outputs.exit_code }}
+          REPORT: ${{ runner.temp }}/lychee-report.md
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          title="Broken external links found by the weekly check"
+          existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --label broken-links --state open --json number --jq '.[0].number // empty')
+
+          if [[ "$EXIT_CODE" == "0" ]]; then
+            if [[ -n "$existing" ]]; then
+              gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "All external links passed in the [latest weekly check]($RUN_URL). Closing this issue."
+              gh issue close "$existing" --repo "$GITHUB_REPOSITORY"
+            fi
+            exit 0
+          fi
+
+          if [[ ! -s "$REPORT" ]]; then
+            echo "::error::lychee exited with code $EXIT_CODE and didn't write a report. See the log above."
+            exit 1
+          fi
+
+          body="$RUNNER_TEMP/issue-body.md"
+          {
+            echo "The [weekly external link check]($RUN_URL) found links that failed after retries."
+            echo
+            echo "Fix or update each link. If a link is valid but can't be checked automatically, add it to \`.lycheeignore\` with a \`# reason:\` comment (a docs maintainer must approve that change)."
+            echo
+            cat "$REPORT"
+          } > "$body"
+
+          gh label create broken-links --repo "$GITHUB_REPOSITORY" --color B60205 --description "Found by the weekly external link check" --force
+          if [[ -n "$existing" ]]; then
+            gh issue edit "$existing" --repo "$GITHUB_REPOSITORY" --body-file "$body"
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "Updated with the results of the [latest weekly check]($RUN_URL)."
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --label broken-links --body-file "$body"
+          fi
