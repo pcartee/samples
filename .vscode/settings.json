@@ -1,31 +1,29 @@
 {
     "iis.configDir": "",
     "python-envs.defaultEnvManager": "ms-python.python:system",
-    "cSpell.words": [
-        "Broomfield",
-        "Camtasia",
-        "Cartee",
-        "custimization",
-        "Digitech",
-        "Gramine",
-        "isvprodid",
-        "isvsvn",
-        "jsontorego",
-        "Medecision",
-        "mrenclave",
-        "mrsigner",
-        "mrsignerseam",
-        "mrtd",
-        "pcartee",
-        "rego",
-        "Rego",
-        "rmtr",
-        "Romeoville",
-        "rtmr",
-        "seamsvn",
-        "Socure",
-        "trustauthorityctl",
-        "UEFI",
-        "Vyond"
-    ]
+
+    // Docs quality checks. These use the same binaries and config files as the
+    // pre-commit hook and CI. Run `npm run setup` once to install them.
+    "vale.valeCLI.path": "${workspaceFolder}/.tools/bin/vale",
+    "vale.valeCLI.config": "${workspaceFolder}/.vale.ini",
+    "vale.valeCLI.minAlertLevel": "inherited",
+
+    // Spelling uses cspell.json, which reads docs-review/docs-terms.txt.
+    // "Add to dictionary" in VS Code writes to docs-terms.txt.
+    "cSpell.enableFiletypes": ["mdx"],
+
+    "files.associations": {
+        "*.mdx": "mdx"
+    },
+    "[markdown]": {
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": { "comments": "off", "strings": "off", "other": "off" }
+    },
+    "[mdx]": {
+        "editor.wordWrap": "on"
+    },
+    "search.exclude": {
+        ".tools": true,
+        ".vale/styles/Microsoft": true
+    }
 }
