@@ -1,0 +1,21 @@
+# Changes to the docs quality checks, their exception lists, and the approver
+# list need a review from a docs maintainer. Turn on "Require review from Code
+# Owners" in branch protection for this file to take effect.
+#
+# This repository is owned by a personal account, so teams aren't available.
+# List individual maintainers here. If the repository moves to an organization,
+# replace @pcartee with a team such as @org/docs-maintainers.
+
+/.github/                     @pcartee
+/.husky/                      @pcartee
+/scripts/docs-quality/        @pcartee
+/.vale.ini                    @pcartee
+/.vale/                       @pcartee
+/.markdownlint.json           @pcartee
+/.markdownlint-cli2.jsonc     @pcartee
+/.markdownlint/               @pcartee
+/cspell.json                  @pcartee
+/lychee.toml                  @pcartee
+/.lycheeignore                @pcartee
+/docusaurus.config.js         @pcartee
+/package.json                 @pcartee

@@ -1,0 +1,124 @@
+name: Docs exception approval
+
+# Required check: "Exception approval".
+#
+# Passes immediately unless the pull request:
+#   - adds or changes an inline suppression comment in docs/ (vale,
+#     markdownlint, or cspell), or
+#   - changes .lycheeignore or any docs quality config or script.
+# In that case it passes only after a docs maintainer approves the pull
+# request's latest commit. Maintainers are listed in
+# .github/docs-maintainers.txt, read from the base branch so a pull request
+# can't approve itself by editing the list.
+#
+# The check reruns when someone submits or dismisses a review.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: docs-exception-approval-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  approval:
+    name: Exception approval
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check for exceptions and maintainer approval
+        uses: actions/github-script@v9
+        env:
+          # With one maintainer, nobody else can approve their pull requests, so
+          # a maintainer's own exceptions pass with a notice. Set this to
+          # 'false' once there are at least two maintainers.
+          ALLOW_MAINTAINER_SELF_APPROVAL: 'true'
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const pull_number = context.payload.pull_request.number;
+            const { data: pr } = await github.rest.pulls.get({ owner, repo, pull_number });
+
+            // Files whose changes can weaken the checks or add exceptions.
+            const policyPaths = [
+              '.lycheeignore', 'lychee.toml', '.vale.ini', '.vale/', 'cspell.json',
+              '.markdownlint.json', '.markdownlint-cli2.jsonc', '.markdownlint/',
+              'scripts/docs-quality/', '.husky/', '.github/CODEOWNERS',
+              '.github/docs-maintainers.txt', '.github/workflows/docs-quality.yml',
+              '.github/workflows/docs-exception-approval.yml',
+              '.github/workflows/link-check-scheduled.yml',
+            ];
+            const isPolicyFile = (name) => policyPaths.some((p) => p.endsWith('/') ? name.startsWith(p) : name === p);
+            const isDoc = (name) => name.startsWith('docs/') && /\.mdx?$/i.test(name);
+            const suppression = /<!--\s*(?:vale\s|markdownlint-|cspell\s*:|spell-?checker\s*:)/i;
+
+            const reasons = [];
+            const files = await github.paginate(github.rest.pulls.listFiles, { owner, repo, pull_number, per_page: 100 });
+            for (const file of files) {
+              if (isPolicyFile(file.filename)) {
+                reasons.push(`\`${file.filename}\` (docs quality configuration or exception list)`);
+              } else if (isDoc(file.filename) && file.status !== 'removed') {
+                if (file.patch === undefined) {
+                  reasons.push(`\`${file.filename}\` (diff too large to scan, so it needs review)`);
+                  continue;
+                }
+                const added = file.patch.split('\n').filter((l) => l.startsWith('+') && !l.startsWith('+++'));
+                const hits = added.filter((l) => suppression.test(l)).length;
+                if (hits) reasons.push(`\`${file.filename}\` (${hits} added or changed suppression comment${hits > 1 ? 's' : ''})`);
+              }
+            }
+
+            if (reasons.length === 0) {
+              core.info('No rule exceptions or check configuration changes. No extra approval needed.');
+              return;
+            }
+
+            // Approvers come from the base branch. If the list doesn't exist
+            // there yet (the pull request that adds it), fall back to the owner.
+            let maintainers;
+            try {
+              const { data } = await github.rest.repos.getContent({ owner, repo, path: '.github/docs-maintainers.txt', ref: pr.base.sha });
+              maintainers = Buffer.from(data.content, 'base64').toString('utf8')
+                .split('\n').map((l) => l.trim()).filter((l) => l && !l.startsWith('#'));
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              maintainers = [owner];
+              core.notice(`.github/docs-maintainers.txt isn't on the base branch yet, so the repository owner (${owner}) is the approver.`);
+            }
+            const isMaintainer = (login) => maintainers.some((m) => m.toLowerCase() === login.toLowerCase());
+
+            // Latest review state per reviewer; approvals count only for the current head commit.
+            const reviews = await github.paginate(github.rest.pulls.listReviews, { owner, repo, pull_number, per_page: 100 });
+            const latest = new Map();
+            for (const review of reviews) {
+              if (!review.user || review.state === 'COMMENTED' || review.state === 'PENDING') continue;
+              latest.set(review.user.login, review);
+            }
+            const approvers = [...latest.values()]
+              .filter((r) => r.state === 'APPROVED' && r.commit_id === pr.head.sha && isMaintainer(r.user.login))
+              .map((r) => r.user.login)
+              .filter((login) => login.toLowerCase() !== pr.user.login.toLowerCase());
+
+            const summary = core.summary.addHeading('Docs exception approval', 2)
+              .addRaw('This pull request adds rule exceptions or changes docs quality settings:').addEOL()
+              .addList(reasons);
+
+            if (approvers.length) {
+              await summary.addRaw(`Approved by docs maintainer(s): ${approvers.join(', ')}.`).write();
+              core.info(`Approved by ${approvers.join(', ')}.`);
+              return;
+            }
+            if (process.env.ALLOW_MAINTAINER_SELF_APPROVAL === 'true' && isMaintainer(pr.user.login)) {
+              await summary.addRaw(`The author (${pr.user.login}) is a docs maintainer, and maintainer self-approval is turned on.`).write();
+              core.notice(`Exceptions accepted because the author, ${pr.user.login}, is a docs maintainer. Set ALLOW_MAINTAINER_SELF_APPROVAL to 'false' once there are two or more maintainers.`);
+              return;
+            }
+            await summary.addRaw(`Waiting for a docs maintainer (${maintainers.join(', ')}) to approve the latest commit.`).write();
+            core.setFailed(`This pull request needs approval from a docs maintainer (${maintainers.join(', ')}) because it changes:\n- ${reasons.join('\n- ')}`);
