@@ -1,0 +1,30 @@
+# lychee settings for external link checks (pull requests and the weekly scan).
+# The lychee version is pinned in scripts/docs-quality/install-tools.mjs.
+# Internal links are checked separately against the built site (see
+# .github/workflows/docs-quality.yml).
+#
+# To skip a URL, add it to .lycheeignore with a "# reason:" comment. Changes to
+# .lycheeignore need approval from a docs maintainer.
+
+# Only check web links here.
+scheme = ["https", "http"]
+
+# Tolerate temporary outages: wait for slow servers, retry with a delay, and
+# limit parallel requests so sites don't rate-limit the runner.
+timeout = 30
+max_retries = 3
+retry_wait_time = 5
+max_concurrency = 8
+host_concurrency = 2
+
+# 429 means "slow down", not "broken".
+accept = ["100..=103", "200..=299", "429"]
+
+# Reuse results from the last day. Failed checks aren't cached, so a link that
+# was down earlier is always rechecked.
+cache = true
+max_cache_age = "1d"
+cache_exclude_status = ["400..=599"]
+
+user_agent = "Mozilla/5.0 (compatible; docs-link-check; +https://lychee.cli.rs)"
+no_progress = true
