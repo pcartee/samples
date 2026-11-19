@@ -7,7 +7,7 @@ date: "2023-09-01"
 uid: attestation.overview
 ---
 
-This article provides a high-level overview of remote attestation with Trust Authority (TA). In a remote attestation architecture, TA acts as a _verifier_. To understand the verifier's role and how to use TA attestation, familiarize yourself with the Remote Attestation Procedures Architecture defined in [IETF RFC 9334](https://datatracker.ietf.org/doc/rfc9334/). This article uses the terminology defined in RFC 9334. This article could be helpfule for endusers and people new to the technology.
+This article provides a high-level overview of remote attestation with Trust Authority (TA). In a remote attestation architecture, TA acts as a _verifier_. To understand the verifier's role and how to use TA attestation, familiarize yourself with the Remote Attestation Procedures Architecture defined in [IETF RFC 9334](https://datatracker.ietf.org/doc/rfc9334/). This article uses the terminology defined in RFC 9334. This article could be helpful for end users and people new to the technology.
 
 Attestation helps establish trust between a confidential computing workload and one or more relying parties. At a high level, the process involves three steps:
 
