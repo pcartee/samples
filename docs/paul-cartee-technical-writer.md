@@ -7,7 +7,7 @@ date: "2026-11-02"
 uid: resume
 ---
 
-Broomfield, CO \| 303.819.1583 \| [paulcartee@yahoo.com](mailto:paulcartee@yahoo.com)
+Broomfield, CO \| 303.819.1583 \| [paulcartee@yahoo.com](mailto:paulcartee@yahoo.com) | https://www.linkedin.com/in/paul-cartee/
 
 ## Professional summary
 
