@@ -1,0 +1,133 @@
+name: Docs quality
+
+# Required checks for every pull request. The job names below are the status
+# check names to require in branch protection:
+#   - Style, spelling, and Markdown
+#   - Internal links
+#   - External links
+# (The "Exception approval" check is in docs-exception-approval.yml.)
+#
+# There's deliberately no `paths:` filter. A required check that never starts
+# stays "Expected" forever and blocks the merge, so each job runs on every pull
+# request and finishes quickly when no docs changed.
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-quality-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Style, spelling, and Markdown
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v7
+        with:
+          # The pull request merge commit and its first parent (the base branch),
+          # so the check can find the lines this pull request adds or changes.
+          fetch-depth: 2
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Cache pinned tools and Vale styles
+        uses: actions/cache@v6
+        with:
+          path: |
+            .tools
+            .vale/styles/Microsoft
+          key: docs-tools-${{ runner.os }}-${{ hashFiles('scripts/docs-quality/install-tools.mjs', '.vale.ini') }}
+
+      - name: Install Vale and lychee (pinned, checksum-verified)
+        run: node scripts/docs-quality/setup.mjs
+
+      - name: Check added and changed lines
+        run: node scripts/docs-quality/check.mjs --base HEAD^1
+
+  internal-links:
+    name: Internal links
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Cache pinned tools
+        uses: actions/cache@v6
+        with:
+          path: .tools
+          key: docs-lychee-${{ runner.os }}-${{ hashFiles('scripts/docs-quality/install-tools.mjs') }}
+
+      - name: Install lychee (pinned, checksum-verified)
+        run: node scripts/docs-quality/install-tools.mjs lychee
+
+      # Docusaurus fails the build on broken page links, anchors, Markdown file
+      # links, and images (see docusaurus.config.js).
+      - name: Build site
+        run: npm run build
+
+      # Then lychee checks every link, image, and anchor in the built HTML
+      # offline, which also covers raw HTML and static file links.
+      - name: Check links in the built site
+        run: node --no-warnings scripts/docs-quality/links.mjs internal
+
+  external-links:
+    name: External links
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+
+      - name: Cache pinned tools
+        uses: actions/cache@v6
+        with:
+          path: .tools
+          key: docs-lychee-${{ runner.os }}-${{ hashFiles('scripts/docs-quality/install-tools.mjs') }}
+
+      - name: Install lychee (pinned, checksum-verified)
+        run: node scripts/docs-quality/install-tools.mjs lychee
+
+      # Successful results are reused for a day (see lychee.toml), which cuts
+      # requests to external sites and the chance of rate limiting.
+      - name: Restore link check cache
+        uses: actions/cache@v6
+        with:
+          path: .lycheecache
+          key: lychee-cache-${{ github.run_id }}
+          restore-keys: lychee-cache-
+
+      - name: Check web links in changed docs files
+        env:
+          # Raises the GitHub API rate limit for github.com links.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/docs-quality/links.mjs external --base HEAD^1

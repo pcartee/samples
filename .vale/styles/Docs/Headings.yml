@@ -1,0 +1,21 @@
+# Headings must use sentence case (Microsoft Writing Style Guide).
+# Terms in docs-review/docs-terms.txt are accepted as written, so product
+# names and acronyms can stay capitalized.
+extends: capitalization
+message: "Use sentence case for headings: '%s'."
+link: https://learn.microsoft.com/style-guide/capitalization
+level: error
+scope: heading
+match: $sentence
+indicators:
+  - ':'
+exceptions:
+  - API
+  - APIs
+  - Azure
+  - CLI
+  - GitHub
+  - I
+  - Linux
+  - macOS
+  - Windows

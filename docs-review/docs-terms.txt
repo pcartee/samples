@@ -125,3 +125,17 @@ cassini
 swname
 rmtr
 
+
+# Moved from .vscode/settings.json (cSpell.words)
+Broomfield
+Camtasia
+Digitech
+jsontorego
+Medecision
+mrsignerseam
+mrtd
+pcartee
+Romeoville
+seamsvn
+Socure
+Vyond

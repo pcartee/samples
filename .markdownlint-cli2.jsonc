@@ -1,0 +1,6 @@
+// markdownlint-cli2 settings shared by VS Code, the pre-commit hook, and CI.
+// Rule settings live in .markdownlint.json.
+{
+  "customRules": ["./.markdownlint/rules/alt-text-not-blank.cjs"],
+  "ignores": ["node_modules/**", "build/**", ".docusaurus/**"]
+}

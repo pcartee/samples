@@ -1,0 +1,3 @@
+# Checks style, spelling, Markdown, and exception comments on the lines you staged.
+# Same tools and rules as the pull request check. Set up with: npm run setup
+npx --no -- lint-staged

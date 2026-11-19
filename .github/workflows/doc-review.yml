@@ -1,5 +1,8 @@
 name: Automated Doc Review
 
+# Optional AI review comment. Style, spelling, Markdown, and link checks run in
+# docs-quality.yml as required checks.
+
 on:
   pull_request:
     paths:
@@ -9,52 +12,11 @@ on:
       - 'docs/*.mdx'
       - '.github/workflows/doc-review.yml'
       - '.github/scripts/doc_review.py'
-      - 'docs/.vale.ini'
-      - 'docs/styles/**'
-      - 'docs-review/.markdownlint.yaml'
 
 permissions:
   contents: read
 
 jobs:
-  lint:
-    name: Documentation lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out pull request
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: Find changed documentation
-        id: changed
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: python .github/scripts/doc_review.py changed-files
-
-      - name: Vale (Microsoft style)
-        if: steps.changed.outputs.has_files == 'true'
-        uses: vale-cli/vale-action@v3
-        with:
-          files: ${{ steps.changed.outputs.globs }}
-          separator: "\n"
-          fail_on_error: false
-          config: docs/.vale.ini
-
-      - name: Markdown lint
-        if: steps.changed.outputs.has_files == 'true'
-        uses: DavidAnson/markdownlint-cli2-action@v24
-        with:
-          config: docs-review/.markdownlint.yaml
-          globs: ${{ steps.changed.outputs.globs }}
-
   ai-review:
     name: AI documentation review
     # Restrict to same-repository PRs from trusted contributors; fork PR content is untrusted.

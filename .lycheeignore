@@ -1,0 +1,10 @@
+# Link exclusions for lychee. Each pattern is a regular expression.
+# Every pattern needs a "# reason:" comment on the line above it, and any change
+# to this file needs approval from a docs maintainer (see CONTRIBUTING.md).
+
+# reason: API base URLs that return 404 or 401 without a request path and token
+^https://api(\.eu)?\.trustauthority\.intel\.com
+# reason: Portal sign-in pages that redirect to authentication and block bots
+^https://portal(\.eu)?\.trustauthority\.intel\.com
+# reason: LinkedIn returns HTTP 999 to automated clients even for valid profiles
+^https://www\.linkedin\.com/

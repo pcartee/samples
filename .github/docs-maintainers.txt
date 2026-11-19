@@ -1,0 +1,5 @@
+# GitHub accounts that can approve docs rule exceptions (inline suppression
+# comments and .lycheeignore changes). One login per line.
+# The "Exception approval" check reads this file from the base branch, so a pull
+# request can't add its own approver.
+pcartee

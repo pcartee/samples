@@ -8,10 +8,10 @@ This website is built using [Docusaurus](https://docusaurus.io/), a modern stati
 ## Installation
 
 ```bash
-npm install
+npm run setup
 ```
 
-**Note**: feel free to use the package manager of your choice.
+This installs the dependencies, the pre-commit hook, and the pinned docs quality tools (Vale and lychee). To learn what the checks do and how to fix failures, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Local Development
 
