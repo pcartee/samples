@@ -2,3 +2,9 @@ node_modules
 .docusaurus/
 build/
 .npm-cache/
+
+# Docs quality tooling (installed by `npm run setup`)
+.tools/
+.lycheecache
+.vale/styles/*
+!.vale/styles/Docs/

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en-US",
+  "dictionaries": ["docs-terms"],
+  "dictionaryDefinitions": [
+    {
+      "name": "docs-terms",
+      "path": "./docs-review/docs-terms.txt",
+      "addWords": true
+    }
+  ],
+  "ignorePaths": ["node_modules/**", "build/**", ".docusaurus/**", ".tools/**", ".vale/**", "package-lock.json"],
+  "ignoreRegExpList": ["Urls", "Email", "frontMatter", "fencedCode", "inlineCode", "htmlComment", "jsxTag", "mdxImportExport", "mdxExpression"],
+  "patterns": [
+    { "name": "frontMatter", "pattern": "/^---\\r?\\n[\\s\\S]*?\\r?\\n---\\r?\\n/" },
+    { "name": "fencedCode", "pattern": "/^[ \\t>]*(`{3,}|~{3,})[\\s\\S]*?^[ \\t>]*\\1/gm" },
+    { "name": "inlineCode", "pattern": "/`[^`\\n]+`/g" },
+    { "name": "htmlComment", "pattern": "/<!--\\s*(?:vale|markdownlint-|cspell|spell-?checker)[\\s\\S]*?-->/gi" },
+    { "name": "jsxTag", "pattern": "/<\\/?[A-Za-z][\\w.:-]*(?:\\s[^<>]*)?\\/?>/g" },
+    { "name": "mdxImportExport", "pattern": "/^(?:import|export)\\s.*$/gm" },
+    { "name": "mdxExpression", "pattern": "/\\{[^{}\\n]*\\}/g" }
+  ]
+}
